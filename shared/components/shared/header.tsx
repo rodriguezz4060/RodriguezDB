@@ -11,7 +11,7 @@ interface Props {
 
 export const Header: React.FC<Props> = ({ className }) => {
   return (
-    <header className={cn('border border-b ', className)}>
+    <header className={cn('border border-b', className)}>
       <div>
         <Container className='flex items-center justify-between py-5'>
           {/* Левая часть */}
@@ -24,8 +24,7 @@ export const Header: React.FC<Props> = ({ className }) => {
           </div>
 
           {/*Правая часть */}
-
-          <div className='flex items-center gap 3'>
+          <div className='flex items-center gap-3'>
             <Button className='flex items-start gap-3'>
               <User size={16} />
               Войти
