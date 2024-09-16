@@ -1,3 +1,5 @@
-export { Container } from "./container";
-export { Header } from "./header";
-export { Title } from "./title";
+export { Container } from './container'
+export { Header } from './header'
+export { Title } from './title'
+export { DarkModeToggle } from './dark-mode-toggle'
+export { LocaleToggle } from './locale-toggle'

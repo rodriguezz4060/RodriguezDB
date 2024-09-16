@@ -4,6 +4,8 @@ import { Container } from './container'
 import Image from 'next/image'
 import { Button } from '../ui'
 import { User } from 'lucide-react'
+import { DarkModeToggle } from './dark-mode-toggle'
+import { LocaleToggle } from './locale-toggle'
 
 interface Props {
   className?: string
@@ -24,7 +26,11 @@ export const Header: React.FC<Props> = ({ className }) => {
           </div>
 
           {/*Правая часть */}
+
           <div className='flex items-center gap-3'>
+            <LocaleToggle />
+            <DarkModeToggle />
+
             <Button className='flex items-start gap-3'>
               <User size={16} />
               Войти
