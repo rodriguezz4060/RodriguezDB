@@ -5,10 +5,11 @@
     },
     "content": {
         "selectSection": "Выберите раздел",
-        "managed": "Управляется",
-        "contacts": "Контакты",
-        "about": "О проекте",
-        "rules": "Правила"
+        "bootKitSelection": "Подбор пыльника ШРУСА",
+        "sortText": "Сортировать"
+    },
+    "filters": {
+        "title": "Фильтр"
     },
     "localeToggle": {
         "languagePlaceholder": "Русский"

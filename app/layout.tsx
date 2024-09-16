@@ -19,7 +19,7 @@ export default function RootLayout({
   const [locale, setLocale] = useState<string>('en')
 
   useEffect(() => {
-    const userLang = navigator.language.split('-')[0] || 'en' // Нормализация локали
+    const userLang = navigator.language.split('-')[0] || 'en'
     setLocale(userLang)
   }, [])
 

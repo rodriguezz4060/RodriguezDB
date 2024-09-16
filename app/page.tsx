@@ -7,7 +7,7 @@ export default function Home() {
   const { formatMessage } = useIntl()
   return (
     <>
-      <Container className='secondary h-screen dark:bg-zinc-900 px-4 '>
+      <Container className='secondary h-screen dark:bg-zinc-900 px-4'>
         <Title
           text={formatMessage({ id: 'content.selectSection' })}
           size='lg'

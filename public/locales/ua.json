@@ -4,7 +4,12 @@
         "headerTextDown": "База даних Родрiгеза"
     },
     "content": {
-        "selectSection": "Оберiть роздiл"
+        "selectSection": "Оберiть роздiл",
+        "bootKitSelection": "Пiдбiр пильовика ШРКШ",
+        "sortText": "Сортуровати"
+    },
+    "filters": {
+        "title": "Фiльтр"
     },
     "localeToggle": {
         "languagePlaceholder": "Українська"
