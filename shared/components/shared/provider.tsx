@@ -1,11 +1,15 @@
 'use client'
 
 import React from 'react'
+import dynamic from 'next/dynamic'
 import { IntlProvider } from 'react-intl'
-import { ThemeProvider } from './theme-provider'
 import { LocaleProvider, useLocale } from './locale-provider'
 import { messages } from './flatten-messages'
 import { Header } from './header'
+
+const ThemeProvider = dynamic(() => import('./theme-provider').then(mod => mod.ThemeProvider), {
+  ssr: false,
+})
 
 interface ProvidersProps {
   children: React.ReactNode

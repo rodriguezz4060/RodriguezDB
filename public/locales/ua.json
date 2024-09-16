@@ -1,4 +1,8 @@
 {
+    "header": {
+        "headerTextUp": "Rodriguez DB",
+        "headerTextDown": "База даних Родрiгеза"
+    },
     "content": {
         "selectSection": "Оберiть роздiл"
     },

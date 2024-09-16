@@ -1,4 +1,8 @@
 {
+    "header": {
+        "headerTextUp": "Rodriguez DB",
+        "headerTextDown": "База данных Родригеза"
+    },
     "content": {
         "selectSection": "Выберите раздел",
         "managed": "Управляется",

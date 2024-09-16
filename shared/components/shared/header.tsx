@@ -6,12 +6,14 @@ import { Button } from '../ui'
 import { User } from 'lucide-react'
 import { DarkModeToggle } from './dark-mode-toggle'
 import { LocaleToggle } from './locale-toggle'
+import { useIntl } from 'react-intl'
 
 interface Props {
   className?: string
 }
 
 export const Header: React.FC<Props> = ({ className }) => {
+  const { formatMessage } = useIntl()
   return (
     <header className={cn('border border-b', className)}>
       <div>
@@ -20,8 +22,12 @@ export const Header: React.FC<Props> = ({ className }) => {
           <div className='flex items-center gap-4'>
             <Image src='/logo.png' alt='Logo' width={35} height={35} />
             <div>
-              <h1 className='text-2xl uppercase font-black'>Rodriguez DB</h1>
-              <p className='text-sm text-gray-400 leading-3'>База данных Родригеза</p>
+              <h1 className='text-2xl uppercase font-black'>
+                {formatMessage({ id: 'header.headerTextUp' })}
+              </h1>
+              <p className='text-sm text-gray-400 leading-3'>
+                {formatMessage({ id: 'header.headerTextDown' })}
+              </p>
             </div>
           </div>
 

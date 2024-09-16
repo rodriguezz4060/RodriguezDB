@@ -24,7 +24,7 @@ export default function RootLayout({
   }, [])
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale}>
       <head>
         <link data-rh='true' rel='icon' href='/logo.png' />
       </head>
