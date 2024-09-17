@@ -9,6 +9,11 @@
         "bootKitSelection": "Пiдбiр пильовика ШРКШ",
         "sortText": "Сортуровати"
     },
+    "mainPage": {
+        "BootKit": "Підбір пильовика ШРКШ",
+        "oil": "Олива ТО",
+        "clients": "База клієнтів"
+    },
     "filters": {
         "title": "Фiльтр"
     },

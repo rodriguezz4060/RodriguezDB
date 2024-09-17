@@ -8,6 +8,7 @@ import { DarkModeToggle } from './dark-mode-toggle'
 import { LocaleToggle } from './locale-toggle'
 import { useIntl } from 'react-intl'
 import { SearchInput } from './search-input'
+import Link from 'next/link'
 
 interface Props {
   className?: string
@@ -20,8 +21,11 @@ export const Header: React.FC<Props> = ({ className }) => {
       <div>
         <Container className='flex items-center justify-between py-5'>
           {/* Левая часть */}
+          <Link href={`/`}>
           <div className='flex items-center gap-4'>
+            
             <Image src='/logo.png' alt='Logo' width={35} height={35} />
+            
             <div>
               <h1 className='text-2xl uppercase font-black'>
                 {formatMessage({ id: 'header.headerTextUp' })}
@@ -30,8 +34,9 @@ export const Header: React.FC<Props> = ({ className }) => {
                 {formatMessage({ id: 'header.headerTextDown' })}
               </p>
             </div>
+            
           </div>
-
+          </Link>
           {/*Центральная часть*/}
 
           <div className='mx-10 flex-1'>

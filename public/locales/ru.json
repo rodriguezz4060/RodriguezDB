@@ -9,6 +9,11 @@
         "bootKitSelection": "Подбор пыльника ШРУСА",
         "sortText": "Сортировать"
     },
+    "mainPage": {
+        "BootKit": "Подбор пыльника ШРУСА",
+        "oil": "Масла ТО",
+        "clients": "База клиентов"
+    },
     "filters": {
         "title": "Фильтр"
     },
