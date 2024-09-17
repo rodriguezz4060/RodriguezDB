@@ -24,7 +24,7 @@ export const SortGroup: React.FC<Props> = ({ className }) => {
         title='Сортировать таблицей'
         onClick={() => onClick('table')}
       >
-        <Table className='h-[1.2rem] w-[1.2rem] scale-100 rounded-' />
+        <Table className='h-[1.2rem] w-[1.2rem] scale-100' />
       </Button>
       <Button
         variant={activeButton === 'list' ? 'default' : 'outline'}
