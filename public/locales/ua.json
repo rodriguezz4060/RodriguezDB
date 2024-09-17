@@ -1,7 +1,8 @@
 {
     "header": {
         "headerTextUp": "Rodriguez DB",
-        "headerTextDown": "База даних Родрiгеза"
+        "headerTextDown": "База даних Родрiгеза",
+        "serchplaceholder": "Пошук по VIN"
     },
     "content": {
         "selectSection": "Оберiть роздiл",

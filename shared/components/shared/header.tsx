@@ -7,6 +7,7 @@ import { User } from 'lucide-react'
 import { DarkModeToggle } from './dark-mode-toggle'
 import { LocaleToggle } from './locale-toggle'
 import { useIntl } from 'react-intl'
+import { SearchInput } from './search-input'
 
 interface Props {
   className?: string
@@ -29,6 +30,12 @@ export const Header: React.FC<Props> = ({ className }) => {
                 {formatMessage({ id: 'header.headerTextDown' })}
               </p>
             </div>
+          </div>
+
+          {/*Центральная часть*/}
+
+          <div className='mx-10 flex-1'>
+            <SearchInput />
           </div>
 
           {/*Правая часть */}

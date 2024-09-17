@@ -1,6 +1,7 @@
 'use client'
 
 import { Container, Title } from '@/shared/components/shared'
+import { MainPageButtons } from '@/shared/components/shared/main-page-button'
 import { useIntl } from 'react-intl'
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
           size='lg'
           className='font-extrabold pt-4'
         ></Title>
+        <MainPageButtons/>
       </Container>
     </>
   )
