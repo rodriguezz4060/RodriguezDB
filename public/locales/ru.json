@@ -15,7 +15,14 @@
         "clients": "База клиентов"
     },
     "filters": {
-        "title": "Фильтр"
+        "title": "Фильтрация",
+        "types": "Тип пыльника:",
+        "searchInputPlaceholder": "Поиск...",
+        "diameterIn": "Внутренний ⌀ от и до:",
+        "diameterOut": "Наружный ⌀ от и до:",
+        "firms": "Фирмы:",
+        "showAllButton": "+ Показать все",
+        "hideButton": "Скрыть"
     },
     "localeToggle": {
         "languagePlaceholder": "Русский"

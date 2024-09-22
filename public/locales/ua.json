@@ -1,13 +1,13 @@
 {
     "header": {
         "headerTextUp": "Rodriguez DB",
-        "headerTextDown": "База даних Родрiгеза",
+        "headerTextDown": "База даних Родрігеса",
         "serchplaceholder": "Пошук по VIN"
     },
     "content": {
-        "selectSection": "Оберiть роздiл",
-        "bootKitSelection": "Пiдбiр пильовика ШРКШ",
-        "sortText": "Сортуровати"
+        "selectSection": "Оберіть розділ",
+        "bootKitSelection": "Підбір пильовика ШРКШ",
+        "sortText": "Сортувати"
     },
     "mainPage": {
         "BootKit": "Підбір пильовика ШРКШ",
@@ -15,7 +15,14 @@
         "clients": "База клієнтів"
     },
     "filters": {
-        "title": "Фiльтр"
+        "title": "Фільтрація",
+        "types": "Тип пильовика:",
+        "searchInputPlaceholder": "Пошук...",
+        "diameterIn": "Внутрішній ⌀ від і до:",
+        "diameterOut": "Зовнішній ⌀ від і до:",
+        "firms": "Фірми:",
+        "showAllButton": "+ Показати все",
+        "hideButton": "Приховати"
     },
     "localeToggle": {
         "languagePlaceholder": "Українська"
