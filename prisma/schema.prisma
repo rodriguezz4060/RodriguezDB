@@ -1,0 +1,66 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider  = "postgresql"
+    url       = env("POSTGRES_URL")
+    directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model User {
+    id Int @id @default(autoincrement())
+
+    fullName String
+    email    String @unique
+    password String
+
+    createdAt DateTime @default(now())
+    updateAt  DateTime @updatedAt
+}
+
+model CarBrand {
+    id Int @id @default(autoincrement())
+
+    manufacturer String @unique
+
+    cars Car[]
+
+    createdAt DateTime @default(now())
+    updateAt  DateTime @updatedAt
+}
+
+model Car {
+    id Int @id @default(autoincrement())
+
+    models    String
+    carBody   String
+    modelYear String
+    engine    String
+
+    bootDustCover BootDustCover[]
+
+    carBrand   CarBrand @relation(fields: [carBrandId], references: [id])
+    carBrandId Int
+
+    createdAt DateTime @default(now())
+    updateAt  DateTime @updatedAt
+}
+
+model BootDustCover {
+    id Int @id @default(autoincrement())
+
+    name       String
+    type       String
+    form       String
+    dIn        Int
+    dOut       Int
+    height     Int
+    partNumber String
+    imageUrl   String?
+
+    cars Car[]
+
+    createdAt DateTime @default(now())
+    updateAt  DateTime @updatedAt
+}
