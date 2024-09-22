@@ -1,6 +1,13 @@
 'use client'
 
-import { Container, Filters, SortGroup, Title } from '@/shared/components/shared'
+import {
+  BootCard,
+  BootGroupList,
+  Container,
+  Filters,
+  SortGroup,
+  Title,
+} from '@/shared/components/shared'
 import { useIntl } from 'react-intl'
 
 export default function Home() {
@@ -19,7 +26,7 @@ export default function Home() {
       </Container>
 
       <Container className='h-full pb-14 dark:bg-zinc-900 px-4'>
-        <div className='flex gap-[60px]'>
+        <div className='flex gap-[80px]'>
           {/* Фильтрация */}
           <div className='w-[250px]'>
             <Filters />
@@ -27,7 +34,66 @@ export default function Home() {
 
           {/* Список пыльников */}
           <div className='flex-1'>
-            <div className='flex flex-col gap-16'>Список пыльников</div>
+            <div className='flex flex-col gap-16'>
+              <BootGroupList
+                items={[
+                  {
+                    id: 1,
+                    name: 'MARUCHI',
+                    partNumber: '27-411 ',
+                    dIn: 82,
+                    dOut: 24,
+                    high: 90,
+                    imageUrl: 'https://autoyamato.com.ua/image/87245_27-411_1.jpg',
+                  },
+                  {
+                    id: 2,
+                    name: 'MARUCHI',
+                    partNumber: '27-411 ',
+                    dIn: 82,
+                    dOut: 24,
+                    high: 90,
+                    imageUrl: 'https://autoyamato.com.ua/image/87245_27-411_1.jpg',
+                  },
+                  {
+                    id: 3,
+                    name: 'MARUCHI',
+                    partNumber: '27-411 ',
+                    dIn: 82,
+                    dOut: 24,
+                    high: 90,
+                    imageUrl: 'https://autoyamato.com.ua/image/87245_27-411_1.jpg',
+                  },
+                  {
+                    id: 4,
+                    name: 'MARUCHI',
+                    partNumber: '27-411 ',
+                    dIn: 82,
+                    dOut: 24,
+                    high: 90,
+                    imageUrl: 'https://autoyamato.com.ua/image/87245_27-411_1.jpg',
+                  },
+                  {
+                    id: 5,
+                    name: 'MARUCHI',
+                    partNumber: '27-411 ',
+                    dIn: 82,
+                    dOut: 24,
+                    high: 90,
+                    imageUrl: 'https://autoyamato.com.ua/image/87245_27-411_1.jpg',
+                  },
+                  {
+                    id: 6,
+                    name: 'MARUCHI',
+                    partNumber: '27-411 ',
+                    dIn: 82,
+                    dOut: 24,
+                    high: 90,
+                    imageUrl: 'https://autoyamato.com.ua/image/87245_27-411_1.jpg',
+                  },
+                ]}
+              />
+            </div>
           </div>
         </div>
       </Container>

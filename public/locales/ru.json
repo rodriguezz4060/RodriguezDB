@@ -16,6 +16,7 @@
     },
     "filters": {
         "title": "Фильтрация",
+        "form": "Форма:",
         "types": "Тип пыльника:",
         "searchInputPlaceholder": "Поиск...",
         "diameterIn": "Внутренний ⌀ от и до:",

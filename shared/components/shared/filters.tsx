@@ -19,11 +19,15 @@ export const Filters: React.FC<Props> = ({ className }) => {
 
       {/*Верхние чекбоксы */}
       <div className='flex flex-col gap-4'>
-        <p>{formatMessage({ id: 'filters.types' })}</p>
+        <p>{formatMessage({ id: 'filters.form' })}</p>
         <FilterCheckbox text='Круглый' value='1' />
         <FilterCheckbox text='Тришип' value='2' />
-        <FilterCheckbox text='Пластиковый' value='3' />
-        <FilterCheckbox text='Универсальный' value='4' />
+      </div>
+      <div className='flex flex-col gap-4 mt-4'>
+        <p>{formatMessage({ id: 'filters.types' })}</p>
+        <FilterCheckbox text='Резиновый' value='1' />
+        <FilterCheckbox text='Пластиковый' value='2' />
+        <FilterCheckbox text='Универсальный' value='3' />
       </div>
 
       {/*Фильтр по цене */}

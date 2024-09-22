@@ -16,6 +16,7 @@
     },
     "filters": {
         "title": "Фільтрація",
+        "form": "Форма:",
         "types": "Тип пильовика:",
         "searchInputPlaceholder": "Пошук...",
         "diameterIn": "Внутрішній ⌀ від і до:",
