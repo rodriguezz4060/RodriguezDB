@@ -6,12 +6,23 @@ export async function GET(req: NextRequest) {
 
   const clients = await prisma.clients.findMany({
     where: {
-      VIN: {
-        contains: query,
-        mode: 'insensitive',
-      },
+      OR: [
+        {
+          name: {
+            contains: query,
+            mode: 'insensitive',
+          },
+        },
+        {
+          VIN: {
+            contains: query,
+            mode: 'insensitive',
+          },
+        },
+      ],
     },
     take: 5,
   })
+
   return NextResponse.json(clients)
 }
