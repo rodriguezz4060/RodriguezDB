@@ -12,8 +12,12 @@ model User {
     id Int @id @default(autoincrement())
 
     fullName String
-    email    String @unique
+    email    String   @unique
     password String
+    role     UserRole @default(USER)
+
+    provider   String?
+    providerId String?
 
     createdAt DateTime @default(now())
     updateAt  DateTime @updatedAt
@@ -22,9 +26,11 @@ model User {
 model CarBrand {
     id Int @id @default(autoincrement())
 
-    manufacturer String @unique
+    name     String  @unique
+    imageUrl String?
 
-    cars Car[]
+    cars  Car[]
+    oilTo OilTo[]
 
     createdAt DateTime @default(now())
     updateAt  DateTime @updatedAt
@@ -33,15 +39,22 @@ model CarBrand {
 model Car {
     id Int @id @default(autoincrement())
 
+    imageUrl  String
     models    String
     carBody   String
     modelYear String
     engine    String
+    volume    String
 
     bootDustCover BootDustCover[]
 
     carBrand   CarBrand @relation(fields: [carBrandId], references: [id])
     carBrandId Int
+
+    oilTo   OilTo? @relation(fields: [oilToId], references: [id])
+    oilToId Int?
+
+    oilToInfo OilToInfo[]
 
     createdAt DateTime @default(now())
     updateAt  DateTime @updatedAt
@@ -63,4 +76,75 @@ model BootDustCover {
 
     createdAt DateTime @default(now())
     updateAt  DateTime @updatedAt
+}
+
+model OilTo {
+    id Int @id @default(autoincrement())
+
+    cars       Car[]
+    carBrand   CarBrand? @relation(fields: [carBrandId], references: [id])
+    carBrandId Int?
+
+    createdAt DateTime @default(now())
+    updateAt  DateTime @updatedAt
+}
+
+model OilToInfo {
+    id Int @id @default(autoincrement())
+
+    engine                String?
+    automaticTransmission String?
+    manualTransmission    String?
+
+    car   Car? @relation(fields: [carId], references: [id])
+    carId Int?
+
+    createdAt DateTime @default(now())
+    updateAt  DateTime @updatedAt
+}
+
+model Clients {
+    id Int @id @default(autoincrement())
+
+    name     String?
+    lastName String?
+    VIN      String
+    tel      String?
+
+    clientCar ClientCar?
+
+    createdAt DateTime @default(now())
+    updateAt  DateTime @updatedAt
+}
+
+model ClientCar {
+    id Int @id @default(autoincrement())
+
+    oilFilter  String?
+    airFilter  String?
+    gasFilter  String?
+    frontBrake String?
+    rearBrake  String?
+
+    client   Clients @relation(fields: [clientId], references: [id])
+    clientId Int     @unique
+
+    createdAt DateTime @default(now())
+    updateAt  DateTime @updatedAt
+}
+
+model MainButton {
+    id Int @id @default(autoincrement())
+
+    name     String
+    link     String
+    imageUrl String
+
+    createdAt DateTime @default(now())
+    updateAt  DateTime @updatedAt
+}
+
+enum UserRole {
+    USER
+    ADMIN
 }
