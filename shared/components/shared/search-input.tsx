@@ -26,9 +26,15 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
     () => {
       Api.clients.search(searchQuery).then(items => setClients(items))
     },
-    100,
+    250,
     [searchQuery]
   )
+
+  const onClickItem = () => {
+    setFocused(false)
+    setSearchQuery('')
+    setClients([])
+  }
 
   return (
     <>
@@ -47,23 +53,26 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
           onChange={e => setSearchQuery(e.target.value)}
         />
 
-        <div
-          className={cn(
-            'absolute w-full rounded-xl bg-white dark:bg-[#121212] py-2 top-14 shadow-md transition-all duration-200 invisible opacity-0 z-30',
-            focused && 'visible opacity-100 top-12'
-          )}
-        >
-          {clients.map(client => (
-            <Link
-              className='flex items-center gap-3 px-3 py-2 hover:bg-primary/10'
-              key={client.id}
-              href={`/clients/${client.id}`}
-            >
-              <span>VIN {client.VIN}</span>
-              <span>{client.name}</span>
-            </Link>
-          ))}
-        </div>
+        {clients.length > 0 && (
+          <div
+            className={cn(
+              'absolute w-full rounded-xl bg-white dark:bg-[#121212] py-2 top-14 shadow-md transition-all duration-200 invisible opacity-0 z-30',
+              focused && 'visible opacity-100 top-12'
+            )}
+          >
+            {clients.map(client => (
+              <Link
+                className='flex items-center gap-3 px-3 py-2 hover:bg-primary/10'
+                key={client.id}
+                href={`/client/${client.id}`}
+                onClick={onClickItem}
+              >
+                <span>VIN {client.VIN}</span>
+                <span>{client.name}</span>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </>
   )

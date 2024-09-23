@@ -1,44 +1,26 @@
 'use client'
 
+import { Api } from '@/shared/services/api-client'
+import { MainButton } from '@prisma/client'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useIntl } from 'react-intl'
 
 interface Props {
   className?: string
 }
 
-interface MainButton {
-  id: number
-  name: string
-  link: string
-  imageUrl: string
-}
-
 export const MainPageButtons: React.FC<Props> = ({ className }) => {
   const { formatMessage } = useIntl()
-  const [buttons, setButtons] = useState<MainButton[]>([])
+  const [mainPage, setMainPage] = React.useState<MainButton[]>([])
 
   useEffect(() => {
-    async function fetchButtons() {
-      try {
-        const response = await fetch('/api/main-page-buttons')
-        if (!response.ok) {
-          throw new Error('Failed to fetch buttons')
-        }
-        const data = await response.json()
-        setButtons(data)
-      } catch (error) {
-        console.error('Error fetching buttons:', error)
-      }
-    }
-
-    fetchButtons()
+    Api.mainPage.getButtons().then(buttons => setMainPage(buttons))
   }, [])
 
   return (
     <div className='flex justify-center gap-6'>
-      {buttons.map(button => (
+      {mainPage.map(button => (
         <Link
           key={button.id}
           href={button.link}
