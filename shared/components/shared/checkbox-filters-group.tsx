@@ -11,12 +11,12 @@ type Item = FilterCheckboxProps
 interface Props {
   title: string
   items: Item[]
-  defaultItems: Item[]
+  defaultItems?: Item[]
   limit?: number
   loading?: boolean
   onClickCheckbox?: (id: string) => void
   defaultValue?: string[]
-  selectedIds?: Set<string>
+  selected?: Set<string>
   name?: string
   className?: string
 }
@@ -29,7 +29,7 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
   onClickCheckbox,
   loading,
   defaultValue,
-  selectedIds,
+  selected,
   name,
   className,
 }) => {
@@ -49,18 +49,18 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
           .fill(0)
           .map((_, index) => <Skeleton key={index} className='h-6 mb-4 rounded-[8px]' />)}
 
-        <Skeleton className='w-28 h-6 mb-4 rounded-[8px]' />
+        {name === 'firms' && <Skeleton className='w-28 h-6 mb-4 rounded-[8px]' />}
       </div>
     )
   }
 
   const list = showAll
     ? items.filter(item => item.text.toLowerCase().includes(searchValue.toLocaleLowerCase()))
-    : defaultItems.slice(0, limit)
+    : (defaultItems || items).slice(0, limit)
 
   return (
     <div className={cn(className)}>
-      <p className='flex flex-col gap-4'>{title}</p>
+      <p className='flex flex-col gap-4 font-bold'>{title}</p>
 
       {showAll && (
         <div className='mb-5 mt-2'>
@@ -79,7 +79,7 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
             text={item.text}
             value={item.value}
             endAdornment={item.endAdornment}
-            checked={selectedIds?.has(item.value)}
+            checked={selected?.has(item.value)}
             onCheckedChange={() => onClickCheckbox?.(item.value)}
             name={name}
           />
