@@ -15,7 +15,7 @@ interface Props {
 
 export const Filters: React.FC<Props> = ({ className }) => {
   const { formatMessage } = useIntl()
-  const { bootDustCovers, loading } = useBootBootCover()
+  const { bootDustCovers, loading, onAddId, selectedIds } = useBootBootCover()
 
   const items = bootDustCovers.map(items => ({ value: String(items.id), text: String(items.name) }))
 
@@ -62,10 +62,12 @@ export const Filters: React.FC<Props> = ({ className }) => {
       <CheckboxFiltersGroup
         title={formatMessage({ id: 'filters.firms' })}
         className='mt-5'
-        limit={2}
-        defaultItems={items.slice(0, 2)}
+        limit={6}
+        defaultItems={items.slice(0, 6)}
         items={items}
         loading={loading}
+        onClickCheckbox={onAddId}
+        selectedIds={selectedIds}
       />
     </div>
   )

@@ -14,8 +14,9 @@ interface Props {
   defaultItems: Item[]
   limit?: number
   loading?: boolean
-  onChange?: (values: string[]) => void
+  onClickCheckbox?: (id: string) => void
   defaultValue?: string[]
+  selectedIds?: Set<string>
   className?: string
 }
 
@@ -23,10 +24,11 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
   title,
   items,
   defaultItems,
-  limit = 5,
-  onChange,
+  limit = 6,
+  onClickCheckbox,
   loading,
   defaultValue,
+  selectedIds,
   className,
 }) => {
   const { formatMessage } = useIntl()
@@ -75,8 +77,8 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
             text={item.text}
             value={item.value}
             endAdornment={item.endAdornment}
-            checked={false}
-            onCheckedChange={ids => console.log(ids)}
+            checked={selectedIds?.has(item.value)}
+            onCheckedChange={() => onClickCheckbox?.(item.value)}
           />
         ))}
       </div>
