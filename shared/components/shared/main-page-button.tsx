@@ -19,10 +19,6 @@ export const MainPageButtons: React.FC<Props> = ({ className }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    Api.mainPage.getButtons().then(buttons => setMainPage(buttons))
-  }, [])
-
-  useEffect(() => {
     Api.mainPage
       .getButtons()
       .then(setMainPage)
