@@ -19,8 +19,8 @@
         "form": "Форма:",
         "types": "Тип пыльника:",
         "searchInputPlaceholder": "Поиск...",
-        "diameterIn": "Внутренний ⌀ от и до:",
-        "diameterOut": "Наружный ⌀ от и до:",
+        "diameterIn": "Внутренний ⌀ от и до мм:",
+        "diameterOut": "Наружный ⌀ от и до мм:",
         "firms": "Фирмы:",
         "showAllButton": "+ Показать все",
         "hideButton": "Скрыть"

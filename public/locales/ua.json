@@ -19,8 +19,8 @@
         "form": "Форма:",
         "types": "Тип пильовика:",
         "searchInputPlaceholder": "Пошук...",
-        "diameterIn": "Внутрішній ⌀ від і до:",
-        "diameterOut": "Зовнішній ⌀ від і до:",
+        "diameterIn": "Внутрішній ⌀ від і до мм:",
+        "diameterOut": "Зовнішній ⌀ від і до мм:",
         "firms": "Фірми:",
         "showAllButton": "+ Показати все",
         "hideButton": "Приховати"
