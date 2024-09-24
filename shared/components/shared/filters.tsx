@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { Title } from './title'
 import { useIntl } from 'react-intl'
@@ -5,6 +7,7 @@ import { FilterCheckbox } from './filter-checkbox'
 import { Input } from '../ui'
 import { RangeSlider } from './range-slider'
 import { CheckboxFiltersGroup } from './checkbox-filters-group'
+import { useBootBootCover } from '@/shared/hooks/useBootBootCover'
 
 interface Props {
   className?: string
@@ -12,6 +15,9 @@ interface Props {
 
 export const Filters: React.FC<Props> = ({ className }) => {
   const { formatMessage } = useIntl()
+  const { bootDustCovers, loading } = useBootBootCover()
+
+  const items = bootDustCovers.map(items => ({ value: String(items.id), text: String(items.name) }))
 
   return (
     <div className={className}>
@@ -56,123 +62,10 @@ export const Filters: React.FC<Props> = ({ className }) => {
       <CheckboxFiltersGroup
         title={formatMessage({ id: 'filters.firms' })}
         className='mt-5'
-        limit={6}
-        defaultItems={[
-          {
-            text: 'Maruchi',
-            value: '1',
-          },
-          {
-            text: 'Pascal',
-            value: '2',
-          },
-          {
-            text: 'RBI',
-            value: '3',
-          },
-          {
-            text: 'GSP',
-            value: '4',
-          },
-          {
-            text: 'GP',
-            value: '5',
-          },
-          {
-            text: 'FEBEST',
-            value: '6',
-          },
-          {
-            text: 'TOYOTA',
-            value: '7',
-          },
-        ]}
-        items={[
-          {
-            text: 'Maruchi',
-            value: '1',
-          },
-          {
-            text: 'Pascal',
-            value: '2',
-          },
-          {
-            text: 'RBI',
-            value: '3',
-          },
-          {
-            text: 'GSP',
-            value: '4',
-          },
-          {
-            text: 'GP',
-            value: '5',
-          },
-          {
-            text: 'FEBEST',
-            value: '6',
-          },
-          {
-            text: 'TOYOTA',
-            value: '7',
-          },
-          {
-            text: 'Maruchi',
-            value: '1',
-          },
-          {
-            text: 'Pascal',
-            value: '2',
-          },
-          {
-            text: 'RBI',
-            value: '3',
-          },
-          {
-            text: 'GSP',
-            value: '4',
-          },
-          {
-            text: 'GP',
-            value: '5',
-          },
-          {
-            text: 'FEBEST',
-            value: '6',
-          },
-          {
-            text: 'TOYOTA',
-            value: '7',
-          },
-          {
-            text: 'Maruchi',
-            value: '1',
-          },
-          {
-            text: 'Pascal',
-            value: '2',
-          },
-          {
-            text: 'RBI',
-            value: '3',
-          },
-          {
-            text: 'GSP',
-            value: '4',
-          },
-          {
-            text: 'GP',
-            value: '5',
-          },
-          {
-            text: 'FEBEST',
-            value: '6',
-          },
-          {
-            text: 'TOYOTA',
-            value: '7',
-          },
-        ]}
+        limit={2}
+        defaultItems={items.slice(0, 2)}
+        items={items}
+        loading={loading}
       />
     </div>
   )

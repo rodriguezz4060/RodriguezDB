@@ -1,13 +1,6 @@
 'use client'
 
-import {
-  BootCard,
-  BootGroupList,
-  Container,
-  Filters,
-  SortGroup,
-  Title,
-} from '@/shared/components/shared'
+import { BootGroupList, Container, Filters, SortGroup, Title } from '@/shared/components/shared'
 import { useIntl } from 'react-intl'
 
 export default function Home() {
