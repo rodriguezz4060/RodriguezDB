@@ -5,47 +5,35 @@ import { Title } from './title'
 import { useIntl } from 'react-intl'
 import { Input } from '../ui'
 import { RangeSlider } from './range-slider'
+import { useBootBootCoverFirms, useFilters, useQueryFilters } from '@/shared/hooks'
 import { CheckboxFiltersGroup } from './checkbox-filters-group'
-import { useBootBootCover } from '@/shared/hooks/useBootBootCover'
-import { useSet } from 'react-use'
 
 interface Props {
   className?: string
 }
 
-interface SizeProps {
-  inSizeFrom: number
-  inSizeTo: number
-  outSizeFrom: number
-  outSizeTo: number
-}
-
 export const Filters: React.FC<Props> = ({ className }) => {
   const { formatMessage } = useIntl()
-  const { bootDustCovers, loading, onAddId, selectedIds } = useBootBootCover()
 
-  const [bootForm, { toggle: toggleBootForm }] = useSet(new Set<string>([]))
-  const [bootTypes, { toggle: toggleBootType }] = useSet(new Set<string>([]))
+  const { bootDustCoversFirms, loading } = useBootBootCoverFirms()
+  const filters = useFilters()
 
-  const [sizes, setSize] = React.useState<SizeProps>({
-    inSizeFrom: 0,
-    inSizeTo: 200,
-    outSizeFrom: 0,
-    outSizeTo: 40,
-  })
+  useQueryFilters(filters)
 
-  const items = bootDustCovers.map(items => ({ value: String(items.id), text: String(items.name) }))
+  const items = bootDustCoversFirms.map(items => ({
+    value: String(items.id),
+    text: String(items.name),
+  }))
 
-  const updateSize = (name: keyof SizeProps, value: number) => {
-    setSize({
-      ...sizes,
-      [name]: value,
-    })
+  const updateSizesIn = (sizes: number[]) => {
+    filters.setSizes('inSizeFrom', sizes[0])
+    filters.setSizes('inSizeTo', sizes[1])
   }
 
-  React.useEffect(() => {
-    console.log()
-  }, [sizes, bootForm, bootTypes])
+  const updateSizesOut = (sizes: number[]) => {
+    filters.setSizes('outSizeFrom', sizes[0])
+    filters.setSizes('outSizeTo', sizes[1])
+  }
 
   return (
     <div className={className}>
@@ -58,8 +46,8 @@ export const Filters: React.FC<Props> = ({ className }) => {
         className='mt-5'
         loading={loading}
         limit={2}
-        onClickCheckbox={toggleBootForm}
-        selected={bootForm}
+        onClickCheckbox={filters.setBootForm}
+        selected={filters.bootForm}
         items={[
           { text: 'Круглый', value: '1' },
           { text: 'Тришип', value: '2' },
@@ -72,8 +60,8 @@ export const Filters: React.FC<Props> = ({ className }) => {
         className='mt-5'
         loading={loading}
         limit={3}
-        onClickCheckbox={toggleBootType}
-        selected={bootTypes}
+        onClickCheckbox={filters.setBootTypes}
+        selected={filters.bootTypes}
         items={[
           { text: 'Резиновый', value: '1' },
           { text: 'Пластиковый', value: '2' },
@@ -91,16 +79,16 @@ export const Filters: React.FC<Props> = ({ className }) => {
             placeholder='0'
             min={0}
             max={200}
-            value={String(sizes.inSizeFrom)}
-            onChange={e => updateSize('inSizeFrom', Number(e.target.value))}
+            value={String(filters.sizes.inSizeFrom || 0)}
+            onChange={e => filters.setSizes('inSizeFrom', Number(e.target.value))}
           />
           <Input
             type='number'
-            placeholder='100'
+            placeholder='200'
             min={100}
             max={200}
-            value={String(sizes.inSizeTo)}
-            onChange={e => updateSize('inSizeTo', Number(e.target.value))}
+            value={String(filters.sizes.inSizeTo || 200)}
+            onChange={e => filters.setSizes('inSizeTo', Number(e.target.value))}
           />
         </div>
 
@@ -108,8 +96,8 @@ export const Filters: React.FC<Props> = ({ className }) => {
           min={0}
           max={200}
           step={1}
-          value={[sizes.inSizeFrom, sizes.inSizeTo]}
-          onValueChange={([inSizeFrom, inSizeTo]) => setSize({ ...sizes, inSizeFrom, inSizeTo })}
+          value={[filters.sizes.inSizeFrom || 0, filters.sizes.inSizeTo || 200]}
+          onValueChange={updateSizesIn}
         />
 
         <div className='py-1'>
@@ -121,16 +109,16 @@ export const Filters: React.FC<Props> = ({ className }) => {
               placeholder='0'
               min={0}
               max={40}
-              value={sizes.outSizeFrom}
-              onChange={e => updateSize('outSizeFrom', Number(e.target.value))}
+              value={String(filters.sizes.outSizeFrom || 0)}
+              onChange={e => filters.setSizes('outSizeFrom', Number(e.target.value))}
             />
             <Input
               type='number'
-              placeholder='100'
+              placeholder='40'
               min={10}
               max={40}
-              value={sizes.outSizeTo}
-              onChange={e => updateSize('outSizeTo', Number(e.target.value))}
+              value={String(filters.sizes.outSizeTo || 40)}
+              onChange={e => filters.setSizes('outSizeTo', Number(e.target.value))}
             />
           </div>
 
@@ -138,10 +126,8 @@ export const Filters: React.FC<Props> = ({ className }) => {
             min={0}
             max={40}
             step={1}
-            value={[sizes.outSizeFrom, sizes.outSizeTo]}
-            onValueChange={([outSizeFrom, outSizeTo]) =>
-              setSize({ ...sizes, outSizeFrom, outSizeTo })
-            }
+            value={[filters.sizes.outSizeFrom || 0, filters.sizes.outSizeTo || 40]}
+            onValueChange={updateSizesOut}
           />
         </div>
       </div>
@@ -156,8 +142,8 @@ export const Filters: React.FC<Props> = ({ className }) => {
         defaultItems={items.slice(0, 6)}
         items={items}
         loading={loading}
-        onClickCheckbox={onAddId}
-        selected={selectedIds}
+        onClickCheckbox={filters.setBootFirms}
+        selected={filters.selectedFirms}
       />
     </div>
   )
