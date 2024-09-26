@@ -7,9 +7,11 @@ import { SquareArrowOutUpRight } from 'lucide-react'
 interface Props {
   id: number
   name: string
+  type: string
+  form: string
   dIn: number
   dOut: number
-  high: number
+  height: number
   partNumber: string
   imageUrl?: string
   className?: string
@@ -18,9 +20,11 @@ interface Props {
 export const BootCard: React.FC<Props> = ({
   id,
   name,
+  type,
+  form,
   dIn,
   dOut,
-  high,
+  height,
   imageUrl,
   partNumber,
   className,
@@ -34,21 +38,23 @@ export const BootCard: React.FC<Props> = ({
 
         <Title text={name} size='sm' className='mb-1 mt-3 font-bold' />
         <p className='text-sm'>
-          Тип: Резиновый
+          Тип: {type}
           <br />
-          Внутренний ⌀: 100мм
+          Внутренний ⌀: {dIn} мм
           <br />
-          Наружный ⌀: 22мм
+          Наружный ⌀: {dOut} мм
           <br />
-          Высота: 100мм
+          Высота: {height} мм
         </p>
       </Link>
       <div className='flex justify-between items-center mt-4'>
         <div className='text-[20px]'>{partNumber}</div>
-        <Button className='text-base font-bold'>
-          <SquareArrowOutUpRight size={20} className='mr-1' />
-          Наличие
-        </Button>
+        <Link href={`https://autoyamato.com.ua/newsearch/?keyword=${partNumber}`} target='_blank'>
+          <Button className='text-base font-bold'>
+            <SquareArrowOutUpRight size={20} className='mr-1' />
+            Наличие
+          </Button>
+        </Link>
       </div>
     </div>
   )

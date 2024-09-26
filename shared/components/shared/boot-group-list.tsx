@@ -17,10 +17,12 @@ export const BootGroupList: React.FC<Props> = ({ items, listClassName, className
             key={product.id}
             id={product.id}
             name={product.name}
+            type={product.type}
+            form={product.form}
             imageUrl={product.imageUrl}
             dIn={product.dIn}
             dOut={product.dOut}
-            high={product.high}
+            height={product.height}
             partNumber={product.partNumber}
           />
         ))}

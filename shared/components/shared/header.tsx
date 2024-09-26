@@ -1,3 +1,5 @@
+'use client'
+
 import { cn } from '@/shared/lib/utils'
 import React from 'react'
 import { Container } from './container'
@@ -22,20 +24,18 @@ export const Header: React.FC<Props> = ({ className }) => {
         <Container className='flex items-center justify-between py-5'>
           {/* Левая часть */}
           <Link href={`/`}>
-          <div className='flex items-center gap-4'>
-            
-            <Image src='/logo.png' alt='Logo' width={35} height={35} />
-            
-            <div>
-              <h1 className='text-2xl uppercase font-black'>
-                {formatMessage({ id: 'header.headerTextUp' })}
-              </h1>
-              <p className='text-sm text-gray-400 leading-3'>
-                {formatMessage({ id: 'header.headerTextDown' })}
-              </p>
+            <div className='flex items-center gap-4'>
+              <Image src='/logo.png' alt='Logo' width={35} height={35} />
+
+              <div>
+                <h1 className='text-2xl uppercase font-black'>
+                  {formatMessage({ id: 'header.headerTextUp' })}
+                </h1>
+                <p className='text-sm text-gray-400 leading-3'>
+                  {formatMessage({ id: 'header.headerTextDown' })}
+                </p>
+              </div>
             </div>
-            
-          </div>
           </Link>
           {/*Центральная часть*/}
 

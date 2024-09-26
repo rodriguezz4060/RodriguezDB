@@ -123,6 +123,23 @@ async function up() {
       },
     },
   })
+  const car1 = await prisma.car.update({
+    where: { id: 1 },
+    data: {
+      bootDustCover: {
+        connect: { id: 1 }, // Предположим, что это ID первого BootDustCover
+      },
+    },
+  })
+
+  const car2 = await prisma.car.update({
+    where: { id: 2 },
+    data: {
+      bootDustCover: {
+        connect: { id: 2 }, // Предположим, что это ID второго BootDustCover
+      },
+    },
+  })
 }
 
 async function down() {
