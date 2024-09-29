@@ -26,6 +26,9 @@
         "showAllButton": "+ Показати все",
         "hideButton": "Приховати"
     },
+    "filtersLang": {
+        "typeRound": "Круглий"
+    },
     "localeToggle": {
         "languagePlaceholder": "Українська"
     },
