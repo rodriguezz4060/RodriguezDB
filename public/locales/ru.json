@@ -27,6 +27,9 @@
         "hideButton": "Скрыть",
         "typeRound": "Круглый"
     },
+    "filtersLang": {
+        "typeRound": "Круглый"
+    },
     "localeToggle": {
         "languagePlaceholder": "Русский"
     },
