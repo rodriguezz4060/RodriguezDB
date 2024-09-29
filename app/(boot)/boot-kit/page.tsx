@@ -1,5 +1,6 @@
 import { prisma } from '@/prisma/prisma-client'
 import { BootGroupList, Container, Filters, SortGroup } from '@/shared/components/shared'
+import { Suspense } from 'react'
 
 export default async function Home() {
   const bootDustCovers = await prisma.bootDustCover.findMany({
@@ -20,7 +21,9 @@ export default async function Home() {
         <div className='flex gap-[80px]'>
           {/* Фильтрация */}
           <div className='w-[250px]'>
-            <Filters />
+            <Suspense>
+              <Filters />
+            </Suspense>
           </div>
 
           {/* Список пыльников */}
