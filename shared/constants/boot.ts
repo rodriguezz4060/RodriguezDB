@@ -1,4 +1,4 @@
-export const mapFotm = {
+export const mapForm = {
   1: 'Круглый',
   2: 'Тришип',
 } as const
@@ -9,10 +9,15 @@ export const mapType = {
   3: 'Универсальный',
 } as const
 
-export const bootForms = Object.entries(mapFotm).map(([value, name]) => ({
+export const bootForms = Object.entries(mapForm).map(([value, name]) => ({
   name,
   value,
 }))
 
-export type BootForm = keyof typeof mapFotm
+export const BootTypes = Object.entries(mapType).map(([value, name]) => ({
+  name,
+  value,
+}))
+
+export type BootForm = keyof typeof mapForm
 export type BootType = keyof typeof mapType

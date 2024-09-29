@@ -42,7 +42,7 @@ export const Filters: React.FC<Props> = ({ className }) => {
       {/*Верхние чекбоксы */}
       <CheckboxFiltersGroup
         title={formatMessage({ id: 'filters.form' })}
-        name='form'
+        name='bootForm'
         className='mt-5'
         loading={loading}
         limit={2}
@@ -56,7 +56,7 @@ export const Filters: React.FC<Props> = ({ className }) => {
 
       <CheckboxFiltersGroup
         title={formatMessage({ id: 'filters.types' })}
-        name='type'
+        name='bootTypes'
         className='mt-5'
         loading={loading}
         limit={3}

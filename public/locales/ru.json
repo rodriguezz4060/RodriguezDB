@@ -24,7 +24,8 @@
         "diameterOut": "Наружный ⌀ от и до мм:",
         "firms": "Фирмы:",
         "showAllButton": "+ Показать все",
-        "hideButton": "Скрыть"
+        "hideButton": "Скрыть",
+        "typeRound": "Круглый"
     },
     "localeToggle": {
         "languagePlaceholder": "Русский"
