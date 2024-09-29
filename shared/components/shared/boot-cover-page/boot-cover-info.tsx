@@ -1,46 +1,35 @@
-'use client'
-import { cn } from '@/shared/lib/utils'
 import React from 'react'
-import { ProductImage } from './product-image'
-import { Title } from './title'
+import { Title } from '../title'
 import Link from 'next/link'
-import { Button } from '../ui'
+import { Button } from '../../ui'
 import { SquareArrowOutUpRight } from 'lucide-react'
 
 interface Props {
   name: string
-  imageUrl: string | null
   form: string
   type: string
   dIn: number
   dOut: number
   height: number
   partNumber: string
-
   className?: string
 }
 
-export const ChooseBootForm: React.FC<Props> = ({
+export const BootCoverInfo: React.FC<Props> = ({
   name,
-  imageUrl,
   form,
   type,
   dIn,
   dOut,
   height,
   partNumber,
-
   className,
 }) => {
-  /*сделать заглушку когда нет картинки у товара, вместо уродства с проверкой*/
-  const src = imageUrl ?? ''
-
   return (
-    <div className={cn(className, 'flex flex-1')}>
-      <ProductImage imageUrl={imageUrl} className='' />
+    <div className={className}>
+      <div className='w-[490px] p-7 mr-4 bg-[#fcfcfc] dark:bg-[#2b2b2b] rounded-lg shadow-md'>
+        <Title text={name} size='md' className='font-extrabold mb-4 text-center' />
 
-      <div className='w-[490px] bg-[#fcfcfc] dark:bg-[#2b2b2b] p-7 relative'>
-        <Title text={name} size='md' className='font-extrabold ' />
         <div className='grid grid-cols-2 gap-4'>
           <div>
             <p className='font-semibold text-gray-700 dark:text-gray-300'>Форма пыльника:</p>
@@ -64,8 +53,8 @@ export const ChooseBootForm: React.FC<Props> = ({
           </div>
         </div>
 
-        <div className='flex justify-between  items-center mt-10 absolute bottom-0 left-0 right-0 p-7 bg-[#e7e7e7] dark:bg-[#1f1e1e]'>
-          <div className='text-[20px] font-extrabold'>{partNumber}</div>
+        <div className='flex justify-between items-center mt-10'>
+          <div className='text-[20px]'>{partNumber}</div>
           <Link href={`https://autoyamato.com.ua/newsearch/?keyword=${partNumber}`} target='_blank'>
             <Button className='text-base font-bold'>
               <SquareArrowOutUpRight size={20} className='mr-1' />

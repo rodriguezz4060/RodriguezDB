@@ -27,5 +27,48 @@
     },
     "localeToggle": {
         "languagePlaceholder": "Русский"
+    },
+    "addForm": {
+        "backButton": "Назад",
+        "brandBoot": "Фирма пыльника",
+        "chooseType": "Тип пыльника",
+        "round": "Круглый",
+        "triship": "Тришип",
+        "formBoot": "Форма пыльника",
+        "rubber": "Резиновый",
+        "plastic": "Пластиковый",
+        "universal": "Универсальный",
+        "dIn": "Внутренний диаметр (dIn)",
+        "dOut": "Наружный диаметр (dOut)",
+        "height": "Высота (h)",
+        "partNumber": "Номер детали",
+        "imageUrl": "Ссылка на изображение",
+        "saveButton": "Добавить пыльник",
+        "loading": "Загрузка..."
+    },
+    "toast": {
+        "bootAdded": "Пыльник добавлен",
+        "bootDeleted": "Пыльник удален",
+        "bootError": "Ошибка при удалении пыльника"
+    },
+    "deleteBoot": {
+        "confirmTitle": "Подтверждение удаления",
+        "confirmText": "Это действие нельзя будет отменить!",
+        "confirmButton": "Да, удалить!",
+        "cancelButton": "Отмена",
+        "successTitle": "Удалено!",
+        "successText": "Пыльник был успешно удален.",
+        "errorTitle": "Ошибка!",
+        "deleting": "Удаление...",
+        "deleteButton": "Удалить пыльник"
+    },
+    "bootCars": {
+        "carBrand": "Марка",
+        "carImage": "Картинка",
+        "carModel": "Модель",
+        "carBody": "Кузов",
+        "carYear": "Год",
+        "carEngine": "Двигатель",
+        "carVolume": "Объем"
     }
 }

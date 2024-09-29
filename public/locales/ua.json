@@ -27,5 +27,41 @@
     },
     "localeToggle": {
         "languagePlaceholder": "Українська"
+    },
+    "addForm": {
+        "backButton": "Назад",
+        "brandBoot": "Фірма пильовика",
+        "chooseType": "Тип пильовика",
+        "round": "Круглий",
+        "triship": "Тришип",
+        "formBoot": "Форма пильовика",
+        "rubber": "Гумовий",
+        "plastic": "Пластиковий",
+        "universal": "Універсальний",
+        "dIn": "Внутрішній діаметр (dIn)",
+        "dOut": "Зовнішній діаметр (dOut)",
+        "height": "Висота (h)",
+        "partNumber": "Номер деталі",
+        "imageUrl": "Посилання на зображення",
+        "saveButton": "Додати пильовик",
+        "loading": "Завантаження..."
+    },
+    "toast": {
+        "bootAdded": "Пильник додано",
+        "bootDeleted": "Пильовик видалено",
+        "bootError": "Помилка під час видалення пильовика"
+    },
+    "deleteBoot": {
+        "deleteButton": "Видалити пильовик",
+        "deleting": "Видалення..."
+    },
+    "bootCars": {
+        "carBrand": "Бренд",
+        "carImage": "Картинка",
+        "carModel": "Модель",
+        "carBody": "Кузов",
+        "carYear": "Рік",
+        "carEngine": "Двигун",
+        "carVolume": "Об'єм"
     }
 }

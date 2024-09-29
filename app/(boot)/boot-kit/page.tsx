@@ -26,9 +26,7 @@ export default async function Home() {
           {/* Список пыльников */}
           <div className='flex-1'>
             <div className='flex flex-col gap-16'>
-              {bootDustCovers.map(boot => (
-                <BootGroupList key={boot.id} items={bootDustCovers} />
-              ))}
+              <BootGroupList items={bootDustCovers} />
             </div>
           </div>
         </div>

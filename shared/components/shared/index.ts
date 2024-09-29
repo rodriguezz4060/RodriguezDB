@@ -10,4 +10,7 @@ export { BootCard } from './boot-card'
 export { BootGroupList } from './boot-group-list'
 export { ProductImage } from './product-image'
 export { ChooseBootForm } from './choose-boot-form'
+
 export * from './modals/'
+export * from './add-forms'
+export * from './boot-cover-page'
