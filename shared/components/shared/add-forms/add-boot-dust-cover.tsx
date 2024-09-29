@@ -1,10 +1,11 @@
 'use client'
 
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { useIntl } from 'react-intl'
 import { Button, Input, Select } from '../../ui'
 import { SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../ui/select'
-import { Loader, Save } from 'lucide-react'
+import { ExternalLink, Loader, Save } from 'lucide-react'
 import toast from 'react-hot-toast'
 
 interface Props {
@@ -13,6 +14,7 @@ interface Props {
 
 export const AddBootDustCover: React.FC<Props> = ({ className }) => {
   const { formatMessage } = useIntl()
+  const router = useRouter()
 
   const [name, setName] = useState('')
   const [type, setType] = useState('')
@@ -22,11 +24,12 @@ export const AddBootDustCover: React.FC<Props> = ({ className }) => {
   const [height, setHeight] = useState('')
   const [partNumber, setPartNumber] = useState('')
   const [imageUrl, setImageUrl] = useState('')
-  const [isLoading, setIsLoading] = useState(false) // Состояние для отслеживания загрузки
+  const [isLoading, setIsLoading] = useState(false)
+  const [addedDustCoverId, setAddedDustCoverId] = useState<number | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsLoading(true) // Устанавливаем состояние загрузки в true
+    setIsLoading(true)
 
     const newBootDustCover = {
       name,
@@ -65,13 +68,21 @@ export const AddBootDustCover: React.FC<Props> = ({ className }) => {
       setPartNumber('')
       setImageUrl('')
 
-      // Используем переменные CSS для стилей тостера
+      // Сохраняем идентификатор добавленного пыльника
+      setAddedDustCoverId(data.id)
+
       toast.success('Пыльник успешно добавлен')
     } catch (error) {
       toast.error('Не удалось добавить пыльник')
       console.error('Error adding boot dust cover:', error)
     } finally {
-      setIsLoading(false) // Возвращаем состояние загрузки в false после завершения запроса
+      setIsLoading(false)
+    }
+  }
+
+  const handleGoToAddedDustCover = () => {
+    if (addedDustCoverId) {
+      router.push(`/boot-kit/${addedDustCoverId}`)
     }
   }
 
@@ -158,6 +169,12 @@ export const AddBootDustCover: React.FC<Props> = ({ className }) => {
           )}
         </Button>
       </form>
+      {addedDustCoverId && (
+        <Button variant='secondary' onClick={handleGoToAddedDustCover} className='mt-4'>
+          <ExternalLink size={20} className='mr-2' />
+          {formatMessage({ id: 'addForm.openAddBoot' })}
+        </Button>
+      )}
     </div>
   )
 }

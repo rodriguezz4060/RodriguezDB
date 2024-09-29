@@ -52,7 +52,7 @@ export const SortGroup: React.FC<Props> = ({ className }) => {
       <Link href={`/boot-kit/add`}>
         <Button className='text-base font-bold bg-[#4CAF50] hover:bg-[#388E3C]'>
           <Plus size={20} className='mr-1' />
-          Добавить
+          {formatMessage({ id: 'content.addButton' })}
         </Button>
       </Link>
     </div>

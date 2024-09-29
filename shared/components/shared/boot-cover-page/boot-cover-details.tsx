@@ -37,8 +37,8 @@ export default function BootCoverDetails({ bootCover }: BootCoverDetailsProps) {
           <DeleteBootDustCoverButton dustCoverId={bootCover.id} />
         </div>
         <div className='flex flex-1'>
-          <ProductImage imageUrl={bootCover.imageUrl} />
           <BootCoverInfo
+            imageUrl={bootCover.imageUrl}
             name={bootCover.name}
             form={bootCover.form}
             type={bootCover.type}
