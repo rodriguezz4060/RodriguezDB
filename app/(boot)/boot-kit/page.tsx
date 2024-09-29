@@ -1,13 +1,9 @@
-import { prisma } from '@/prisma/prisma-client'
 import { BootGroupList, Container, Filters, SortGroup } from '@/shared/components/shared'
+import { findBootDustCover, GetSearchParams } from '@/shared/lib/find-boot-dust-cover'
 import { Suspense } from 'react'
 
-export default async function Home() {
-  const bootDustCovers = await prisma.bootDustCover.findMany({
-    include: {
-      cars: true,
-    },
-  })
+export default async function Home({ searchParams }: { searchParams: GetSearchParams }) {
+  const bootDustCovers = await findBootDustCover(searchParams)
 
   return (
     <>
