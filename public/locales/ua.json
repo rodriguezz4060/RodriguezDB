@@ -24,9 +24,7 @@
         "diameterOut": "Зовнішній ⌀ від і до мм:",
         "firms": "Фірми:",
         "showAllButton": "+ Показати все",
-        "hideButton": "Приховати"
-    },
-    "filtersLang": {
+        "hideButton": "Приховати",
         "typeRound": "Круглий"
     },
     "localeToggle": {

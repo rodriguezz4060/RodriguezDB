@@ -10,13 +10,9 @@ import { CheckboxFiltersGroup } from './checkbox-filters-group'
 
 interface Props {
   className?: string
-  filtersLang: {
-    setBootTypes: (value: string) => void
-    bootTypes: string[]
-  }
 }
 
-export const Filters: React.FC<Props> = ({ filtersLang, className }) => {
+export const Filters: React.FC<Props> = ({ className }) => {
   const { formatMessage } = useIntl()
 
   const { bootDustCoversFirms, loading } = useBootBootCoverFirms()
@@ -53,7 +49,7 @@ export const Filters: React.FC<Props> = ({ filtersLang, className }) => {
         onClickCheckbox={filters.setBootForm}
         selected={filters.bootForm}
         items={[
-          { text: formatMessage({ id: 'filtersLang.typeRound' }), value: '1' },
+          { text: formatMessage({ id: 'filters.typeRound' }), value: '1' },
           { text: 'Тришип', value: '2' },
         ]}
       />
