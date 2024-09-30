@@ -25,7 +25,12 @@
         "firms": "Фірми:",
         "showAllButton": "+ Показати все",
         "hideButton": "Приховати",
-        "typeRound": "Круглий"
+        "formRound": "Круглий",
+        "formTriship": "Тришип",
+        "formGym": "Гумовий",
+        "formPlastic": "Пластиковий",
+        "formSilicon": "Силіконовий",
+        "formUniversal": "Універсальний"
     },
     "localeToggle": {
         "languagePlaceholder": "Українська"
@@ -59,7 +64,11 @@
         "link": "Наявність"
     },
     "toast": {
-        "bootAdded": "Пильник додано",
+        "bootAddedSuccess": "Пильник успішно доданий",
+        "bootAddedError": "Не вдалося додати пильовик",
+        "bootFetchingError": "Ошибка при загрузке данных",
+        "bootFormError": "Будь ласка, виберіть усі необхідні параметри",
+        "bootNameError": "Будь ласка, введіть ім'я фірми",
         "bootDeleted": "Пильовик видалено",
         "bootError": "Помилка під час видалення пильовика"
     },

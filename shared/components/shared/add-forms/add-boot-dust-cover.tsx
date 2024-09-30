@@ -67,7 +67,7 @@ export const AddBootDustCover: React.FC<Props> = ({ className }) => {
         setForms(forms)
       } catch (error) {
         console.error('Error fetching data:', error)
-        toast.error('Ошибка при загрузке данных')
+        toast.error(formatMessage({ id: 'toast.bootFetchingError' }))
       }
     }
 
@@ -79,7 +79,7 @@ export const AddBootDustCover: React.FC<Props> = ({ className }) => {
     setIsLoading(true)
 
     if (!typeId || !formId) {
-      toast.error('Пожалуйста, выберите все необходимые параметры')
+      toast.error(formatMessage({ id: 'toast.bootFormError' }))
       setIsLoading(false)
       return
     }
@@ -111,7 +111,7 @@ export const AddBootDustCover: React.FC<Props> = ({ className }) => {
     }
 
     if (!finalNameId) {
-      toast.error('Пожалуйста, введите имя фирмы')
+      toast.error(formatMessage({ id: 'toast.bootNameError' }))
       setIsLoading(false)
       return
     }
@@ -156,10 +156,10 @@ export const AddBootDustCover: React.FC<Props> = ({ className }) => {
       // Сохраняем идентификатор добавленного пыльника
       setAddedDustCoverId(data.id)
       setAddedDustCoverPartNumber(data.partNumber)
-
-      toast.success('Пыльник успешно добавлен')
+      toast
+      toast.success(formatMessage({ id: 'toast.bootAddedSuccess' }))
     } catch (error) {
-      toast.error('Не удалось добавить пыльник')
+      toast.error(formatMessage({ id: 'toast.bootAddedError' }))
       console.error('Error adding boot dust cover:', error)
     } finally {
       setIsLoading(false)

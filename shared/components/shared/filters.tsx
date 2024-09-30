@@ -52,8 +52,8 @@ export const Filters: React.FC<Props> = ({ className }) => {
         onClickCheckbox={filters.setBootForm}
         selected={filters.bootForm}
         items={[
-          { text: formatMessage({ id: 'filters.typeRound' }), value: '1' },
-          { text: 'Тришип', value: '2' },
+          { text: formatMessage({ id: 'filters.formRound' }), value: '1' },
+          { text: formatMessage({ id: 'filters.formTriship' }), value: '2' },
         ]}
       />
 
@@ -66,10 +66,10 @@ export const Filters: React.FC<Props> = ({ className }) => {
         onClickCheckbox={filters.setBootTypes}
         selected={filters.bootTypes}
         items={[
-          { text: 'Резиновый', value: '1' },
-          { text: 'Пластиковый', value: '2' },
-          { text: 'Силиконовый', value: '3' },
-          { text: 'Универсальный', value: '4' },
+          { text: formatMessage({ id: 'filters.formGym' }), value: '1' },
+          { text: formatMessage({ id: 'filters.formPlastic' }), value: '2' },
+          { text: formatMessage({ id: 'filters.formSilicon' }), value: '3' },
+          { text: formatMessage({ id: 'filters.formUniversal' }), value: '4' },
         ]}
       />
 

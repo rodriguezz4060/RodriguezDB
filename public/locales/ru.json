@@ -25,7 +25,12 @@
         "firms": "Фирмы:",
         "showAllButton": "+ Показать все",
         "hideButton": "Скрыть",
-        "typeRound": "Круглый"
+        "formRound": "Круглый",
+        "formTriship": "Тришип",
+        "formGym": "Резиновый",
+        "formPlastic": "Пластиковый",
+        "formSilicon": "Силиконовый",
+        "formUniversal": "Универсальный"
     },
     "localeToggle": {
         "languagePlaceholder": "Русский"
@@ -61,7 +66,11 @@
         "link": "Наличие"
     },
     "toast": {
-        "bootAdded": "Пыльник добавлен",
+        "bootAddedSuccess": "Пыльник успешно добавлен",
+        "bootAddedError": "Не удалось добавить пыльник",
+        "bootFetchingError": "Ошибка при загрузке данных",
+        "bootFormError": "Пожалуйста, выберите все необходимые параметры",
+        "bootNameError": "Пожалуйста, введите имя фирмы",
         "bootDeleted": "Пыльник удален",
         "bootError": "Ошибка при удалении пыльника"
     },
