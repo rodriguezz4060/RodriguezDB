@@ -6,7 +6,8 @@ export const mapForm = {
 export const mapType = {
   1: 'Резиновый',
   2: 'Пластиковый',
-  3: 'Универсальный',
+  3: 'Силиконовый',
+  4: 'Универсальный',
 } as const
 
 export const bootForms = Object.entries(mapForm).map(([value, name]) => ({

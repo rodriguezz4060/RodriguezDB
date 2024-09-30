@@ -99,11 +99,22 @@ export const car = [
   },
 ]
 
+export const name = [{ name: 'MARUCHI' }, { name: 'PASCAL' }, { name: 'LOBRO' }, { name: 'RBI' }]
+
+export const form = [{ form: 'Круглый' }, { form: 'Тришип' }]
+
+export const type = [
+  { type: 'Резиновый' },
+  { type: 'Пластиковый' },
+  { type: 'Силиконовый' },
+  { type: 'Универсальный' },
+]
+
 export const bootDustCover = [
   {
-    name: 'MARUCHI',
-    type: 'Наружный',
-    form: 'Круглый',
+    nameId: 1,
+    formId: 1,
+    typeId: 1,
     dIn: 80,
     dOut: 24,
     height: 95,
@@ -111,9 +122,9 @@ export const bootDustCover = [
     imageUrl: 'https://autoyamato.com.ua/image/43134_25-413_1.jpg',
   },
   {
-    name: 'PASCAL',
-    type: 'Внутренний',
-    form: 'Тришип',
+    nameId: 2,
+    formId: 2,
+    typeId: 2,
     dIn: 85,
     dOut: 22,
     height: 100,
@@ -121,14 +132,24 @@ export const bootDustCover = [
     imageUrl: 'https://autoyamato.com.ua/image/71948_G61018_1_small.jpg',
   },
   {
-    name: 'PASCAL',
-    type: 'Внутренний',
-    form: 'Тришип',
+    nameId: 3,
+    formId: 2,
+    typeId: 3,
     dIn: 60,
     dOut: 22,
     height: 75,
     partNumber: 'D8215',
     imageUrl: 'https://autoyamato.com.ua/image/90504_D8215_0_small.jpg',
+  },
+  {
+    nameId: 4,
+    formId: 1,
+    typeId: 4,
+    dIn: 99,
+    dOut: 24,
+    height: 100,
+    partNumber: 'M1709IZ',
+    imageUrl: 'https://autoyamato.com.ua/image/0728fb2396541d0eb915f20c314654ae.jpg',
   },
 ]
 

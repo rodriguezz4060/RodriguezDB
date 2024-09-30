@@ -4,7 +4,7 @@ export interface GetSearchParams {
   query?: string
   sortBy?: string
   bootForm?: string
-  bootType?: string
+  bootTypes?: string
   inSizeFrom?: string
   inSizeTo?: string
   outSizeFrom?: string
@@ -20,44 +20,48 @@ const DEFAULT_MIN_OUT_SIZE = 0
 const DEFAULT_MAX_OUT_SIZE = 40
 
 export const findBootDustCover = async (params: GetSearchParams) => {
-  const bootForms = params.bootForm?.split(',').map(Number)
-  const bootTypes = params.bootType?.split(',').map(Number)
-  const selectedFirmsArr = params.selectedFirms?.split(',')
+  const bootForm = params.bootForm?.split(',').map(Number)
+  const bootTypes = params.bootTypes?.split(',').map(Number)
+  const selectedFirms = params.selectedFirms?.split(',').map(Number)
 
   const minInSize = Number(params.inSizeFrom) || DEFAULT_MIN_IN_SIZE
   const maxInSize = Number(params.inSizeTo) || DEFAULT_MAX_IN_SIZE
   const minOutSize = Number(params.outSizeFrom) || DEFAULT_MIN_OUT_SIZE
   const maxOutSize = Number(params.outSizeTo) || DEFAULT_MAX_OUT_SIZE
 
-  const where: any = {
-    dIn: {
-      gte: minInSize,
-      lte: maxInSize,
-    },
-    dOut: {
-      gte: minOutSize,
-      lte: maxOutSize,
-    },
-  }
-
-  if (bootForms && bootForms.length > 0) {
-    where.form = {
-      in: bootForms.map(formId => (formId === 1 ? 'Круглый' : 'Тришип')),
-    }
-  }
-
-  if (selectedFirmsArr && selectedFirmsArr.length > 0) {
-    where.name = {
-      in: selectedFirmsArr,
-    }
-  }
-
-  console.log('Query parameters:', params)
-  console.log('Where clause:', where)
-
   const bootDustCovers = await prisma.bootDustCover.findMany({
-    where,
+    orderBy: {
+      id: 'desc',
+    },
+    where: {
+      dIn: {
+        gte: minInSize,
+        lte: maxInSize,
+      },
+      dOut: {
+        gte: minOutSize,
+        lte: maxOutSize,
+      },
+      form: {
+        id: {
+          in: bootForm,
+        },
+      },
+      type: {
+        id: {
+          in: bootTypes,
+        },
+      },
+      name: {
+        id: {
+          in: selectedFirms,
+        },
+      },
+    },
     include: {
+      name: true,
+      form: true,
+      type: true,
       cars: true,
     },
   })

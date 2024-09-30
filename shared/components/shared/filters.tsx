@@ -59,13 +59,14 @@ export const Filters: React.FC<Props> = ({ className }) => {
         name='bootTypes'
         className='mt-5'
         loading={loading}
-        limit={3}
+        limit={4}
         onClickCheckbox={filters.setBootTypes}
         selected={filters.bootTypes}
         items={[
           { text: 'Резиновый', value: '1' },
           { text: 'Пластиковый', value: '2' },
-          { text: 'Универсальный', value: '3' },
+          { text: 'Силиконовый', value: '3' },
+          { text: 'Универсальный', value: '4' },
         ]}
       />
 

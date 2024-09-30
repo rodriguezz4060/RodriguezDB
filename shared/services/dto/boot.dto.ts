@@ -1,7 +1,7 @@
 export interface CreateBootDustCover {
   name: number
-  form: string
-  type: string
+  form: number
+  type: number
   dIn: number
   dOut: number
   height: number

@@ -26,8 +26,8 @@ model User {
 model CarBrand {
     id Int @id @default(autoincrement())
 
-    name     String  @unique
-    imageUrl String?
+    name     String @unique
+    imageUrl String
 
     cars  Car[]
     oilTo OilTo[]
@@ -60,12 +60,37 @@ model Car {
     updateAt  DateTime @updatedAt
 }
 
+model Name {
+    id   Int    @id @default(autoincrement())
+    name String @unique
+
+    bootDustCovers BootDustCover[]
+}
+
+model Type {
+    id   Int    @id @default(autoincrement())
+    type String @unique
+
+    bootDustCovers BootDustCover[]
+}
+
+model Form {
+    id   Int    @id @default(autoincrement())
+    form String @unique
+
+    bootDustCovers BootDustCover[]
+}
+
 model BootDustCover {
     id Int @id @default(autoincrement())
 
-    name       String
-    type       String
-    form       String
+    nameId Int
+    name   Name @relation(fields: [nameId], references: [id])
+    formId Int
+    form   Form @relation(fields: [formId], references: [id])
+    typeId Int
+    type   Type @relation(fields: [typeId], references: [id])
+
     dIn        Int
     dOut       Int
     height     Int

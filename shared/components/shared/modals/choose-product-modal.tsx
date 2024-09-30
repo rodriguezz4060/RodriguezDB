@@ -43,7 +43,7 @@ export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
         )}
       >
         <VisuallyHidden>
-          <DialogTitle>{product.name}</DialogTitle>
+          <DialogTitle>{product.name.name}</DialogTitle>
         </VisuallyHidden>
         <ChooseBootForm
           name={product.name}

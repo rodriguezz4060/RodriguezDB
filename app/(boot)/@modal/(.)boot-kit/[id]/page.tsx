@@ -8,6 +8,9 @@ export default async function ProductModalPage({ params: { id } }: { params: { i
       id: Number(id),
     },
     include: {
+      name: true,
+      form: true,
+      type: true,
       cars: {
         include: {
           carBrand: true,

@@ -8,5 +8,8 @@ export type CarWithBrand = Car & {
 // Определяем тип для пыльника с машинами и брендами
 export type BootWithRelation = BootDustCover & {
   cars: CarWithBrand[]
+  form: { form: string }
+  name: { name: string }
+  type: { type: string }
   // carBrand: CarBrand[]
 }

@@ -1,4 +1,4 @@
-import { bootDustCover, car, carBrand, mainButtonsData } from './constants'
+import { bootDustCover, car, carBrand, form, type, name, mainButtonsData } from './constants'
 import { prisma } from './prisma-client'
 import { hashSync } from 'bcrypt'
 
@@ -26,6 +26,18 @@ async function up() {
 
   await prisma.car.createMany({
     data: car,
+  })
+
+  await prisma.name.createMany({
+    data: name,
+  })
+
+  await prisma.form.createMany({
+    data: form,
+  })
+
+  await prisma.type.createMany({
+    data: type,
   })
 
   await prisma.bootDustCover.createMany({

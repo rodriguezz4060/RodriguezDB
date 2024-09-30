@@ -6,6 +6,9 @@ export default async function BootPage({ params: { id } }: { params: { id: strin
   const bootCover = await prisma.bootDustCover.findFirst({
     where: { id: Number(id) },
     include: {
+      name: true,
+      form: true,
+      type: true,
       cars: {
         include: {
           carBrand: true,

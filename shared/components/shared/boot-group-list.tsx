@@ -16,9 +16,9 @@ export const BootGroupList: React.FC<Props> = ({ items, listClassName, className
           <BootCard
             key={product.id}
             id={product.id}
-            name={product.name}
-            type={product.type}
-            form={product.form}
+            name={product.name.name}
+            type={product.type.type}
+            form={product.form.form}
             imageUrl={product.imageUrl}
             dIn={product.dIn}
             dOut={product.dOut}

@@ -6,10 +6,10 @@ import { DeleteBootDustCoverButton } from '../add-forms/delete-boot-cover'
 interface BootCoverDetailsProps {
   bootCover: {
     id: number
-    name: string
+    name: { name: string }
     imageUrl: string | null
-    form: string
-    type: string
+    form: { form: string }
+    type: { type: string }
     dIn: number
     dOut: number
     height: number
@@ -39,9 +39,9 @@ export default function BootCoverDetails({ bootCover }: BootCoverDetailsProps) {
         <div className='flex flex-1'>
           <BootCoverInfo
             imageUrl={bootCover.imageUrl}
-            name={bootCover.name}
-            form={bootCover.form}
-            type={bootCover.type}
+            name={bootCover.name.name}
+            form={bootCover.form.form}
+            type={bootCover.type.type}
             dIn={bootCover.dIn}
             dOut={bootCover.dOut}
             height={bootCover.height}
