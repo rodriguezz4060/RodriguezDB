@@ -10,8 +10,12 @@ export const useBootBootCoverFirms = () => {
     async function fetchGetBootFirms() {
       try {
         setLoading(true)
-        const bootFirms = await Api.bootDustCover.getBootDustName()
-        setBootDustCoversFirms(bootFirms)
+        const bootDustCovers = await Api.bootDustCover.getBootDustCover()
+        const names = await Api.bootDustCover.getBootDustName()
+        const filteredNames = names.filter(name =>
+          bootDustCovers.some(bootDustCover => bootDustCover.nameId === name.id)
+        )
+        setBootDustCoversFirms(filteredNames)
       } catch (error) {
         console.log(error)
       } finally {

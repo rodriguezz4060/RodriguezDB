@@ -20,7 +20,10 @@ export const Filters: React.FC<Props> = ({ className }) => {
 
   useQueryFilters(filters)
 
-  const items = bootDustCoversFirms.map(items => ({
+  // Сортировка массива по алфавиту
+  const sortedBootDustCoversFirms = bootDustCoversFirms.sort((a, b) => a.name.localeCompare(b.name))
+
+  const items = sortedBootDustCoversFirms.map(items => ({
     value: String(items.id),
     text: String(items.name),
   }))

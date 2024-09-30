@@ -2,7 +2,7 @@ import { prisma } from '@/prisma/prisma-client'
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-  const bootDustName = await prisma.name.findMany()
+  const bootDustForm = await prisma.form.findMany()
 
-  return NextResponse.json(bootDustName)
+  return NextResponse.json(bootDustForm)
 }

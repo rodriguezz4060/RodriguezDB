@@ -11,11 +11,35 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     // Получаем данные из тела запроса
-    const data: BootDustCover = await request.json()
+    const { nameId, typeId, formId, dIn, dOut, height, partNumber, imageUrl } = await request.json()
+
+    // Проверяем, существует ли уже такое имя
+    const existingName = await prisma.name.findUnique({
+      where: { id: nameId },
+    })
+
+    if (!existingName) {
+      return NextResponse.json({ error: 'Name not found' }, { status: 404 })
+    }
 
     // Добавляем пыльник в базу данных
     const bootDustCover = await prisma.bootDustCover.create({
-      data,
+      data: {
+        name: {
+          connect: { id: nameId },
+        },
+        type: {
+          connect: { id: typeId },
+        },
+        form: {
+          connect: { id: formId },
+        },
+        dIn,
+        dOut,
+        height,
+        partNumber,
+        imageUrl,
+      },
     })
 
     // Возвращаем созданный пыльник в ответе
