@@ -1,9 +1,15 @@
 import { cn } from '@/shared/lib/utils'
 import React from 'react'
 import { BootCard } from './boot-card'
+import { BootDustCover, Form, Name, Type } from '@prisma/client'
+
+interface BootDustCoverWithRelations extends BootDustCover {
+  name: Name
+  type: Type
+}
 
 interface Props {
-  items: any[]
+  items: BootDustCoverWithRelations[]
   listClassName?: string
   className?: string
 }
@@ -17,9 +23,8 @@ export const BootGroupList: React.FC<Props> = ({ items, listClassName, className
             key={product.id}
             id={product.id}
             name={product.name.name}
-            type={product.type.type}
-            form={product.form.form}
-            imageUrl={product.imageUrl}
+            type={product.type}
+            imageUrl={product.imageUrl ?? ''}
             dIn={product.dIn}
             dOut={product.dOut}
             height={product.height}

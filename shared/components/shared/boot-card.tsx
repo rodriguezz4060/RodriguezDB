@@ -1,14 +1,20 @@
+'use client'
+
 import Link from 'next/link'
 import React from 'react'
 import { Title } from './title'
 import { Button } from '../ui'
 import { SquareArrowOutUpRight } from 'lucide-react'
+import { useIntl } from 'react-intl'
+import useTranslations from '@/shared/hooks/use-translations'
 
 interface Props {
   id: number
   name: string
-  type: string
-  form: string
+  type: {
+    id: number
+    type: string
+  }
   dIn: number
   dOut: number
   height: number
@@ -21,7 +27,7 @@ export const BootCard: React.FC<Props> = ({
   id,
   name,
   type,
-  form,
+
   dIn,
   dOut,
   height,
@@ -29,6 +35,10 @@ export const BootCard: React.FC<Props> = ({
   partNumber,
   className,
 }) => {
+  const { formatMessage } = useIntl()
+  const translations = useTranslations()
+  const typeTranslation = translations.getTypeTranslation(type.id)
+
   return (
     <div className={className}>
       <Link href={`/boot-kit/${id}`}>
@@ -38,13 +48,13 @@ export const BootCard: React.FC<Props> = ({
 
         <Title text={name} size='sm' className='mb-1 mt-3 font-bold' />
         <p className='text-sm'>
-          Тип: {type}
+          {formatMessage({ id: 'bootCard.type' })} {typeTranslation}
           <br />
-          Внутренний ⌀: {dIn} мм
+          {formatMessage({ id: 'bootCard.dIn' })} {dIn} мм
           <br />
-          Наружный ⌀: {dOut} мм
+          {formatMessage({ id: 'bootCard.dOut' })} {dOut} мм
           <br />
-          Высота: {height} мм
+          {formatMessage({ id: 'bootCard.height' })} {height} мм
         </p>
       </Link>
       <div className='flex justify-between items-center mt-4'>
