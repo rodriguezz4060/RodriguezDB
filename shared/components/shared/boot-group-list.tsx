@@ -1,15 +1,10 @@
 import { cn } from '@/shared/lib/utils'
 import React from 'react'
 import { BootCard } from './boot-card'
-import { BootDustCover, Form, Name, Type } from '@prisma/client'
-
-interface BootDustCoverWithRelations extends BootDustCover {
-  name: Name
-  type: Type
-}
+import { BootWithRelation } from '@/@types/prisma'
 
 interface Props {
-  items: BootDustCoverWithRelations[]
+  items: BootWithRelation[]
   listClassName?: string
   className?: string
 }
