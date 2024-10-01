@@ -46,16 +46,38 @@ export const BootCard: React.FC<Props> = ({
           <img className='w-[215px] h-[215px]' src={imageUrl} alt={name} />
         </div>
 
-        <Title text={name} size='sm' className='mb-1 mt-3 font-bold' />
-        <p className='text-sm'>
-          {formatMessage({ id: 'bootCard.type' })} {typeTranslation}
-          <br />
-          {formatMessage({ id: 'bootCard.dIn' })} {dIn} мм
-          <br />
-          {formatMessage({ id: 'bootCard.dOut' })} {dOut} мм
-          <br />
-          {formatMessage({ id: 'bootCard.height' })} {height} мм
-        </p>
+        <Title text={name} size='sm' className='flex mb-1 mt-3 font-bold' />
+
+        <div className='w-[230px] ml-2'>
+          <div className='flex my-2'>
+            <span className='flex flex-1 text-sm'>
+              {formatMessage({ id: 'bootCard.type' })}
+              <div className='flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2' />
+              {typeTranslation}
+            </span>
+          </div>
+          <div className='flex my-2'>
+            <span className='flex flex-1 text-sm'>
+              {formatMessage({ id: 'bootCard.dIn' })}
+              <div className='flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2' />
+              {dIn} мм
+            </span>
+          </div>
+          <div className='flex my-2'>
+            <span className='flex flex-1 text-sm'>
+              {formatMessage({ id: 'bootCard.dOut' })}
+              <div className='flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2' />
+              {dOut} мм
+            </span>
+          </div>
+          <div className='flex my-2'>
+            <span className='flex flex-1 text-sm'>
+              {formatMessage({ id: 'bootCard.height' })}
+              <div className='flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2' />
+              {height} мм
+            </span>
+          </div>
+        </div>
       </Link>
       <div className='flex justify-between items-center mt-4'>
         <div className='text-[20px]'>{partNumber}</div>
