@@ -34,16 +34,7 @@ export const ChooseProductModal: React.FC<Props> = ({ product, className }) => {
         <VisuallyHidden>
           <DialogTitle>{product.name.name}</DialogTitle>
         </VisuallyHidden>
-        <ChooseBootForm
-          name={product.name}
-          imageUrl={product.imageUrl}
-          form={product.form}
-          type={product.type}
-          dIn={product.dIn}
-          dOut={product.dOut}
-          height={product.height}
-          partNumber={product.partNumber}
-        />
+        <ChooseBootForm product={product} />
       </DialogContent>
     </Dialog>
   )

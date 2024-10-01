@@ -8,12 +8,19 @@ import { Diameter, Ruler, SquareArrowOutUpRight } from 'lucide-react'
 import { useIntl } from 'react-intl'
 import { ProductImage } from '../product-image'
 import { cn } from '@/shared/lib/utils'
+import useTranslations from '@/shared/hooks/use-translations'
 
 interface Props {
   name: string
   imageUrl: string | null
-  form: string
-  type: string
+  form: {
+    id: number
+    form: string
+  }
+  type: {
+    id: number
+    type: string
+  }
   dIn: number
   dOut: number
   height: number
@@ -33,6 +40,10 @@ export const BootCoverInfo: React.FC<Props> = ({
   className,
 }) => {
   const { formatMessage } = useIntl()
+  const translations = useTranslations()
+  const formTranslation = translations.getFormTranslation(form.id)
+  const typeTranslation = translations.getTypeTranslation(type.id)
+
   return (
     <div className={cn(className, 'flex flex-1')}>
       <ProductImage imageUrl={imageUrl} />
@@ -44,13 +55,13 @@ export const BootCoverInfo: React.FC<Props> = ({
             <p className='font-semibold text-gray-700 dark:text-gray-300'>
               {formatMessage({ id: 'bootCoverInfo.form' })}
             </p>
-            <p className='text-gray-600 dark:text-gray-400'>{form}</p>
+            <p className='text-gray-600 dark:text-gray-400'>{formTranslation}</p>
           </div>
           <div>
             <p className='font-semibold text-gray-700 dark:text-gray-300'>
               {formatMessage({ id: 'bootCoverInfo.type' })}
             </p>
-            <p className='text-gray-600 dark:text-gray-400'>{type}</p>
+            <p className='text-gray-600 dark:text-gray-400'>{typeTranslation}</p>
           </div>
           <div>
             <p className='font-semibold text-gray-700 dark:text-gray-300 inline-flex items-center'>

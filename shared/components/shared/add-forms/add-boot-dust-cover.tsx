@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { Button, Input, Select } from '../../ui'
 import { SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../ui/select'
-import { ExternalLink, Loader, Save } from 'lucide-react'
+import { ExternalLink, Hash, Loader, Save } from 'lucide-react'
 import toast from 'react-hot-toast'
 import {
   getBootDustForm,
@@ -262,7 +262,9 @@ export const AddBootDustCover: React.FC<Props> = ({ className }) => {
         <Link href={`/boot-kit/${addedDustCoverId}`} target='_blank' rel='noopener noreferrer'>
           <Button variant='secondary' className='mt-4 '>
             <ExternalLink size={20} className='mr-2' />
-            {formatMessage({ id: 'addForm.openAddBoot' })} #{addedDustCoverPartNumber}
+            {formatMessage({ id: 'addForm.openAddBoot' })}
+            <Hash size={20} className='ml-1' />
+            {addedDustCoverPartNumber}
           </Button>
         </Link>
       )}

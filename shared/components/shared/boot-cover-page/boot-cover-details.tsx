@@ -1,4 +1,4 @@
-import { Container, ProductImage } from '@/shared/components/shared'
+import { Container } from '@/shared/components/shared'
 import { BootCoverInfo } from './boot-cover-info'
 import BootCoverCars from './boot-cover-cars'
 import { DeleteBootDustCoverButton } from '../add-forms/delete-boot-cover'
@@ -8,8 +8,14 @@ interface BootCoverDetailsProps {
     id: number
     name: { name: string }
     imageUrl: string | null
-    form: { form: string }
-    type: { type: string }
+    form: {
+      id: number
+      form: string
+    }
+    type: {
+      id: number
+      type: string
+    }
     dIn: number
     dOut: number
     height: number
@@ -40,8 +46,8 @@ export default function BootCoverDetails({ bootCover }: BootCoverDetailsProps) {
           <BootCoverInfo
             imageUrl={bootCover.imageUrl}
             name={bootCover.name.name}
-            form={bootCover.form.form}
-            type={bootCover.type.type}
+            form={bootCover.form}
+            type={bootCover.type}
             dIn={bootCover.dIn}
             dOut={bootCover.dOut}
             height={bootCover.height}
