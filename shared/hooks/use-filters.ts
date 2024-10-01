@@ -63,14 +63,17 @@ export const useFilters = (): ReturnProps => {
     }))
   }
 
-  return {
-    bootTypes,
-    bootForm,
-    selectedFirms,
-    sizes,
-    setSizes: updateSize,
-    setBootTypes: toggleBootType,
-    setBootForm: toggleBootForm,
-    setBootFirms: toggleBootFirms,
-  }
+  return React.useMemo(
+    () => ({
+      bootForm,
+      bootTypes,
+      selectedFirms,
+      sizes,
+      setBootFirms: toggleBootFirms,
+      setBootForm: toggleBootForm,
+      setBootTypes: toggleBootType,
+      setSizes: updateSize,
+    }),
+    [bootForm, bootTypes, selectedFirms, sizes]
+  )
 }
