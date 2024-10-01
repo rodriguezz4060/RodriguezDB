@@ -60,21 +60,21 @@ export const BootCard: React.FC<Props> = ({
             <span className='flex flex-1 text-sm'>
               {formatMessage({ id: 'bootCard.dIn' })}
               <div className='flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2' />
-              {dIn} мм
+              {`${dIn} мм`}
             </span>
           </div>
           <div className='flex my-2'>
             <span className='flex flex-1 text-sm'>
               {formatMessage({ id: 'bootCard.dOut' })}
               <div className='flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2' />
-              {dOut} мм
+              {`${dOut} мм`}
             </span>
           </div>
           <div className='flex my-2'>
             <span className='flex flex-1 text-sm'>
               {formatMessage({ id: 'bootCard.height' })}
               <div className='flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2' />
-              {height} мм
+              {`${height}мм`}
             </span>
           </div>
         </div>
