@@ -62,7 +62,11 @@ export const findBootDustCover = async (params: GetSearchParams) => {
       name: true,
       form: true,
       type: true,
-      cars: true,
+      cars: {
+        include: {
+          carBrand: true,
+        },
+      },
     },
   })
 

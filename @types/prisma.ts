@@ -18,5 +18,4 @@ export type BootWithRelation = BootDustCover & {
     id: number
     type: string
   }
-  // carBrand: CarBrand[]
 }
