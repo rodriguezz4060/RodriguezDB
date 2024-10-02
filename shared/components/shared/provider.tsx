@@ -5,23 +5,22 @@ import dynamic from 'next/dynamic'
 import { IntlProvider } from 'react-intl'
 import { LocaleProvider, useLocale } from './locale-provider'
 import { messages } from './flatten-messages'
-import { Header } from './header'
+import { Toaster } from 'react-hot-toast'
+import { SessionProvider } from 'next-auth/react'
+import NextTopLoader from 'nextjs-toploader'
 
 const ThemeProvider = dynamic(() => import('./theme-provider').then(mod => mod.ThemeProvider), {
   ssr: false,
 })
 
-interface ProvidersProps {
-  children: React.ReactNode
-}
-
-export const Providers: React.FC<ProvidersProps> = ({ children }) => {
+export const Providers: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <LocaleProvider>
       <IntlProviderWrapper>
         <ThemeProvider attribute='class' defaultTheme='dark' enableSystem>
-          <Header />
-          {children}
+          <NextTopLoader />
+          <SessionProvider>{children}</SessionProvider>
+          <Toaster />
         </ThemeProvider>
       </IntlProviderWrapper>
     </LocaleProvider>

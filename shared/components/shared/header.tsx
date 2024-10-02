@@ -4,13 +4,13 @@ import { cn } from '@/shared/lib/utils'
 import React from 'react'
 import { Container } from './container'
 import Image from 'next/image'
-import { Button } from '../ui'
-import { User } from 'lucide-react'
 import { DarkModeToggle } from './dark-mode-toggle'
 import { LocaleToggle } from './locale-toggle'
 import { useIntl } from 'react-intl'
 import { SearchInput } from './search-input'
 import Link from 'next/link'
+import { ProfileButton } from './profile-button'
+import { AuthModal } from './modals'
 
 interface Props {
   className?: string
@@ -18,6 +18,9 @@ interface Props {
 
 export const Header: React.FC<Props> = ({ className }) => {
   const { formatMessage } = useIntl()
+
+  const [openAuthModal, setOpenAuthModal] = React.useState(false)
+
   return (
     <header className={cn('border border-b', className)}>
       <div>
@@ -48,11 +51,8 @@ export const Header: React.FC<Props> = ({ className }) => {
           <div className='flex items-center gap-3'>
             <LocaleToggle />
             <DarkModeToggle />
-
-            <Button className='flex items-start gap-3'>
-              <User size={16} />
-              Войти
-            </Button>
+            <AuthModal open={openAuthModal} onclose={() => setOpenAuthModal(false)} />
+            <ProfileButton onClickSingIn={() => setOpenAuthModal(true)} />
           </div>
         </Container>
       </div>
