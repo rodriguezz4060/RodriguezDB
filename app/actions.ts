@@ -60,3 +60,22 @@ export async function registerUser(body: Prisma.UserCreateInput) {
     throw err
   }
 }
+
+export const updateBootDustCover = async (data: any) => {
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000' // Убедитесь, что эта переменная определена в вашем .env файле
+  const url = `${baseUrl}/api/boot-dust-cover`
+
+  const response = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to update boot dust cover')
+  }
+
+  return await response.json()
+}
