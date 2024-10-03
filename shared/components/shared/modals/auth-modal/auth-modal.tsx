@@ -6,6 +6,7 @@ import { signIn } from 'next-auth/react'
 
 import React from 'react'
 import { LoginForm } from './forms/login-form'
+import { RegisterForm } from './forms/register-form'
 
 interface Props {
   open: boolean
@@ -30,7 +31,11 @@ export const AuthModal: React.FC<Props> = ({ open, onclose, className }) => {
         className={cn('w-[450px] p-10 bg-[#fcfcfc] dark:bg-zinc-900', className)}
         aria-describedby={undefined}
       >
-        {type === 'login' ? <LoginForm onClose={onclose} /> : <h1>REGISTER</h1>}
+        {type === 'login' ? (
+          <LoginForm onClose={onclose} />
+        ) : (
+          <RegisterForm onClose={handleClose} />
+        )}
 
         <hr />
         <div className='flex gap-2'>

@@ -97,5 +97,11 @@
         "carYear": "Рік",
         "carEngine": "Двигун",
         "carVolume": "Об'єм"
+    },
+    "noFoundPage": {
+        "onHomePage": "На головну",
+        "refresh": "Оновити",
+        "notAuthErrorTitle": "Доступ заборонено",
+        "notAuthErrorText": "Для перегляду цієї сторінки необхідно авторизуватися"
     }
 }

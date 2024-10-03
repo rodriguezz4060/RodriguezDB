@@ -105,5 +105,11 @@
         "carYear": "Год",
         "carEngine": "Двигатель",
         "carVolume": "Объем"
+    },
+    "noFoundPage": {
+        "onHomePage": "На главную",
+        "refresh": "Обновить",
+        "notAuthErrorTitle": "Доступ запрещен",
+        "notAuthErrorText": "Для просмотра данной страницы необходимо авторизоваться"
     }
 }
