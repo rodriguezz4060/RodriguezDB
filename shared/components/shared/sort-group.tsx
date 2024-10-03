@@ -7,6 +7,7 @@ import { Button } from '../ui'
 import { useIntl } from 'react-intl'
 import { Title } from './title'
 import Link from 'next/link'
+import { AddBootButton } from './buttons'
 
 interface Props {
   className?: string
@@ -49,12 +50,7 @@ export const SortGroup: React.FC<Props> = ({ className }) => {
           <List className='h-[1.2rem] w-[1.2rem] scale-100' />
         </Button>
       </div>
-      <Link href={`/add`}>
-        <Button className='text-base font-bold bg-[#4CAF50] hover:bg-[#388E3C]'>
-          <Plus size={20} className='mr-1' />
-          {formatMessage({ id: 'content.addButton' })}
-        </Button>
-      </Link>
+      <AddBootButton />
     </div>
   )
 }

@@ -1,28 +1,21 @@
-'use client'
+import { prisma } from '@/prisma/prisma-client'
+import { AddBootPage } from '@/shared/components/shared'
+import { getUserSession } from '@/shared/lib/get-user-session'
+import { redirect } from 'next/navigation'
+import React from 'react'
 
-import { AddBootDustCover, Container, Title } from '@/shared/components/shared'
-import { Button } from '@/shared/components/ui'
-import { ArrowLeft } from 'lucide-react'
-import Link from 'next/link'
-import { useIntl } from 'react-intl'
+export default async function AddBootHome() {
+  const session = await getUserSession()
 
-export default function Home() {
-  const { formatMessage } = useIntl()
+  if (!session) {
+    return redirect('/not-auth')
+  }
 
-  return (
-    <>
-      <Container className='secondary dark:bg-zinc-900 px-4'>
-        <div className='flex items-center justify-between p-7'>
-          <Title text={'Добавить пыльник'} className='font-extrabold' />
-          <Link href='/boot-kit/'>
-            <Button className='font-bold px-4 py-2'>
-              <ArrowLeft size={20} className='mr-2' />
-              {formatMessage({ id: 'addForm.backButton' })}
-            </Button>
-          </Link>
-        </div>
-        <AddBootDustCover className='max-w-md mx-auto pb-10' />
-      </Container>
-    </>
-  )
+  const user = await prisma.user.findFirst({ where: { id: Number(session?.id) } })
+
+  if (!user) {
+    return redirect('/not-auth')
+  }
+
+  return <AddBootPage />
 }
