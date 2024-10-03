@@ -54,6 +54,7 @@ export async function registerUser(body: Prisma.UserCreateInput) {
         password: hashSync(body.password, 10),
       },
     })
+    return createdUser
   } catch (err) {
     console.log('Error [CREATE_USER]', err)
     throw err
