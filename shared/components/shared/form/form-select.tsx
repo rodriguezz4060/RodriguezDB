@@ -44,7 +44,6 @@ const FormSelectComponent = forwardRef<HTMLSelectElement, FormSelectProps>(
             {...register(name, { required })}
             onValueChange={value => setValue(name, value)}
             value={selectedValue}
-            ref={ref}
           >
             <SelectTrigger className='border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'>
               <SelectValue placeholder={label} />

@@ -14,5 +14,5 @@ export const DeleteBootButton: React.FC<Props> = ({ dustCoverId, className }) =>
 
   const userRole = session?.user?.role
 
-  return <>{userRole !== 'USER' && <DeleteBootDustCoverButton dustCoverId={dustCoverId} />}</>
+  return <>{userRole === 'ADMIN' && <DeleteBootDustCoverButton dustCoverId={dustCoverId} />}</>
 }

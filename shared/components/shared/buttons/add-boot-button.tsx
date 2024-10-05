@@ -19,7 +19,7 @@ export const AddBootButton: React.FC<Props> = ({ className }) => {
 
   return (
     <>
-      {userRole !== 'USER' && (
+      {userRole === 'ADMIN' && (
         <Link href={`/add`}>
           <Button className='text-base font-bold bg-[#4CAF50] hover:bg-[#388E3C]'>
             <Plus size={20} className='mr-1' />
