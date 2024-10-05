@@ -5,7 +5,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, useForm } from 'react-hook-form'
 import React, { useEffect, useState } from 'react'
-import { CarWithBrand } from '@/@types/prisma'
+import { CarWithBoot, CarWithBrand } from '@/@types/prisma'
 import toast from 'react-hot-toast'
 import { useIntl } from 'react-intl'
 import { BootDustCover, CarBrand } from '@prisma/client'
@@ -17,9 +17,10 @@ import { useRouter } from 'next/navigation'
 import { Title } from '../title'
 import { updatedCar } from '@/app/actions'
 import { formEditCarSchema, TFormEditCarSchema } from '../add-forms/schemas/edit-car-schema'
+import { getBootDustCover } from '@/shared/services/boot-dust-cover'
 
 interface Props {
-  car: CarWithBrand
+  car: CarWithBoot
 }
 
 export const EditCarForm: React.FC<Props> = ({ car }) => {
@@ -37,17 +38,22 @@ export const EditCarForm: React.FC<Props> = ({ car }) => {
       modelYear: car.modelYear,
       engine: car.engine,
       volume: car.volume,
+      bootDustCoverId: car.bootDustCoverId,
     },
   })
 
+  console.log(car)
+
   const [carBrands, setCarBrands] = useState<CarBrand[]>([])
+  const [bootDustCovers, setBootDustCovers] = useState<BootDustCover[]>([])
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const carBrands = await getCarsBrands()
+        const [carBrands, bootDustCovers] = await Promise.all([getCarsBrands(), getBootDustCover()])
 
         setCarBrands(carBrands)
+        setBootDustCovers(bootDustCovers)
       } catch (error) {
         console.error('Error fetching data:', error)
         toast.error(formatMessage({ id: 'toast.fetchingError' }))
@@ -76,28 +82,58 @@ export const EditCarForm: React.FC<Props> = ({ car }) => {
   return (
     <Container className='my-10'>
       <Title text={`Редактирование автомобиля | #${car.id}`} size='md' className='font-bold' />
+      <div className='flex gap-[80px]'>
+        <div className='w-[400px]'>
+          <FormProvider {...form}>
+            <form className='flex flex-col gap-5 w-96 mt-10' onSubmit={form.handleSubmit(onSubmit)}>
+              <FormSelect name='carBrandId' label='Бренд автомобиля' required>
+                {carBrands.map(brand => (
+                  <option key={brand.id} value={brand.id}>
+                    {brand.name}
+                  </option>
+                ))}
+              </FormSelect>
+              <FormInput name='imageUrl' label='URL изображения' />
+              <FormInput name='models' label='Модель' required />
+              <FormInput name='carBody' label='Кузов' required />
+              <FormInput name='modelYear' label='Год выпуска' required />
+              <FormInput name='engine' label='Двигатель' required />
+              <FormInput name='volume' label='Объем двигателя' required />
 
-      <FormProvider {...form}>
-        <form className='flex flex-col gap-5 w-96 mt-10' onSubmit={form.handleSubmit(onSubmit)}>
-          <FormSelect name='carBrandId' label='Бренд автомобиля' required>
-            {carBrands.map(brand => (
-              <option key={brand.id} value={brand.id}>
-                {brand.name}
-              </option>
-            ))}
-          </FormSelect>
-          <FormInput name='imageUrl' label='URL изображения' />
-          <FormInput name='models' label='Модель' required />
-          <FormInput name='carBody' label='Кузов' required />
-          <FormInput name='modelYear' label='Год выпуска' required />
-          <FormInput name='engine' label='Двигатель' required />
-          <FormInput name='volume' label='Объем двигателя' required />
+              <Button
+                disabled={form.formState.isSubmitting}
+                className='text-base mt-10'
+                type='submit'
+              >
+                Сохранить
+              </Button>
+            </form>
+          </FormProvider>
+        </div>
 
-          <Button disabled={form.formState.isSubmitting} className='text-base mt-10' type='submit'>
-            Сохранить
-          </Button>
-        </form>
-      </FormProvider>
+        <div className='flex-1'>
+          <div className='flex flex-col w-[400px] gap-5 mt-9'>
+            <FormProvider {...form}>
+              <FormSelect name='bootDustCoverId' label='Пыльник'>
+                {bootDustCovers.map(dustCover => (
+                  <option key={dustCover.id} value={dustCover.id}>
+                    {dustCover.partNumber}
+                  </option>
+                ))}
+              </FormSelect>
+            </FormProvider>
+
+            <div>
+              <Title text='Связанные пыльники' size='sm' className='font-bold' />
+              <ul>
+                {car.bootDustCover.map(dustCover => (
+                  <li key={dustCover.id}>{dustCover.partNumber}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </Container>
   )
 }
