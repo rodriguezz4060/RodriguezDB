@@ -123,7 +123,7 @@ export const updatedCar = async (data: any) => {
   })
 
   if (!response.ok) {
-    throw new Error('Failed to update boot dust cover')
+    throw new Error('Failed to update car')
   }
 
   return await response.json()

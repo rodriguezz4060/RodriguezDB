@@ -9,8 +9,6 @@ import { CarWithBrand } from '@/@types/prisma'
 import toast from 'react-hot-toast'
 import { useIntl } from 'react-intl'
 import { BootDustCover, CarBrand } from '@prisma/client'
-import { formCarSchema, TFormCarSchema } from '../add-forms/schemas/add-car-schemas'
-import { getBootDustCover } from '@/shared/services/boot-dust-cover'
 import { getCarsBrands } from '@/shared/services/cars'
 import { Container } from '../container'
 import { FormInput, FormSelect } from '../form'
@@ -18,6 +16,7 @@ import { Button } from '../../ui'
 import { useRouter } from 'next/navigation'
 import { Title } from '../title'
 import { updatedCar } from '@/app/actions'
+import { formEditCarSchema, TFormEditCarSchema } from '../add-forms/schemas/edit-car-schema'
 
 interface Props {
   car: CarWithBrand
@@ -27,22 +26,21 @@ export const EditCarForm: React.FC<Props> = ({ car }) => {
   const { formatMessage } = useIntl()
   const router = useRouter()
 
-  const form = useForm<TFormCarSchema>({
-    resolver: zodResolver(formCarSchema),
+  const form = useForm<TFormEditCarSchema>({
+    resolver: zodResolver(formEditCarSchema),
     defaultValues: {
       id: car.id,
+      carBrandId: car.carBrandId,
       imageUrl: car.imageUrl,
       models: car.models,
       carBody: car.carBody,
       modelYear: car.modelYear,
       engine: car.engine,
       volume: car.volume,
-      carBrandId: car.carBrandId,
     },
   })
 
   const [carBrands, setCarBrands] = useState<CarBrand[]>([])
-  const [bootDustCovers, setBootDustCovers] = useState<BootDustCover[]>([])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,7 +57,7 @@ export const EditCarForm: React.FC<Props> = ({ car }) => {
     fetchData()
   }, [])
 
-  const onSubmit = async (data: TFormCarSchema) => {
+  const onSubmit = async (data: TFormEditCarSchema) => {
     try {
       await updatedCar(data)
 

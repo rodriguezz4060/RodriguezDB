@@ -80,3 +80,17 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ error: 'Failed to delete boot dust cover' }, { status: 500 })
   }
 }
+
+export async function PUT(req: Request) {
+  const { id, ...data } = await req.json()
+
+  try {
+    const updatedBootDustCover = await prisma.bootDustCover.update({
+      where: { id: Number(id) },
+      data,
+    })
+    return NextResponse.json(updatedBootDustCover, { status: 200 })
+  } catch (error) {
+    return NextResponse.json({ message: 'Failed to update boot dust cover' }, { status: 500 })
+  }
+}
