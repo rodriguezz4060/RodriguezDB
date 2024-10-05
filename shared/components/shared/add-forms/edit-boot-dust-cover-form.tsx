@@ -9,7 +9,7 @@ import toast from 'react-hot-toast'
 import { updateBootDustCover } from '@/app/actions'
 import { Container } from '../container'
 import { FormInput, FormSelect } from '../form'
-import { formBootDustCoverSchema, TFormBootDustCoverSchema } from './schemas'
+import { formBootDustCoverSchema, TFormBootDustCoverSchema } from './schemas/edit-boot-schemas'
 import { Title } from '../title'
 import { Button } from '../../ui'
 import {

@@ -1,12 +1,11 @@
 'use client'
 
 import { cn } from '@/shared/lib/utils'
-import { List, Plus, Table } from 'lucide-react'
+import { List, Table } from 'lucide-react'
 import React, { useState } from 'react'
 import { Button } from '../ui'
 import { useIntl } from 'react-intl'
 import { Title } from './title'
-import Link from 'next/link'
 import { AddBootButton } from './buttons'
 
 interface Props {

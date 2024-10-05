@@ -20,7 +20,7 @@ export const AddBootButton: React.FC<Props> = ({ className }) => {
   return (
     <>
       {userRole === 'ADMIN' && (
-        <Link href={`/add`}>
+        <Link href={`/add-boot`}>
           <Button className='text-base font-bold bg-[#4CAF50] hover:bg-[#388E3C]'>
             <Plus size={20} className='mr-1' />
             {formatMessage({ id: 'content.addButton' })}

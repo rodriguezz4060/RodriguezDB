@@ -1,5 +1,4 @@
 import { prisma } from '@/prisma/prisma-client'
-import { protectRoute } from '@/shared/lib'
 import { NextResponse } from 'next/server'
 
 export async function GET() {
@@ -79,19 +78,5 @@ export async function DELETE(request: Request) {
     // Обрабатываем ошибки
     console.error('Error deleting boot dust cover:', error)
     return NextResponse.json({ error: 'Failed to delete boot dust cover' }, { status: 500 })
-  }
-}
-
-export async function PUT(req: Request) {
-  const { id, ...data } = await req.json()
-
-  try {
-    const updatedBootDustCover = await prisma.bootDustCover.update({
-      where: { id: Number(id) },
-      data,
-    })
-    return NextResponse.json(updatedBootDustCover, { status: 200 })
-  } catch (error) {
-    return NextResponse.json({ message: 'Failed to update boot dust cover' }, { status: 500 })
   }
 }
