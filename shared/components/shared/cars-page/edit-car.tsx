@@ -1,5 +1,3 @@
-// pages/cars/[id]/edit.tsx
-
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -17,6 +15,7 @@ import { useRouter } from 'next/navigation'
 import { Title } from '../title'
 import { updatedCar } from '@/app/actions'
 import { formEditCarSchema, TFormEditCarSchema } from '../add-forms/schemas/edit-car-schema'
+import { getBootDustCover } from '@/shared/services/boot-dust-cover'
 
 interface Props {
   car: CarWithBrand
@@ -37,20 +36,23 @@ export const EditCarForm: React.FC<Props> = ({ car }) => {
       modelYear: car.modelYear,
       engine: car.engine,
       volume: car.volume,
+      bootDustCoverId: car.bootDustCoverId, // Добавляем это поле
     },
   })
 
   const [carBrands, setCarBrands] = useState<CarBrand[]>([])
+  const [bootDustCovers, setBootDustCovers] = useState<BootDustCover[]>([])
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const carBrands = await getCarsBrands()
+        const [carBrands, bootDustCovers] = await Promise.all([getCarsBrands(), getBootDustCover()])
 
         setCarBrands(carBrands)
+        setBootDustCovers(bootDustCovers)
       } catch (error) {
-        console.error('Error fetching data:', error)
-        toast.error(formatMessage({ id: 'toast.fetchingError' }))
+        console.error('Error fetching car brands:', error)
+        toast.error(formatMessage({ id: 'toast.carBrandsFetchingError' }))
       }
     }
 
@@ -92,6 +94,14 @@ export const EditCarForm: React.FC<Props> = ({ car }) => {
           <FormInput name='modelYear' label='Год выпуска' required />
           <FormInput name='engine' label='Двигатель' required />
           <FormInput name='volume' label='Объем двигателя' required />
+
+          <FormSelect name='bootDustCoverId' label='Пыльник' required>
+            {bootDustCovers.map(dustCover => (
+              <option key={dustCover.id} value={dustCover.id}>
+                {dustCover.partNumber}
+              </option>
+            ))}
+          </FormSelect>
 
           <Button disabled={form.formState.isSubmitting} className='text-base mt-10' type='submit'>
             Сохранить

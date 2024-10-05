@@ -23,15 +23,20 @@ export async function POST(request: Request) {
 }
 
 export async function PUT(req: Request) {
-  const { id, ...data } = await req.json()
+  const { id, bootDustCoverId, ...data } = await req.json()
 
   try {
     const updatedCar = await prisma.car.update({
       where: { id: Number(id) },
-      data,
+      data: {
+        ...data,
+        bootDustCover: {
+          connect: { id: Number(bootDustCoverId) }, // Связываем автомобиль с пыльником
+        },
+      },
     })
     return NextResponse.json(updatedCar, { status: 200 })
   } catch (error) {
-    return NextResponse.json({ message: 'Failed to update boot dust cover' }, { status: 500 })
+    return NextResponse.json({ message: 'Failed to update car' }, { status: 500 })
   }
 }
