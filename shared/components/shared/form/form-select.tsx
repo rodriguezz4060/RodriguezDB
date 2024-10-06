@@ -52,7 +52,7 @@ export const FormSelect: React.FC<FormSelectProps> = ({
             onValueChange={value => setValue(name, value === '' ? undefined : Number(value))}
             value={selectedValue}
           >
-            <SelectTrigger className='border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500'>
+            <SelectTrigger className='h-10 text-md dark:bg-[#121212] dark:border-[#1e293b] dark:border-2'>
               <SelectValue placeholder={label} />
             </SelectTrigger>
             <SelectContent>

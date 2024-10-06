@@ -39,7 +39,7 @@ export const FormInput: React.FC<Props> = ({ className, name, label, required, .
 
       <div className='relative'>
         <Input
-          className='h-12 text-md dark:bg-[#121212] dark:border-[#1e293b] dark:border-2'
+          className='h-10 text-md dark:bg-[#121212] dark:border-[#1e293b] dark:border-2'
           {...register(name, { valueAsNumber: props.type === 'number' })}
           {...props}
         />

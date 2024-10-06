@@ -8,7 +8,6 @@ import {
 import { getUserSession } from '@/shared/lib/get-user-session'
 import { Prisma } from '@prisma/client'
 import { hashSync } from 'bcrypt'
-import { NextResponse } from 'next/server'
 
 export async function updateUserInfo(body: Prisma.UserUpdateInput) {
   try {
@@ -124,6 +123,21 @@ export const updatedCar = async (data: any) => {
 
   if (!response.ok) {
     throw new Error('Failed to update car')
+  }
+
+  return await response.json()
+}
+
+export const removeDustCoverFromCar = async (carId: number, dustCoverId: number) => {
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'
+  const url = `${baseUrl}/api/cars?carId=${carId}&dustCoverId=${dustCoverId}`
+
+  const response = await fetch(url, {
+    method: 'DELETE',
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to remove dust cover from car')
   }
 
   return await response.json()

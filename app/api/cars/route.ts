@@ -42,3 +42,28 @@ export async function PUT(req: Request) {
     return NextResponse.json({ message: 'Failed to update car' }, { status: 500 })
   }
 }
+
+export async function DELETE(request: Request) {
+  const { searchParams } = new URL(request.url)
+  const carId = searchParams.get('carId')
+  const dustCoverId = searchParams.get('dustCoverId')
+
+  if (!carId || !dustCoverId) {
+    return NextResponse.json({ error: 'Missing carId or dustCoverId' }, { status: 400 })
+  }
+
+  try {
+    await prisma.car.update({
+      where: { id: parseInt(carId) },
+      data: {
+        bootDustCover: {
+          disconnect: { id: parseInt(dustCoverId) },
+        },
+      },
+    })
+
+    return NextResponse.json({ message: 'Dust cover removed from car' })
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to remove dust cover from car' }, { status: 500 })
+  }
+}

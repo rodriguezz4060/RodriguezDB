@@ -13,9 +13,10 @@ import { FormInput, FormSelect } from '../form'
 import { Button } from '../../ui'
 import { useRouter } from 'next/navigation'
 import { Title } from '../title'
-import { updatedCar } from '@/app/actions'
+import { updatedCar, removeDustCoverFromCar } from '@/app/actions'
 import { formEditCarSchema, TFormEditCarSchema } from '../add-forms/schemas/edit-car-schema'
 import { getBootDustCover } from '@/shared/services/boot-dust-cover'
+import { DeleteBootToCarsButton } from '../buttons'
 
 interface Props {
   car: CarWithBoot
@@ -42,6 +43,7 @@ export const EditCarForm: React.FC<Props> = ({ car }) => {
 
   const [carBrands, setCarBrands] = useState<CarBrand[]>([])
   const [bootDustCovers, setBootDustCovers] = useState<BootDustCover[]>([])
+  const [connectedDustCovers, setConnectedDustCovers] = useState<BootDustCover[]>(car.bootDustCover)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -72,6 +74,20 @@ export const EditCarForm: React.FC<Props> = ({ car }) => {
       return toast.error('Ошибка при обновлении автомобиля', {
         icon: '❌',
       })
+    }
+  }
+
+  const handleRemoveDustCover = async (id: number) => {
+    try {
+      await removeDustCoverFromCar(car.id, id)
+
+      // Обновление локального состояния
+      setConnectedDustCovers(prev => prev.filter(dustCover => dustCover.id !== id))
+
+      toast.success('Связь с пыльником удалена')
+    } catch (error) {
+      console.error('Ошибка при удалении связи с пыльником:', error)
+      toast.error('Ошибка при удалении связи с пыльником')
     }
   }
 
@@ -106,7 +122,7 @@ export const EditCarForm: React.FC<Props> = ({ car }) => {
           </FormProvider>
         </div>
         <div className='flex-1'>
-          <div className='flex flex-col w-[400px] gap-5 mt-9'>
+          <div className='flex flex-col w-[400px] gap-5 mt-10'>
             <FormProvider {...form}>
               <FormSelect name='bootDustCoverId' label='Пыльник' required={false}>
                 {bootDustCovers.map((dustCover, i) => (
@@ -118,10 +134,14 @@ export const EditCarForm: React.FC<Props> = ({ car }) => {
             </FormProvider>
 
             <div>
-              <Title text='Связанные пыльники' size='sm' className='font-bold' />
+              <Title text='Связанные пыльники:' size='sm' className='font-bold' />
               <ul>
-                {car.bootDustCover.map(dustCover => (
-                  <li key={dustCover.id}>{dustCover.partNumber}</li>
+                {connectedDustCovers.map(dustCover => (
+                  <DeleteBootToCarsButton
+                    key={dustCover.id}
+                    dustCover={dustCover}
+                    onRemove={handleRemoveDustCover}
+                  />
                 ))}
               </ul>
             </div>

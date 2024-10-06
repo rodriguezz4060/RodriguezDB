@@ -13,7 +13,8 @@
     "mainPage": {
         "BootKit": "Подбор пыльника ШРУСА",
         "oil": "Масла ТО",
-        "clients": "База клиентов"
+        "clients": "База клиентов",
+        "cars": "База автомобилей"
     },
     "filters": {
         "title": "Фильтрация",
@@ -105,7 +106,9 @@
         "carYear": "Год",
         "carEngine": "Двигатель",
         "carVolume": "Объем",
-        "actions": "Редактировать"
+        "actions": "Редактировать",
+        "carsList": "Список автомобилей",
+        "searchByModel": "Поиск по модели"
     },
     "noFoundPage": {
         "onHomePage": "На главную",

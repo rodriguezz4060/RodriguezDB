@@ -13,7 +13,8 @@
     "mainPage": {
         "BootKit": "Підбір пильовика ШРКШ",
         "oil": "Олива ТО",
-        "clients": "База клієнтів"
+        "clients": "База клієнтів",
+        "cars": "База автомобілів"
     },
     "filters": {
         "title": "Фільтрація",
@@ -97,7 +98,9 @@
         "carYear": "Рік",
         "carEngine": "Двигун",
         "carVolume": "Об'єм",
-        "actions": "Редагувати"
+        "actions": "Редагувати",
+        "carsList": "Список автомобілів",
+        "searchByModel": "Пошук за моделлю"
     },
     "noFoundPage": {
         "onHomePage": "На головну",

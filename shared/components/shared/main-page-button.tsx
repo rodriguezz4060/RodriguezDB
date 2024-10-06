@@ -28,7 +28,7 @@ export const MainPageButtons: React.FC<Props> = ({ className }) => {
   if (isLoading) {
     return (
       <div className={cn('flex justify-center gap-6', className)}>
-        {Array(3)
+        {Array(4)
           .fill(0)
           .map((_, index) => (
             <div
