@@ -20,3 +20,9 @@ export type BootWithRelation = BootDustCover & {
     type: string
   }
 }
+
+export type CarWithBoot = Car & {
+  carBrand: CarBrand
+  bootDustCoverId?: number
+  bootDustCover: BootDustCover[]
+}

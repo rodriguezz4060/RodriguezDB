@@ -26,14 +26,16 @@ export async function PUT(req: Request) {
   const { id, bootDustCoverId, ...data } = await req.json()
 
   try {
+    const updateData: any = { ...data }
+    // Проверяем, есть ли bootDustCoverId и добавляем связь, если есть
+    if (bootDustCoverId) {
+      updateData.bootDustCover = {
+        connect: { id: Number(bootDustCoverId) },
+      }
+    }
     const updatedCar = await prisma.car.update({
       where: { id: Number(id) },
-      data: {
-        ...data,
-        bootDustCover: {
-          connect: { id: Number(bootDustCoverId) }, // Связываем автомобиль с пыльником
-        },
-      },
+      data: updateData,
     })
     return NextResponse.json(updatedCar, { status: 200 })
   } catch (error) {
