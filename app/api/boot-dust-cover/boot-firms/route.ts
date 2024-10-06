@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     })
 
     if (!existingName) {
-      // Создаем новое имя
+      // Создаем новое имяs
       existingName = await prisma.name.create({
         data: { name },
       })

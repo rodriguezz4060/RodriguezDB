@@ -1,10 +1,12 @@
 'use server'
 
 import { prisma } from '@/prisma/prisma-client'
+import { TFormAddBootDustCoverSchema } from '@/shared/components/shared/add-forms/schemas/add-boot-schemas'
 import {
   formCarSchema,
   TFormCarSchema,
 } from '@/shared/components/shared/add-forms/schemas/add-car-schemas'
+import { TFormBootDustCoverSchema } from '@/shared/components/shared/add-forms/schemas/edit-boot-schemas'
 import { getUserSession } from '@/shared/lib/get-user-session'
 import { Prisma } from '@prisma/client'
 import { hashSync } from 'bcrypt'
@@ -141,4 +143,55 @@ export const removeDustCoverFromCar = async (carId: number, dustCoverId: number)
   }
 
   return await response.json()
+}
+
+export async function createBootDustCover(data: TFormAddBootDustCoverSchema & { nameId: number }) {
+  try {
+    const bootDustCover = await prisma.bootDustCover.create({
+      data: {
+        name: {
+          connect: { id: data.nameId },
+        },
+        type: {
+          connect: { id: data.typeId },
+        },
+        form: {
+          connect: { id: data.formId },
+        },
+        dIn: data.dIn,
+        dOut: data.dOut,
+        height: data.height,
+        partNumber: data.partNumber,
+        imageUrl: data.imageUrl,
+      },
+    })
+
+    return bootDustCover
+  } catch (error) {
+    console.error('Error creating boot dust cover:', error)
+    throw new Error('Failed to create boot dust cover')
+  } finally {
+    await prisma.$disconnect()
+  }
+}
+
+export async function checkAndCreateBootName(name: string) {
+  try {
+    // Проверяем, существует ли уже такое имя
+    let existingName = await prisma.name.findUnique({
+      where: { name },
+    })
+
+    if (!existingName) {
+      // Создаем новое имя
+      existingName = await prisma.name.create({
+        data: { name },
+      })
+    }
+
+    return existingName.id
+  } catch (error) {
+    console.error('Error checking or creating name:', error)
+    throw new Error('Failed to check or create name')
+  }
 }

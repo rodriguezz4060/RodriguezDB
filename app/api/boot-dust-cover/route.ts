@@ -1,4 +1,7 @@
+import { createBootDustCover } from '@/app/actions'
 import { prisma } from '@/prisma/prisma-client'
+import { TFormAddBootDustCoverSchema } from '@/shared/components/shared/add-forms/schemas/add-boot-schemas'
+import { NextApiRequest, NextApiResponse } from 'next'
 import { NextResponse } from 'next/server'
 
 export async function GET() {
@@ -7,46 +10,19 @@ export async function GET() {
   return NextResponse.json(bootDustCover)
 }
 
-export async function POST(request: Request) {
-  try {
-    // Получаем данные из тела запроса
-    const { nameId, typeId, formId, dIn, dOut, height, partNumber, imageUrl } = await request.json()
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method === 'POST') {
+    try {
+      const data: TFormAddBootDustCoverSchema & { nameId: number } = req.body
+      const bootDustCover = await createBootDustCover(data)
 
-    // Проверяем, существует ли уже такое имя
-    const existingName = await prisma.name.findUnique({
-      where: { id: nameId },
-    })
-
-    if (!existingName) {
-      return NextResponse.json({ error: 'Name not found' }, { status: 404 })
+      return res.status(201).json(bootDustCover)
+    } catch (error) {
+      console.error('Error creating boot dust cover:', error)
+      return res.status(500).json({ error: 'Failed to create boot dust cover' })
     }
-
-    // Добавляем пыльник в базу данных
-    const bootDustCover = await prisma.bootDustCover.create({
-      data: {
-        name: {
-          connect: { id: nameId },
-        },
-        type: {
-          connect: { id: typeId },
-        },
-        form: {
-          connect: { id: formId },
-        },
-        dIn,
-        dOut,
-        height,
-        partNumber,
-        imageUrl,
-      },
-    })
-
-    // Возвращаем созданный пыльник в ответе
-    return NextResponse.json(bootDustCover, { status: 201 })
-  } catch (error) {
-    // Обрабатываем ошибки
-    console.error('Error creating boot dust cover:', error)
-    return NextResponse.json({ error: 'Failed to create boot dust cover' }, { status: 500 })
+  } else {
+    return res.status(405).json({ error: 'Method not allowed' })
   }
 }
 
