@@ -108,8 +108,8 @@ export const EditCarForm: React.FC<Props> = ({ car }) => {
         <div className='flex-1'>
           <div className='flex flex-col w-[400px] gap-5 mt-9'>
             <FormProvider {...form}>
-              <FormSelect name='bootDustCoverId' label='Пыльник'>
-                {bootDustCovers.map(dustCover => (
+              <FormSelect name='bootDustCoverId' label='Пыльник' required={false}>
+                {bootDustCovers.map((dustCover, i) => (
                   <option key={dustCover.id} value={dustCover.id}>
                     {dustCover.partNumber}
                   </option>

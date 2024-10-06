@@ -96,7 +96,8 @@
         "carBody": "Кузов",
         "carYear": "Рік",
         "carEngine": "Двигун",
-        "carVolume": "Об'єм"
+        "carVolume": "Об'єм",
+        "actions": "Редагувати"
     },
     "noFoundPage": {
         "onHomePage": "На головну",

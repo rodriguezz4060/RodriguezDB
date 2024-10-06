@@ -9,7 +9,7 @@ export const formEditCarSchema = z.object({
   modelYear: z.string(),
   engine: z.string(),
   volume: z.string(),
-  bootDustCoverId: z.number().optional(),
+  bootDustCoverId: z.number().optional().nullable(),
 })
 
 export type TFormEditCarSchema = z.infer<typeof formEditCarSchema>
