@@ -4,7 +4,7 @@ import { Nunito } from 'next/font/google'
 import React, { useEffect, useState } from 'react'
 import './globals.css'
 import { Providers } from '@/shared/components/shared/provider'
-import { Header } from '@/shared/components/shared'
+import { BreadcrumbProvider, Header } from '@/shared/components/shared'
 
 const nunito = Nunito({
   subsets: ['cyrillic'],
@@ -32,7 +32,7 @@ export default function RootLayout({
       <body className={nunito.className}>
         <Providers>
           <Header />
-          {children}
+          <BreadcrumbProvider>{children}</BreadcrumbProvider>
         </Providers>
       </body>
     </html>

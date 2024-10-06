@@ -16,6 +16,7 @@ export { ErrorText } from './error-text'
 export { ClearButton } from './clear-button'
 export { InfoBlock } from './info-block'
 export { ProfileForm } from './profile-form'
+export { BreadcrumbProvider } from './breadcrumb-provider'
 
 export * from './modals/'
 export * from './add-forms'
