@@ -18,6 +18,7 @@ import {
 import { useIntl } from 'react-intl'
 import { BootWithCar } from '@/@types/prisma'
 import { TableColumns } from '@/shared/constants/table'
+import { EditBootModal } from '../modals'
 
 interface Props {
   data: BootWithCar
@@ -27,7 +28,7 @@ interface Props {
 export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
   const { formatMessage } = useIntl()
   const columns = TableColumns()
-  console.log(data)
+  const [openAuthModal, setOpenAuthModal] = React.useState(false)
 
   const form = useForm<TFormBootDustCoverSchema>({
     resolver: zodResolver(formBootDustCoverSchema),
@@ -136,6 +137,9 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
 
         <div className='flex-1'>
           <div className='flex flex-col gap-5 mt-10'>
+            <EditBootModal open={openAuthModal} onclose={() => setOpenAuthModal(false)} />
+            <Button onClick={() => setOpenAuthModal(true)} />
+
             <Title text='Связанные машины:' size='sm' className='font-bold' />
             <FormProvider {...form}>
               {data.cars && data.cars.length > 0 && (
