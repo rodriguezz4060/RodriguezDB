@@ -195,3 +195,20 @@ export async function checkAndCreateBootName(name: string) {
     throw new Error('Failed to check or create name')
   }
 }
+
+export const linkCarToBootDustCover = async (bootDustCoverId: number, carId: number) => {
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000' // Убедитесь, что эта переменная определена в вашем .env файле
+  const url = `${baseUrl}/api/boot-dust-cover`
+
+  const response = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id: bootDustCoverId, carId }),
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to link car to boot dust cover')
+  }
+}

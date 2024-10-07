@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, useForm } from 'react-hook-form'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import { updateBootDustCover } from '@/app/actions'
+import { linkCarToBootDustCover, updateBootDustCover } from '@/app/actions'
 import { Container } from '../container'
 import { FormInput, FormSelect, FormTable } from '../form'
 import { formBootDustCoverSchema, TFormBootDustCoverSchema } from './schemas/edit-boot-schemas'
@@ -44,6 +44,7 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
       height: data.height,
       partNumber: data.partNumber,
       imageUrl: data.imageUrl || '',
+      bootDustCoverId: data.bootDustCoverId,
     },
   })
 
@@ -104,6 +105,16 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
     }
   }
 
+  const handleLinkCar = async (carId: number) => {
+    try {
+      await linkCarToBootDustCover(data.id, carId) // Связываем машину с пыльником
+      toast.success('Машина успешно связана с пыльником')
+    } catch (error) {
+      console.error('Ошибка при связывании машины с пыльником:', error)
+      toast.error('Ошибка при связывании машины с пыльником')
+    }
+  }
+
   return (
     <Container className='my-10'>
       <Title text={`Редактирование пыльника | #${data.id}`} size='md' className='font-bold' />
@@ -149,7 +160,12 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
 
         <div className='flex-1'>
           <div className=' mt-10'>
-            <EditBootModal open={openModal} onclose={() => setOpenModal(false)} cars={allCar} />
+            <EditBootModal
+              open={openModal}
+              onclose={() => setOpenModal(false)}
+              cars={allCar}
+              onLinkClick={handleLinkCar}
+            />
             <Button onClick={() => setOpenModal(true)}>Связать машину</Button>
 
             <Title text='Связанные машины:' size='sm' className='font-bold' />

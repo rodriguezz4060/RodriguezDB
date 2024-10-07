@@ -10,6 +10,7 @@ export const formBootDustCoverSchema = z.object({
   height: z.number(),
   partNumber: z.string(),
   imageUrl: z.string().optional(),
+  bootDustCoverId: z.number().optional().nullable(),
 })
 
 export type TFormBootDustCoverSchema = z.infer<typeof formBootDustCoverSchema>

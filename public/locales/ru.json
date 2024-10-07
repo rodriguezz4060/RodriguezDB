@@ -110,7 +110,8 @@
         "carVolume": "Объем",
         "actions": "Редактировать",
         "carsList": "Список автомобилей",
-        "searchByModel": "Поиск по модели"
+        "searchByModel": "Поиск по модели",
+        "carConnect": "Связать"
     },
     "noFoundPage": {
         "onHomePage": "На главную",

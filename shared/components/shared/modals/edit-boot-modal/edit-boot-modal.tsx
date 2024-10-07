@@ -6,8 +6,7 @@ import React from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { FormDataTable } from '../../form'
 import { useIntl } from 'react-intl'
-import { DataTableColumns } from '@/shared/constants/table'
-import { BootWithCar, CarWithBrand } from '@/@types/prisma'
+import { DataTableConnectColumns } from '@/shared/constants/table'
 import { Car } from '@prisma/client'
 
 interface Props {
@@ -15,11 +14,12 @@ interface Props {
   open: boolean
   onclose: () => void
   className?: string
+  onLinkClick?: (carId: number) => void
 }
 
-export const EditBootModal: React.FC<Props> = ({ cars, open, onclose, className }) => {
+export const EditBootModal: React.FC<Props> = ({ cars, open, onclose, onLinkClick, className }) => {
   const { formatMessage } = useIntl()
-  const columns = DataTableColumns()
+  const columns = DataTableConnectColumns()
   const methods = useForm()
 
   const handleClose = () => {
@@ -39,7 +39,9 @@ export const EditBootModal: React.FC<Props> = ({ cars, open, onclose, className 
           {formatMessage({ id: 'bootCars.carsList' })}
         </DialogTitle>
         <FormProvider {...methods}>
-          {cars && cars.length > 0 && <FormDataTable name='cars' data={cars} columns={columns} />}
+          {cars && cars.length > 0 && (
+            <FormDataTable name='cars' data={cars} columns={columns} onLinkClick={onLinkClick} />
+          )}
         </FormProvider>
       </DialogContent>
     </Dialog>
