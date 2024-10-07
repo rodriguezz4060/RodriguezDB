@@ -67,6 +67,8 @@ export const AddBootDustCoverForm: React.FC<Props> = ({ className }) => {
 
   const onSubmit = async (data: TFormAddBootDustCoverSchema) => {
     try {
+      setIsLoading(true)
+
       // Преобразование строк в числа
       const formattedData = {
         ...data,
@@ -99,11 +101,13 @@ export const AddBootDustCoverForm: React.FC<Props> = ({ className }) => {
       return toast.error(formatMessage({ id: 'toast.bootAddedError' }), {
         icon: '❌',
       })
+    } finally {
+      setIsLoading(false)
     }
   }
 
   return (
-    <Container className='h-full'>
+    <Container className='h-full flex items-center justify-center'>
       <FormProvider {...form}>
         <form className='flex flex-col gap-5 w-96 mt-10' onSubmit={form.handleSubmit(onSubmit)}>
           <FormInput name='newName' label={formatMessage({ id: 'addBootForm.newName' })} required />
@@ -130,30 +134,15 @@ export const AddBootDustCoverForm: React.FC<Props> = ({ className }) => {
               </option>
             ))}
           </FormSelect>
+          <FormInput name='dIn' label={formatMessage({ id: 'addBootForm.dIn' })} required />
+          <FormInput name='dOut' label={formatMessage({ id: 'addBootForm.dOut' })} required />
+          <FormInput name='height' label={formatMessage({ id: 'addBootForm.height' })} required />
           <FormInput
-            type='number'
-            name={formatMessage({ id: 'addBootForm.dIn' })}
-            label='dIn'
+            name='partNumber'
+            label={formatMessage({ id: 'addBootForm.partNumber' })}
             required
           />
-          <FormInput
-            type='number'
-            name={formatMessage({ id: 'addBootForm.dOut' })}
-            label='dOut'
-            required
-          />
-          <FormInput
-            type='number'
-            name={formatMessage({ id: 'addBootForm.height' })}
-            label='Height'
-            required
-          />
-          <FormInput
-            name={formatMessage({ id: 'addBootForm.partNumber' })}
-            label='Part Number'
-            required
-          />
-          <FormInput name={formatMessage({ id: 'addBootForm.imageUrl' })} label='Image URL' />
+          <FormInput name='imageUrl' label={formatMessage({ id: 'addBootForm.imageUrl' })} />
 
           <Button variant='default' type='submit' disabled={isLoading} className='mt-5 mb-20'>
             {isLoading ? (

@@ -62,7 +62,7 @@ export const AddCarForm: React.FC = () => {
   }
 
   return (
-    <Container className='my-10'>
+    <Container className='my-10 flex items-center justify-center'>
       <Title text='Добавление нового автомобиля' size='md' className='font-bold' />
 
       <FormProvider {...form}>

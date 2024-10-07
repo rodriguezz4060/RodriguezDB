@@ -26,7 +26,7 @@ export const AddBootPage: React.FC<Props> = ({ className }) => {
           </Button>
         </Link>
       </div>
-      <AddBootDustCoverForm className='max-w-md mx-auto' />
+      <AddBootDustCoverForm className='max-w-md mx-auto ' />
     </Container>
   )
 }
