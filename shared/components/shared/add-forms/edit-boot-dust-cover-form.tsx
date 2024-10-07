@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, useForm } from 'react-hook-form'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import { linkCarToBootDustCover, updateBootDustCover } from '@/app/actions'
+import { updateBootDustCover, linkCarToBootDustCover, removeConnection } from '@/app/actions'
 import { Container } from '../container'
 import { FormInput, FormSelect, FormTable } from '../form'
 import { formBootDustCoverSchema, TFormBootDustCoverSchema } from './schemas/edit-boot-schemas'
@@ -85,7 +85,6 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
 
   const onSubmit = async (data: TFormBootDustCoverSchema) => {
     try {
-      // Преобразование строк в числа
       const formattedData = {
         ...data,
         dIn: Number(data.dIn),
@@ -105,13 +104,25 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
     }
   }
 
-  const handleLinkCar = async (carId: number) => {
+  const handleLinkCar = async (id: number) => {
     try {
-      await linkCarToBootDustCover(data.id, carId) // Связываем машину с пыльником
+      await linkCarToBootDustCover(data.id, id)
       toast.success('Машина успешно связана с пыльником')
     } catch (error) {
       console.error('Ошибка при связывании машины с пыльником:', error)
       toast.error('Ошибка при связывании машины с пыльником')
+    }
+  }
+
+  const handleRemoveCar = async (id: number) => {
+    try {
+      await removeConnection(data.id, id)
+      toast.success('Связь с машиной удалена')
+      // Обновляем локальное состояние, чтобы отразить изменения в интерфейсе
+      data.cars = data.cars.filter(car => car.id !== id)
+    } catch (error) {
+      console.error('Ошибка при удалении связи с машиной:', error)
+      toast.error('Ошибка при удалении связи с машиной')
     }
   }
 
@@ -171,7 +182,12 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
             <Title text='Связанные машины:' size='sm' className='font-bold' />
             <FormProvider {...form}>
               {data.cars && data.cars.length > 0 && (
-                <FormTable name='cars' data={data.cars} columns={columns} />
+                <FormTable
+                  name='cars'
+                  data={data.cars}
+                  columns={columns}
+                  onRemove={handleRemoveCar} // Передаем функцию для удаления связи
+                />
               )}
             </FormProvider>
           </div>

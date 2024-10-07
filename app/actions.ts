@@ -130,16 +130,16 @@ export const updatedCar = async (data: any) => {
   return await response.json()
 }
 
-export const removeDustCoverFromCar = async (carId: number, dustCoverId: number) => {
+export const removeConnection = async (carId: number, dustCoverId: number) => {
   const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'
-  const url = `${baseUrl}/api/cars?carId=${carId}&dustCoverId=${dustCoverId}`
+  const url = `${baseUrl}/api/connection?carId=${carId}&dustCoverId=${dustCoverId}`
 
   const response = await fetch(url, {
     method: 'DELETE',
   })
 
   if (!response.ok) {
-    throw new Error('Failed to remove dust cover from car')
+    throw new Error('Failed to remove connection')
   }
 
   return await response.json()

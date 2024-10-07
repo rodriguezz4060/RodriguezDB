@@ -13,7 +13,7 @@ import { FormInput, FormSelect } from '../form'
 import { Button } from '../../ui'
 import { useRouter } from 'next/navigation'
 import { Title } from '../title'
-import { updatedCar, removeDustCoverFromCar } from '@/app/actions'
+import { updatedCar, removeConnection } from '@/app/actions'
 import { formEditCarSchema, TFormEditCarSchema } from '../add-forms/schemas/edit-car-schema'
 import { getBootDustCover } from '@/shared/services/boot-dust-cover'
 import { DeleteBootToCarsButton } from '../buttons'
@@ -79,7 +79,7 @@ export const EditCarForm: React.FC<Props> = ({ car }) => {
 
   const handleRemoveDustCover = async (id: number) => {
     try {
-      await removeDustCoverFromCar(car.id, id)
+      await removeConnection(car.id, id)
 
       // Обновление локального состояния
       setConnectedDustCovers(prev => prev.filter(dustCover => dustCover.id !== id))
