@@ -28,7 +28,7 @@ interface Props {
 export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
   const { formatMessage } = useIntl()
   const columns = TableColumns()
-  const [openAuthModal, setOpenAuthModal] = React.useState(false)
+  const [openModal, setOpenModal] = React.useState(false)
 
   const form = useForm<TFormBootDustCoverSchema>({
     resolver: zodResolver(formBootDustCoverSchema),
@@ -137,8 +137,8 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
 
         <div className='flex-1'>
           <div className='flex flex-col gap-5 mt-10'>
-            <EditBootModal open={openAuthModal} onclose={() => setOpenAuthModal(false)} />
-            <Button onClick={() => setOpenAuthModal(true)} />
+            <EditBootModal open={openModal} onclose={() => setOpenModal(false)} />
+            <Button onClick={() => setOpenModal(true)} />
 
             <Title text='Связанные машины:' size='sm' className='font-bold' />
             <FormProvider {...form}>
