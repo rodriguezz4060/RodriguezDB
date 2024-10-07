@@ -25,3 +25,9 @@ export type CarWithBoot = Car & {
   bootDustCoverId?: number
   bootDustCover: BootDustCover[]
 }
+
+export type BootWithCar = BootDustCover & {
+  carBrand: CarBrand
+  bootDustCoverId?: number
+  cars: Car[]
+}

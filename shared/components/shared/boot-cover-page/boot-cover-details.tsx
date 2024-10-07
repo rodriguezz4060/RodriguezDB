@@ -1,6 +1,13 @@
-import { Container, DeleteBootButton, DeleteBootDustCoverButton } from '@/shared/components/shared'
+'use client'
+
+import { Container, DeleteBootButton, EditBootButton } from '@/shared/components/shared'
 import { BootCoverInfo } from './boot-cover-info'
 import BootCoverCars from './boot-cover-cars'
+import { Popover, PopoverContent, PopoverTrigger } from '../../ui/popover'
+import { Button } from '../../ui'
+import { Settings } from 'lucide-react'
+import { useIntl } from 'react-intl'
+import { useSession } from 'next-auth/react'
 
 interface BootCoverDetailsProps {
   bootCover: {
@@ -35,11 +42,33 @@ interface BootCoverDetailsProps {
 }
 
 export default function BootCoverDetails({ bootCover }: BootCoverDetailsProps) {
+  const { formatMessage } = useIntl()
+
+  const { data: session } = useSession()
+
+  const userRole = session?.user?.role
   return (
     <>
       <Container className='h-full flex flex-col py-5 secondary dark:bg-zinc-900 '>
         <div className='mb-5 mr-5 flex justify justify-end'>
-          <DeleteBootButton dustCoverId={bootCover.id} />
+          {userRole === 'ADMIN' && (
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant='ghost'>
+                  <Settings className='mr-2' />
+                  {formatMessage({ id: 'bootCoverInfo.settings' })}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className='w-auto'>
+                <div className='mb-2'>
+                  <EditBootButton />
+                </div>
+                <div className=''>
+                  <DeleteBootButton dustCoverId={bootCover.id} />
+                </div>
+              </PopoverContent>
+            </Popover>
+          )}
         </div>
         <div className='flex flex-1'>
           <BootCoverInfo

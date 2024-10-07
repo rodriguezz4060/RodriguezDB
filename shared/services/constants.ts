@@ -6,4 +6,5 @@ export enum ApiRoutes {
   BOOT_FORM = 'boot-dust-cover/forms',
   BOOT_TYPE = 'boot-dust-cover/type',
   CARS_BRANDS = 'cars/car-brands',
+  CARS = 'cars',
 }

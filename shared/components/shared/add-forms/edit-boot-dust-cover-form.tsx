@@ -3,12 +3,10 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, useForm } from 'react-hook-form'
 import React, { useEffect, useState } from 'react'
-import { BootDustCover } from '@prisma/client'
 import toast from 'react-hot-toast'
-
 import { updateBootDustCover } from '@/app/actions'
 import { Container } from '../container'
-import { FormInput, FormSelect } from '../form'
+import { FormInput, FormSelect, FormTable } from '../form'
 import { formBootDustCoverSchema, TFormBootDustCoverSchema } from './schemas/edit-boot-schemas'
 import { Title } from '../title'
 import { Button } from '../../ui'
@@ -18,14 +16,18 @@ import {
   getBootDustType,
 } from '@/shared/services/boot-dust-cover'
 import { useIntl } from 'react-intl'
+import { BootWithCar } from '@/@types/prisma'
+import { TableColumns } from '@/shared/constants/table'
 
 interface Props {
-  data: BootDustCover
+  data: BootWithCar
   className?: string
 }
 
 export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
   const { formatMessage } = useIntl()
+  const columns = TableColumns()
+  console.log(data)
 
   const form = useForm<TFormBootDustCoverSchema>({
     resolver: zodResolver(formBootDustCoverSchema),
@@ -92,41 +94,57 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
   return (
     <Container className='my-10'>
       <Title text={`Редактирование пыльника | #${data.id}`} size='md' className='font-bold' />
+      <div className='flex gap-[80px]'>
+        <FormProvider {...form}>
+          <form className='flex flex-col gap-5 w-96 mt-10' onSubmit={form.handleSubmit(onSubmit)}>
+            <FormSelect name='nameId' label='Name' required>
+              {names.map(name => (
+                <option key={name.id} value={name.id}>
+                  {name.name}
+                </option>
+              ))}
+            </FormSelect>
+            <FormSelect name='formId' label='Form' required>
+              {forms.map(form => (
+                <option key={form.id} value={form.id}>
+                  {form.form}
+                </option>
+              ))}
+            </FormSelect>
+            <FormSelect name='typeId' label='Type' required>
+              {types.map(type => (
+                <option key={type.id} value={type.id}>
+                  {type.type}
+                </option>
+              ))}
+            </FormSelect>
+            <FormInput type='number' name='dIn' label='dIn' required />
+            <FormInput type='number' name='dOut' label='dOut' required />
+            <FormInput type='number' name='height' label='Height' required />
+            <FormInput name='partNumber' label='Part Number' required />
+            <FormInput name='imageUrl' label='Image URL' />
 
-      <FormProvider {...form}>
-        <form className='flex flex-col gap-5 w-96 mt-10' onSubmit={form.handleSubmit(onSubmit)}>
-          <FormSelect name='nameId' label='Name' required>
-            {names.map(name => (
-              <option key={name.id} value={name.id}>
-                {name.name}
-              </option>
-            ))}
-          </FormSelect>
-          <FormSelect name='formId' label='Form' required>
-            {forms.map(form => (
-              <option key={form.id} value={form.id}>
-                {form.form}
-              </option>
-            ))}
-          </FormSelect>
-          <FormSelect name='typeId' label='Type' required>
-            {types.map(type => (
-              <option key={type.id} value={type.id}>
-                {type.type}
-              </option>
-            ))}
-          </FormSelect>
-          <FormInput type='number' name='dIn' label='dIn' required />
-          <FormInput type='number' name='dOut' label='dOut' required />
-          <FormInput type='number' name='height' label='Height' required />
-          <FormInput name='partNumber' label='Part Number' required />
-          <FormInput name='imageUrl' label='Image URL' />
+            <Button
+              disabled={form.formState.isSubmitting}
+              className='text-base mt-10'
+              type='submit'
+            >
+              Сохранить
+            </Button>
+          </form>
+        </FormProvider>
 
-          <Button disabled={form.formState.isSubmitting} className='text-base mt-10' type='submit'>
-            Сохранить
-          </Button>
-        </form>
-      </FormProvider>
+        <div className='flex-1'>
+          <div className='flex flex-col gap-5 mt-10'>
+            <Title text='Связанные машины:' size='sm' className='font-bold' />
+            <FormProvider {...form}>
+              {data.cars && data.cars.length > 0 && (
+                <FormTable name='cars' data={data.cars} columns={columns} />
+              )}
+            </FormProvider>
+          </div>
+        </div>
+      </div>
     </Container>
   )
 }

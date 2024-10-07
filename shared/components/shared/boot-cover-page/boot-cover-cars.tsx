@@ -1,5 +1,6 @@
 'use client'
-import { Container } from '@/shared/components/shared'
+import { Container, FormTable } from '@/shared/components/shared'
+import { FormProvider, useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
 
 interface BootCoverCarsProps {
@@ -19,57 +20,30 @@ interface BootCoverCarsProps {
 
 export default function BootCoverCars({ cars }: BootCoverCarsProps) {
   const { formatMessage } = useIntl()
+  const methods = useForm()
+
+  const columns = [
+    { key: 'carBrand.name', label: formatMessage({ id: 'bootCars.carBrand' }) },
+    { key: 'imageUrl', label: formatMessage({ id: 'bootCars.carImage' }) },
+    { key: 'models', label: formatMessage({ id: 'bootCars.carModel' }) },
+    { key: 'carBody', label: formatMessage({ id: 'bootCars.carBody' }) },
+    { key: 'modelYear', label: formatMessage({ id: 'bootCars.carYear' }) },
+    { key: 'engine', label: formatMessage({ id: 'bootCars.carEngine' }) },
+    { key: 'volume', label: formatMessage({ id: 'bootCars.carVolume' }) },
+  ]
 
   return (
-    <Container className='h-full flex flex-col py-5 secondary dark:bg-zinc-900'>
-      {cars && cars.length > 0 && (
-        <div className='mx-5'>
-          <table className='min-w-full divide-y divide-gray-200'>
-            <thead className='bg-gray-50'>
-              <tr>
-                <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                  {formatMessage({ id: 'bootCars.carBrand' })}
-                </th>
-                <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                  {formatMessage({ id: 'bootCars.carImage' })}
-                </th>
-                <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                  {formatMessage({ id: 'bootCars.carModel' })}
-                </th>
-                <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                  {formatMessage({ id: 'bootCars.carBody' })}
-                </th>
-                <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                  {formatMessage({ id: 'bootCars.carYear' })}
-                </th>
-                <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                  {formatMessage({ id: 'bootCars.carEngine' })}
-                </th>
-                <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                  {formatMessage({ id: 'bootCars.carVolume' })}
-                </th>
-              </tr>
-            </thead>
-            <tbody className='bg-white dark:bg-gray-700 divide-y divide-gray-200'>
-              {cars.map((car, index) => (
-                <tr key={index}>
-                  <td className='px-6 py-4 whitespace-nowrap font-extrabold'>
-                    {car.carBrand.name}
-                  </td>
-                  <td className='px-6 py-4 whitespace-nowrap'>
-                    <img src={car.imageUrl ?? ''} alt='Logo' className='h-[30px] w-auto' />
-                  </td>
-                  <td className='px-6 py-4 whitespace-nowrap'>{car.models}</td>
-                  <td className='px-6 py-4 whitespace-nowrap'>{car.carBody}</td>
-                  <td className='px-6 py-4 whitespace-nowrap'>{car.modelYear}</td>
-                  <td className='px-6 py-4 whitespace-nowrap'>{car.engine}</td>
-                  <td className='px-6 py-4 whitespace-nowrap'>{car.volume}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-    </Container>
+    <FormProvider {...methods}>
+      <Container className='h-full flex flex-col py-5 secondary dark:bg-zinc-900'>
+        {cars && cars.length > 0 && (
+          <FormTable
+            name='cars'
+            label={formatMessage({ id: 'bootCars.carsList' })}
+            data={cars}
+            columns={columns}
+          />
+        )}
+      </Container>
+    </FormProvider>
   )
 }
