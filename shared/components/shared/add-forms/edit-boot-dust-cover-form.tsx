@@ -19,6 +19,8 @@ import { useIntl } from 'react-intl'
 import { BootWithCar } from '@/@types/prisma'
 import { TableColumns } from '@/shared/constants/table'
 import { EditBootModal } from '../modals'
+import { Car } from '@prisma/client'
+import { getCars } from '@/shared/services/cars'
 
 interface Props {
   data: BootWithCar
@@ -48,19 +50,22 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
   const [names, setNames] = useState<{ id: number; name: string }[]>([])
   const [forms, setForms] = useState<{ id: number; form: string }[]>([])
   const [types, setTypes] = useState<{ id: number; type: string }[]>([])
+  const [BootWithCar, setBootWithCar] = useState<Car[]>([])
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [names, types, forms] = await Promise.all([
+        const [names, types, forms, BootWithCar] = await Promise.all([
           getBootDustName(),
           getBootDustType(),
           getBootDustForm(),
+          getCars(),
         ])
 
         setNames(names)
         setTypes(types)
         setForms(forms)
+        setBootWithCar(BootWithCar)
       } catch (error) {
         console.error('Error fetching data:', error)
         toast.error(formatMessage({ id: 'toast.bootFetchingError' }))
@@ -137,7 +142,11 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
 
         <div className='flex-1'>
           <div className='flex flex-col gap-5 mt-10'>
-            <EditBootModal open={openModal} onclose={() => setOpenModal(false)} />
+            <EditBootModal
+              open={openModal}
+              onclose={() => setOpenModal(false)}
+              cars={BootWithCar}
+            />
             <Button onClick={() => setOpenModal(true)} />
 
             <Title text='Связанные машины:' size='sm' className='font-bold' />
