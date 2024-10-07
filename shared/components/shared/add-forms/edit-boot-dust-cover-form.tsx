@@ -114,15 +114,15 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
     }
   }
 
-  const handleRemoveCar = async (id: number) => {
+  const handleRemoveCar = async (carId: number) => {
     try {
-      await removeConnection(data.id, id)
-      toast.success('Связь с машиной удалена')
-      // Обновляем локальное состояние, чтобы отразить изменения в интерфейсе
-      data.cars = data.cars.filter(car => car.id !== id)
+      await removeConnection(carId, data.id) // Удаляем связь между машиной и пыльником
+      toast.success('Связь между машиной и пыльником удалена')
+      // Обновляем состояние, чтобы удалить машину из списка
+      data.cars = data.cars.filter(car => car.id !== carId)
     } catch (error) {
-      console.error('Ошибка при удалении связи с машиной:', error)
-      toast.error('Ошибка при удалении связи с машиной')
+      console.error('Ошибка при удалении связи:', error)
+      toast.error('Ошибка при удалении связи')
     }
   }
 
