@@ -8,10 +8,11 @@ import { Button } from '../../ui'
 import { useSession } from 'next-auth/react'
 
 interface Props {
+  id: number
   className?: string
 }
 
-export const EditBootButton: React.FC<Props> = ({ className }) => {
+export const EditBootButton: React.FC<Props> = ({ id, className }) => {
   const { formatMessage } = useIntl()
   const { data: session } = useSession()
 
@@ -20,7 +21,7 @@ export const EditBootButton: React.FC<Props> = ({ className }) => {
   return (
     <>
       {userRole === 'ADMIN' && (
-        <Link href={`/boot-kit/edit`}>
+        <Link href={`/boot-kit/edit/${id}`}>
           <Button className='text-base font-bold bg-[#4CAF50] hover:bg-[#388E3C]'>
             <Pencil size={20} className='mr-1' />
             {formatMessage({ id: 'bootCoverInfo.editButton' })}

@@ -1,15 +1,27 @@
-import { Button } from '@/shared/components/ui'
-import { Dialog, DialogContent } from '@/shared/components/ui/dialog'
+'use client'
+
+import { Dialog, DialogContent, DialogTitle } from '@/shared/components/ui/dialog'
 import { cn } from '@/shared/lib/utils'
 import React from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
+import { FormDataTable } from '../../form'
+import { useIntl } from 'react-intl'
+import { DataTableColumns } from '@/shared/constants/table'
+import { BootWithCar, CarWithBrand } from '@/@types/prisma'
+import { Car } from '@prisma/client'
 
 interface Props {
+  cars: Car[]
   open: boolean
   onclose: () => void
   className?: string
 }
 
-export const EditBootModal: React.FC<Props> = ({ open, onclose, className }) => {
+export const EditBootModal: React.FC<Props> = ({ cars, open, onclose, className }) => {
+  const { formatMessage } = useIntl()
+  const columns = DataTableColumns()
+  const methods = useForm()
+
   const handleClose = () => {
     onclose()
   }
@@ -17,10 +29,18 @@ export const EditBootModal: React.FC<Props> = ({ open, onclose, className }) => 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent
-        className={cn('w-[450px] p-10 bg-[#fcfcfc] dark:bg-zinc-900', className)}
+        className={cn(
+          'w-[1060px] max-w-[1060px] min-h-[510px] bg-[#fcfcfc] dark:bg-zinc-900',
+          className
+        )}
         aria-describedby={undefined}
       >
-        test
+        <DialogTitle className='text-[30px]'>
+          {formatMessage({ id: 'bootCars.carsList' })}
+        </DialogTitle>
+        <FormProvider {...methods}>
+          {cars && cars.length > 0 && <FormDataTable name='cars' data={cars} columns={columns} />}
+        </FormProvider>
       </DialogContent>
     </Dialog>
   )
