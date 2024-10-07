@@ -53,6 +53,9 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
   const [types, setTypes] = useState<{ id: number; type: string }[]>([])
   const [allCar, setAllCar] = useState<Car[]>([])
   const [carBrands, setCarBrands] = useState<CarBrand[]>([])
+  const [connectCars, setConnectCars] = useState<Car[]>(data.cars)
+
+  console.log(connectCars)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -108,6 +111,7 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
     try {
       await linkCarToBootDustCover(data.id, id)
       toast.success('Машина успешно связана с пыльником')
+      setConnectCars(prev => prev.filter(car => car.id !== id))
     } catch (error) {
       console.error('Ошибка при связывании машины с пыльником:', error)
       toast.error('Ошибка при связывании машины с пыльником')
@@ -119,7 +123,7 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
       await removeConnection(carId, data.id) // Удаляем связь между машиной и пыльником
       toast.success('Связь между машиной и пыльником удалена')
       // Обновляем состояние, чтобы удалить машину из списка
-      data.cars = data.cars.filter(car => car.id !== carId)
+      setConnectCars(prev => prev.filter(car => car.id !== carId))
     } catch (error) {
       console.error('Ошибка при удалении связи:', error)
       toast.error('Ошибка при удалении связи')
@@ -181,10 +185,10 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
 
             <Title text='Связанные машины:' size='sm' className='font-bold' />
             <FormProvider {...form}>
-              {data.cars && data.cars.length > 0 && (
+              {connectCars && connectCars.length > 0 && (
                 <FormTable
                   name='cars'
-                  data={data.cars}
+                  data={connectCars}
                   columns={columns}
                   onRemove={handleRemoveCar} // Передаем функцию для удаления связи
                 />
