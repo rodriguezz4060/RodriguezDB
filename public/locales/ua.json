@@ -36,7 +36,7 @@
     "localeToggle": {
         "languagePlaceholder": "Українська"
     },
-    "addForm": {
+    "addBootForm": {
         "backButton": "Назад",
         "newName": "Фірма пильовика",
         "chooseName": "Оберіть фірму",
@@ -113,7 +113,11 @@
         "actions": "Дії",
         "carsList": "Список автомобілів",
         "searchByModel": "Пошук за моделлю",
-        "carConnect": "Зв'язати"
+        "carConnect": "Зв'язати",
+        "previousPage": "Назад",
+        "nextPage": "Вперед",
+        "page": "Сторінка",
+        "of": "з"
     },
     "noFoundPage": {
         "onHomePage": "На головну",

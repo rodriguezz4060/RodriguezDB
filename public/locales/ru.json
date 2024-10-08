@@ -120,7 +120,11 @@
         "actions": "Действия",
         "carsList": "Список автомобилей",
         "searchByModel": "Поиск по модели",
-        "carConnect": "Связать"
+        "carConnect": "Связать",
+        "previousPage": "Назад",
+        "nextPage": "Вперед",
+        "page": "Страница",
+        "of": "из"
     },
     "noFoundPage": {
         "onHomePage": "На главную",

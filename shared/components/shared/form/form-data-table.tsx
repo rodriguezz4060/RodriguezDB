@@ -8,8 +8,8 @@ import { ClearButton } from '../clear-button'
 import { ErrorText } from '../error-text'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
-import { Button } from '../../ui' // Импортируем кнопку
-import { Plus } from 'lucide-react'
+import { Button } from '../../ui'
+import { ChevronLeft, ChevronRight, Plus } from 'lucide-react'
 
 interface Props {
   name: string
@@ -18,7 +18,8 @@ interface Props {
   className?: string
   data: any[]
   columns: { key: string; label: string }[]
-  onLinkClick?: (carId: number) => void // Добавляем пропс для обработки нажатия на кнопку "Связать"
+  onLinkClick?: (carId: number) => void
+  itemsPerPage?: number
 }
 
 export const FormDataTable: React.FC<Props> = ({
@@ -28,7 +29,8 @@ export const FormDataTable: React.FC<Props> = ({
   required,
   data,
   columns,
-  onLinkClick, // Добавляем пропс
+  onLinkClick,
+  itemsPerPage = 10,
 }) => {
   const {
     formState: { errors },
@@ -36,6 +38,7 @@ export const FormDataTable: React.FC<Props> = ({
 
   const { formatMessage } = useIntl()
   const [searchTerm, setSearchTerm] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
 
   const errorText = errors[name]?.message as string
 
@@ -43,6 +46,14 @@ export const FormDataTable: React.FC<Props> = ({
     const model = item.models ? item.models.toLowerCase() : ''
     return model.includes(searchTerm.toLowerCase())
   })
+
+  const indexOfLastItem = currentPage * itemsPerPage
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem)
+
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage)
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
 
   const getValue = (item: any, key: string) => {
     const keys = key.split('.')
@@ -77,7 +88,7 @@ export const FormDataTable: React.FC<Props> = ({
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filteredData.map((item, index) => (
+            {currentItems.map((item, index) => (
               <TableRow key={index}>
                 {columns.map(column => (
                   <TableCell key={column.key}>
@@ -116,6 +127,37 @@ export const FormDataTable: React.FC<Props> = ({
         </Table>
       </div>
       {errorText && <ErrorText text={errorText} className='mt-2' />}
+
+      <div className='mt-4 flex justify-between items-center'>
+        <div>
+          <span>
+            {formatMessage({ id: 'bootCars.page' })} {currentPage}{' '}
+            {formatMessage({ id: 'bootCars.of' })} {totalPages}
+          </span>
+        </div>
+        <div className='flex items-center'>
+          <Button
+            variant='outline'
+            size='sm'
+            disabled={currentPage === 1}
+            onClick={() => paginate(currentPage - 1)}
+            className='mr-2 disabled:bg-opacity-0 disabled:cursor-not-allowed'
+          >
+            <ChevronLeft size={18} className='inline-block' />{' '}
+            {formatMessage({ id: 'bootCars.previousPage' })}
+          </Button>
+          <Button
+            variant='outline'
+            size='sm'
+            disabled={currentPage === totalPages}
+            onClick={() => paginate(currentPage + 1)}
+            className='disabled:bg-opacity-0 disabled:cursor-not-allowed'
+          >
+            {formatMessage({ id: 'bootCars.nextPage' })}{' '}
+            <ChevronRight size={18} className='inline-block' />
+          </Button>
+        </div>
+      </div>
     </div>
   )
 }
