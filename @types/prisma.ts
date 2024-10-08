@@ -32,5 +32,5 @@ export type BootWithCar = BootDustCover & {
 }
 
 export type ClientsWithCar = Clients & {
-  // clientsCar: ClientCar[]
+  clientsCar: ClientCar[]
 }
