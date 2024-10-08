@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, useForm } from 'react-hook-form'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import { updateBootDustCover } from '@/app/actions'
+import { updateBootDustCover, linkCarToBootDustCover, removeConnection } from '@/app/actions'
 import { Container } from '../container'
 import { FormInput, FormSelect, FormTable } from '../form'
 import { formBootDustCoverSchema, TFormBootDustCoverSchema } from './schemas/edit-boot-schemas'
@@ -19,8 +19,8 @@ import { useIntl } from 'react-intl'
 import { BootWithCar } from '@/@types/prisma'
 import { TableColumns } from '@/shared/constants/table'
 import { EditBootModal } from '../modals'
-import { Car } from '@prisma/client'
-import { getCars } from '@/shared/services/cars'
+import { Car, CarBrand } from '@prisma/client'
+import { getCars, getCarsBrands } from '@/shared/services/cars'
 
 interface Props {
   data: BootWithCar
@@ -44,28 +44,39 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
       height: data.height,
       partNumber: data.partNumber,
       imageUrl: data.imageUrl || '',
+      bootDustCoverId: data.bootDustCoverId,
     },
   })
 
   const [names, setNames] = useState<{ id: number; name: string }[]>([])
   const [forms, setForms] = useState<{ id: number; form: string }[]>([])
   const [types, setTypes] = useState<{ id: number; type: string }[]>([])
-  const [BootWithCar, setBootWithCar] = useState<Car[]>([])
+  const [allCar, setAllCar] = useState<Car[]>([])
+  const [carBrands, setCarBrands] = useState<CarBrand[]>([])
+  const [connectCars, setConnectCars] = useState<Car[]>(data.cars)
+
+  console.log(connectCars)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [names, types, forms, BootWithCar] = await Promise.all([
+        const [names, types, forms, allCar, carBrands] = await Promise.all([
           getBootDustName(),
           getBootDustType(),
           getBootDustForm(),
           getCars(),
+          getCarsBrands(),
         ])
+
+        const carsWithBrands = allCar.map(car => {
+          const carBrand = carBrands.find(carBrand => carBrand.id === car.carBrandId)
+          return { ...car, carBrand: carBrand! }
+        })
 
         setNames(names)
         setTypes(types)
         setForms(forms)
-        setBootWithCar(BootWithCar)
+        setAllCar(carsWithBrands)
       } catch (error) {
         console.error('Error fetching data:', error)
         toast.error(formatMessage({ id: 'toast.bootFetchingError' }))
@@ -77,7 +88,6 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
 
   const onSubmit = async (data: TFormBootDustCoverSchema) => {
     try {
-      // Преобразование строк в числа
       const formattedData = {
         ...data,
         dIn: Number(data.dIn),
@@ -96,6 +106,36 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
       })
     }
   }
+
+  const handleLinkCar = async (id: number) => {
+    try {
+      await linkCarToBootDustCover(data.id, id)
+      toast.success('Машина успешно связана с пыльником')
+      setConnectCars(prev => [...prev, allCar.find(car => car.id === id)!])
+
+      // Удаляем связанную машину из списка allCar
+      setAllCar(prev => prev.filter(car => car.id !== id))
+    } catch (error) {
+      console.error('Ошибка при связывании машины с пыльником:', error)
+      toast.error('Ошибка при связывании машины с пыльником')
+    }
+  }
+
+  const handleRemoveCar = async (carId: number) => {
+    try {
+      await removeConnection(carId, data.id)
+      toast.success('Связь между машиной и пыльником удалена')
+
+      setConnectCars(prev => prev.filter(car => car.id !== carId))
+    } catch (error) {
+      console.error('Ошибка при удалении связи:', error)
+      toast.error('Ошибка при удалении связи')
+    }
+  }
+
+  const filteredCars = allCar.filter(
+    car => !connectCars.some(connectedCar => connectedCar.id === car.id)
+  )
 
   return (
     <Container className='my-10'>
@@ -141,18 +181,24 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
         </FormProvider>
 
         <div className='flex-1'>
-          <div className='flex flex-col gap-5 mt-10'>
+          <div className=' mt-10'>
             <EditBootModal
               open={openModal}
               onclose={() => setOpenModal(false)}
-              cars={BootWithCar}
+              cars={filteredCars}
+              onLinkClick={handleLinkCar}
             />
-            <Button onClick={() => setOpenModal(true)} />
+            <Button onClick={() => setOpenModal(true)}>Связать машину</Button>
 
             <Title text='Связанные машины:' size='sm' className='font-bold' />
             <FormProvider {...form}>
-              {data.cars && data.cars.length > 0 && (
-                <FormTable name='cars' data={data.cars} columns={columns} />
+              {connectCars && connectCars.length > 0 && (
+                <FormTable
+                  name='cars'
+                  data={connectCars}
+                  columns={columns}
+                  onRemove={handleRemoveCar}
+                />
               )}
             </FormProvider>
           </div>

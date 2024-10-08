@@ -13,7 +13,7 @@ interface Props {
   className?: string
   data: any[]
   columns: { key: string; label: string }[]
-  onRemove: (carId: number) => void // Добавляем функцию для удаления связи
+  onRemove: (carId: number) => void
 }
 
 export const FormTable: React.FC<Props> = ({
@@ -51,7 +51,7 @@ export const FormTable: React.FC<Props> = ({
               {columns.map(column => (
                 <TableHead key={column.key}>{column.label}</TableHead>
               ))}
-              <TableHead>Действия</TableHead> {/* Добавляем заголовок для кнопки удаления */}
+              <TableHead>Действия</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -71,8 +71,7 @@ export const FormTable: React.FC<Props> = ({
                   </TableCell>
                 ))}
                 <TableCell>
-                  <Button onClick={() => onRemove(item.id)}>Удалить</Button>{' '}
-                  {/* Добавляем кнопку удаления */}
+                  <Button onClick={() => onRemove(item.id)}>Удалить</Button>
                 </TableCell>
               </TableRow>
             ))}
