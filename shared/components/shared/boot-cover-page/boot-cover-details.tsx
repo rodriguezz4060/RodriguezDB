@@ -61,7 +61,7 @@ export default function BootCoverDetails({ bootCover }: BootCoverDetailsProps) {
               </PopoverTrigger>
               <PopoverContent className='w-auto'>
                 <div className='mb-2'>
-                  <EditBootButton />
+                  <EditBootButton id={bootCover.id} />
                 </div>
                 <div className=''>
                   <DeleteBootButton dustCoverId={bootCover.id} />

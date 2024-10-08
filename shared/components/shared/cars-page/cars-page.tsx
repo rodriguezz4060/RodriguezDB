@@ -6,6 +6,7 @@ import { Container } from '../container'
 import { CarWithBrand } from '@/@types/prisma'
 import { FormProvider, useForm } from 'react-hook-form'
 import { FormDataTable } from '../form'
+import { DataTableColumns } from '@/shared/constants/table'
 
 interface Props {
   cars: CarWithBrand[]
@@ -14,18 +15,8 @@ interface Props {
 
 export const CarsPage: React.FC<Props> = ({ cars, classNames }) => {
   const { formatMessage } = useIntl()
+  const columns = DataTableColumns()
   const methods = useForm()
-
-  const columns = [
-    { key: 'carBrand.name', label: formatMessage({ id: 'bootCars.carBrand' }) },
-    { key: 'imageUrl', label: formatMessage({ id: 'bootCars.carImage' }) },
-    { key: 'models', label: formatMessage({ id: 'bootCars.carModel' }) },
-    { key: 'carBody', label: formatMessage({ id: 'bootCars.carBody' }) },
-    { key: 'modelYear', label: formatMessage({ id: 'bootCars.carYear' }) },
-    { key: 'engine', label: formatMessage({ id: 'bootCars.carEngine' }) },
-    { key: 'volume', label: formatMessage({ id: 'bootCars.carVolume' }) },
-    { key: 'actions', label: formatMessage({ id: 'bootCars.actions' }) },
-  ]
 
   return (
     <FormProvider {...methods}>

@@ -58,13 +58,28 @@ export async function DELETE(request: Request) {
 }
 
 export async function PUT(req: Request) {
-  const { id, ...data } = await req.json()
+  const { id, carId, ...data } = await req.json()
 
   try {
+    // Проверяем, есть ли carId и добавляем связь, если есть
+    if (carId) {
+      // Добавляем связь между пыльником и машиной
+      await prisma.bootDustCover.update({
+        where: { id: Number(id) },
+        data: {
+          cars: {
+            connect: { id: Number(carId) },
+          },
+        },
+      })
+    }
+
+    // Обновляем остальные данные пыльника
     const updatedBootDustCover = await prisma.bootDustCover.update({
       where: { id: Number(id) },
       data,
     })
+
     return NextResponse.json(updatedBootDustCover, { status: 200 })
   } catch (error) {
     return NextResponse.json({ message: 'Failed to update boot dust cover' }, { status: 500 })

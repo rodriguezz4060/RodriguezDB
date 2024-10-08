@@ -8,6 +8,8 @@ import { ClearButton } from '../clear-button'
 import { ErrorText } from '../error-text'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
+import { Button } from '../../ui' // Импортируем кнопку
+import { Plus } from 'lucide-react'
 
 interface Props {
   name: string
@@ -16,6 +18,7 @@ interface Props {
   className?: string
   data: any[]
   columns: { key: string; label: string }[]
+  onLinkClick?: (carId: number) => void // Добавляем пропс для обработки нажатия на кнопку "Связать"
 }
 
 export const FormDataTable: React.FC<Props> = ({
@@ -25,6 +28,7 @@ export const FormDataTable: React.FC<Props> = ({
   required,
   data,
   columns,
+  onLinkClick, // Добавляем пропс
 }) => {
   const {
     formState: { errors },
@@ -90,6 +94,17 @@ export const FormDataTable: React.FC<Props> = ({
                       >
                         Edit
                       </Link>
+                    ) : column.key === 'carConnect' ? (
+                      onLinkClick && (
+                        <Button
+                          size='custom'
+                          onClick={() => onLinkClick(item.id)}
+                          className='text-sm  font-bold bg-[#4CAF50] hover:bg-[#388E3C]'
+                        >
+                          <Plus size={20} className='mr-1' />
+                          {formatMessage({ id: 'bootCars.carConnect' })}
+                        </Button>
+                      )
                     ) : (
                       getValue(item, column.key)
                     )}

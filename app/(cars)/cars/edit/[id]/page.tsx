@@ -8,7 +8,7 @@ export default async function BootPage({ params: { id } }: { params: { id: strin
     where: { id: Number(id) },
     include: {
       carBrand: true,
-      bootDustCover: true,
+      bootDustCover: {},
     },
   })
 

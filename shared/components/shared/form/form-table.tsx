@@ -4,6 +4,7 @@ import React from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../ui/table'
 import { ErrorText } from '../error-text'
+import { Button } from '../../ui'
 
 interface Props {
   name: string
@@ -12,9 +13,18 @@ interface Props {
   className?: string
   data: any[]
   columns: { key: string; label: string }[]
+  onRemove: (carId: number) => void // Добавляем функцию для удаления связи
 }
 
-export const FormTable: React.FC<Props> = ({ className, name, label, required, data, columns }) => {
+export const FormTable: React.FC<Props> = ({
+  className,
+  name,
+  label,
+  required,
+  data,
+  columns,
+  onRemove,
+}) => {
   const {
     formState: { errors },
   } = useFormContext()
@@ -41,6 +51,7 @@ export const FormTable: React.FC<Props> = ({ className, name, label, required, d
               {columns.map(column => (
                 <TableHead key={column.key}>{column.label}</TableHead>
               ))}
+              <TableHead>Действия</TableHead> {/* Добавляем заголовок для кнопки удаления */}
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -59,6 +70,10 @@ export const FormTable: React.FC<Props> = ({ className, name, label, required, d
                     )}
                   </TableCell>
                 ))}
+                <TableCell>
+                  <Button onClick={() => onRemove(item.id)}>Удалить</Button>{' '}
+                  {/* Добавляем кнопку удаления */}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
