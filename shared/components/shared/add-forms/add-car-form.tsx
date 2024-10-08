@@ -92,7 +92,7 @@ export const AddCarForm: React.FC = () => {
             <FormInput name='engine' label={formatMessage({ id: 'addCar.engine' })} required />
             <FormInput name='volume' label={formatMessage({ id: 'addCar.volume' })} required />
 
-            <Button variant='default' type='submit' disabled={isLoading} className='mt-5 mb-20'>
+            <Button variant='default' type='submit' disabled={isLoading} className='mt-5 '>
               {isLoading ? (
                 <>
                   <Loader size={20} className='mr-2 animate-spin' />
