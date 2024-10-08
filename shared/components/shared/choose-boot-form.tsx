@@ -77,11 +77,16 @@ export const ChooseBootForm: React.FC<Props> = ({ product, className }) => {
               <p className='text-gray-600 dark:text-gray-400'>{product.height} мм</p>
             </div>
           </div>
-          <div className='bg-gray-50 rounded-md h-[200px] overflow-y-auto mt-4 scrollbar'>
+          <div className=' rounded-md h-[200px] overflow-y-auto mt-4 pb-10 scrollbar'>
             <div>
               <FormProvider {...methods}>
                 {product.cars && product.cars.length > 0 && (
-                  <FormTable name='cars' data={product.cars} columns={columns} />
+                  <FormTable
+                    name='cars'
+                    data={product.cars}
+                    columns={columns}
+                    onRemove={(carId: number) => console.log(carId)}
+                  />
                 )}
               </FormProvider>
             </div>

@@ -1,38 +1,32 @@
 import { createBootDustCover } from '@/app/actions'
 import { prisma } from '@/prisma/prisma-client'
 import { TFormAddBootDustCoverSchema } from '@/shared/components/shared/add-forms/schemas/add-boot-schemas'
-import { NextApiRequest, NextApiResponse } from 'next'
 import { NextResponse } from 'next/server'
 
+// Обработчик GET запроса
 export async function GET() {
   const bootDustCover = await prisma.bootDustCover.findMany()
-
   return NextResponse.json(bootDustCover)
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'POST') {
-    try {
-      const data: TFormAddBootDustCoverSchema & { nameId: number } = req.body
-      const bootDustCover = await createBootDustCover(data)
-
-      return res.status(201).json(bootDustCover)
-    } catch (error) {
-      console.error('Error creating boot dust cover:', error)
-      return res.status(500).json({ error: 'Failed to create boot dust cover' })
-    }
-  } else {
-    return res.status(405).json({ error: 'Method not allowed' })
+// Обработчик POST запроса
+export async function POST(req: Request) {
+  try {
+    const data: TFormAddBootDustCoverSchema & { nameId: number } = await req.json()
+    const bootDustCover = await createBootDustCover(data)
+    return NextResponse.json(bootDustCover, { status: 201 })
+  } catch (error) {
+    console.error('Error creating boot dust cover:', error)
+    return NextResponse.json({ error: 'Failed to create boot dust cover' }, { status: 500 })
   }
 }
 
-export async function DELETE(request: Request) {
+// Обработчик DELETE запроса
+export async function DELETE(req: Request) {
   try {
-    // Получаем идентификатор пыльника из тела запроса
-    const { id } = await request.json()
+    const { id } = await req.json()
     console.log('Received ID:', id) // Добавьте это для отладки
 
-    // Проверяем, существует ли пыльник с таким идентификатором
     const existingBootDustCover = await prisma.bootDustCover.findUnique({
       where: { id },
     })
@@ -42,28 +36,24 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ error: 'Boot dust cover not found' }, { status: 404 })
     }
 
-    // Удаляем пыльник из базы данных
     await prisma.bootDustCover.delete({
       where: { id },
     })
 
     console.log('Boot dust cover deleted successfully') // Добавьте это для отладки
-    // Возвращаем успешный ответ
     return NextResponse.json({ message: 'Boot dust cover deleted successfully' }, { status: 200 })
   } catch (error) {
-    // Обрабатываем ошибки
     console.error('Error deleting boot dust cover:', error)
     return NextResponse.json({ error: 'Failed to delete boot dust cover' }, { status: 500 })
   }
 }
 
+// Обработчик PUT запроса
 export async function PUT(req: Request) {
   const { id, carId, ...data } = await req.json()
 
   try {
-    // Проверяем, есть ли carId и добавляем связь, если есть
     if (carId) {
-      // Добавляем связь между пыльником и машиной
       await prisma.bootDustCover.update({
         where: { id: Number(id) },
         data: {
@@ -74,7 +64,6 @@ export async function PUT(req: Request) {
       })
     }
 
-    // Обновляем остальные данные пыльника
     const updatedBootDustCover = await prisma.bootDustCover.update({
       where: { id: Number(id) },
       data,

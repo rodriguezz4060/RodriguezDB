@@ -1,5 +1,6 @@
 'use client'
 import { Container, FormTable } from '@/shared/components/shared'
+import { TableColumns } from '@/shared/constants/table'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
 
@@ -21,16 +22,7 @@ interface BootCoverCarsProps {
 export default function BootCoverCars({ cars }: BootCoverCarsProps) {
   const { formatMessage } = useIntl()
   const methods = useForm()
-
-  const columns = [
-    { key: 'carBrand.name', label: formatMessage({ id: 'bootCars.carBrand' }) },
-    { key: 'imageUrl', label: formatMessage({ id: 'bootCars.carImage' }) },
-    { key: 'models', label: formatMessage({ id: 'bootCars.carModel' }) },
-    { key: 'carBody', label: formatMessage({ id: 'bootCars.carBody' }) },
-    { key: 'modelYear', label: formatMessage({ id: 'bootCars.carYear' }) },
-    { key: 'engine', label: formatMessage({ id: 'bootCars.carEngine' }) },
-    { key: 'volume', label: formatMessage({ id: 'bootCars.carVolume' }) },
-  ]
+  const columns = TableColumns()
 
   return (
     <FormProvider {...methods}>
@@ -41,6 +33,7 @@ export default function BootCoverCars({ cars }: BootCoverCarsProps) {
             label={formatMessage({ id: 'bootCars.carsList' })}
             data={cars}
             columns={columns}
+            onRemove={(carId: number) => console.log(carId)}
           />
         )}
       </Container>
