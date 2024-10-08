@@ -26,7 +26,7 @@ export default async function EditBootDustCoverPage({
     return notFound()
   }
 
-  if (!id) return <div>Loading...</div>
+  if (!id) return notFound()
 
   return <EditBootDustCoverForm data={bootCover} />
 }

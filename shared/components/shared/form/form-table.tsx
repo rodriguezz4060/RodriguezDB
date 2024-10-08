@@ -5,6 +5,7 @@ import { useFormContext } from 'react-hook-form'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../ui/table'
 import { ErrorText } from '../error-text'
 import { Button } from '../../ui'
+import { Trash } from 'lucide-react'
 
 interface Props {
   name: string
@@ -51,7 +52,6 @@ export const FormTable: React.FC<Props> = ({
               {columns.map(column => (
                 <TableHead key={column.key}>{column.label}</TableHead>
               ))}
-              <TableHead>Действия</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -65,14 +65,20 @@ export const FormTable: React.FC<Props> = ({
                         alt='Logo'
                         className='h-[30px] w-auto'
                       />
+                    ) : column.key === 'actions' ? (
+                      <Button
+                        className='ml-3'
+                        variant={'destructive'}
+                        size={'icon'}
+                        onClick={() => onRemove(item.id)}
+                      >
+                        <Trash />
+                      </Button>
                     ) : (
                       getValue(item, column.key)
                     )}
                   </TableCell>
                 ))}
-                <TableCell>
-                  <Button onClick={() => onRemove(item.id)}>Удалить</Button>
-                </TableCell>
               </TableRow>
             ))}
           </TableBody>

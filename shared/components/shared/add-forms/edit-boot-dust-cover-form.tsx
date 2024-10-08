@@ -17,10 +17,11 @@ import {
 } from '@/shared/services/boot-dust-cover'
 import { useIntl } from 'react-intl'
 import { BootWithCar } from '@/@types/prisma'
-import { TableColumns } from '@/shared/constants/table'
+import { TableDeleteColumns } from '@/shared/constants/table'
 import { EditBootModal } from '../modals'
 import { Car, CarBrand } from '@prisma/client'
 import { getCars, getCarsBrands } from '@/shared/services/cars'
+import { Plus } from 'lucide-react'
 
 interface Props {
   data: BootWithCar
@@ -29,7 +30,7 @@ interface Props {
 
 export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
   const { formatMessage } = useIntl()
-  const columns = TableColumns()
+  const columns = TableDeleteColumns()
   const [openModal, setOpenModal] = React.useState(false)
 
   const form = useForm<TFormBootDustCoverSchema>({
@@ -54,8 +55,6 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
   const [allCar, setAllCar] = useState<Car[]>([])
   const [carBrands, setCarBrands] = useState<CarBrand[]>([])
   const [connectCars, setConnectCars] = useState<Car[]>(data.cars)
-
-  console.log(connectCars)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -97,11 +96,11 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
 
       await updateBootDustCover(formattedData)
 
-      toast.success('Данные пыльника обновлены 📝', {
+      toast.success(formatMessage({ id: 'toast.bootEditDataSuccess' }), {
         icon: '✅',
       })
     } catch (error) {
-      return toast.error('Ошибка при обновлении данных пыльника', {
+      return toast.error(formatMessage({ id: 'toast.bootEditDataError' }), {
         icon: '❌',
       })
     }
@@ -110,26 +109,33 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
   const handleLinkCar = async (id: number) => {
     try {
       await linkCarToBootDustCover(data.id, id)
-      toast.success('Машина успешно связана с пыльником')
+      toast.success(formatMessage({ id: 'toast.connectBootAddError' }), {
+        icon: '✅',
+      })
       setConnectCars(prev => [...prev, allCar.find(car => car.id === id)!])
 
-      // Удаляем связанную машину из списка allCar
       setAllCar(prev => prev.filter(car => car.id !== id))
     } catch (error) {
       console.error('Ошибка при связывании машины с пыльником:', error)
-      toast.error('Ошибка при связывании машины с пыльником')
+      toast.error(formatMessage({ id: 'toast.connectBootAddError' }), {
+        icon: '❌',
+      })
     }
   }
 
   const handleRemoveCar = async (carId: number) => {
     try {
       await removeConnection(carId, data.id)
-      toast.success('Связь между машиной и пыльником удалена')
+      toast.success(formatMessage({ id: 'toast.connectBootSuccessError' }), {
+        icon: '✅',
+      })
 
       setConnectCars(prev => prev.filter(car => car.id !== carId))
     } catch (error) {
       console.error('Ошибка при удалении связи:', error)
-      toast.error('Ошибка при удалении связи')
+      toast.error(formatMessage({ id: 'toast.connectBootError' }), {
+        icon: '❌',
+      })
     }
   }
 
@@ -138,44 +144,60 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
   )
 
   return (
-    <Container className='my-10'>
-      <Title text={`Редактирование пыльника | #${data.id}`} size='md' className='font-bold' />
+    <Container className='h-full my-10'>
+      <Title
+        text={`${formatMessage({ id: 'addBootForm.editBootTitle' })} | #${data.partNumber}`}
+        size='md'
+        className='font-bold'
+      />
       <div className='flex gap-[80px]'>
         <FormProvider {...form}>
           <form className='flex flex-col gap-5 w-96 mt-10' onSubmit={form.handleSubmit(onSubmit)}>
-            <FormSelect name='nameId' label='Name' required>
+            <FormSelect name='nameId' label={formatMessage({ id: 'addBootForm.newName' })} required>
               {names.map(name => (
                 <option key={name.id} value={name.id}>
                   {name.name}
                 </option>
               ))}
             </FormSelect>
-            <FormSelect name='formId' label='Form' required>
+            <FormSelect
+              name='formId'
+              label={formatMessage({ id: 'addBootForm.chooseForm' })}
+              required
+            >
               {forms.map(form => (
                 <option key={form.id} value={form.id}>
                   {form.form}
                 </option>
               ))}
             </FormSelect>
-            <FormSelect name='typeId' label='Type' required>
+            <FormSelect
+              name='typeId'
+              label={formatMessage({ id: 'addBootForm.chooseType' })}
+              required
+            >
               {types.map(type => (
                 <option key={type.id} value={type.id}>
                   {type.type}
                 </option>
               ))}
             </FormSelect>
-            <FormInput type='number' name='dIn' label='dIn' required />
-            <FormInput type='number' name='dOut' label='dOut' required />
-            <FormInput type='number' name='height' label='Height' required />
-            <FormInput name='partNumber' label='Part Number' required />
-            <FormInput name='imageUrl' label='Image URL' />
+            <FormInput name='dIn' label={formatMessage({ id: 'addBootForm.dIn' })} required />
+            <FormInput name='dOut' label={formatMessage({ id: 'addBootForm.dOut' })} required />
+            <FormInput name='height' label={formatMessage({ id: 'addBootForm.height' })} required />
+            <FormInput
+              name='partNumber'
+              label={formatMessage({ id: 'addBootForm.partNumber' })}
+              required
+            />
+            <FormInput name='imageUrl' label={formatMessage({ id: 'addBootForm.imageUrl' })} />
 
             <Button
               disabled={form.formState.isSubmitting}
               className='text-base mt-10'
               type='submit'
             >
-              Сохранить
+              {formatMessage({ id: 'addBootForm.editSave' })}
             </Button>
           </form>
         </FormProvider>
@@ -188,9 +210,19 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
               cars={filteredCars}
               onLinkClick={handleLinkCar}
             />
-            <Button onClick={() => setOpenModal(true)}>Связать машину</Button>
+            <Button
+              onClick={() => setOpenModal(true)}
+              className='text-base font-bold bg-[#4CAF50] hover:bg-[#388E3C]'
+            >
+              <Plus className='mr-1' />
+              {formatMessage({ id: 'addBootForm.connectCar' })}
+            </Button>
 
-            <Title text='Связанные машины:' size='sm' className='font-bold' />
+            <Title
+              text={formatMessage({ id: 'addBootForm.connectedCar' })}
+              size='sm'
+              className='font-bold mt-5 mb-2'
+            />
             <FormProvider {...form}>
               {connectCars && connectCars.length > 0 && (
                 <FormTable

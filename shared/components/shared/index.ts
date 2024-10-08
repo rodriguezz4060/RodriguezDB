@@ -17,6 +17,7 @@ export { ClearButton } from './clear-button'
 export { InfoBlock } from './info-block'
 export { ProfileForm } from './profile-form'
 export { BreadcrumbProvider } from './breadcrumb-provider'
+export { PageNotFound } from './page-not-found'
 
 export * from './modals/'
 export * from './add-forms'
