@@ -66,3 +66,18 @@ export const DataTableConnectColumns = () => {
 
   return columns
 }
+
+export const TableClientsColumns = () => {
+  const { formatMessage } = useIntl()
+
+  const columns = [
+    { key: 'name', label: formatMessage({ id: 'clients.name' }) },
+    { key: 'lastName', label: formatMessage({ id: 'clients.lastName' }) },
+    { key: 'VIN', label: formatMessage({ id: 'clients.VIN' }) },
+    { key: 'tel', label: formatMessage({ id: 'clients.phone' }) },
+    { key: 'clientCar.models', label: formatMessage({ id: 'clients.clientCar' }) },
+    { key: 'clientCar.gosNumber', label: formatMessage({ id: 'clients.gosNumber' }) },
+  ]
+
+  return columns
+}

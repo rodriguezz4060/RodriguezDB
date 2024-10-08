@@ -61,6 +61,15 @@
         "connectedCar": "Связанные машины:",
         "editSave": "Сохранить"
     },
+    "clients": {
+        "labelText": "База клиентов",
+        "name": "Имя",
+        "lastName": "Фамилия",
+        "VIN": "VIN",
+        "phone": "Телефон",
+        "clientCar": "Машина клиента",
+        "gosNumber": "Гос. номер"
+    },
     "addCar": {
         "formTitle": "Добавление нового автомобиля ",
         "carBrand": "Бренд автомобиля",

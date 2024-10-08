@@ -145,6 +145,15 @@ model Clients {
 model ClientCar {
     id Int @id @default(autoincrement())
 
+    gosNumber String?
+    brandName String?
+    imageUrl  String?
+    models    String?
+    carBody   String?
+    modelYear String?
+    engine    String?
+    volume    String?
+
     oilFilter  String?
     airFilter  String?
     gasFilter  String?

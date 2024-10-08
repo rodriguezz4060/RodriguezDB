@@ -61,6 +61,15 @@
         "connectedCar": "Пов'язані машини:",
         "editSave": "Зберегти"
     },
+    "clients": {
+        "labelText": "База клієнтів",
+        "name": "Ім'я",
+        "lastName": "Прізвище",
+        "VIN": "VIN",
+        "phone": "Телефон",
+        "clientCar": "Машина клієнта",
+        "gosNumber": "Держ. номер"
+    },
     "addCar": {
         "formTitle": "Додавання нового автомобіля ",
         "carBrand": "Бренд автомобіля",
