@@ -39,7 +39,7 @@ export const ChooseBootForm: React.FC<Props> = ({ product, className }) => {
     <div className={cn(className, 'flex flex-1')}>
       <ProductImage imageUrl={product.imageUrl} className='' />
 
-      <div className='w-[490px] bg-[#fcfcfc] dark:bg-[#2b2b2b] p-7 relative'>
+      <div className='w-[490px] bg-[#fcfcfc] dark:bg-[#1d1d1d] p-7 relative'>
         <div>
           <Title text={product.name.name} size='md' className='font-extrabold ' />
           <div className='grid grid-cols-2 gap-4'>
