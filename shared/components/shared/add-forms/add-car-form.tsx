@@ -14,9 +14,11 @@ import { Button } from '../../ui'
 
 import { useIntl } from 'react-intl'
 import { getCarsBrands } from '@/shared/services/cars'
+import { Loader, Save } from 'lucide-react'
 
 export const AddCarForm: React.FC = () => {
   const { formatMessage } = useIntl()
+  const [isLoading, setIsLoading] = useState(false)
 
   const form = useForm<TFormCarSchema>({
     resolver: zodResolver(formCarSchema),
@@ -49,43 +51,63 @@ export const AddCarForm: React.FC = () => {
 
   const onSubmit = async (data: TFormCarSchema) => {
     try {
+      setIsLoading(true)
       await createCar(data)
 
-      toast.success('Автомобиль добавлен 🚗', {
+      toast.success(formatMessage({ id: 'toast.carAddSuccess' }), {
         icon: '✅',
       })
+
+      form.reset()
     } catch (error) {
-      return toast.error('Ошибка при добавлении автомобиля', {
+      return toast.error(formatMessage({ id: 'toast.carAddError' }), {
         icon: '❌',
       })
+    } finally {
+      setIsLoading(false)
     }
   }
 
   return (
-    <Container className='my-10 flex items-center justify-center'>
-      <Title text='Добавление нового автомобиля' size='md' className='font-bold' />
+    <>
+      <Title text={formatMessage({ id: 'addCar.formTitle' })} size='lg' className='font-bold' />
+      <Container className='flex items-center justify-center'>
+        <FormProvider {...form}>
+          <form className='flex flex-col gap-5 w-96 mt-10' onSubmit={form.handleSubmit(onSubmit)}>
+            <FormSelect name='carBrandId' label={formatMessage({ id: 'addCar.carBrand' })} required>
+              {carBrands.map(brand => (
+                <option key={brand.id} value={brand.id}>
+                  {brand.name}
+                </option>
+              ))}
+            </FormSelect>
+            <FormInput name='imageUrl' label={formatMessage({ id: 'addCar.imageUrl' })} />
+            <FormInput name='models' label={formatMessage({ id: 'addCar.carModel' })} required />
+            <FormInput name='carBody' label={formatMessage({ id: 'addCar.carBody' })} required />
+            <FormInput
+              name='modelYear'
+              label={formatMessage({ id: 'addCar.modelYear' })}
+              required
+            />
+            <FormInput name='engine' label={formatMessage({ id: 'addCar.engine' })} required />
+            <FormInput name='volume' label={formatMessage({ id: 'addCar.volume' })} required />
 
-      <FormProvider {...form}>
-        <form className='flex flex-col gap-5 w-96 mt-10' onSubmit={form.handleSubmit(onSubmit)}>
-          <FormSelect name='carBrandId' label='Бренд автомобиля' required>
-            {carBrands.map(brand => (
-              <option key={brand.id} value={brand.id}>
-                {brand.name}
-              </option>
-            ))}
-          </FormSelect>
-          <FormInput name='imageUrl' label='URL изображения' />
-          <FormInput name='models' label='Модель' required />
-          <FormInput name='carBody' label='Кузов' required />
-          <FormInput name='modelYear' label='Год выпуска' required />
-          <FormInput name='engine' label='Двигатель' required />
-          <FormInput name='volume' label='Объем двигателя' required />
-
-          <Button disabled={form.formState.isSubmitting} className='text-base mt-10' type='submit'>
-            Добавить
-          </Button>
-        </form>
-      </FormProvider>
-    </Container>
+            <Button variant='default' type='submit' disabled={isLoading} className='mt-5 mb-20'>
+              {isLoading ? (
+                <>
+                  <Loader size={20} className='mr-2 animate-spin' />
+                  {formatMessage({ id: 'addCar.loading' })}
+                </>
+              ) : (
+                <>
+                  <Save size={20} className='mr-2' />
+                  {formatMessage({ id: 'addCar.saveButton' })}
+                </>
+              )}
+            </Button>
+          </form>
+        </FormProvider>
+      </Container>
+    </>
   )
 }

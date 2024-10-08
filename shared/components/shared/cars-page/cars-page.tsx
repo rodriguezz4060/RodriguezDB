@@ -1,22 +1,28 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useIntl } from 'react-intl'
 import { Container } from '../container'
 import { CarWithBrand } from '@/@types/prisma'
 import { FormProvider, useForm } from 'react-hook-form'
 import { FormDataTable } from '../form'
 import { DataTableColumns } from '@/shared/constants/table'
+import { DeleteCar } from '../cars-page'
 
 interface Props {
   cars: CarWithBrand[]
   classNames?: string
 }
 
-export const CarsPage: React.FC<Props> = ({ cars, classNames }) => {
+export const CarsPage: React.FC<Props> = ({ cars: initialCars, classNames }) => {
   const { formatMessage } = useIntl()
   const columns = DataTableColumns()
   const methods = useForm()
+  const [cars, setCars] = useState(initialCars)
+
+  const handleDeleteCar = (deletedCarId: number) => {
+    setCars(prevCars => prevCars.filter(car => car.id !== deletedCarId))
+  }
 
   return (
     <FormProvider {...methods}>
@@ -27,6 +33,8 @@ export const CarsPage: React.FC<Props> = ({ cars, classNames }) => {
             label={formatMessage({ id: 'bootCars.carsList' })}
             data={cars}
             columns={columns}
+            itemsPerPage={25}
+            onDeleteCar={handleDeleteCar}
           />
         )}
       </Container>

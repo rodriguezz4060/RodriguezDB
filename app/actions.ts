@@ -2,11 +2,7 @@
 
 import { prisma } from '@/prisma/prisma-client'
 import { TFormAddBootDustCoverSchema } from '@/shared/components/shared/add-forms/schemas/add-boot-schemas'
-import {
-  formCarSchema,
-  TFormCarSchema,
-} from '@/shared/components/shared/add-forms/schemas/add-car-schemas'
-import { TFormBootDustCoverSchema } from '@/shared/components/shared/add-forms/schemas/edit-boot-schemas'
+import { TFormCarSchema } from '@/shared/components/shared/add-forms/schemas/add-car-schemas'
 import { getUserSession } from '@/shared/lib/get-user-session'
 import { Prisma } from '@prisma/client'
 import { hashSync } from 'bcrypt'
@@ -125,6 +121,25 @@ export const updatedCar = async (data: any) => {
 
   if (!response.ok) {
     throw new Error('Failed to update car')
+  }
+
+  return await response.json()
+}
+
+export const deleteCar = async (id: number) => {
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'
+  const url = `${baseUrl}/api/cars`
+
+  const response = await fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id }),
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to delete car')
   }
 
   return await response.json()

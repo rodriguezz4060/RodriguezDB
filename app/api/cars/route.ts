@@ -43,27 +43,18 @@ export async function PUT(req: Request) {
   }
 }
 
-export async function DELETE(request: Request) {
-  const { searchParams } = new URL(request.url)
-  const carId = searchParams.get('carId')
-  const dustCoverId = searchParams.get('dustCoverId')
-
-  if (!carId || !dustCoverId) {
-    return NextResponse.json({ error: 'Missing carId or dustCoverId' }, { status: 400 })
-  }
+export async function DELETE(req: Request) {
+  const { id } = await req.json()
 
   try {
-    await prisma.car.update({
-      where: { id: parseInt(carId) },
-      data: {
-        bootDustCover: {
-          disconnect: { id: parseInt(dustCoverId) },
-        },
-      },
+    // Удаляем машину по идентификатору
+    await prisma.car.delete({
+      where: { id: Number(id) },
     })
 
-    return NextResponse.json({ message: 'Dust cover removed from car' })
+    return NextResponse.json({ message: 'Car deleted successfully' }, { status: 200 })
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to remove dust cover from car' }, { status: 500 })
+    console.error('Error deleting car:', error)
+    return NextResponse.json({ error: 'Failed to delete car' }, { status: 500 })
   }
 }
