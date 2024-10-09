@@ -31,6 +31,8 @@ export type BootWithCar = BootDustCover & {
   cars: CarWithBrand[]
 }
 
+export type ClientsCar = ClientCar & {}
+
 export type ClientsWithCar = Clients & {
-  clientsCar: ClientCar[]
+  clientCar?: ClientCar | null
 }

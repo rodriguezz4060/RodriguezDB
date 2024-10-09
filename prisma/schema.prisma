@@ -136,7 +136,8 @@ model Clients {
     VIN      String
     tel      String?
 
-    clientCar ClientCar?
+    client   ClientCar?
+    clientTo ClientCarTo?
 
     createdAt DateTime @default(now())
     updateAt  DateTime @updatedAt
@@ -147,21 +148,325 @@ model ClientCar {
 
     gosNumber String?
     brandName String?
-    imageUrl  String?
     models    String?
     carBody   String?
     modelYear String?
     engine    String?
     volume    String?
 
-    oilFilter  String?
-    airFilter  String?
-    gasFilter  String?
-    frontBrake String?
-    rearBrake  String?
+    //Двигатель и Система выхлопа
+    timingChainLong  String? //Цепь ГРМ
+    timingChainShort String? //Короткая цепь
+    chainTensioner1  String? //Гидронатяжитель цепи 1
+    chainTensioner2  String? //Гидронатяжитель цепи 2
+    chainTensioner3  String? //Башмак
+    chainKit         String? //Набор цепей
+
+    timingBelt          String? //Ремень грм
+    timingBeltTensioner String? //Натяжитель ремня ГРМ
+    timingBeltRoller    String? //Паразитный ролик ремня ГРМ
+
+    pistons               String? //Поршня
+    pistonsRings          String? //Поршневые кольца
+    hydrocompensators     String? //Гидрокомпенсатор
+    valveIn               String? //Клапана впуск
+    valveEx               String? //Клапана выпуск
+    valveGuidesIn         String? //Направляющие клапана впуск
+    valveGuidesEx         String? //Направляющие клапана выпуск
+    bearingConnectingRod  String? //Вкладыш коренной
+    crankshaftCamberRings String? //Полукольца разбега коленвала
+
+    generatorBelt              String? //Ремень генератора
+    powerSteeringBelt          String? //Ремень гидроусилителя
+    airConditionerBelt         String? //Ремень кондиционера
+    tensionToller              String? //Натяжитель ремня клинового
+    bypassRoller1              String? //Обводной ролик ремня клинового 1
+    bypassRoller2              String? //Обводной ролик ремня клинового 2
+    generatorOverrunningClutch String? //Обгонная муфта генератора
+
+    engineGasketKit       String? //Набор прокладок двигателя
+    headGasket            String? //Прокладка головки блока
+    valveCoverGasketLeft  String? //Прокладка клапанной крышки левая
+    valveCoverGasketRight String? //Прокладка клапанной крышки правая
+    valveCoverGasket      String? //Прокладка клапанной крышки
+    intakeManifoldGasket  String? //Прокладка впускного коллектора
+    exhaustManifoldGasket String? //Прокладка выпускного коллектора
+    exhaustPipeGasket1    String? //Прокладка выпускной трубы
+    exhaustPipeGasket2    String? //Прокладка выпускной трубы до катализатора
+    exhaustPipeGasket3    String? //Прокладка выпускной трубы  после катализатора
+
+    frontLeftEngineCushion  String? //Подушка двигателя передняя левая
+    frontRightEngineCushion String? //Подушка двигателя передняя правая
+    engineCushionLeft       String? //Подушка двигателя левая
+    engineCushionRear       String? //Подушка двигателя задняя
+
+    frontCrankshaftOilSeal String? //Сальник передний коленвала
+    rearCrankshaftOilSeal  String? //Сальник задний коленвала
+    camshaftOilSeal        String? //Сальник распредвала
+    oilPumpPacking         String? //Сальник маслонасоса
+    intakeOilCaps          String? //Маслосъемные впускные
+    exhaustOilCaps         String? //Маслосъемные выпускные
+
+    airDuctCorrugation String? //Гофра воздуховода
+
+    oilFilter   String? //Масляный фильтр
+    airFilter   String? //Воздушный фильтр
+    fuelFilter  String? //Топливный фильтр
+    cabinFilter String? //Фильтр салона
+
+    //Подвеска и рулевое управление
+    frontLeftShockAbsorber  String? //Амортизатор передний левый
+    frontRightShockAbsorber String? //Амортизатор передний правый
+    rearLeftShockAbsorber   String? //Амортизатор задний левый
+    rearRightShockAbsorber  String? //Амортизатор задний правый
+
+    wheelStud String? //Шпилька колесная
+    wheelNut  String? //Гайка колесная
+
+    leftFrontStrutSupport  String? //Передняя опора стойки левая
+    rightFrontStrutSupport String? //Передняя опора стойки правая
+    leftRearStrutSupport   String? //Задняя опора стойки левая
+    rightRearStrutSupport  String? //Задняя опора стойки правая
+    frontSupportBearing    String? //Опорный подшипник
+    frontLeftStrutDuster   String? //Пыльник стойки передней левой
+    frontRightStrutDuster  String? //Пыльник стойки передней правой
+    rearLeftStrutDuster    String? //Пыльник стойки задней левой
+    rearRightStrutDuster   String? //Пыльник стойки задней правой
+    frontStrutBumper       String? //Отбойник передней стойки
+    rearStrutBumper        String? //Отбойник задней стойки
+
+    frontLeftHubBearing  String? //Подшипник передней левой ступици
+    frontRightHubBearing String? //Подшипник передней правой ступици
+    rearLeftHubBearing   String? //Подшипник задней левой ступици
+    rearRightHubBearing  String? //Подшипник задней правой ступици
+
+    hydraulicPowerSteeringKit  String? //Ремкомплект ГУР
+    railSealsAndGaskets        String? //Сальники и прокладки рейки
+    steeringRackDustCoverLeft  String? //Пыльник рулевой рейки левый
+    steeringRackDustCoverRight String? //Пыльник рулевой рейки правый
+
+    frontLowerLeftArm        String? //Передний нижний левый рычаг
+    frontLowerRightArm       String? //Передний нижний правый рычаг
+    frontUpperLeftArm        String? //Передний верхний левый рычаг
+    frontUpperRightArm       String? //Передний верхний правый рычаг
+    rearLeftLongitudinalArm  String? //Задний левый продольный рычаг
+    rearRightLongitudinalArm String? //Задний правый продольный рычаг
+    rearLeftTransverseArm1   String? //Задний левый поперечный рычаг 1
+    rearRightTransverseArm1  String? //Задний правый поперечный рычаг 1
+    rearLeftTransverseArm2   String? //Задний левый поперечный рычаг 2
+    rearRightTransverseArm2  String? //Задний правый поперечный рычаг 2
+    rearCrescentArm          String? //Задний левый полумесяц рычаг
+    rearUpperShortArm        String? //Задний верхний короткий рычаг
+
+    frontLowerControlArmFrontSilentBlock String? //Сайлентблок переднего нижнего рычага передний
+    frontLowerControlArmRearSilentBlock  String? //Сайлентблок переднего нижнего рычага задний
+    frontUpperControlArmFrontSilentBlock String? //Сайлентблок переднего верхнего рычага передний
+    frontUpperControlArmRearSilentBlock  String? //Сайлентблок переднего верхнего рычага задний
+    longitudinalArmSilentBlockLeft       String? //Cайлентблок продольных рычагов левый
+    longitudinalArmSilentBlockRight      String? //Cайлентблок продольных рычагов правый
+    longitudinalHubArmSilentBlockLeft    String? //Cайлентблок продольных рычагов ступичный
+    bodyLeftCrossArmSilentBlock          String? //Cайлентблок поперечного левого рычага кузовной
+    hubLeftCrossArmSilentBlock           String? //Cайлентблок поперечного левого рычага ступичный
+    bodyRightCrossArmSilentBlock         String? //Cайлентблок поперечного правого рычага кузовной
+    hubRightCrossArmSilentBlock          String? //Cайлентблок поперечного правого рычага ступичный
+    camberArmSilentBlock1                String? //Cайлентблок развального рычага Развальный
+    camberArmSilentBlock2                String? //Cайлентблок развального рычага
+    frontSubframeSilentBlock             String? //Cайлентблок подрамника передний
+    rearSubframeSilentBlock              String? //Cайлентблок подрамника задний
+    frontStabilizerSushings              String? //Втулки стабилизатора передняя
+    frontStabilizerSushingsLeft          String? //Втулки стабилизатора передняя левая
+    frontStabilizerSushingsRight         String? //Втулки стабилизатора передняя правая
+    rearStabilizerSushings               String? //Втулки стабилизатора задняя
+    frontLeftStabilizerBar               String? //Стойка стабилизатора передняя левая
+    frontRightStabilizerBar              String? //Стойка стабилизатора передняя правая
+    rearLeftStabilizerBar                String? //Стойка стабилизатора задняя левая
+    rearRightStabilizerBar               String? //Стойка стабилизатора задняя правая
+
+    steeringLinkLeft          String? //Рулевая тяга левая
+    steeringLinkRight         String? //Рулевая тяга правая
+    outerLeftSteeringKnuckle  String? //Рулевой наконечник наружный левый
+    outerRightSteeringKnuckle String? //Рулевой наконечник наружный правый
+    leftInnerSteeringKnuckle  String? //Рулевой наконечник внутренний левый
+    leftRightSteeringKnuckle  String? //Рулевой наконечник внутренний правый
+
+    lowerLeftBallJoint  String? //Шаровая нижняя левая
+    lowerRightBallJoint String? //Шаровая нижняя правая
+    upperLeftBallJoint  String? //Шаровая верхняя левая
+    upperRightBallJoint String? //Шаровая верхняя правая
+
+    //Тормозная система
+    frontHandbrakeCable String? //Трос ручника передний
+    rearLeftCable       String? //Трос задний левый
+    reaRightCable       String? //Трос задний правый
+
+    frontBrakeDiskLeft  String? //Передний тормозной диск левый 
+    frontBrakeDiskRight String? //Передний тормозной диск правый
+    rearBrakeDisk       String? //Задний тормозной диск
+
+    frontBrake         String? //Передние колодки
+    rearBrake          String? //Задние колодки
+    handbrakeBrakePads String? //Колодки ручника
+
+    brakeMasterCylinder String? //Тормозной цилиндр главный
+    slaveBrakeCylinder  String? //Тормозной цилиндр рабочий
+    drumBrakeCylinder   String? //Тормозной цилиндр барабанов
+
+    setOfFrontGuideRailsWithDustCovers   String? //Комплект передних направляющих с пыльниками
+    setOfRearGuideRailsWithDustCovers    String? //Комплект задних направляющих с пыльниками
+    InstallationKitForFrontPads          String? //Установочный комплект на передние колодки 
+    InstallationKitForRearPads           String? //Установочный комплект на задние колодки 
+    InstallationKitForHandbrakeBrakePads String? //Установочный комплект на барабаны
+    frontCaliperRepairKit                String? //Ремкомплект переднего суппорта 
+    frontCaliperRepairKitWithPiston      String? //Ремкомплект переднего суппорта с поршнями
+    rearCaliperRepairKit                 String? //Ремкомплект заднего суппорта 
+    rearCaliperRepairKitWithPiston       String? //Ремкомплект заднего суппорта  с поршнями
+
+    frontLeftBrakeHose  String? //Передний левый тормозной шланг 
+    frontRightBrakeHose String? //Передний правый тормозной шланг 
+    rearLeftBrakeHose   String? //Задний левый тормозной шланг 
+    rearRightBrakeHose  String? //Задний правый тормозной шланг 
+
+    frontLeftOuterBallJoint  String? //ШРУС передний наружный левый
+    frontRightOuterBallJoint String? //ШРУС передний наружный правый
+    frontLeftInnerBallJoint  String? //ШРУС передний внутренний левый
+    frontRightInnerBallJoint String? //ШРУС передний внутренний правый
+    frontLeftHandDrive       String? //Приводной вал левый
+    frontRightHandDrive      String? //Приводной вал правый
+    driveShaft               String? //Вал привода
+
+    rearLeftOuterBallJoint  String? //ШРУС задний наружный левый
+    rearRightOuterBallJoint String? //ШРУС задний наружный правый
+    rearLeftInnerBallJoint  String? //ШРУС задний внутренний левый
+    rearRightInnerBallJoint String? //ШРУС задний внутренний правый
+
+    automaticTransmissionOilPanGasket String? //Прокладка поддона АКПП
+    automaticTransmissionFilter       String? //Фильтр АКПП
+    automaticTransmissionFillerGasket String? //Прокладка фильтра АКПП
+    transmissionDrainPlug             String? //Сливная пробка АКПП
+    transmissionDrainPlugGasket       String? //Прокладка сливной пробки АКПП
+
+    suspensionBearing String? //Подвесной подшипник
+
+    frontPistonRodDusterOuter      String? //Передний пыльник ШРУСа наружный
+    frontPistonRodDusterInnerLeft  String? //Передний пыльник ШРУСа внутренний левый
+    frontPistonRodDusterInnerRight String? //Передний пРУСа внутренний правый
+
+    rearPistonRodDusterOuter      String? //Задний пыльник ШРУСа наружный
+    rearPistonRodDusterInnerLeft  String? //Задний пыльник ШРУСа внутренний левый
+    rearPistonRodDusterInnerRight String? //Задний пыльник ШРУСа внутренний правый
+
+    automaticTransmissionTorqueConverterOilSeal String? //Сальник гидротрансформатора АКПП
+    gearboxPrimaryShaftOilSeal                  String? //Сальник первичного вала КПП
+    gearboxRockerGland                          String? //Сальник кулисы КПП
+    leftDriveOilSeal                            String? //Сальник левого привода
+    rightDriveOilSeal                           String? //Сальник правого привода
+
+    clutchDisk     String? //Диск сцепления
+    clutchBasket   String? //Корзина сцепления
+    releaseBearing String? //Выжимной подшипник
+    clutchKit      String? //Комплект сцепления
+
+    clutchMasterCylinder String? //Главный цилиндр сцепления
+    clutchSlaveCylinder  String? //Рабочий цилиндр сцепления
+
+    clutchMasterCylinderKit      String? //Ремкомплект главного цилиндра сцепления
+    clutchSlaveCylinderRepairKit String? //Ремкомплект рабочего цилиндра сцепления
+
+    waterPump              String? //Водяная помпа
+    thermostat             String? //Термостат 
+    radiator               String? //Радиатор
+    heaterRadiator         String? //Радиатор отопителя
+    airConditionerRadiator String? //Радиатор кондиционера
+    upperPipe              String? //Патрубок верхний
+    lowerPipe              String? //Патрубок верхний
+    radiatorCap            String? //Крышка радиатора
+    expansionTankCap       String? //Крышка расширительного бачка
+
+    //Электрика и Освещение
+    oilSensor                  String? //Масляный датчик
+    ventilatorSensor           String? //Масляный вентилятора
+    dashboardTemperatureSensor String? //Датчик температуры приборной панели
+    airConditionerSensor       String? //Датчик кондиционера
+    reverseSensor              String? //Датчик заднего хода
+    washerMotor                String? //Моторчик омывателя
+    handwheelCable             String? //Подрулевой шлейф
+
+    brakeLightBulbs        String? //Лампочки стопов
+    parkingLightBulbsFront String? //Лампочки габарит передние
+    parkingLightBulbsRear  String? //Лампочки габарит задние
+    sideSignalBulbs        String? //Лампочки поворотов
+    reverseLightBulbs      String? //Лампочки заднего хода
+    mainHeadlightBulbs     String? //Лампочки основной фары
+    fogLightBulbs          String? //Лампочки противотуманных фар
+
+    sparkPlug    String? //Свеча зажигания
+    ignitionCoil String? //Катушка зажигания
+
+    lambdaProbe1 String? //лямбда зонд1
+    lambdaProbe2 String? //лямбда зонд2
+
+    frontAbsSensorLeft  String? //Датчик АБС передний левый
+    frontAbsSensorRight String? //Датчик АБС передний правый
+    rearAbsSensorLeft   String? //Датчик АБС задний левый
+    rearAbsSensorRight  String? //Датчик АБС задний правый
+
+    //Кузов
+    driversWiper       String? //Дворник водителя
+    passengerWiper     String? //Дворник пасажира
+    hoodShockAbsorbers String? //Амортизаторы капота
 
     client   Clients @relation(fields: [clientId], references: [id])
     clientId Int     @unique
+
+    createdAt DateTime @default(now())
+    updateAt  DateTime @updatedAt
+}
+
+model ClientCarTo {
+    id Int @id @default(autoincrement())
+
+    engineOil           String? //Масло ДВС
+    engineOilType       String? //Тип масла
+    engineOilVolume     String? //Объем масла
+    engineOilPartNumber String? //Оригинальный номер масла
+
+    automaticTransmissionOil           String? //Масло АКПП
+    automaticTransmissionOilType       String? //Тип масла
+    automaticTransmissionOilVolume     String? //Объем масла
+    automaticTransmissionOilPartNumber String? //Оригинальный номер масла
+
+    mechanicTransmissionOil           String? //Масло МКП
+    mechanicTransmissionOilType       String? //Тип масла
+    mechanicTransmissionOilVolume     String? //Объем масла
+    mechanicTransmissionOilPartNumber String? //Оригинальный номер масла
+
+    transferCaseOil           String? //Масло раздаточной коробки
+    transferCaseOilType       String? //Тип масла
+    transferCaseOilVolume     String? //Объем масла
+    transferCaseOilPartNumber String? //Оригинальный номер масла
+
+    frontAxleGearboxOil           String? //Масло редуктора переднего моста
+    frontAxleGearboxOilType       String? //Тип масла
+    frontAxleGearboxOilVolume     String? //Объем масла
+    frontAxleGearboxOilPartNumber String? //Оригинальный номер масла
+
+    rearAxleGearboxOil           String? //Масло редуктора заднего моста
+    rearAxleGearboxOilType       String? //Тип масла
+    rearAxleGearboxOilVolume     String? //Объем масла
+    rearAxleGearboxOilPartNumber String? //Оригинальный номер масла
+
+    antifreeze           String? //Антифриз
+    antifreezeType       String? //Цвет антифриза
+    antifreezeVolume     String? //Объем антифриза
+    antifreezePartNumber String? //Оригинальный номер антифриза
+
+    steeringFluid           String? //Жидкость ГУР
+    steeringFluidType       String? //Тип жидкость ГУР
+    steeringFluidVolume     String? //Объем жидкости ГУР
+    steeringFluidPartNumber String? //Оригинальный номер жидкости ГУР
+
+    clientTo   Clients @relation(fields: [clientToId], references: [id])
+    clientToId Int     @unique
 
     createdAt DateTime @default(now())
     updateAt  DateTime @updatedAt

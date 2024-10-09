@@ -1,47 +1,67 @@
-'use client'
-
 import React from 'react'
-import { useForm } from 'react-hook-form'
-import { ClientsWithCar } from '@/@types/prisma'
-import { TableClientsColumns } from '@/shared/constants/table'
-import { useIntl } from 'react-intl'
 import { Container } from '../container'
-import { cn } from '@/shared/lib/utils'
+import { ClientsWithCar } from '@/@types/prisma'
+import { IdCard, PhoneIcon, TagIcon, TruckIcon } from 'lucide-react'
+import { AccordionForm } from '../form'
 
 interface Props {
   client: ClientsWithCar
   className?: string
 }
 
-export const Client: React.FC<Props> = ({ client, className }) => {
-  const columns = TableClientsColumns()
-  const { formatMessage } = useIntl()
+export const ClientInfoPage: React.FC<Props> = ({ client, className }) => {
+  const filters = [
+    { label: 'Air Filter', value: client.clientCar?.airFilter },
+    { label: 'Oil Filter', value: client.clientCar?.oilFilter },
+    { label: 'Gas Filter', value: client.clientCar?.gasFilter },
+  ]
+
+  const brakes = [
+    { label: 'Front Brake', value: client.clientCar?.frontBrake },
+    { label: 'Rear Brake', value: client.clientCar?.rearBrake },
+  ]
+
+  const gear = [
+    { label: 'Передний сайленблок', value: 'j42031' },
+    { label: 'Задний сайленблок', value: 'j42030' },
+  ]
 
   return (
     <Container className='min-h-screen dark:bg-zinc-900 px-4 flex flex-col'>
-      <div className='mb-4'>база клиентов</div>
-      <div className='flex-1 flex gap-[80px]'>
+      <div className='mb-4 text-2xl font-bold'>База клиентов</div>
+      <div className='flex-1 flex gap-[60px]'>
         <Container>
-          <div className='w-[300px] p-7 mr-4 bg-[#fcfcfc] dark:bg-[#1b1b1b] rounded-sm shadow-md'>
-            <span className='text-lg font-bold'>Клиент</span>
-            <div className='mt-4'>
-              <div className='mb-2'>
-                <span className='font-semibold'>Имя:</span> {client.name}
+          <div className='w-[300px] p-5 mr-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg'>
+            <span className='text-xl font-bold text-gray-900 dark:text-white'>Клиент</span>
+            <div className='mt-4 space-y-4'>
+              <div className='flex items-center'>
+                <IdCard className='w-5 h-5 mr-2 text-gray-500' />
+                <span className='font-semibold text-gray-700 dark:text-gray-300'>Имя:</span>{' '}
+                {client.name} {client.lastName}
               </div>
-              <div className='mb-2'>
-                <span className='font-semibold'>Фамилия:</span> {client.lastName}
+              <div className='flex items-center'>
+                <PhoneIcon className='w-5 h-5 mr-2 text-gray-500' />
+                <span className='font-semibold text-gray-700 dark:text-gray-300'>
+                  Телефон:
+                </span>{' '}
+                {client.tel}
               </div>
-              <div className='mb-2'>
-                <span className='font-semibold'>Телефон:</span> {client.tel}
+              <div className='flex items-center'>
+                <TagIcon className='w-5 h-5 mr-2 text-gray-500' />
+                <span className='font-semibold text-gray-700 dark:text-gray-300'>VIN:</span>{' '}
+                {client.VIN}
               </div>
-              <div className='mb-2'>
-                <span className='font-semibold'>VIN:</span> {client.VIN}
+              <div className='flex items-center'>
+                <TruckIcon className='w-5 h-5 mr-2 text-gray-500' />
+                <span className='font-semibold text-gray-700 dark:text-gray-300'>
+                  Гос. номер:
+                </span>{' '}
+                {client.clientCar?.gosNumber || 'Не указан'}
               </div>
-              <div className='mb-2'>
-                <span className='font-semibold'>Гос. номер:</span> {clientCar.gosNumber}
-              </div>
-              <div className='mb-2'>
-                <span className='font-semibold'>Модель:</span> {clientCar.models}
+              <div className='flex items-center'>
+                <TruckIcon className='w-5 h-5 mr-2 text-gray-500' />
+                <span className='font-semibold text-gray-700 dark:text-gray-300'>Модель:</span>{' '}
+                {client.clientCar?.models || 'Не указана'}
               </div>
             </div>
           </div>
@@ -49,8 +69,15 @@ export const Client: React.FC<Props> = ({ client, className }) => {
 
         <div className='flex-1'>
           <Container>
-            <div className='flex flex-col gap-16'>
-              <p>adasdas</p>
+            <p className='text-2xl font-bold'>Запчасти</p>
+            <div className=' grid grid-cols-3 gap-4'>
+              <AccordionForm label='Фильтры' parts={filters} />
+              <AccordionForm label='Тормоза' parts={brakes} />
+              <AccordionForm label='Сайленблоки' parts={gear} />
+              <AccordionForm label='Шрусы' parts={filters} />
+              <AccordionForm label='Пыльник' parts={filters} />
+              <AccordionForm label='Тяжки' parts={filters} />
+              <AccordionForm label='Дворники' parts={filters} />
             </div>
           </Container>
         </div>

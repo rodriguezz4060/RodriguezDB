@@ -1,5 +1,6 @@
 import { prisma } from '@/prisma/prisma-client'
-import { Client } from '@/shared/components/shared'
+import { ClientInfoPage } from '@/shared/components/shared'
+
 import { notFound } from 'next/navigation'
 
 export default async function ClientPage({ params: { id } }: { params: { id: string } }) {
@@ -14,5 +15,5 @@ export default async function ClientPage({ params: { id } }: { params: { id: str
     return notFound()
   }
 
-  return <Client client={client}/>
+  return <ClientInfoPage client={client} />
 }

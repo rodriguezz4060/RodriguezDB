@@ -1,4 +1,14 @@
-import { bootDustCover, car, carBrand, form, type, name, mainButtonsData } from './constants'
+import {
+  bootDustCover,
+  car,
+  carBrand,
+  form,
+  type,
+  name,
+  mainButtonsData,
+  clientCarToSeed,
+  clientCarSeed,
+} from './constants'
 import { prisma } from './prisma-client'
 import { hashSync } from 'bcrypt'
 
@@ -109,37 +119,36 @@ async function up() {
     ],
   })
 
+  await prisma.clientCar.createMany({
+    data: clientCarSeed,
+  })
+
   // Создаем автомобили для клиентов
   const clientCar1 = await prisma.clientCar.create({
     data: {
-      oilFilter: 'Oil Filter 1',
-      airFilter: 'Air Filter 1',
-      gasFilter: 'Gas Filter 1',
-      frontBrake: 'Front Brake 1',
-      rearBrake: 'Rear Brake 1',
       client: {
         connect: { id: 1 },
       },
     },
   })
 
-  const clientCar2 = await prisma.clientCar.create({
+  await prisma.clientCarTo.createMany({
+    data: clientCarToSeed,
+  })
+
+  const clientCarTo1 = await prisma.clientCarTo.create({
     data: {
-      oilFilter: 'Oil Filter 2',
-      airFilter: 'Air Filter 2',
-      gasFilter: 'Gas Filter 2',
-      frontBrake: 'Front Brake 2',
-      rearBrake: 'Rear Brake 2',
-      client: {
-        connect: { id: 2 },
+      clientTo: {
+        connect: { id: 1 },
       },
     },
   })
+
   const car1 = await prisma.car.update({
     where: { id: 1 },
     data: {
       bootDustCover: {
-        connect: { id: 1 }, // Предположим, что это ID первого BootDustCover
+        connect: { id: 1 },
       },
     },
   })
@@ -158,11 +167,15 @@ async function down() {
   await prisma.$executeRaw`TRUNCATE TABLE "User" RESTART IDENTITY CASCADE`
   await prisma.$executeRaw`TRUNCATE TABLE "CarBrand" RESTART IDENTITY CASCADE`
   await prisma.$executeRaw`TRUNCATE TABLE "Car" RESTART IDENTITY CASCADE`
+  await prisma.$executeRaw`TRUNCATE TABLE "Name" RESTART IDENTITY CASCADE`
+  await prisma.$executeRaw`TRUNCATE TABLE "Form" RESTART IDENTITY CASCADE`
+  await prisma.$executeRaw`TRUNCATE TABLE "Type" RESTART IDENTITY CASCADE`
   await prisma.$executeRaw`TRUNCATE TABLE "BootDustCover" RESTART IDENTITY CASCADE`
   await prisma.$executeRaw`TRUNCATE TABLE "OilTo" RESTART IDENTITY CASCADE`
   await prisma.$executeRaw`TRUNCATE TABLE "OilToInfo" RESTART IDENTITY CASCADE`
   await prisma.$executeRaw`TRUNCATE TABLE "Clients" RESTART IDENTITY CASCADE`
   await prisma.$executeRaw`TRUNCATE TABLE "ClientCar" RESTART IDENTITY CASCADE`
+  await prisma.$executeRaw`TRUNCATE TABLE "ClientCarTo" RESTART IDENTITY CASCADE`
   await prisma.$executeRaw`TRUNCATE TABLE "MainButton" RESTART IDENTITY CASCADE`
 }
 
