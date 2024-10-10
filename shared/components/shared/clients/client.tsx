@@ -8,7 +8,8 @@ import { AccordionForm, FormTableClientTo } from '../form'
 import { FormProvider, useForm } from 'react-hook-form'
 import { MaintenanceDataTable, TableColumns } from '@/shared/constants/table-client-to'
 import { Title } from '../title'
-import { Separator } from '../../ui'
+import { Button, Separator } from '../../ui'
+import { ClientModal } from '../modals'
 
 interface Props {
   client: ClientsWithCar
@@ -17,6 +18,8 @@ interface Props {
 
 export const ClientInfoPage: React.FC<Props> = ({ client, className }) => {
   const methods = useForm()
+
+  const [openModal, setOpenModal] = React.useState(false)
 
   const engineTimingBelt = [
     { label: 'Цепь ГРМ', value: client.clientCar?.timingChainLong },
@@ -385,11 +388,6 @@ export const ClientInfoPage: React.FC<Props> = ({ client, className }) => {
     { label: 'Провода зажигания', value: client.clientCar?.ignitionWires },
   ]
 
-  const ignitionDistributor = [
-    { label: 'Front', value: client.clientCar?.frontBrake },
-    { label: 'Rear', value: client.clientCar?.rearBrake },
-  ]
-
   const trampler = [
     { label: 'Крышка трамблера', value: client.clientCar?.timingCover },
     { label: 'Бегунок', value: client.clientCar?.slider },
@@ -467,6 +465,14 @@ export const ClientInfoPage: React.FC<Props> = ({ client, className }) => {
               </div>
             </div>
           </div>
+
+          <ClientModal open={openModal} onClose={() => setOpenModal(false)} client={client} />
+          <Button
+            onClick={() => setOpenModal(true)}
+            className='text-base font-bold bg-[#4CAF50] hover:bg-[#388E3C] w-[300px] mt-5'
+          >
+            Запчасти ТО
+          </Button>
         </Container>
 
         <div className='flex-1 mb-10'>
@@ -569,16 +575,6 @@ export const ClientInfoPage: React.FC<Props> = ({ client, className }) => {
             </div>
             <Separator className='my-4' />
           </Container>
-
-          <FormProvider {...methods}>
-            <FormTableClientTo
-              name='maintenance'
-              label='Запчасти ТО'
-              required
-              data={maintenanceData}
-              columns={columns}
-            />
-          </FormProvider>
         </div>
       </div>
     </Container>
