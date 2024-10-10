@@ -1,4 +1,4 @@
-import { BootDustCover, Car, CarBrand, ClientCar, Clients } from '@prisma/client'
+import { BootDustCover, Car, CarBrand, ClientCar, ClientCarTo, Clients } from '@prisma/client'
 
 // Определяем тип для машины с брендом
 export type CarWithBrand = Car & {
@@ -35,4 +35,5 @@ export type ClientsCar = ClientCar & {}
 
 export type ClientsWithCar = Clients & {
   clientCar?: ClientCar | null
+  clientCarTo?: ClientCarTo | null
 }

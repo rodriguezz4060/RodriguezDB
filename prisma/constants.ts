@@ -178,42 +178,34 @@ export const mainButtonsData = [
 
 export const clientCarToSeed = {
   engineOil: '5W-30',
-  engineOilType: 'Synthetic',
   engineOilVolume: '4.5 liters',
   engineOilPartNumber: '123456789',
 
   automaticTransmissionOil: 'ATF Dexron VI',
-  automaticTransmissionOilType: 'Automatic Transmission Fluid',
   automaticTransmissionOilVolume: '8 liters',
   automaticTransmissionOilPartNumber: '987654321',
 
   mechanicTransmissionOil: '75W-90',
-  mechanicTransmissionOilType: 'Gear Oil',
   mechanicTransmissionOilVolume: '3 liters',
   mechanicTransmissionOilPartNumber: '456789123',
 
   transferCaseOil: '80W-90',
-  transferCaseOilType: 'Gear Oil',
   transferCaseOilVolume: '2 liters',
   transferCaseOilPartNumber: '321654987',
 
   frontAxleGearboxOil: '85W-140',
-  frontAxleGearboxOilType: 'Gear Oil',
   frontAxleGearboxOilVolume: '2.5 liters',
   frontAxleGearboxOilPartNumber: '654987321',
 
   rearAxleGearboxOil: '85W-140',
-  rearAxleGearboxOilType: 'Gear Oil',
   rearAxleGearboxOilVolume: '2.5 liters',
   rearAxleGearboxOilPartNumber: '789123456',
 
   antifreeze: 'G12',
-  antifreezeType: 'Green',
   antifreezeVolume: '5 liters',
   antifreezePartNumber: '159753852',
 
   steeringFluid: 'ATF Dexron III',
-  steeringFluidType: 'Power Steering Fluid',
   steeringFluidVolume: '1 liter',
   steeringFluidPartNumber: '357951258',
 

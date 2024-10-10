@@ -136,8 +136,8 @@ model Clients {
     VIN      String
     tel      String?
 
-    client   ClientCar?
-    clientTo ClientCarTo?
+    clientCar   ClientCar?
+    clientCarTo ClientCarTo?
 
     createdAt DateTime @default(now())
     updateAt  DateTime @updatedAt
@@ -174,6 +174,7 @@ model ClientCar {
     valveGuidesIn         String? //Направляющие клапана впуск
     valveGuidesEx         String? //Направляющие клапана выпуск
     bearingConnectingRod  String? //Вкладыш коренной
+    bearingCamshaft       String? //Вкладыш шатуна
     crankshaftCamberRings String? //Полукольца разбега коленвала
 
     generatorBelt              String? //Ремень генератора
@@ -193,7 +194,7 @@ model ClientCar {
     exhaustManifoldGasket String? //Прокладка выпускного коллектора
     exhaustPipeGasket1    String? //Прокладка выпускной трубы
     exhaustPipeGasket2    String? //Прокладка выпускной трубы до катализатора
-    exhaustPipeGasket3    String? //Прокладка выпускной трубы  после катализатора
+    exhaustPipeGasket3    String? //Прокладка выпускной трубы после катализатора
 
     frontLeftEngineCushion  String? //Подушка двигателя передняя левая
     frontRightEngineCushion String? //Подушка двигателя передняя правая
@@ -307,15 +308,16 @@ model ClientCar {
     rearBrake          String? //Задние колодки
     handbrakeBrakePads String? //Колодки ручника
 
-    brakeMasterCylinder String? //Тормозной цилиндр главный
-    slaveBrakeCylinder  String? //Тормозной цилиндр рабочий
-    drumBrakeCylinder   String? //Тормозной цилиндр барабанов
+    brakeMasterCylinder    String? //Тормозной цилиндр главный
+    slaveBrakeCylinder     String? //Тормозной цилиндр рабочий
+    drumBrakeCylinderLeft  String? //Тормозной цилиндр барабанов левый
+    drumBrakeCylinderRight String? //Тормозной цилиндр барабанов правый
 
     setOfFrontGuideRailsWithDustCovers   String? //Комплект передних направляющих с пыльниками
     setOfRearGuideRailsWithDustCovers    String? //Комплект задних направляющих с пыльниками
-    InstallationKitForFrontPads          String? //Установочный комплект на передние колодки 
-    InstallationKitForRearPads           String? //Установочный комплект на задние колодки 
-    InstallationKitForHandbrakeBrakePads String? //Установочный комплект на барабаны
+    installationKitForFrontPads          String? //Установочный комплект на передние колодки 
+    installationKitForRearPads           String? //Установочный комплект на задние колодки 
+    installationKitForHandbrakeBrakePads String? //Установочный комплект на барабаны
     frontCaliperRepairKit                String? //Ремкомплект переднего суппорта 
     frontCaliperRepairKitWithPiston      String? //Ремкомплект переднего суппорта с поршнями
     rearCaliperRepairKit                 String? //Ремкомплект заднего суппорта 
@@ -339,11 +341,13 @@ model ClientCar {
     rearLeftInnerBallJoint  String? //ШРУС задний внутренний левый
     rearRightInnerBallJoint String? //ШРУС задний внутренний правый
 
-    automaticTransmissionOilPanGasket String? //Прокладка поддона АКПП
-    automaticTransmissionFilter       String? //Фильтр АКПП
-    automaticTransmissionFillerGasket String? //Прокладка фильтра АКПП
-    transmissionDrainPlug             String? //Сливная пробка АКПП
-    transmissionDrainPlugGasket       String? //Прокладка сливной пробки АКПП
+    automaticTransmissionOilPanGasket  String? //Прокладка поддона АКПП
+    automaticTransmissionFilter        String? //Фильтр АКПП
+    automaticTransmissionFillerGasket  String? //Прокладка фильтра АКПП
+    automaticTransmissionOilPanGasket2 String? //Прокладка фильтра АКПП
+    automaticTransmissionFilter2       String? //Фильтр маленький АКПП
+    transmissionDrainPlug              String? //Сливная пробка АКПП
+    transmissionDrainPlugGasket        String? //Прокладка сливной пробки АКПП
 
     suspensionBearing String? //Подвесной подшипник
 
@@ -378,7 +382,7 @@ model ClientCar {
     heaterRadiator         String? //Радиатор отопителя
     airConditionerRadiator String? //Радиатор кондиционера
     upperPipe              String? //Патрубок верхний
-    lowerPipe              String? //Патрубок верхний
+    lowerPipe              String? //Патрубок нижний
     radiatorCap            String? //Крышка радиатора
     expansionTankCap       String? //Крышка расширительного бачка
 
@@ -399,8 +403,12 @@ model ClientCar {
     mainHeadlightBulbs     String? //Лампочки основной фары
     fogLightBulbs          String? //Лампочки противотуманных фар
 
-    sparkPlug    String? //Свеча зажигания
-    ignitionCoil String? //Катушка зажигания
+    sparkPlug     String? //Свеча зажигания
+    ignitionCoil  String? //Катушка зажигания
+    ignitionWires String? //Провода зажигания
+
+    timingCover String? //Крышка трамблера
+    slider      String? //Бегунок
 
     lambdaProbe1 String? //лямбда зонд1
     lambdaProbe2 String? //лямбда зонд2
@@ -426,47 +434,40 @@ model ClientCarTo {
     id Int @id @default(autoincrement())
 
     engineOil           String? //Масло ДВС
-    engineOilType       String? //Тип масла
     engineOilVolume     String? //Объем масла
     engineOilPartNumber String? //Оригинальный номер масла
 
     automaticTransmissionOil           String? //Масло АКПП
-    automaticTransmissionOilType       String? //Тип масла
-    automaticTransmissionOilVolume     String? //Объем масла
+    automaticTransmissionOilVolume1    String? //Объем масла частичный
+    automaticTransmissionOilVolume2    String? //Объем масла полный
     automaticTransmissionOilPartNumber String? //Оригинальный номер масла
 
     mechanicTransmissionOil           String? //Масло МКП
-    mechanicTransmissionOilType       String? //Тип масла
     mechanicTransmissionOilVolume     String? //Объем масла
     mechanicTransmissionOilPartNumber String? //Оригинальный номер масла
 
     transferCaseOil           String? //Масло раздаточной коробки
-    transferCaseOilType       String? //Тип масла
     transferCaseOilVolume     String? //Объем масла
     transferCaseOilPartNumber String? //Оригинальный номер масла
 
     frontAxleGearboxOil           String? //Масло редуктора переднего моста
-    frontAxleGearboxOilType       String? //Тип масла
     frontAxleGearboxOilVolume     String? //Объем масла
     frontAxleGearboxOilPartNumber String? //Оригинальный номер масла
 
     rearAxleGearboxOil           String? //Масло редуктора заднего моста
-    rearAxleGearboxOilType       String? //Тип масла
     rearAxleGearboxOilVolume     String? //Объем масла
     rearAxleGearboxOilPartNumber String? //Оригинальный номер масла
 
-    antifreeze           String? //Антифриз
-    antifreezeType       String? //Цвет антифриза
+    antifreeze           String? //Цвет антифриза
     antifreezeVolume     String? //Объем антифриза
     antifreezePartNumber String? //Оригинальный номер антифриза
 
     steeringFluid           String? //Жидкость ГУР
-    steeringFluidType       String? //Тип жидкость ГУР
     steeringFluidVolume     String? //Объем жидкости ГУР
     steeringFluidPartNumber String? //Оригинальный номер жидкости ГУР
 
-    clientTo   Clients @relation(fields: [clientToId], references: [id])
-    clientToId Int     @unique
+    clientTo   Clients? @relation(fields: [clientToId], references: [id])
+    clientToId Int      @unique
 
     createdAt DateTime @default(now())
     updateAt  DateTime @updatedAt
