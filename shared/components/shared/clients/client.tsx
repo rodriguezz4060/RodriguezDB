@@ -430,45 +430,46 @@ export const ClientInfoPage: React.FC<Props> = ({ client, className }) => {
   return (
     <Container className='min-h-screen dark:bg-zinc-900 px-4 flex flex-col'>
       <div className='mb-4 text-2xl font-bold'>База клиентов</div>
-      <div className='flex-1 flex gap-[60px]'>
+      <div className='flex-1 flex gap-[20px]'>
         <Container>
-          <div className='w-[300px] p-5 mr-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg'>
+          <div className='w-[300px] p-5 mr-2 bg-white dark:bg-gray-800 rounded-sm shadow-lg'>
             <span className='text-xl font-bold text-gray-900 dark:text-white'>Клиент</span>
             <div className='mt-4 space-y-4'>
-              <div className='flex items-center'>
+              <div className='flex items-center flex-1'>
                 <IdCard className='w-5 h-5 mr-2 text-gray-500' />
                 <span className='font-semibold text-gray-700 dark:text-gray-300'>Имя:</span>{' '}
+                <div className='flex-1 border-b border-dashed border-b-neutral-200 relative top-1 mx-2' />
                 {client.name} {client.lastName}
               </div>
               <div className='flex items-center'>
                 <PhoneIcon className='w-5 h-5 mr-2 text-gray-500' />
-                <span className='font-semibold text-gray-700 dark:text-gray-300'>
-                  Телефон:
-                </span>{' '}
+                <span className='font-semibold text-gray-700 dark:text-gray-300'>Телефон:</span>
+                <div className='flex-1 border-b border-dashed border-b-neutral-200 relative top-1 mx-2' />
                 {client.tel}
               </div>
               <div className='flex items-center'>
                 <TagIcon className='w-5 h-5 mr-2 text-gray-500' />
-                <span className='font-semibold text-gray-700 dark:text-gray-300'>VIN:</span>{' '}
+                <span className='font-semibold text-gray-700 dark:text-gray-300'>VIN:</span>
+                <div className='flex-1 border-b border-dashed border-b-neutral-200 relative top-1 mx-2' />
                 {client.VIN}
               </div>
               <div className='flex items-center'>
                 <TruckIcon className='w-5 h-5 mr-2 text-gray-500' />
-                <span className='font-semibold text-gray-700 dark:text-gray-300'>
-                  Гос. номер:
-                </span>{' '}
+                <span className='font-semibold text-gray-700 dark:text-gray-300'>Гос. номер:</span>
+                <div className='flex-1 border-b border-dashed border-b-neutral-200 relative top-1 mx-2' />
                 {client.clientCar?.gosNumber || 'Не указан'}
               </div>
               <div className='flex items-center'>
                 <TruckIcon className='w-5 h-5 mr-2 text-gray-500' />
-                <span className='font-semibold text-gray-700 dark:text-gray-300'>Модель:</span>{' '}
+                <span className='font-semibold text-gray-700 dark:text-gray-300'>Модель:</span>
+                <div className='flex-1 border-b border-dashed border-b-neutral-200 relative top-1 mx-2' />
                 {client.clientCar?.models || 'Не указана'}
               </div>
             </div>
           </div>
         </Container>
 
-        <div className='flex-1'>
+        <div className='flex-1 mb-10'>
           <Container>
             <Title text='Двигатель и Система выхлопа' size='md' className='font-extrabold ' />
             <Separator />
@@ -566,6 +567,7 @@ export const ClientInfoPage: React.FC<Props> = ({ client, className }) => {
               <AccordionForm label='Дворники' parts={wipers} />
               <AccordionForm label='Амортизаторы капота' parts={hoodShockAbsorbers} />
             </div>
+            <Separator className='my-4' />
           </Container>
 
           <FormProvider {...methods}>

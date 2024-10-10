@@ -17,10 +17,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const [locale, setLocale] = useState<string>('en')
+  const [locale, setLocale] = useState<string>('ua')
 
   useEffect(() => {
-    const userLang = navigator.language.split('-')[0] || 'en'
+    const userLang = navigator.language.split('-')[0] || 'ua'
     setLocale(userLang)
   }, [])
 

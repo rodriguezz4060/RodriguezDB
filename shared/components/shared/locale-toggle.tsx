@@ -36,7 +36,7 @@ export const LocaleToggle: React.FC<Props> = ({ className }) => {
         />
       </SelectTrigger>
       <SelectContent className='bg-secondary '>
-        <SelectItem value='en' className='font-bold '>
+        <SelectItem value='ua' className='font-bold '>
           Українська
         </SelectItem>
         <SelectItem value='ru' className='font-bold'>
