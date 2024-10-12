@@ -439,7 +439,6 @@ model ClientCarTo {
 
     automaticTransmissionOil           String? //Масло АКПП
     automaticTransmissionOilVolume1    String? //Объем масла частичный
-    automaticTransmissionOilVolume2    String? //Объем масла полный
     automaticTransmissionOilPartNumber String? //Оригинальный номер масла
 
     mechanicTransmissionOil           String? //Масло МКП

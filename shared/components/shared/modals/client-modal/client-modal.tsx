@@ -32,7 +32,7 @@ export const ClientModal: React.FC<Props> = ({ open, onClose, className, client 
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent
         className={cn(
-          'w-[1060px] max-w-[1060px] min-h-[510px] bg-[#fcfcfc] dark:bg-zinc-900',
+          'w-[1060px] max-w-[1060px] min-h-[510px] bg-[#fcfcfc] dark:bg-zinc-900 flex flex-col',
           className
         )}
         aria-describedby={undefined}
@@ -45,6 +45,7 @@ export const ClientModal: React.FC<Props> = ({ open, onClose, className, client 
             required
             data={maintenanceData}
             columns={columns}
+            className='flex-grow'
           />
         </FormProvider>
       </DialogContent>

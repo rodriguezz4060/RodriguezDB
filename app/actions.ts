@@ -3,6 +3,8 @@
 import { prisma } from '@/prisma/prisma-client'
 import { TFormAddBootDustCoverSchema } from '@/shared/components/shared/add-forms/schemas/add-boot-schemas'
 import { TFormCarSchema } from '@/shared/components/shared/add-forms/schemas/add-car-schemas'
+import { TFormAddClientSchema } from '@/shared/components/shared/clients/schemas/add-client-schemas'
+import { TFormEditClientCarToSchema } from '@/shared/components/shared/clients/schemas/edit-client-to-schemas'
 import { getUserSession } from '@/shared/lib/get-user-session'
 import { Prisma } from '@prisma/client'
 import { hashSync } from 'bcrypt'
@@ -226,4 +228,45 @@ export const linkCarToBootDustCover = async (bootDustCoverId: number, carId: num
   if (!response.ok) {
     throw new Error('Failed to link car to boot dust cover')
   }
+}
+
+export async function createClient(data: TFormAddClientSchema): Promise<void> {
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'
+    const url = `${baseUrl}/api/clients`
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    if (!response.ok) {
+      const errorData = await response.json()
+      throw new Error(errorData.error || 'Failed to create client')
+    }
+  } catch (error) {
+    console.error('Error creating client:', error)
+    throw error
+  }
+}
+
+export const updateClientCarTo = async (data: TFormEditClientCarToSchema) => {
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000' // Убедитесь, что эта переменная определена в вашем .env файле
+  const url = `${baseUrl}/api/clients/edit/to`
+
+  const response = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to update client car to')
+  }
+
+  return await response.json()
 }

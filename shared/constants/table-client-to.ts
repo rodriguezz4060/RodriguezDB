@@ -2,6 +2,12 @@ import { useIntl } from 'react-intl'
 
 export const MaintenanceDataTable = (clientCarTo: any) => {
   const { formatMessage } = useIntl()
+
+  // Функция для проверки, является ли значение пустым
+  const isEmpty = (value: string) => {
+    return value === null || value === undefined || value.trim() === ''
+  }
+
   const tableMaintenanceData = [
     {
       type: 'Масло ДВС',
@@ -13,10 +19,7 @@ export const MaintenanceDataTable = (clientCarTo: any) => {
       type: 'Масло АКПП',
       partNumber: clientCarTo.automaticTransmissionOilPartNumber,
       viscosityIndex: clientCarTo.automaticTransmissionOil,
-      volume:
-        clientCarTo.automaticTransmissionOilVolume1 ||
-        clientCarTo.automaticTransmissionOilVolume2 ||
-        'Не указан',
+      volume: clientCarTo.automaticTransmissionOilVolume1,
     },
     {
       type: 'Масло МКПП',
@@ -50,12 +53,15 @@ export const MaintenanceDataTable = (clientCarTo: any) => {
     },
     {
       type: 'Жидкость ГУР',
-      name: clientCarTo.steeringFluid,
       partNumber: clientCarTo.steeringFluidPartNumber,
       viscosityIndex: clientCarTo.steeringFluid,
       volume: clientCarTo.steeringFluidVolume,
     },
-  ]
+  ].filter(item => {
+    // Проверяем, что хотя бы одно поле не пустое
+    return !isEmpty(item.partNumber) || !isEmpty(item.viscosityIndex) || !isEmpty(item.volume)
+  })
+
   return tableMaintenanceData
 }
 
