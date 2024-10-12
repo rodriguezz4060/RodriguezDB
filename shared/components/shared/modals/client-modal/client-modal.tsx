@@ -9,6 +9,7 @@ import { useIntl } from 'react-intl'
 import { TableColumns } from '@/shared/constants/table-client-to'
 import { MaintenanceDataTable } from '@/shared/constants/table-client-to'
 import { ClientsWithCar } from '@/@types/prisma'
+import { ScrollArea } from '@/shared/components/ui'
 
 interface Props {
   open: boolean
@@ -22,7 +23,7 @@ export const ClientModal: React.FC<Props> = ({ open, onClose, className, client 
   const columns = TableColumns()
   const methods = useForm()
 
-  const maintenanceData = MaintenanceDataTable(client.clientCarTo)
+  const maintenanceData = MaintenanceDataTable(client.clientCarTo, client.clientCar)
 
   const handleClose = () => {
     onClose()
@@ -38,16 +39,18 @@ export const ClientModal: React.FC<Props> = ({ open, onClose, className, client 
         aria-describedby={undefined}
       >
         <DialogTitle className='text-[30px]'>Запчасти ТО</DialogTitle>
-        <FormProvider {...methods}>
-          <FormTableClientTo
-            name='maintenance'
-            label=''
-            required
-            data={maintenanceData}
-            columns={columns}
-            className='flex-grow'
-          />
-        </FormProvider>
+        <ScrollArea className='h-[510px] rounded-md border'>
+          <FormProvider {...methods}>
+            <FormTableClientTo
+              name='maintenance'
+              label=''
+              required
+              data={maintenanceData}
+              columns={columns}
+              className='flex-grow'
+            />
+          </FormProvider>
+        </ScrollArea>
       </DialogContent>
     </Dialog>
   )

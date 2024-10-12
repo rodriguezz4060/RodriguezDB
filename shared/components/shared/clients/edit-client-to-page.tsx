@@ -69,11 +69,35 @@ export const EditClientToPage: React.FC<Props> = ({ client }) => {
       steeringFluid: client.clientCarTo?.steeringFluid ?? '',
       steeringFluidVolume: client.clientCarTo?.steeringFluidVolume ?? '',
       steeringFluidPartNumber: client.clientCarTo?.steeringFluidPartNumber ?? '',
+
+      // Новые поля
+
+      frontBrake: client.clientCar?.frontBrake ?? '',
+      rearBrake: client.clientCar?.rearBrake ?? '',
+      handbrakeBrakePads: client.clientCar?.handbrakeBrakePads ?? '',
+      waterPump: client.clientCar?.waterPump ?? '',
+      thermostat: client.clientCar?.thermostat ?? '',
+      sparkPlug: client.clientCar?.sparkPlug ?? '',
+      driversWiper: client.clientCar?.driversWiper ?? '',
+      passengerWiper: client.clientCar?.passengerWiper ?? '',
+      oilFilter: client.clientCar?.oilFilter ?? '',
+      airFilter: client.clientCar?.airFilter ?? '',
+      fuelFilter: client.clientCar?.fuelFilter ?? '',
+      cabinFilter: client.clientCar?.cabinFilter ?? '',
+      automaticTransmissionOilPanGasket: client.clientCar?.automaticTransmissionOilPanGasket ?? '',
+      automaticTransmissionFilter: client.clientCar?.automaticTransmissionFilter ?? '',
+      automaticTransmissionFillerGasket: client.clientCar?.automaticTransmissionFillerGasket ?? '',
+      automaticTransmissionOilPanGasket2:
+        client.clientCar?.automaticTransmissionOilPanGasket2 ?? '',
+      automaticTransmissionFilter2: client.clientCar?.automaticTransmissionFilter2 ?? '',
+      transmissionDrainPlug: client.clientCar?.transmissionDrainPlug ?? '',
+      transmissionDrainPlugGasket: client.clientCar?.transmissionDrainPlugGasket ?? '',
     },
   })
 
   const onSubmit = async (data: TFormEditClientCarToSchema) => {
     try {
+      console.log('Submitting data:', data) // Логирование данных
       await updateClientCarTo(data)
 
       toast.success('Данные клиента обновлены 🚗', {
@@ -154,6 +178,27 @@ export const EditClientToPage: React.FC<Props> = ({ client }) => {
           <FormInput name='steeringFluid' label='Жидкость ГУР' />
           <FormInput name='steeringFluidVolume' label='Объем жидкости ГУР' />
           <FormInput name='steeringFluidPartNumber' label='Оригинальный номер жидкости ГУР' />
+
+          {/* Новые поля */}
+          <FormInput name='frontBrake' label='Передние колодки' />
+          <FormInput name='rearBrake' label='Задние колодки' />
+          <FormInput name='handbrakeBrakePads' label='Колодки ручника' />
+          <FormInput name='waterPump' label='Водяная помпа' />
+          <FormInput name='thermostat' label='Термостат' />
+          <FormInput name='sparkPlug' label='Свеча зажигания' />
+          <FormInput name='driversWiper' label='Дворник водителя' />
+          <FormInput name='passengerWiper' label='Дворник пассажира' />
+          <FormInput name='oilFilter' label='Масляный фильтр' />
+          <FormInput name='airFilter' label='Воздушный фильтр' />
+          <FormInput name='fuelFilter' label='Топливный фильтр' />
+          <FormInput name='cabinFilter' label='Фильтр салона' />
+          <FormInput name='automaticTransmissionOilPanGasket' label='Прокладка поддона АКПП' />
+          <FormInput name='automaticTransmissionFilter' label='Фильтр АКПП' />
+          <FormInput name='automaticTransmissionFillerGasket' label='Прокладка фильтра АКПП' />
+          <FormInput name='automaticTransmissionOilPanGasket2' label='Прокладка фильтра АКПП' />
+          <FormInput name='automaticTransmissionFilter2' label='Фильтр маленький АКПП' />
+          <FormInput name='transmissionDrainPlug' label='Сливная пробка АКПП' />
+          <FormInput name='transmissionDrainPlugGasket' label='Прокладка сливной пробки АКПП' />
 
           <Button disabled={form.formState.isSubmitting} className='text-base mt-10' type='submit'>
             Сохранить

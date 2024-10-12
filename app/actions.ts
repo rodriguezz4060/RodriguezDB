@@ -256,6 +256,8 @@ export const updateClientCarTo = async (data: TFormEditClientCarToSchema) => {
   const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000' // Убедитесь, что эта переменная определена в вашем .env файле
   const url = `${baseUrl}/api/clients/edit/to`
 
+  console.log('Sending data to server:', data) // Логирование данных
+
   const response = await fetch(url, {
     method: 'PUT',
     headers: {

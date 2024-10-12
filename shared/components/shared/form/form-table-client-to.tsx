@@ -76,7 +76,7 @@ export const FormTableClientTo: React.FC<Props> = ({
                       {column.key === 'actions' ? (
                         getValue(item, 'partNumber') ? (
                           <Button
-                            className='ml-9'
+                            className='ml-4'
                             variant={'link'}
                             size={'icon'}
                             onClick={() =>
@@ -89,7 +89,7 @@ export const FormTableClientTo: React.FC<Props> = ({
                               )
                             }
                           >
-                            Стоимость масла
+                            Стоимость
                           </Button>
                         ) : null
                       ) : (

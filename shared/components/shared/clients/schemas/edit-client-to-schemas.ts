@@ -33,6 +33,26 @@ export const formEditClientCarToSchema = z.object({
   steeringFluid: z.string().optional(),
   steeringFluidVolume: z.string().optional(),
   steeringFluidPartNumber: z.string().optional(),
+
+  frontBrake: z.string().optional(),
+  rearBrake: z.string().optional(),
+  handbrakeBrakePads: z.string().optional(),
+  waterPump: z.string().optional(),
+  thermostat: z.string().optional(),
+  sparkPlug: z.string().optional(),
+  driversWiper: z.string().optional(),
+  passengerWiper: z.string().optional(),
+  oilFilter: z.string().optional(),
+  airFilter: z.string().optional(),
+  fuelFilter: z.string().optional(),
+  cabinFilter: z.string().optional(),
+  automaticTransmissionOilPanGasket: z.string().optional(),
+  automaticTransmissionFilter: z.string().optional(),
+  automaticTransmissionFillerGasket: z.string().optional(),
+  automaticTransmissionOilPanGasket2: z.string().optional(),
+  automaticTransmissionFilter2: z.string().optional(),
+  transmissionDrainPlug: z.string().optional(),
+  transmissionDrainPlugGasket: z.string().optional(),
 })
 
 export type TFormEditClientCarToSchema = z.infer<typeof formEditClientCarToSchema>

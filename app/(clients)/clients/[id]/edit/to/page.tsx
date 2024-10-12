@@ -8,6 +8,7 @@ export default async function ClientPage({ params: { id } }: { params: { id: str
     where: { id: Number(id) },
     include: {
       clientCarTo: true,
+      clientCar: true,
     },
   })
 
