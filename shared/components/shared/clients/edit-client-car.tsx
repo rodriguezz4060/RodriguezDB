@@ -18,7 +18,6 @@ import {
 import { updateClientCar } from '@/app/actions'
 import { SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../ui/select'
 import { BackButton } from '../buttons'
-import { EngineTimingBelt } from '@/shared/constants/client-car'
 import { AccordionContent, AccordionItem, AccordionTrigger } from '../../ui/accordion'
 
 interface Props {

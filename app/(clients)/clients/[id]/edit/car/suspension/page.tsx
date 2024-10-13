@@ -1,14 +1,13 @@
 import { prisma } from '@/prisma/prisma-client'
-import { ClientInfoPage } from '@/shared/components/shared'
 
 import { notFound } from 'next/navigation'
+import { SuspensionForm } from './suspension-form'
 
 export default async function ClientPage({ params: { id } }: { params: { id: string } }) {
   const client = await prisma.clients.findFirst({
     where: { id: Number(id) },
     include: {
       clientCar: true,
-      clientCarTo: true,
     },
   })
 
@@ -16,5 +15,5 @@ export default async function ClientPage({ params: { id } }: { params: { id: str
     return notFound()
   }
 
-  return <ClientInfoPage client={client} />
+  return <SuspensionForm />
 }

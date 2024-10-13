@@ -1,7 +1,9 @@
 import { prisma } from '@/prisma/prisma-client'
 import { EditClientCarPage } from '@/shared/components/shared'
+import CarEditLayout from './layout'
 
 import { notFound } from 'next/navigation'
+import { EngineForm } from './engine-form'
 
 export default async function ClientPage({ params: { id } }: { params: { id: string } }) {
   const client = await prisma.clients.findFirst({
@@ -15,5 +17,5 @@ export default async function ClientPage({ params: { id } }: { params: { id: str
     return notFound()
   }
 
-  return <EditClientCarPage client={client} />
+  return <EngineForm client={client} />
 }
