@@ -12,13 +12,23 @@ interface AccordionProps {
 }
 
 export const AccordionForm: React.FC<AccordionProps> = ({ label, parts }) => {
+  // Фильтруем части, чтобы исключить те, у которых значение null или undefined
+  const filteredParts = parts.filter(
+    part => part.value !== null && part.value !== undefined && part.value !== ''
+  )
+
+  // Если после фильтрации не осталось частей, не рендерим аккордеон
+  if (filteredParts.length === 0) {
+    return null
+  }
+
   return (
     <Accordion type='single' collapsible>
       <AccordionItem value={label}>
         <AccordionTrigger>{label}</AccordionTrigger>
         <AccordionContent>
           <ul className='space-y-2'>
-            {parts.map((part, index) => (
+            {filteredParts.map((part, index) => (
               <li key={index} className='flex justify-between'>
                 <span className='font-semibold text-gray-700 dark:text-gray-300'>
                   {part.label}:

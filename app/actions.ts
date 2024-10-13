@@ -4,6 +4,7 @@ import { prisma } from '@/prisma/prisma-client'
 import { TFormAddBootDustCoverSchema } from '@/shared/components/shared/add-forms/schemas/add-boot-schemas'
 import { TFormCarSchema } from '@/shared/components/shared/add-forms/schemas/add-car-schemas'
 import { TFormAddClientSchema } from '@/shared/components/shared/clients/schemas/add-client-schemas'
+import { TFormEditClientCarSchema } from '@/shared/components/shared/clients/schemas/edit-client-car-schemas'
 import { TFormEditClientCarToSchema } from '@/shared/components/shared/clients/schemas/edit-client-to-schemas'
 import { getUserSession } from '@/shared/lib/get-user-session'
 import { Prisma } from '@prisma/client'
@@ -253,8 +254,29 @@ export async function createClient(data: TFormAddClientSchema): Promise<void> {
 }
 
 export const updateClientCarTo = async (data: TFormEditClientCarToSchema) => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000' // Убедитесь, что эта переменная определена в вашем .env файле
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'
   const url = `${baseUrl}/api/clients/edit/to`
+
+  console.log('Sending data to server:', data) // Логирование данных
+
+  const response = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to update client car to')
+  }
+
+  return await response.json()
+}
+
+export const updateClientCar = async (data: TFormEditClientCarSchema) => {
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'
+  const url = `${baseUrl}/api/clients/edit/car`
 
   console.log('Sending data to server:', data) // Логирование данных
 

@@ -1,6 +1,4 @@
 import { prisma } from '@/prisma/prisma-client'
-import { TFormEditClientCarToSchema } from '@/shared/components/shared/clients/schemas/edit-client-to-schemas'
-import { NextApiRequest, NextApiResponse } from 'next'
 import { NextResponse } from 'next/server'
 
 export async function GET() {
