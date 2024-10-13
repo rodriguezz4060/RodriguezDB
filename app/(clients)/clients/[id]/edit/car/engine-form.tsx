@@ -14,7 +14,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/shared/components/ui/select'
+import { Tabs, TabsContent, TabsTrigger } from '@/shared/components/ui/tabs'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { TabsList } from '@radix-ui/react-tabs'
 import { useState } from 'react'
 import { Form, FormProvider, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -117,35 +119,55 @@ export function EngineForm({ client }: Props) {
   return (
     <FormProvider {...form}>
       <form className='gap-5' onSubmit={form.handleSubmit(onSubmit)}>
-        <div className='flex justify-end'>
-          <Select value={engineType} onValueChange={handleEngineTypeChange}>
-            <SelectTrigger className='w-[180px] mb-1 '>
-              <SelectValue placeholder='Выберите тип' />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value='belt'>Ремень</SelectItem>
-              <SelectItem value='chain'>Цепь</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        {engineType === 'belt' && (
-          <div>
-            <FormInput name='timingBelt' label='Ремень ГРМ' />
-            <FormInput name='timingBeltTensioner' label='Натяжитель ремня ГРМ' />
-            <FormInput name='timingBeltRoller' label='Паразитный ролик ремня ГРМ' />
-          </div>
-        )}
+        <Tabs defaultValue='account' className=''>
+          <TabsList>
+            <TabsTrigger value='grm'>ГРМ</TabsTrigger>
+            <TabsTrigger value='piston'>Двигатель и поршневая</TabsTrigger>
+          </TabsList>
+          <TabsContent value='grm'>
+            <div className='flex justify-end'>
+              <Select value={engineType} onValueChange={handleEngineTypeChange}>
+                <SelectTrigger className='w-[180px] mb-1 '>
+                  <SelectValue placeholder='Выберите тип' />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value='belt'>Ремень</SelectItem>
+                  <SelectItem value='chain'>Цепь</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            {engineType === 'belt' && (
+              <div>
+                <FormInput name='timingBelt' label='Ремень ГРМ' />
+                <FormInput name='timingBeltTensioner' label='Натяжитель ремня ГРМ' />
+                <FormInput name='timingBeltRoller' label='Паразитный ролик ремня ГРМ' />
+              </div>
+            )}
 
-        {engineType === 'chain' && (
-          <div>
-            <FormInput name='timingChainLong' label='Цепь ГРМ' />
-            <FormInput name='timingChainShort' label='Короткая цепь' />
-            <FormInput name='chainTensioner1' label='Гидронатяжитель цепи 1' />
-            <FormInput name='chainTensioner2' label='Гидронатяжитель цепи 2' />
-            <FormInput name='chainTensioner3' label='Башмак' />
-            <FormInput name='chainKit' label='Набор цепей' />
-          </div>
-        )}
+            {engineType === 'chain' && (
+              <div>
+                <FormInput name='timingChainLong' label='Цепь ГРМ' />
+                <FormInput name='timingChainShort' label='Короткая цепь' />
+                <FormInput name='chainTensioner1' label='Гидронатяжитель цепи 1' />
+                <FormInput name='chainTensioner2' label='Гидронатяжитель цепи 2' />
+                <FormInput name='chainTensioner3' label='Башмак' />
+                <FormInput name='chainKit' label='Набор цепей' />
+              </div>
+            )}
+          </TabsContent>
+          <TabsContent value='piston'>
+            <FormInput name='pistons' label='Поршня' />
+            <FormInput name='pistonsRings' label='Поршневые кольца' />
+            <FormInput name='hydrocompensators' label='Гидрокомпенсаторы' />
+            <FormInput name='valveIn' label='Клапана впуск' />
+            <FormInput name='valveEx' label='Клапана выпуск' />
+            <FormInput name='valveGuidesIn' label='Направляющие клапана впуск' />
+            <FormInput name='valveGuidesEx' label='Направляющие клапана выпуск' />
+            <FormInput name='bearingConnectingRod' label='Вкладыш коренной' />
+            <FormInput name='bearingCamshaft' label='Вкладыш шатуна' />
+            <FormInput name='crankshaftCamberRings' label='Полукольца разбега коленвала' />
+          </TabsContent>
+        </Tabs>
 
         <Button
           disabled={form.formState.isSubmitting}
