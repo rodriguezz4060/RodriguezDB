@@ -347,6 +347,7 @@ export const EditClientCarPage: React.FC<Props> = ({ client }) => {
       </div>
       <FormProvider {...form}>
         <form className='grid gap-5 mt-10' onSubmit={form.handleSubmit(onSubmit)}>
+          {/* Двигатель и Система выхлопа */}
           <Accordion type='single' collapsible className='w-full'>
             <AccordionItem value='main'>
               <AccordionTrigger className='text-lg font-extrabold'>
@@ -554,6 +555,7 @@ export const EditClientCarPage: React.FC<Props> = ({ client }) => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+          {/* Подвеска и Рулевое */}
           <Accordion type='single' collapsible className='w-full'>
             <AccordionItem value='suspensionSteering'>
               <AccordionTrigger className='text-lg font-extrabold'>
@@ -898,6 +900,7 @@ export const EditClientCarPage: React.FC<Props> = ({ client }) => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+          {/* Тормозная система */}
           <Accordion type='single' collapsible className='w-full'>
             <AccordionItem value='suspensionSteering'>
               <AccordionTrigger className='text-lg font-extrabold'>
@@ -1057,6 +1060,7 @@ export const EditClientCarPage: React.FC<Props> = ({ client }) => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+          {/* Коробка передач и Привод */}
           <Accordion type='single' collapsible className='w-full'>
             <AccordionItem value='suspensionSteering'>
               <AccordionTrigger className='text-lg font-extrabold'>
@@ -1238,7 +1242,7 @@ export const EditClientCarPage: React.FC<Props> = ({ client }) => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-
+          {/* Охлаждение и Отопление */}
           <Accordion type='single' collapsible className='w-full'>
             <AccordionItem value='suspensionSteering'>
               <AccordionTrigger className='text-lg font-extrabold'>
@@ -1268,7 +1272,7 @@ export const EditClientCarPage: React.FC<Props> = ({ client }) => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-
+          {/* Электрика и Освещение */}
           <Accordion type='single' collapsible className='w-full'>
             <AccordionItem value='suspensionSteering'>
               <AccordionTrigger className='text-lg font-extrabold'>
@@ -1368,7 +1372,7 @@ export const EditClientCarPage: React.FC<Props> = ({ client }) => {
 
           <Button
             disabled={form.formState.isSubmitting}
-            className='text-base mt-10 mb-10 col-span-full'
+            className='text-base mt-10 col-span-full'
             type='submit'
           >
             Сохранить
