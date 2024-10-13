@@ -5,8 +5,11 @@ import { useFormContext } from 'react-hook-form'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../ui/table'
 import { ErrorText } from '../error-text'
 import { Button } from '../../ui'
+import { Title } from '../title'
+import { EditClientCarTo } from '../buttons'
 
 interface Props {
+  clientId: number
   name: string
   label?: string
   required?: boolean
@@ -17,6 +20,7 @@ interface Props {
 
 export const FormTableClientTo: React.FC<Props> = ({
   className,
+  clientId,
   name,
   label,
   required,
@@ -57,7 +61,12 @@ export const FormTableClientTo: React.FC<Props> = ({
       )}
 
       {filteredData.length === 0 ? (
-        <p className='text-gray-500'>Данные отсутствуют</p>
+        <div className='flex flex-col justify-center items-center h-full mt-10'>
+          <Title size='lg' text='Данные отсутствуют' />
+          <div className='mt-4'>
+            <EditClientCarTo id={clientId} />
+          </div>
+        </div>
       ) : (
         <div className='rounded-md border overflow-hidden'>
           <Table>

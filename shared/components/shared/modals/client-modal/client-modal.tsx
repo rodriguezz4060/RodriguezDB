@@ -10,6 +10,7 @@ import { TableColumns } from '@/shared/constants/table-client-to'
 import { MaintenanceDataTable } from '@/shared/constants/table-client-to'
 import { ClientsWithCar } from '@/@types/prisma'
 import { ScrollArea } from '@/shared/components/ui'
+import { EditClientCarTo } from '../../buttons'
 
 interface Props {
   open: boolean
@@ -38,10 +39,14 @@ export const ClientModal: React.FC<Props> = ({ open, onClose, className, client 
         )}
         aria-describedby={undefined}
       >
-        <DialogTitle className='text-[30px]'>Запчасти ТО</DialogTitle>
+        <div className='flex items-center justify-between mt-4 mr-5'>
+          <DialogTitle className='text-[30px]'>Запчасти ТО</DialogTitle>
+          <EditClientCarTo id={client.id} />
+        </div>
         <ScrollArea className='h-[510px] rounded-md border'>
           <FormProvider {...methods}>
             <FormTableClientTo
+              clientId={client.id}
               name='maintenance'
               label=''
               required

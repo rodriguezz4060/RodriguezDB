@@ -17,6 +17,7 @@ import {
 } from './schemas/edit-client-to-schemas'
 import { updateClientCarTo } from '@/app/actions'
 import { SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../ui/select'
+import { BackButton } from '../buttons'
 
 interface Props {
   client: ClientsWithCar
@@ -26,7 +27,7 @@ export const EditClientToPage: React.FC<Props> = ({ client }) => {
   const { formatMessage } = useIntl()
   const router = useRouter()
 
-  const [transmissionType, setTransmissionType] = useState('')
+  const [transmissionType, setTransmissionType] = useState('automatic')
 
   const handleTransmissionTypeChange = (value: string) => {
     setTransmissionType(value)
@@ -97,7 +98,6 @@ export const EditClientToPage: React.FC<Props> = ({ client }) => {
 
   const onSubmit = async (data: TFormEditClientCarToSchema) => {
     try {
-      console.log('Submitting data:', data) // Логирование данных
       await updateClientCarTo(data)
 
       toast.success('Данные клиента обновлены 🚗', {
@@ -113,94 +113,151 @@ export const EditClientToPage: React.FC<Props> = ({ client }) => {
   }
 
   return (
-    <Container className='my-10'>
-      <Title
-        text={`Редактирование данных клиента | #${client.id}`}
-        size='md'
-        className='font-bold'
-      />
+    <Container className='mt-5'>
+      <div className='flex items-center justify-between mt-4'>
+        <Title
+          text={`Редактирование данных клиента | ${client.name}`}
+          size='md'
+          className='font-bold'
+        />
+        <BackButton route='/clients/' id={client.id} />
+      </div>
       <FormProvider {...form}>
-        <form className='flex flex-col gap-5 w-96 mt-10' onSubmit={form.handleSubmit(onSubmit)}>
-          <FormInput name='engineOil' label='Масло ДВС' />
-          <FormInput name='engineOilVolume' label='Объем масла' />
-          <FormInput name='engineOilPartNumber' label='Оригинальный номер масла' />
-          <div className='mb-4'>
-            <label className='block text-sm font-medium text-gray-700'>Тип коробки передач</label>
-            <Select value={transmissionType} onValueChange={handleTransmissionTypeChange}>
-              <SelectTrigger className='w-[180px]'>
-                <SelectValue placeholder='Выберите тип' />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value='automatic'>АКПП</SelectItem>
-                <SelectItem value='mechanic'>МКП</SelectItem>
-              </SelectContent>
-            </Select>
+        <form
+          className='grid grid-cols-1 md:grid-cols-3 gap-5 mt-10'
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
+          <div className='border p-4 rounded-md'>
+            <h2 className='text-lg font-semibold mb-2'>Двигатель</h2>
+
+            <FormInput name='engineOil' label='Масло ДВС' />
+            <FormInput name='engineOilVolume' label='Объем масла' />
+            <FormInput name='engineOilPartNumber' label='Оригинальный номер масла' />
           </div>
 
-          {transmissionType === 'automatic' && (
-            <>
-              <FormInput name='automaticTransmissionOil' label='Масло АКПП' />
-              <FormInput name='automaticTransmissionOilVolume1' label='Объем масла частичный' />
-              <FormInput
-                name='automaticTransmissionOilPartNumber'
-                label='Оригинальный номер масла'
-              />
-            </>
-          )}
+          <div className='border p-4 rounded-md'>
+            <div className='mb-4'>
+              <label className='block text-sm font-medium'>Тип коробки передач</label>
+              <Select value={transmissionType} onValueChange={handleTransmissionTypeChange}>
+                <SelectTrigger className='w-[180px]'>
+                  <SelectValue placeholder='Выберите тип' />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value='automatic'>АКПП</SelectItem>
+                  <SelectItem value='mechanic'>МКП</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            {transmissionType === 'automatic' && (
+              <div className='border p-4 rounded-md'>
+                <FormInput name='automaticTransmissionOil' label='Масло АКПП' />
+                <FormInput name='automaticTransmissionOilVolume1' label='Объем масла частичный' />
+                <FormInput
+                  name='automaticTransmissionOilPartNumber'
+                  label='Оригинальный номер масла'
+                />
+              </div>
+            )}
 
-          {transmissionType === 'mechanic' && (
-            <>
-              <FormInput name='mechanicTransmissionOil' label='Масло МКП' />
-              <FormInput name='mechanicTransmissionOilVolume' label='Объем масла' />
-              <FormInput
-                name='mechanicTransmissionOilPartNumber'
-                label='Оригинальный номер масла'
-              />
-            </>
-          )}
+            {transmissionType === 'mechanic' && (
+              <div className='border p-4 rounded-md'>
+                <FormInput name='mechanicTransmissionOil' label='Масло МКП' />
+                <FormInput name='mechanicTransmissionOilVolume' label='Объем масла' />
+                <FormInput
+                  name='mechanicTransmissionOilPartNumber'
+                  label='Оригинальный номер масла'
+                />
+              </div>
+            )}
+          </div>
 
-          <FormInput name='transferCaseOil' label='Масло раздаточной коробки' />
-          <FormInput name='transferCaseOilVolume' label='Объем масла' />
-          <FormInput name='transferCaseOilPartNumber' label='Оригинальный номер масла' />
+          <div className='border p-4 rounded-md'>
+            <h2 className='text-lg font-semibold mb-2'>Раздаточная коробка</h2>
+            <FormInput name='transferCaseOil' label='Масло раздаточной коробки' />
+            <FormInput name='transferCaseOilVolume' label='Объем масла' />
+            <FormInput name='transferCaseOilPartNumber' label='Оригинальный номер масла' />
+          </div>
 
-          <FormInput name='frontAxleGearboxOil' label='Масло редуктора переднего моста' />
-          <FormInput name='frontAxleGearboxOilVolume' label='Объем масла' />
-          <FormInput name='frontAxleGearboxOilPartNumber' label='Оригинальный номер масла' />
+          <div className='border p-4 rounded-md'>
+            <h2 className='text-lg font-semibold mb-2'>Редуктор переднего моста</h2>
+            <FormInput name='frontAxleGearboxOil' label='Масло редуктора переднего моста' />
+            <FormInput name='frontAxleGearboxOilVolume' label='Объем масла' />
+            <FormInput name='frontAxleGearboxOilPartNumber' label='Оригинальный номер масла' />
+          </div>
 
-          <FormInput name='rearAxleGearboxOil' label='Масло редуктора заднего моста' />
-          <FormInput name='rearAxleGearboxOilVolume' label='Объем масла' />
-          <FormInput name='rearAxleGearboxOilPartNumber' label='Оригинальный номер масла' />
+          <div className='border p-4 rounded-md'>
+            <h2 className='text-lg font-semibold mb-2'>Редуктор заднего моста</h2>
+            <FormInput name='rearAxleGearboxOil' label='Масло редуктора заднего моста' />
+            <FormInput name='rearAxleGearboxOilVolume' label='Объем масла' />
+            <FormInput name='rearAxleGearboxOilPartNumber' label='Оригинальный номер масла' />
+          </div>
 
-          <FormInput name='antifreeze' label='Цвет антифриза' />
-          <FormInput name='antifreezeVolume' label='Объем антифриза' />
-          <FormInput name='antifreezePartNumber' label='Оригинальный номер антифриза' />
+          <div className='border p-4 rounded-md'>
+            <h2 className='text-lg font-semibold mb-2'>Антифриз</h2>
+            <FormInput name='antifreeze' label='Цвет антифриза' />
+            <FormInput name='antifreezeVolume' label='Объем антифриза' />
+            <FormInput name='antifreezePartNumber' label='Оригинальный номер антифриза' />
+          </div>
 
-          <FormInput name='steeringFluid' label='Жидкость ГУР' />
-          <FormInput name='steeringFluidVolume' label='Объем жидкости ГУР' />
-          <FormInput name='steeringFluidPartNumber' label='Оригинальный номер жидкости ГУР' />
+          <div className='border p-4 rounded-md'>
+            <h2 className='text-lg font-semibold mb-2'>ГУР</h2>
+            <FormInput name='steeringFluid' label='Жидкость ГУР' />
+            <FormInput name='steeringFluidVolume' label='Объем жидкости ГУР' />
+            <FormInput name='steeringFluidPartNumber' label='Оригинальный номер жидкости ГУР' />
+          </div>
 
-          {/* Новые поля */}
-          <FormInput name='frontBrake' label='Передние колодки' />
-          <FormInput name='rearBrake' label='Задние колодки' />
-          <FormInput name='handbrakeBrakePads' label='Колодки ручника' />
-          <FormInput name='waterPump' label='Водяная помпа' />
-          <FormInput name='thermostat' label='Термостат' />
-          <FormInput name='sparkPlug' label='Свеча зажигания' />
-          <FormInput name='driversWiper' label='Дворник водителя' />
-          <FormInput name='passengerWiper' label='Дворник пассажира' />
-          <FormInput name='oilFilter' label='Масляный фильтр' />
-          <FormInput name='airFilter' label='Воздушный фильтр' />
-          <FormInput name='fuelFilter' label='Топливный фильтр' />
-          <FormInput name='cabinFilter' label='Фильтр салона' />
-          <FormInput name='automaticTransmissionOilPanGasket' label='Прокладка поддона АКПП' />
-          <FormInput name='automaticTransmissionFilter' label='Фильтр АКПП' />
-          <FormInput name='automaticTransmissionFillerGasket' label='Прокладка фильтра АКПП' />
-          <FormInput name='automaticTransmissionOilPanGasket2' label='Прокладка фильтра АКПП' />
-          <FormInput name='automaticTransmissionFilter2' label='Фильтр маленький АКПП' />
-          <FormInput name='transmissionDrainPlug' label='Сливная пробка АКПП' />
-          <FormInput name='transmissionDrainPlugGasket' label='Прокладка сливной пробки АКПП' />
+          <div className='border p-4 rounded-md'>
+            <h2 className='text-lg font-semibold mb-2'>Фильтра ДВС</h2>
+            <FormInput name='oilFilter' label='Масляный фильтр' />
+            <FormInput name='airFilter' label='Воздушный фильтр' />
+            <FormInput name='fuelFilter' label='Топливный фильтр' />
+            <FormInput name='cabinFilter' label='Фильтр салона' />
+          </div>
 
-          <Button disabled={form.formState.isSubmitting} className='text-base mt-10' type='submit'>
+          <div className='border p-4 rounded-md'>
+            <h2 className='text-lg font-semibold mb-2'>Фильтра АКПП</h2>
+            <FormInput name='automaticTransmissionFilter' label='Фильтр АКПП' />
+            <FormInput name='automaticTransmissionOilPanGasket' label='Прокладка поддона АКПП' />
+            <FormInput name='automaticTransmissionFillerGasket' label='Прокладка фильтра АКПП' />
+
+            <FormInput name='automaticTransmissionFilter2' label='Фильтр тонкой очистки АКПП' />
+            <FormInput
+              name='automaticTransmissionOilPanGasket2'
+              label='Прокладка фильтра тонкой очистки'
+            />
+            <FormInput name='transmissionDrainPlug' label='Сливная пробка АКПП' />
+            <FormInput name='transmissionDrainPlugGasket' label='Прокладка сливной пробки АКПП' />
+          </div>
+
+          <div className='border p-4 rounded-md'>
+            <h2 className='text-lg font-semibold mb-2'>Тормоза</h2>
+            <FormInput name='frontBrake' label='Передние колодки' />
+            <FormInput name='rearBrake' label='Задние колодки' />
+            <FormInput name='handbrakeBrakePads' label='Колодки ручника' />
+          </div>
+
+          <div className='border p-4 rounded-md'>
+            <h2 className='text-lg font-semibold mb-2'>Охлаждение</h2>
+            <FormInput name='waterPump' label='Водяная помпа' />
+            <FormInput name='thermostat' label='Термостат' />
+          </div>
+
+          <div className='border p-4 rounded-md'>
+            <h2 className='text-lg font-semibold mb-2'>Свечи</h2>
+            <FormInput name='sparkPlug' label='Свеча зажигания' />
+          </div>
+
+          <div className='border p-4 rounded-md'>
+            <h2 className='text-lg font-semibold mb-2'>Дворники</h2>
+            <FormInput name='driversWiper' label='Дворник водителя' />
+            <FormInput name='passengerWiper' label='Дворник пассажира' />
+          </div>
+
+          <Button
+            disabled={form.formState.isSubmitting}
+            className='text-base mt-10 mb-10 col-span-full'
+            type='submit'
+          >
             Сохранить
           </Button>
         </form>
