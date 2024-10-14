@@ -293,7 +293,7 @@ export interface CoolingFormData {
   expansionTankCap: string
 }
 
-export interface ElectricsFormData {
+export interface ElectricalFormData {
   id: number
 
   oilSensor: string
