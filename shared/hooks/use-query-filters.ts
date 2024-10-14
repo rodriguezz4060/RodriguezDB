@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { Filters } from './use-filters'
 import qs from 'qs'

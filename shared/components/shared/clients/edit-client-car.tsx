@@ -1019,7 +1019,7 @@ export const EditClientCarPage: React.FC<Props> = ({ client }) => {
                   </Accordion>
 
                   <Accordion type='single' collapsible className='w-full'>
-                    <AccordionItem value='cylinder'>
+                    <AccordionItem value='Brake cylinders'>
                       <AccordionTrigger>Тормозные цилиндры</AccordionTrigger>
                       <AccordionContent>
                         <div className='border p-4 rounded-sm'>
@@ -1143,7 +1143,7 @@ export const EditClientCarPage: React.FC<Props> = ({ client }) => {
                     </AccordionItem>
                   </Accordion>
                   <Accordion type='single' collapsible className='w-full'>
-                    <AccordionItem value='hubs'>
+                    <AccordionItem value='suspensionBearing'>
                       <AccordionTrigger>Подвесной подшипник</AccordionTrigger>
                       <AccordionContent>
                         <div className='border p-4 rounded-sm'>

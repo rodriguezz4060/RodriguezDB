@@ -10,11 +10,14 @@ export async function GET() {
 export async function PUT(req: Request) {
   const { id, ...data } = await req.json()
 
-  console.log('Received data:', { id, data }) // Логирование данных
-
   try {
-    // Разделяем данные на две части
-    const clientCarData = data
+    // Преобразуем все строковые поля в верхний регистр
+    const clientCarData = Object.fromEntries(
+      Object.entries(data).map(([key, value]) => [
+        key,
+        typeof value === 'string' ? value.toUpperCase() : value,
+      ])
+    )
 
     // Обновление данных в таблице ClientCarTo
     const updateClientCar = await prisma.clientCar.update({

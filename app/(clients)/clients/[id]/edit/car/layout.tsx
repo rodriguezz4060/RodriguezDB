@@ -1,10 +1,10 @@
 import { Metadata } from 'next'
 import { Separator } from '@/shared/components/ui'
-import { SidebarNav } from '@/shared/components/shared/clients/forms/sidebar-nav'
+import { SidebarNav } from '@/shared/components/shared/sidebar-nav'
 
 export const metadata: Metadata = {
-  title: 'Forms',
-  description: 'Advanced form example using react-hook-form and Zod.',
+  title: 'Редактирование машины клиента | RodriguezDB',
+  description: 'Форма редактирования машины клиента',
 }
 
 interface SettingsLayoutProps {
@@ -23,16 +23,24 @@ export default function CarEditLayout({ children, params: { id } }: SettingsLayo
       href: `/clients/${id}/edit/car/suspension`,
     },
     {
-      title: 'Appearance',
-      href: `/clients/${id}/appearance`,
+      title: 'Тормозная система',
+      href: `/clients/${id}/edit/car/brake-system`,
     },
     {
-      title: 'Notifications',
-      href: `/clients/${id}/notifications`,
+      title: 'Коробка передач и Привод',
+      href: `/clients/${id}/edit/car/transmission`,
     },
     {
-      title: 'Display',
-      href: `/clients/${id}/display`,
+      title: 'Охлаждение и Отопление',
+      href: `/clients/${id}/edit/car/cooling`,
+    },
+    {
+      title: 'Электрика и Освещение',
+      href: `/clients/${id}/edit/car/electrical`,
+    },
+    {
+      title: 'Кузов',
+      href: `/clients/${id}/edit/car/car-body`,
     },
   ]
 
@@ -50,9 +58,11 @@ export default function CarEditLayout({ children, params: { id } }: SettingsLayo
           <aside className='-mx-4 lg:w-1/5'>
             <SidebarNav items={sidebarNavItems} />
           </aside>
+
           <Separator orientation='vertical' className='h-auto mx-6' />
           <div className='flex-1 lg:max-w-2xl'>{children}</div>
         </div>
+        <Separator className='my-6' />
       </div>
     </>
   )
