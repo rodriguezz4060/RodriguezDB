@@ -8,15 +8,15 @@ export type CarWithBrand = Car & {
 // Определяем тип для пыльника с машинами и брендами
 export type BootWithRelation = BootDustCover & {
   cars: CarWithBrand[]
-  name: { name: string | null }
+  name: { name: string }
   form: {
     id: number
-    form: string | null
+    form: string
   }
 
   type: {
     id: number
-    type: string | null
+    type: string
   }
 }
 
@@ -40,29 +40,29 @@ export type ClientsWithCar = Clients & {
 
 export type ClientsInfo = Clients & {
   clientCarTo?: ClientCarTo | null
-  clientCar?: {
+  clientCar: {
     id: number
-    gosNumber: string | null
-    models: string | null
-    frontBrake: string | null
-    rearBrake: string | null
-    handbrakeBrakePads: string | null
-    waterPump: string | null
-    thermostat: string | null
-    sparkPlug: string | null
-    driversWiper: string | null
-    passengerWiper: string | null
-    oilFilter: string | null
-    airFilter: string | null
-    fuelFilter: string | null
-    cabinFilter: string | null
-    automaticTransmissionOilPanGasket: string | null
-    automaticTransmissionFilter: string | null
-    automaticTransmissionFillerGasket: string | null
-    automaticTransmissionOilPanGasket2: string | null
-    automaticTransmissionFilter2: string | null
-    transmissionDrainPlug: string | null
-    transmissionDrainPlugGasket: string | null
-    ignitionCoil: string | null
+    gosNumber: string
+    models: string
+    frontBrake: string
+    rearBrake: string
+    handbrakeBrakePads: string
+    waterPump: string
+    thermostat: string
+    sparkPlug: string
+    driversWiper: string
+    passengerWiper: string
+    oilFilter: string
+    airFilter: string
+    fuelFilter: string
+    cabinFilter: string
+    automaticTransmissionOilPanGasket: string
+    automaticTransmissionFilter: string
+    automaticTransmissionFillerGasket: string
+    automaticTransmissionOilPanGasket2: string
+    automaticTransmissionFilter2: string
+    transmissionDrainPlug: string
+    transmissionDrainPlugGasket: string
+    ignitionCoil: string
   }
 }
