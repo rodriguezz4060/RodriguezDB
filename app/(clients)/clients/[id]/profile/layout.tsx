@@ -3,6 +3,7 @@ import { Separator } from '@/shared/components/ui'
 import { SidebarNav } from '@/shared/components/shared/sidebar-nav'
 import { BackButton, ClientInfoBlock } from '@/shared/components/shared'
 import { prisma } from '@/prisma/prisma-client'
+import { ClientsInfo } from '@/@types/prisma'
 
 export const metadata: Metadata = {
   title: 'Страница клиента | RodriguezDB',
@@ -22,6 +23,8 @@ export default async function CarEditLayout({ children, params: { id } }: Settin
       clientCar: {
         select: {
           id: true,
+          gosNumber: true,
+          models: true,
           frontBrake: true,
           rearBrake: true,
           handbrakeBrakePads: true,
@@ -102,7 +105,7 @@ export default async function CarEditLayout({ children, params: { id } }: Settin
           <Separator orientation='vertical' className='h-auto mx-6' />
           <div className='flex-1 lg:max-w-2xl'>{children}</div>
           <Separator orientation='vertical' className='h-auto' />
-          <ClientInfoBlock client={client} />
+          <ClientInfoBlock client={client as ClientsInfo} />
         </div>
         <Separator className='my-6' />
       </div>

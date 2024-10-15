@@ -8,7 +8,7 @@ import { FormTableClientTo } from '../../form'
 import { useIntl } from 'react-intl'
 import { TableColumns } from '@/shared/constants/table-client-to'
 import { MaintenanceDataTable } from '@/shared/constants/table-client-to'
-import { ClientsWithCar } from '@/@types/prisma'
+import { ClientsInfo } from '@/@types/prisma'
 import { ScrollArea } from '@/shared/components/ui'
 import { EditClientCarTo } from '../../buttons'
 
@@ -16,7 +16,7 @@ interface Props {
   open: boolean
   onClose: () => void
   className?: string
-  client: ClientsWithCar
+  client: ClientsInfo
 }
 
 export const ClientModal: React.FC<Props> = ({ open, onClose, className, client }) => {
