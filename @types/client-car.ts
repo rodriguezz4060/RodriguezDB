@@ -1,336 +1,336 @@
 export interface EngineFormData {
   id: number
-  timingChainLong: string
-  timingChainShort: string
-  chainTensioner1: string
-  chainTensioner2: string
-  chainTensioner3: string
-  chainKit: string
-  timingBelt: string
-  timingBeltTensioner: string
-  timingBeltRoller: string
-  pistons: string
-  pistonsRings: string
-  hydrocompensators: string
-  valveIn: string
-  valveEx: string
-  valveGuidesIn: string
-  valveGuidesEx: string
-  bearingConnectingRod: string
-  bearingCamshaft: string
-  crankshaftCamberRings: string
-  generatorBelt: string
-  powerSteeringBelt: string
-  airConditionerBelt: string
-  tensionToller: string
-  bypassRoller1: string
-  bypassRoller2: string
-  generatorOverrunningClutch: string
-  engineGasketKit: string
-  headGasket: string
-  valveCoverGasketLeft: string
-  valveCoverGasketRight: string
-  valveCoverGasket: string
-  intakeManifoldGasket: string
-  exhaustManifoldGasket: string
-  exhaustPipeGasket1: string
-  exhaustPipeGasket2: string
-  exhaustPipeGasket3: string
-  frontLeftEngineCushion: string
-  frontRightEngineCushion: string
-  engineCushionLeft: string
-  engineCushionRear: string
-  frontCrankshaftOilSeal: string
-  rearCrankshaftOilSeal: string
-  camshaftOilSeal: string
-  oilPumpPacking: string
-  intakeOilCaps: string
-  exhaustOilCaps: string
-  airDuctCorrugation: string
-  oilFilter: string
-  airFilter: string
-  fuelFilter: string
-  cabinFilter: string
+  timingChainLong: string | null
+  timingChainShort: string | null
+  chainTensioner1: string | null
+  chainTensioner2: string | null
+  chainTensioner3: string | null
+  chainKit: string | null
+  timingBelt: string | null
+  timingBeltTensioner: string | null
+  timingBeltRoller: string | null
+  pistons: string | null
+  pistonsRings: string | null
+  hydrocompensators: string | null
+  valveIn: string | null
+  valveEx: string | null
+  valveGuidesIn: string | null
+  valveGuidesEx: string | null
+  bearingConnectingRod: string | null
+  bearingCamshaft: string | null
+  crankshaftCamberRings: string | null
+  generatorBelt: string | null
+  powerSteeringBelt: string | null
+  airConditionerBelt: string | null
+  tensionToller: string | null
+  bypassRoller1: string | null
+  bypassRoller2: string | null
+  generatorOverrunningClutch: string | null
+  engineGasketKit: string | null
+  headGasket: string | null
+  valveCoverGasketLeft: string | null
+  valveCoverGasketRight: string | null
+  valveCoverGasket: string | null
+  intakeManifoldGasket: string | null
+  exhaustManifoldGasket: string | null
+  exhaustPipeGasket1: string | null
+  exhaustPipeGasket2: string | null
+  exhaustPipeGasket3: string | null
+  frontLeftEngineCushion: string | null
+  frontRightEngineCushion: string | null
+  engineCushionLeft: string | null
+  engineCushionRear: string | null
+  frontCrankshaftOilSeal: string | null
+  rearCrankshaftOilSeal: string | null
+  camshaftOilSeal: string | null
+  oilPumpPacking: string | null
+  intakeOilCaps: string | null
+  exhaustOilCaps: string | null
+  airDuctCorrugation: string | null
+  oilFilter: string | null
+  airFilter: string | null
+  fuelFilter: string | null
+  cabinFilter: string | null
 }
 
 export interface SuspensionFormData {
   id: number
-  frontLeftShockAbsorber: string
-  frontRightShockAbsorber: string
-  rearLeftShockAbsorber: string
-  rearRightShockAbsorber: string
+  frontLeftShockAbsorber: string | null
+  frontRightShockAbsorber: string | null
+  rearLeftShockAbsorber: string | null
+  rearRightShockAbsorber: string | null
 
-  wheelStud: string
-  wheelNut: string
+  wheelStud: string | null
+  wheelNut: string | null
 
-  leftFrontStrutSupport: string
-  rightFrontStrutSupport: string
-  leftRearStrutSupport: string
-  rightRearStrutSupport: string
-  frontSupportBearing: string
-  frontLeftStrutDuster: string
-  frontRightStrutDuster: string
-  rearLeftStrutDuster: string
-  rearRightStrutDuster: string
-  frontStrutBumper: string
-  rearStrutBumper: string
+  leftFrontStrutSupport: string | null
+  rightFrontStrutSupport: string | null
+  leftRearStrutSupport: string | null
+  rightRearStrutSupport: string | null
+  frontSupportBearing: string | null
+  frontLeftStrutDuster: string | null
+  frontRightStrutDuster: string | null
+  rearLeftStrutDuster: string | null
+  rearRightStrutDuster: string | null
+  frontStrutBumper: string | null
+  rearStrutBumper: string | null
 
-  frontLeftHubBearing: string
-  frontRightHubBearing: string
-  rearLeftHubBearing: string
-  rearRightHubBearing: string
+  frontLeftHubBearing: string | null
+  frontRightHubBearing: string | null
+  rearLeftHubBearing: string | null
+  rearRightHubBearing: string | null
 
-  hydraulicPowerSteeringKit: string
-  railSealsAndGaskets: string
-  steeringRackDustCoverLeft: string
-  steeringRackDustCoverRight: string
+  hydraulicPowerSteeringKit: string | null
+  railSealsAndGaskets: string | null
+  steeringRackDustCoverLeft: string | null
+  steeringRackDustCoverRight: string | null
 
-  frontLowerLeftArm: string
-  frontLowerRightArm: string
-  frontUpperLeftArm: string
-  frontUpperRightArm: string
-  rearLeftLongitudinalArm: string
-  rearRightLongitudinalArm: string
-  rearLeftTransverseArm1: string
-  rearRightTransverseArm1: string
-  rearLeftTransverseArm2: string
-  rearRightTransverseArm2: string
-  rearCrescentArm: string
-  rearUpperShortArm: string
+  frontLowerLeftArm: string | null
+  frontLowerRightArm: string | null
+  frontUpperLeftArm: string | null
+  frontUpperRightArm: string | null
+  rearLeftLongitudinalArm: string | null
+  rearRightLongitudinalArm: string | null
+  rearLeftTransverseArm1: string | null
+  rearRightTransverseArm1: string | null
+  rearLeftTransverseArm2: string | null
+  rearRightTransverseArm2: string | null
+  rearCrescentArm: string | null
+  rearUpperShortArm: string | null
 
-  frontLowerControlArmFrontSilentBlock: string
-  frontLowerControlArmRearSilentBlock: string
-  frontUpperControlArmFrontSilentBlock: string
-  frontUpperControlArmRearSilentBlock: string
-  longitudinalArmSilentBlockLeft: string
-  longitudinalArmSilentBlockRight: string
-  longitudinalHubArmSilentBlockLeft: string
-  bodyLeftCrossArmSilentBlock: string
-  hubLeftCrossArmSilentBlock: string
-  bodyRightCrossArmSilentBlock: string
-  hubRightCrossArmSilentBlock: string
-  camberArmSilentBlock1: string
-  camberArmSilentBlock2: string
-  frontSubframeSilentBlock: string
-  rearSubframeSilentBlock: string
-  frontStabilizerSushings: string
-  frontStabilizerSushingsLeft: string
-  frontStabilizerSushingsRight: string
-  rearStabilizerSushings: string
-  frontLeftStabilizerBar: string
-  frontRightStabilizerBar: string
-  rearLeftStabilizerBar: string
-  rearRightStabilizerBar: string
+  frontLowerControlArmFrontSilentBlock: string | null
+  frontLowerControlArmRearSilentBlock: string | null
+  frontUpperControlArmFrontSilentBlock: string | null
+  frontUpperControlArmRearSilentBlock: string | null
+  longitudinalArmSilentBlockLeft: string | null
+  longitudinalArmSilentBlockRight: string | null
+  longitudinalHubArmSilentBlockLeft: string | null
+  bodyLeftCrossArmSilentBlock: string | null
+  hubLeftCrossArmSilentBlock: string | null
+  bodyRightCrossArmSilentBlock: string | null
+  hubRightCrossArmSilentBlock: string | null
+  camberArmSilentBlock1: string | null
+  camberArmSilentBlock2: string | null
+  frontSubframeSilentBlock: string | null
+  rearSubframeSilentBlock: string | null
+  frontStabilizerSushings: string | null
+  frontStabilizerSushingsLeft: string | null
+  frontStabilizerSushingsRight: string | null
+  rearStabilizerSushings: string | null
+  frontLeftStabilizerBar: string | null
+  frontRightStabilizerBar: string | null
+  rearLeftStabilizerBar: string | null
+  rearRightStabilizerBar: string | null
 
-  steeringLinkLeft: string
-  steeringLinkRight: string
-  outerLeftSteeringKnuckle: string
-  outerRightSteeringKnuckle: string
-  leftInnerSteeringKnuckle: string
-  leftRightSteeringKnuckle: string
+  steeringLinkLeft: string | null
+  steeringLinkRight: string | null
+  outerLeftSteeringKnuckle: string | null
+  outerRightSteeringKnuckle: string | null
+  leftInnerSteeringKnuckle: string | null
+  leftRightSteeringKnuckle: string | null
 
-  lowerLeftBallJoint: string
-  lowerRightBallJoint: string
-  upperLeftBallJoint: string
-  upperRightBallJoint: string
+  lowerLeftBallJoint: string | null
+  lowerRightBallJoint: string | null
+  upperLeftBallJoint: string | null
+  upperRightBallJoint: string | null
 }
 
 export interface BrakeSystemFormData {
   id: number
-  frontHandbrakeCable: string
-  rearLeftCable: string
-  reaRightCable: string
+  frontHandbrakeCable: string | null
+  rearLeftCable: string | null
+  reaRightCable: string | null
 
-  frontBrakeDiskLeft: string
-  frontBrakeDiskRight: string
-  rearBrakeDisk: string
+  frontBrakeDiskLeft: string | null
+  frontBrakeDiskRight: string | null
+  rearBrakeDisk: string | null
 
-  frontBrake: string
-  rearBrake: string
-  handbrakeBrakePads: string
+  frontBrake: string | null
+  rearBrake: string | null
+  handbrakeBrakePads: string | null
 
-  brakeMasterCylinder: string
-  slaveBrakeCylinder: string
-  drumBrakeCylinderLeft: string
-  drumBrakeCylinderRight: string
+  brakeMasterCylinder: string | null
+  slaveBrakeCylinder: string | null
+  drumBrakeCylinderLeft: string | null
+  drumBrakeCylinderRight: string | null
 
-  setOfFrontGuideRailsWithDustCovers: string
-  setOfRearGuideRailsWithDustCovers: string
-  installationKitForFrontPads: string
-  installationKitForRearPads: string
-  installationKitForHandbrakeBrakePads: string
-  frontCaliperRepairKit: string
-  frontCaliperRepairKitWithPiston: string
-  rearCaliperRepairKit: string
-  rearCaliperRepairKitWithPiston: string
+  setOfFrontGuideRailsWithDustCovers: string | null
+  setOfRearGuideRailsWithDustCovers: string | null
+  installationKitForFrontPads: string | null
+  installationKitForRearPads: string | null
+  installationKitForHandbrakeBrakePads: string | null
+  frontCaliperRepairKit: string | null
+  frontCaliperRepairKitWithPiston: string | null
+  rearCaliperRepairKit: string | null
+  rearCaliperRepairKitWithPiston: string | null
 
-  frontLeftBrakeHose: string
-  frontRightBrakeHose: string
-  rearLeftBrakeHose: string
-  rearRightBrakeHose: string
+  frontLeftBrakeHose: string | null
+  frontRightBrakeHose: string | null
+  rearLeftBrakeHose: string | null
+  rearRightBrakeHose: string | null
 
-  frontLeftOuterBallJoint: string
-  frontRightOuterBallJoint: string
-  frontLeftInnerBallJoint: string
-  frontRightInnerBallJoint: string
-  frontLeftHandDrive: string
-  frontRightHandDrive: string
-  driveShaft: string
+  frontLeftOuterBallJoint: string | null
+  frontRightOuterBallJoint: string | null
+  frontLeftInnerBallJoint: string | null
+  frontRightInnerBallJoint: string | null
+  frontLeftHandDrive: string | null
+  frontRightHandDrive: string | null
+  driveShaft: string | null
 
-  rearLeftOuterBallJoint: string
-  rearRightOuterBallJoint: string
-  rearLeftInnerBallJoint: string
-  rearRightInnerBallJoint: string
+  rearLeftOuterBallJoint: string | null
+  rearRightOuterBallJoint: string | null
+  rearLeftInnerBallJoint: string | null
+  rearRightInnerBallJoint: string | null
 
-  automaticTransmissionOilPanGasket: string
-  automaticTransmissionFilter: string
-  automaticTransmissionFillerGasket: string
-  automaticTransmissionOilPanGasket2: string
-  automaticTransmissionFilter2: string
-  transmissionDrainPlug: string
-  transmissionDrainPlugGasket: string
+  automaticTransmissionOilPanGasket: string | null
+  automaticTransmissionFilter: string | null
+  automaticTransmissionFillerGasket: string | null
+  automaticTransmissionOilPanGasket2: string | null
+  automaticTransmissionFilter2: string | null
+  transmissionDrainPlug: string | null
+  transmissionDrainPlugGasket: string | null
 
-  suspensionBearing: string
+  suspensionBearing: string | null
 
-  frontPistonRodDusterOuter: string
-  frontPistonRodDusterInnerLeft: string
-  frontPistonRodDusterInnerRight: string
+  frontPistonRodDusterOuter: string | null
+  frontPistonRodDusterInnerLeft: string | null
+  frontPistonRodDusterInnerRight: string | null
 
-  rearPistonRodDusterOuter: string
-  rearPistonRodDusterInnerLeft: string
-  rearPistonRodDusterInnerRight: string
+  rearPistonRodDusterOuter: string | null
+  rearPistonRodDusterInnerLeft: string | null
+  rearPistonRodDusterInnerRight: string | null
 
-  automaticTransmissionTorqueConverterOilSeal: string
-  gearboxPrimaryShaftOilSeal: string
-  gearboxRockerGland: string
-  leftDriveOilSeal: string
-  rightDriveOilSeal: string
+  automaticTransmissionTorqueConverterOilSeal: string | null
+  gearboxPrimaryShaftOilSeal: string | null
+  gearboxRockerGland: string | null
+  leftDriveOilSeal: string | null
+  rightDriveOilSeal: string | null
 
-  clutchDisk: string
-  clutchBasket: string
-  releaseBearing: string
-  clutchKit: string
+  clutchDisk: string | null
+  clutchBasket: string | null
+  releaseBearing: string | null
+  clutchKit: string | null
 
-  clutchMasterCylinder: string
-  clutchSlaveCylinder: string
+  clutchMasterCylinder: string | null
+  clutchSlaveCylinder: string | null
 
-  clutchMasterCylinderKit: string
-  clutchSlaveCylinderRepairKit: string
+  clutchMasterCylinderKit: string | null
+  clutchSlaveCylinderRepairKit: string | null
 
-  waterPump: string
-  thermostat: string
-  radiator: string
-  heaterRadiator: string
-  airConditionerRadiator: string
-  upperPipe: string
-  lowerPipe: string
-  radiatorCap: string
-  expansionTankCap: string
+  waterPump: string | null
+  thermostat: string | null
+  radiator: string | null
+  heaterRadiator: string | null
+  airConditionerRadiator: string | null
+  upperPipe: string | null
+  lowerPipe: string | null
+  radiatorCap: string | null
+  expansionTankCap: string | null
 }
 
 export interface TransmissionFormData {
   id: number
-  frontLeftOuterBallJoint: string
-  frontRightOuterBallJoint: string
-  frontLeftInnerBallJoint: string
-  frontRightInnerBallJoint: string
-  frontLeftHandDrive: string
-  frontRightHandDrive: string
-  driveShaft: string
+  frontLeftOuterBallJoint: string | null
+  frontRightOuterBallJoint: string | null
+  frontLeftInnerBallJoint: string | null
+  frontRightInnerBallJoint: string | null
+  frontLeftHandDrive: string | null
+  frontRightHandDrive: string | null
+  driveShaft: string | null
 
-  rearLeftOuterBallJoint: string
-  rearRightOuterBallJoint: string
-  rearLeftInnerBallJoint: string
-  rearRightInnerBallJoint: string
+  rearLeftOuterBallJoint: string | null
+  rearRightOuterBallJoint: string | null
+  rearLeftInnerBallJoint: string | null
+  rearRightInnerBallJoint: string | null
 
-  automaticTransmissionOilPanGasket: string
-  automaticTransmissionFilter: string
-  automaticTransmissionFillerGasket: string
-  automaticTransmissionOilPanGasket2: string
-  automaticTransmissionFilter2: string
-  transmissionDrainPlug: string
-  transmissionDrainPlugGasket: string
+  automaticTransmissionOilPanGasket: string | null
+  automaticTransmissionFilter: string | null
+  automaticTransmissionFillerGasket: string | null
+  automaticTransmissionOilPanGasket2: string | null
+  automaticTransmissionFilter2: string | null
+  transmissionDrainPlug: string | null
+  transmissionDrainPlugGasket: string | null
 
-  suspensionBearing: string
+  suspensionBearing: string | null
 
-  frontPistonRodDusterOuter: string
-  frontPistonRodDusterInnerLeft: string
-  frontPistonRodDusterInnerRight: string
+  frontPistonRodDusterOuter: string | null
+  frontPistonRodDusterInnerLeft: string | null
+  frontPistonRodDusterInnerRight: string | null
 
-  rearPistonRodDusterOuter: string
-  rearPistonRodDusterInnerLeft: string
-  rearPistonRodDusterInnerRight: string
+  rearPistonRodDusterOuter: string | null
+  rearPistonRodDusterInnerLeft: string | null
+  rearPistonRodDusterInnerRight: string | null
 
-  automaticTransmissionTorqueConverterOilSeal: string
-  gearboxPrimaryShaftOilSeal: string
-  gearboxRockerGland: string
-  leftDriveOilSeal: string
-  rightDriveOilSeal: string
+  automaticTransmissionTorqueConverterOilSeal: string | null
+  gearboxPrimaryShaftOilSeal: string | null
+  gearboxRockerGland: string | null
+  leftDriveOilSeal: string | null
+  rightDriveOilSeal: string | null
 
-  clutchDisk: string
-  clutchBasket: string
-  releaseBearing: string
-  clutchKit: string
+  clutchDisk: string | null
+  clutchBasket: string | null
+  releaseBearing: string | null
+  clutchKit: string | null
 
-  clutchMasterCylinder: string
-  clutchSlaveCylinder: string
+  clutchMasterCylinder: string | null
+  clutchSlaveCylinder: string | null
 
-  clutchMasterCylinderKit: string
-  clutchSlaveCylinderRepairKit: string
+  clutchMasterCylinderKit: string | null
+  clutchSlaveCylinderRepairKit: string | null
 }
 
 export interface CoolingFormData {
   id: number
 
-  waterPump: string
-  thermostat: string
-  radiator: string
-  heaterRadiator: string
-  airConditionerRadiator: string
-  upperPipe: string
-  lowerPipe: string
-  radiatorCap: string
-  expansionTankCap: string
+  waterPump: string | null
+  thermostat: string | null
+  radiator: string | null
+  heaterRadiator: string | null
+  airConditionerRadiator: string | null
+  upperPipe: string | null
+  lowerPipe: string | null
+  radiatorCap: string | null
+  expansionTankCap: string | null
 }
 
 export interface ElectricalFormData {
   id: number
 
-  oilSensor: string
-  ventilatorSensor: string
-  dashboardTemperatureSensor: string
-  airConditionerSensor: string
-  reverseSensor: string
-  washerMotor: string
-  handwheelCable: string
+  oilSensor: string | null
+  ventilatorSensor: string | null
+  dashboardTemperatureSensor: string | null
+  airConditionerSensor: string | null
+  reverseSensor: string | null
+  washerMotor: string | null
+  handwheelCable: string | null
 
-  brakeLightBulbs: string
-  parkingLightBulbsFront: string
-  parkingLightBulbsRear: string
-  sideSignalBulbs: string
-  reverseLightBulbs: string
-  mainHeadlightBulbs: string
-  fogLightBulbs: string
+  brakeLightBulbs: string | null
+  parkingLightBulbsFront: string | null
+  parkingLightBulbsRear: string | null
+  sideSignalBulbs: string | null
+  reverseLightBulbs: string | null
+  mainHeadlightBulbs: string | null
+  fogLightBulbs: string | null
 
-  sparkPlug: string
-  ignitionCoil: string
-  ignitionWires: string
+  sparkPlug: string | null
+  ignitionCoil: string | null
+  ignitionWires: string | null
 
-  timingCover: string
-  slider: string
+  timingCover: string | null
+  slider: string | null
 
-  lambdaProbe1: string
-  lambdaProbe2: string
+  lambdaProbe1: string | null
+  lambdaProbe2: string | null
 
-  frontAbsSensorLeft: string
-  frontAbsSensorRight: string
-  rearAbsSensorLeft: string
-  rearAbsSensorRight: string
+  frontAbsSensorLeft: string | null
+  frontAbsSensorRight: string | null
+  rearAbsSensorLeft: string | null
+  rearAbsSensorRight: string | null
 }
 
 export interface CarBodyFormData {
   id: number
-  driversWiper: string
-  passengerWiper: string
-  hoodShockAbsorbers: string
+  driversWiper: string | null
+  passengerWiper: string | null
+  hoodShockAbsorbers: string | null
 }

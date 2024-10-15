@@ -6,7 +6,14 @@ export default async function ClientPage({ params: { id } }: { params: { id: str
   const client = await prisma.clients.findFirst({
     where: { id: Number(id) },
     include: {
-      clientCar: true,
+      clientCar: {
+        select: {
+          id: true,
+          driversWiper: true,
+          passengerWiper: true,
+          hoodShockAbsorbers: true,
+        },
+      },
     },
   })
 
@@ -14,14 +21,5 @@ export default async function ClientPage({ params: { id } }: { params: { id: str
     return notFound()
   }
 
-  const { clientCar } = client
-
-  const engineFormData = {
-    id: clientCar.id,
-    driversWiper: clientCar.driversWiper ?? '',
-    passengerWiper: clientCar.passengerWiper ?? '',
-    hoodShockAbsorbers: clientCar.hoodShockAbsorbers ?? '',
-  }
-
-  return <CarBodyForm clientCar={engineFormData} />
+  return <CarBodyForm clientCar={client.clientCar} />
 }

@@ -5,8 +5,21 @@ import { CoolingForm } from './cooling-form'
 export default async function ClientPage({ params: { id } }: { params: { id: string } }) {
   const client = await prisma.clients.findFirst({
     where: { id: Number(id) },
-    include: {
-      clientCar: true,
+    select: {
+      clientCar: {
+        select: {
+          id: true,
+          waterPump: true,
+          thermostat: true,
+          radiator: true,
+          heaterRadiator: true,
+          airConditionerRadiator: true,
+          upperPipe: true,
+          lowerPipe: true,
+          radiatorCap: true,
+          expansionTankCap: true,
+        },
+      },
     },
   })
 
@@ -14,21 +27,5 @@ export default async function ClientPage({ params: { id } }: { params: { id: str
     return notFound()
   }
 
-  const { clientCar } = client
-
-  const engineFormData = {
-    id: clientCar.id,
-
-    waterPump: clientCar.waterPump ?? '',
-    thermostat: clientCar.thermostat ?? '',
-    radiator: clientCar.radiator ?? '',
-    heaterRadiator: clientCar.heaterRadiator ?? '',
-    airConditionerRadiator: clientCar.airConditionerRadiator ?? '',
-    upperPipe: clientCar.upperPipe ?? '',
-    lowerPipe: clientCar.lowerPipe ?? '',
-    radiatorCap: clientCar.radiatorCap ?? '',
-    expansionTankCap: clientCar.expansionTankCap ?? '',
-  }
-
-  return <CoolingForm clientCar={engineFormData} />
+  return <CoolingForm clientCar={client.clientCar} />
 }
