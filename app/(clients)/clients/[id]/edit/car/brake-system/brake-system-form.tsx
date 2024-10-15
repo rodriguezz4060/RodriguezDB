@@ -40,13 +40,11 @@ export function BrakeSystemForm({ clientCar }: Props) {
       drumBrakeCylinderLeft: clientCar.drumBrakeCylinderLeft ?? '',
       drumBrakeCylinderRight: clientCar.drumBrakeCylinderRight ?? '',
 
-      setOfFrontGuideRailsWithDustCovers:
-        clientCar.setOfFrontGuideRailsWithDustCovers ?? '',
+      setOfFrontGuideRailsWithDustCovers: clientCar.setOfFrontGuideRailsWithDustCovers ?? '',
       setOfRearGuideRailsWithDustCovers: clientCar.setOfRearGuideRailsWithDustCovers ?? '',
       installationKitForFrontPads: clientCar.installationKitForFrontPads ?? '',
       installationKitForRearPads: clientCar.installationKitForRearPads ?? '',
-      installationKitForHandbrakeBrakePads:
-        clientCar.installationKitForHandbrakeBrakePads ?? '',
+      installationKitForHandbrakeBrakePads: clientCar.installationKitForHandbrakeBrakePads ?? '',
       frontCaliperRepairKit: clientCar.frontCaliperRepairKit ?? '',
       frontCaliperRepairKitWithPiston: clientCar.frontCaliperRepairKitWithPiston ?? '',
       rearCaliperRepairKit: clientCar.rearCaliperRepairKit ?? '',
@@ -73,8 +71,7 @@ export function BrakeSystemForm({ clientCar }: Props) {
       automaticTransmissionOilPanGasket: clientCar.automaticTransmissionOilPanGasket ?? '',
       automaticTransmissionFilter: clientCar.automaticTransmissionFilter ?? '',
       automaticTransmissionFillerGasket: clientCar.automaticTransmissionFillerGasket ?? '',
-      automaticTransmissionOilPanGasket2:
-        clientCar.automaticTransmissionOilPanGasket2 ?? '',
+      automaticTransmissionOilPanGasket2: clientCar.automaticTransmissionOilPanGasket2 ?? '',
       automaticTransmissionFilter2: clientCar.automaticTransmissionFilter2 ?? '',
       transmissionDrainPlug: clientCar.transmissionDrainPlug ?? '',
       transmissionDrainPlugGasket: clientCar.transmissionDrainPlugGasket ?? '',
@@ -106,16 +103,6 @@ export function BrakeSystemForm({ clientCar }: Props) {
 
       clutchMasterCylinderKit: clientCar.clutchMasterCylinderKit ?? '',
       clutchSlaveCylinderRepairKit: clientCar.clutchSlaveCylinderRepairKit ?? '',
-
-      waterPump: clientCar.waterPump ?? '',
-      thermostat: clientCar.thermostat ?? '',
-      radiator: clientCar.radiator ?? '',
-      heaterRadiator: clientCar.heaterRadiator ?? '',
-      airConditionerRadiator: clientCar.airConditionerRadiator ?? '',
-      upperPipe: clientCar.upperPipe ?? '',
-      lowerPipe: clientCar.lowerPipe ?? '',
-      radiatorCap: clientCar.radiatorCap ?? '',
-      expansionTankCap: clientCar.expansionTankCap ?? '',
     },
   })
 
