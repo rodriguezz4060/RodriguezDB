@@ -18,7 +18,32 @@ export default async function CarEditLayout({ children, params: { id } }: Settin
   const client = await prisma.clients.findFirst({
     where: { id: Number(id) },
     include: {
-      clientCar: true,
+      clientCarTo: true,
+      clientCar: {
+        select: {
+          id: true,
+          frontBrake: true,
+          rearBrake: true,
+          handbrakeBrakePads: true,
+          waterPump: true,
+          thermostat: true,
+          sparkPlug: true,
+          driversWiper: true,
+          passengerWiper: true,
+          oilFilter: true,
+          airFilter: true,
+          fuelFilter: true,
+          cabinFilter: true,
+          automaticTransmissionOilPanGasket: true,
+          automaticTransmissionFilter: true,
+          automaticTransmissionFillerGasket: true,
+          automaticTransmissionOilPanGasket2: true,
+          automaticTransmissionFilter2: true,
+          transmissionDrainPlug: true,
+          transmissionDrainPlugGasket: true,
+          ignitionCoil: true,
+        },
+      },
     },
   })
 
@@ -52,6 +77,10 @@ export default async function CarEditLayout({ children, params: { id } }: Settin
       href: `/clients/${id}/profile/car-body`,
     },
   ]
+
+  if (!client) {
+    throw new Error(`Client not found with id ${id}`)
+  }
 
   return (
     <>

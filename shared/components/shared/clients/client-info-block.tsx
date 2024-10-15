@@ -2,18 +2,18 @@
 
 import React from 'react'
 import { Container } from '../container'
-import { ClientsWithCar } from '@/@types/prisma'
+import { ClientsInfo } from '@/@types/prisma'
 import { IdCard, PhoneIcon, TagIcon, TruckIcon } from 'lucide-react'
 import { Button } from '../../ui'
 import { ClientModal } from '../modals'
 
 interface Props {
-  client: ClientsWithCar
+  client: ClientsInfo
   className?: string
 }
 
 export const ClientInfoBlock: React.FC<Props> = ({ client, className }) => {
-  // const [openModal, setOpenModal] = React.useState(false)
+  const [openModal, setOpenModal] = React.useState(false)
 
   return (
     <Container className='min-h-screen dark:bg-zinc-900 flex flex-col'>
@@ -55,13 +55,13 @@ export const ClientInfoBlock: React.FC<Props> = ({ client, className }) => {
             </div>
           </div>
 
-          {/* <ClientModal open={openModal} onClose={() => setOpenModal(false)} client={client} />
+          <ClientModal open={openModal} onClose={() => setOpenModal(false)} client={client} />
           <Button
             onClick={() => setOpenModal(true)}
             className='text-base font-bold bg-[#4CAF50] hover:bg-[#388E3C] w-[300px] mt-5'
           >
             Запчасти ТО
-          </Button> */}
+          </Button>
         </Container>
       </div>
     </Container>

@@ -37,3 +37,7 @@ export type ClientsWithCar = Clients & {
   clientCar?: ClientCar | null
   clientCarTo?: ClientCarTo | null
 }
+
+export type ClientsInfo = Clients & {
+  clientCarTo?: ClientCarTo | null
+}
