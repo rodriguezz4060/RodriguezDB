@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import './globals.css'
 import { Providers } from '@/shared/components/shared/provider'
 import { BreadcrumbProvider, Header } from '@/shared/components/shared'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const nunito = Nunito({
   subsets: ['cyrillic'],
@@ -33,6 +34,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           <BreadcrumbProvider>{children}</BreadcrumbProvider>
+          <SpeedInsights />
         </Providers>
       </body>
     </html>

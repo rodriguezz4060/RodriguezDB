@@ -33,6 +33,7 @@
     "@tanstack/react-table": "^8.20.5",
     "@types/bcrypt": "^5.0.2",
     "@types/qs": "^6.9.16",
+    "@vercel/speed-insights": "^1.0.12",
     "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
