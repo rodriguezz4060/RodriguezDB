@@ -1,0 +1,11 @@
+{
+    "speedInsights": {
+        "enabled": true
+    },
+    "routes": [
+        {
+            "src": "/_vercel/speed-insights/*",
+            "dest": "/_vercel/speed-insights/$1"
+        }
+    ]
+}
