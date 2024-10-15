@@ -67,6 +67,7 @@ export function ElectricalForm({ clientCar }: Props) {
             <TabsTrigger value='washerMotor'>Моторчик омывателя</TabsTrigger>
             <TabsTrigger value='handwheelCable'>Подрулевой шлейф</TabsTrigger>
             <TabsTrigger value='lambdaProbe'>Лямбда зонды</TabsTrigger>
+            <TabsTrigger value='absSensor'>Датчики АБС</TabsTrigger>
             <TabsTrigger value='sparkPlugs'>Свечи, Катушки и Провода</TabsTrigger>
             <TabsTrigger value='lightBulbs'>Лампочки</TabsTrigger>
           </TabsList>

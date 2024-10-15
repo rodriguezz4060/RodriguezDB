@@ -187,14 +187,6 @@ export function EngineForm({ clientCar }: Props) {
             <LabeledBox label='ПГБ'>
               <FormInput name='engineGasketKit' label='Набор прокладок двигателя' />
               <FormInput name='headGasket' label='Прокладка головки блока' />
-              <FormInput
-                name='exhaustPipeGasket2'
-                label='Прокладка выпускной трубы до катализатора'
-              />
-              <FormInput
-                name='exhaustPipeGasket3'
-                label='Прокладка выпускной трубы после катализатора'
-              />
             </LabeledBox>
             <LabeledBox label='Прокладки'>
               <FormInput name='valveCoverGasket' label='Прокладка клапанной крышки' />
@@ -203,6 +195,14 @@ export function EngineForm({ clientCar }: Props) {
               <FormInput name='intakeManifoldGasket' label='Прокладка впускного коллектора' />
               <FormInput name='exhaustManifoldGasket' label='Прокладка выпускного коллектора' />
               <FormInput name='exhaustPipeGasket1' label='Прокладка выпускной трубы' />
+              <FormInput
+                name='exhaustPipeGasket2'
+                label='Прокладка выпускной трубы до катализатора'
+              />
+              <FormInput
+                name='exhaustPipeGasket3'
+                label='Прокладка выпускной трубы после катализатора'
+              />
             </LabeledBox>
           </TabsContent>
 

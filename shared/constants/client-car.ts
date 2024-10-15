@@ -1,616 +1,701 @@
 import { useIntl } from 'react-intl'
 
-export const EngineTimingBelt = (client: any) => {
+export const EngineTimingBelt = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const engineTimingBelt = [
-    { label: 'Цепь ГРМ', value: client.clientCar?.timingChainLong },
-    { label: 'Короткая цепь', value: client.clientCar?.timingChainShort },
-    { label: 'Гидронатяжитель цепи 1', value: client.clientCar?.chainTensioner1 },
-    { label: 'Гидронатяжитель цепи 2', value: client.clientCar?.chainTensioner2 },
-    { label: 'Башмак', value: client.clientCar?.chainTensioner3 },
-    { label: 'Набор цепей', value: client.clientCar?.chainKit },
+    { label: 'Цепь ГРМ', value: clientCar.timingChainLong },
+    { label: 'Короткая цепь', value: clientCar.timingChainShort },
+    { label: 'Гидронатяжитель цепи 1', value: clientCar.chainTensioner1 },
+    { label: 'Гидронатяжитель цепи 2', value: clientCar.chainTensioner2 },
+    { label: 'Башмак', value: clientCar.chainTensioner3 },
+    { label: 'Набор цепей', value: clientCar.chainKit },
 
-    { label: 'Ремень грм', value: client.clientCar?.timingBelt },
-    { label: 'Натяжитель ремня ГРМ', value: client.clientCar?.timingBeltRoller },
-    { label: 'Паразитный ролик ремня ГРМ', value: client.clientCar?.timingBeltRoller },
+    { label: 'Ремень грм', value: clientCar.timingBelt },
+    { label: 'Натяжитель ремня ГРМ', value: clientCar.timingBeltRoller },
+    { label: 'Паразитный ролик ремня ГРМ', value: clientCar.timingBeltRoller },
   ]
 
   return engineTimingBelt
 }
 
-export const EngineAndPiston = (client: any) => {
+export const EngineAndPiston = (clientCar: any) => {
   const { formatMessage } = useIntl()
-  const engineAndPiston = [
-    { label: 'Поршня', value: client.clientCar?.pistons },
-    { label: 'Поршневые кольца', value: client.clientCar?.pistonsRings },
-    { label: 'Гидрокомпенсатор', value: client.clientCar?.hydrocompensators },
-    { label: 'Клапана впуск', value: client.clientCar?.valveIn },
-    { label: 'Клапана выпуск', value: client.clientCar?.valveEx },
-    { label: 'Направляющие впуск', value: client.clientCar?.valveGuidesIn },
-    { label: 'Направляющие выпуск', value: client.clientCar?.valveGuidesEx },
-    { label: 'Вкладыш коренной', value: client.clientCar?.bearingConnectingRod },
-    { label: 'Вкладыш шатуна', value: client.clientCar?.bearingCamshaft },
-    { label: 'Полукольца разбега', value: client.clientCar?.crankshaftCamberRings },
+
+  const enginePiston = [
+    { label: 'Поршня', value: clientCar.pistons },
+    { label: 'Поршневые кольца', value: clientCar.pistonsRings },
   ]
 
-  return engineAndPiston
-}
-
-export const BeltAndTensioner = (client: any) => {
-  const { formatMessage } = useIntl()
-
-  const beltAndTensioner = [
-    { label: 'Ремень генератора', value: client.clientCar?.generatorBelt },
-    { label: 'Ремень гидроусилителя', value: client.clientCar?.powerSteeringBelt },
-    { label: 'Ремень кондиционера', value: client.clientCar?.airConditionerBelt },
-    { label: 'Натяжитель ремня', value: client.clientCar?.tensionToller },
-    { label: 'Обводной ролик ремня', value: client.clientCar?.bypassRoller1 },
-    { label: 'Обводной ролик ремня', value: client.clientCar?.bypassRoller2 },
-    { label: 'Направляющие выпуск', value: client.clientCar?.generatorOverrunningClutch },
-    { label: 'Обгонная муфта', value: client.clientCar?.bearingConnectingRod },
+  const engineValves = [
+    { label: 'Гидрокомпенсатор', value: clientCar.hydrocompensators },
+    { label: 'Клапана впуск', value: clientCar.valveIn },
+    { label: 'Клапана выпуск', value: clientCar.valveEx },
+    { label: 'Направляющие впуск', value: clientCar.valveGuidesIn },
+    { label: 'Направляющие выпуск', value: clientCar.valveGuidesEx },
   ]
 
-  return beltAndTensioner
+  const engineLiner = [
+    { label: 'Вкладыш коренной', value: clientCar.bearingConnectingRod },
+    { label: 'Вкладыш шатуна', value: clientCar.bearingCamshaft },
+    { label: 'Полукольца разбега', value: clientCar.crankshaftCamberRings },
+  ]
+
+  return { enginePiston, engineValves, engineLiner }
 }
 
-export const EngineGasket = (client: any) => {
+export const BeltAndTensioner = (clientCar: any) => {
   const { formatMessage } = useIntl()
+
+  const driveBelt = [
+    { label: 'Ремень генератора', value: clientCar.generatorBelt },
+    { label: 'Ремень гидроусилителя', value: clientCar.powerSteeringBelt },
+    { label: 'Ремень кондиционера', value: clientCar.airConditionerBelt },
+  ]
+
+  const tensionerBelt = [
+    { label: 'Натяжитель ремня', value: clientCar.tensionToller },
+    { label: 'Обводной ролик ремня', value: clientCar.bypassRoller1 },
+    { label: 'Обводной ролик ремня', value: clientCar.bypassRoller2 },
+    { label: 'Направляющие выпуск', value: clientCar.generatorOverrunningClutch },
+    { label: 'Обгонная муфта', value: clientCar.bearingConnectingRod },
+  ]
+
+  return { driveBelt, tensionerBelt }
+}
+
+export const EngineGasket = (clientCar: any) => {
+  const { formatMessage } = useIntl()
+
+  const enginePgb = [
+    { label: 'Набор прокладок', value: clientCar.engineGasketKit },
+    { label: 'Прокладка головки блока', value: clientCar.headGasket },
+  ]
 
   const engineGasket = [
-    { label: 'Набор прокладок', value: client.clientCar?.engineGasketKit },
-    { label: 'Прокладка головки блока', value: client.clientCar?.headGasket },
-    { label: 'Клапанной крышки левая', value: client.clientCar?.valveCoverGasketLeft },
-    { label: 'Клапанной крышки правая', value: client.clientCar?.valveCoverGasketRight },
-    { label: 'Влапанной крышки', value: client.clientCar?.valveCoverGasket },
-    { label: 'Впускного коллектора', value: client.clientCar?.intakeManifoldGasket },
-    { label: 'Выпускного коллектора', value: client.clientCar?.exhaustManifoldGasket },
-    { label: 'Выпускной трубы', value: client.clientCar?.exhaustPipeGasket1 },
-    { label: 'До катализатора', value: client.clientCar?.exhaustPipeGasket2 },
-    { label: 'После катализатора', value: client.clientCar?.exhaustPipeGasket3 },
+    { label: 'Клапанной крышки левая', value: clientCar.valveCoverGasketLeft },
+    { label: 'Клапанной крышки правая', value: clientCar.valveCoverGasketRight },
+    { label: 'Влапанной крышки', value: clientCar.valveCoverGasket },
+    { label: 'Впускного коллектора', value: clientCar.intakeManifoldGasket },
+    { label: 'Выпускного коллектора', value: clientCar.exhaustManifoldGasket },
+    { label: 'Выпускной трубы', value: clientCar.exhaustPipeGasket1 },
+    { label: 'До катализатора', value: clientCar.exhaustPipeGasket2 },
+    { label: 'После катализатора', value: clientCar.exhaustPipeGasket3 },
   ]
 
-  return engineGasket
+  return { enginePgb, engineGasket }
 }
 
-export const EngineCushion = (client: any) => {
+export const EngineCushion = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const engineCushion = [
-    { label: 'Подушка передняя левая', value: client.clientCar?.frontLeftEngineCushion },
-    { label: 'Подушка передняя правая', value: client.clientCar?.frontRightEngineCushion },
-    { label: 'Подушка левая', value: client.clientCar?.engineCushionLeft },
-    { label: 'Подушка задняя', value: client.clientCar?.engineCushionRear },
+    { label: 'Передняя левая', value: clientCar.frontLeftEngineCushion },
+    { label: 'Передняя правая', value: clientCar.frontRightEngineCushion },
+    { label: 'Левая', value: clientCar.engineCushionLeft },
+    { label: 'Задняя', value: clientCar.engineCushionRear },
   ]
 
   return engineCushion
 }
 
-export const EngineOilSeals = (client: any) => {
+export const EngineOilSeals = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const engineOilSeals = [
-    { label: 'Передний коленвала', value: client.clientCar?.frontLeftEngineCushion },
-    { label: 'Задний коленвала', value: client.clientCar?.rearCrankshaftOilSeal },
-    { label: 'Распредвала', value: client.clientCar?.camshaftOilSeal },
-    { label: 'Маслонасоса', value: client.clientCar?.oilPumpPacking },
-    { label: 'Маслосъемные впускные', value: client.clientCar?.intakeOilCaps },
-    { label: 'Маслосъемные выпускные', value: client.clientCar?.exhaustOilCaps },
+    { label: 'Передний коленвала', value: clientCar.frontLeftEngineCushion },
+    { label: 'Задний коленвала', value: clientCar.rearCrankshaftOilSeal },
+    { label: 'Распредвала', value: clientCar.camshaftOilSeal },
+    { label: 'Маслонасоса', value: clientCar.oilPumpPacking },
+    { label: 'Маслосъемные впускные', value: clientCar.intakeOilCaps },
+    { label: 'Маслосъемные выпускные', value: clientCar.exhaustOilCaps },
   ]
   return engineOilSeals
 }
 
-export const AirSupplySystem = (client: any) => {
+export const AirSupplySystem = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const airSupplySystem = [
-    { label: 'Гофра воздуховода', value: client.clientCar?.airDuctCorrugation },
-  ]
+  const airSupplySystem = [{ label: 'Гофра воздуховода', value: clientCar.airDuctCorrugation }]
 
   return airSupplySystem
 }
 
-export const Filters = (client: any) => {
+export const Filters = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const filters = [
-    { label: 'Масляный фильтр', value: client.clientCar?.oilFilter },
-    { label: 'Воздушный фильтр', value: client.clientCar?.airFilter },
-    { label: 'Топливный фильтр', value: client.clientCar?.fuelFilter },
-    { label: 'Фильтр салона', value: client.clientCar?.cabinFilter },
+    { label: 'Масляный', value: clientCar.oilFilter },
+    { label: 'Воздушный ', value: clientCar.airFilter },
+    { label: 'Топливный ', value: clientCar.fuelFilter },
+    { label: 'Салона', value: clientCar.cabinFilter },
   ]
   return filters
 }
 
-export const ShockAbsorbers = (client: any) => {
+export const ShockAbsorbers = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const shockAbsorbers = [
-    { label: 'Передний левый', value: client.clientCar?.frontLeftShockAbsorber },
-    { label: 'Передний правый', value: client.clientCar?.frontRightShockAbsorber },
-    { label: 'Задний левый', value: client.clientCar?.rearLeftShockAbsorber },
-    { label: 'Задний правый', value: client.clientCar?.rearRightShockAbsorber },
+  const shockAbsorbersFront = [
+    { label: 'Левый', value: clientCar.frontLeftShockAbsorber },
+    { label: 'Правый', value: clientCar.frontRightShockAbsorber },
   ]
 
-  return shockAbsorbers
+  const shockAbsorbersRear = [
+    { label: 'Левый', value: clientCar.rearLeftShockAbsorber },
+    { label: 'Правый', value: clientCar.rearRightShockAbsorber },
+  ]
+
+  return { shockAbsorbersFront, shockAbsorbersRear }
 }
 
-export const NutsWheelStuds = (client: any) => {
+export const NutsWheelStuds = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const nutsWheelStuds = [
-    { label: 'Шпилька', value: client.clientCar?.wheelStud },
-    { label: 'Гайка', value: client.clientCar?.wheelNut },
+    { label: 'Шпилька', value: clientCar.wheelStud },
+    { label: 'Гайка', value: clientCar.wheelNut },
   ]
   return nutsWheelStuds
 }
 
-export const StrutMountsDustCoversBumpers = (client: any) => {
+export const StrutMountsDustCoversBumpers = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const strutMountsDustCoversBumpers = [
-    { label: 'Передняя опора левая', value: client.clientCar?.leftFrontStrutSupport },
-    { label: 'Передняя опора правая', value: client.clientCar?.rightFrontStrutSupport },
-    { label: 'Задняя опора левая', value: client.clientCar?.leftRearStrutSupport },
-    { label: 'Задняя опора правая', value: client.clientCar?.rightRearStrutSupport },
-    { label: 'Опорный подшипник', value: client.clientCar?.frontSupportBearing },
-    { label: 'Пыльник передний левый', value: client.clientCar?.frontLeftStrutDuster },
-    { label: 'Пыльник передний правый', value: client.clientCar?.frontRightStrutDuster },
-    { label: 'Пыльник задний левый', value: client.clientCar?.rearLeftStrutDuster },
-    { label: 'Пыльник задний правый', value: client.clientCar?.rearRightStrutDuster },
-    { label: 'Отбойник передний', value: client.clientCar?.frontStrutBumper },
-    { label: 'Отбойник задний', value: client.clientCar?.rearStrutBumper },
+  const strutMounts = [
+    { label: 'Передняя опора левая', value: clientCar.leftFrontStrutSupport },
+    { label: 'Передняя опора правая', value: clientCar.rightFrontStrutSupport },
+    { label: 'Задняя опора левая', value: clientCar.leftRearStrutSupport },
+    { label: 'Задняя опора правая', value: clientCar.rightRearStrutSupport },
+    { label: 'Опорный подшипник', value: clientCar.frontSupportBearing },
   ]
-  return strutMountsDustCoversBumpers
+
+  const dustCoversBumpers = [
+    { label: 'Пыльник передний левый', value: clientCar.frontLeftStrutDuster },
+    { label: 'Пыльник передний правый', value: clientCar.frontRightStrutDuster },
+    { label: 'Пыльник задний левый', value: clientCar.rearLeftStrutDuster },
+    { label: 'Пыльник задний правый', value: clientCar.rearRightStrutDuster },
+    { label: 'Отбойник передний', value: clientCar.frontStrutBumper },
+    { label: 'Отбойник задний', value: clientCar.rearStrutBumper },
+  ]
+
+  return { strutMounts, dustCoversBumpers }
 }
 
-export const HubBearings = (client: any) => {
+export const HubBearings = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const hubBearings = [
-    { label: 'Передней левый', value: client.clientCar?.frontLeftHubBearing },
-    { label: 'Передней правый', value: client.clientCar?.frontRightHubBearing },
-    { label: 'Задней левый', value: client.clientCar?.rearLeftHubBearing },
-    { label: 'Задней правый', value: client.clientCar?.rearRightHubBearing },
+  const hubBearingsFront = [
+    { label: 'Передней левый', value: clientCar.frontLeftHubBearing },
+    { label: 'Передней правый', value: clientCar.frontRightHubBearing },
   ]
-  return hubBearings
+
+  const hubBearingsRear = [
+    { label: 'Задней левый', value: clientCar.rearLeftHubBearing },
+    { label: 'Задней правый', value: clientCar.rearRightHubBearing },
+  ]
+  return { hubBearingsFront, hubBearingsRear }
 }
 
-export const SteeringRackAndPowerSteering = (client: any) => {
+export const SteeringRackAndPowerSteering = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const steeringRackAndPowerSteering = [
-    { label: 'Ремкомплект ГУР', value: client.clientCar?.hydraulicPowerSteeringKit },
-    { label: 'Сальники и прокладки рейки', value: client.clientCar?.railSealsAndGaskets },
-    { label: 'Пыльник рейки левый', value: client.clientCar?.steeringRackDustCoverLeft },
-    { label: 'Пыльник рейки правый', value: client.clientCar?.steeringRackDustCoverRight },
+    { label: 'Ремкомплект ГУР', value: clientCar.hydraulicPowerSteeringKit },
+    { label: 'Сальники и прокладки рейки', value: clientCar.railSealsAndGaskets },
   ]
 
-  return steeringRackAndPowerSteering
-}
-
-export const Arms = (client: any) => {
-  const { formatMessage } = useIntl()
-
-  const arms = [
-    { label: 'Передний нижний левый', value: client.clientCar?.frontLowerLeftArm },
-    { label: 'Передний нижний правый', value: client.clientCar?.frontLowerRightArm },
-    { label: 'Передний верхний левый', value: client.clientCar?.frontUpperLeftArm },
-    { label: 'Передний верхний правый', value: client.clientCar?.frontUpperRightArm },
-    { label: 'Задний левый продольный', value: client.clientCar?.rearLeftLongitudinalArm },
-    { label: 'Задний правый продольный', value: client.clientCar?.rearRightLongitudinalArm },
-    { label: 'Задний левый поперечный 1', value: client.clientCar?.rearLeftTransverseArm1 },
-    { label: 'Задний правый поперечный 1', value: client.clientCar?.rearRightTransverseArm1 },
-    { label: 'Задний левый поперечный 2', value: client.clientCar?.rearLeftTransverseArm2 },
-    { label: 'Задний правый поперечный 2', value: client.clientCar?.rearRightTransverseArm2 },
-    { label: 'Задний левый полумесяц', value: client.clientCar?.rearCrescentArm },
-    { label: 'Задний верхний короткий', value: client.clientCar?.rearUpperShortArm },
+  const powerSteeringBoot = [
+    { label: 'Пыльник рейки левый', value: clientCar.steeringRackDustCoverLeft },
+    { label: 'Пыльник рейки правый', value: clientCar.steeringRackDustCoverRight },
   ]
 
-  return arms
+  return { steeringRackAndPowerSteering, powerSteeringBoot }
 }
 
-export const SilentBlocks = (client: any) => {
+export const Arms = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const silentBlocks = [
+  const armsFront = [
+    { label: 'Нижний левый', value: clientCar.frontLowerLeftArm },
+    { label: 'Нижний правый', value: clientCar.frontLowerRightArm },
+    { label: 'Верхний левый', value: clientCar.frontUpperLeftArm },
+    { label: 'Верхний правый', value: clientCar.frontUpperRightArm },
+  ]
+
+  const armsRear = [
+    { label: 'Левый продольный', value: clientCar.rearLeftLongitudinalArm },
+    { label: 'Правый продольный', value: clientCar.rearRightLongitudinalArm },
+    { label: 'Левый поперечный 1', value: clientCar.rearLeftTransverseArm1 },
+    { label: 'Правый поперечный 1', value: clientCar.rearRightTransverseArm1 },
+    { label: 'Левый поперечный 2', value: clientCar.rearLeftTransverseArm2 },
+    { label: 'Правый поперечный 2', value: clientCar.rearRightTransverseArm2 },
+    { label: 'Левый полумесяц', value: clientCar.rearCrescentArm },
+    { label: 'Верхний короткий', value: clientCar.rearUpperShortArm },
+  ]
+
+  return { armsFront, armsRear }
+}
+
+export const SilentBlocks = (clientCar: any) => {
+  const { formatMessage } = useIntl()
+
+  const silentBlocksFront = [
     {
       label: 'Переднего нижнего передний',
-      value: client.clientCar?.frontLowerControlArmFrontSilentBlock,
+      value: clientCar.frontLowerControlArmFrontSilentBlock,
     },
     {
       label: 'Переднего нижнего задний',
-      value: client.clientCar?.frontLowerControlArmRearSilentBlock,
+      value: clientCar.frontLowerControlArmRearSilentBlock,
     },
     {
       label: 'Переднего верхнего передний',
-      value: client.clientCar?.frontUpperControlArmFrontSilentBlock,
+      value: clientCar.frontUpperControlArmFrontSilentBlock,
     },
     {
       label: 'Переднего верхнего задний',
-      value: client.clientCar?.frontUpperControlArmRearSilentBlock,
+      value: clientCar.frontUpperControlArmRearSilentBlock,
     },
-    { label: 'Продольных рычагов левый', value: client.clientCar?.longitudinalArmSilentBlockLeft },
+  ]
+
+  const silentBlocksRear = [
+    { label: 'Продольных рычагов левый', value: clientCar.longitudinalArmSilentBlockLeft },
     {
       label: 'Продольных рычагов правый',
-      value: client.clientCar?.longitudinalArmSilentBlockRight,
+      value: clientCar.longitudinalArmSilentBlockRight,
     },
     {
       label: 'Продольных рычагов ступичный',
-      value: client.clientCar?.longitudinalHubArmSilentBlockLeft,
+      value: clientCar.longitudinalHubArmSilentBlockLeft,
     },
     {
       label: 'Поперечного левого рычага кузовной',
-      value: client.clientCar?.bodyLeftCrossArmSilentBlock,
+      value: clientCar.bodyLeftCrossArmSilentBlock,
     },
     {
       label: 'Поперечного левого рычага ступичный',
-      value: client.clientCar?.hubLeftCrossArmSilentBlock,
+      value: clientCar.hubLeftCrossArmSilentBlock,
     },
     {
       label: 'Поперечного правого рычага кузовной',
-      value: client.clientCar?.bodyRightCrossArmSilentBlock,
+      value: clientCar.bodyRightCrossArmSilentBlock,
     },
     {
       label: 'Поперечного правого рычага ступичный',
-      value: client.clientCar?.hubRightCrossArmSilentBlock,
+      value: clientCar.hubRightCrossArmSilentBlock,
     },
-    { label: 'Развального рычага (Развальный)', value: client.clientCar?.camberArmSilentBlock1 },
-    { label: 'Развального рычага', value: client.clientCar?.camberArmSilentBlock2 },
-    { label: 'Подрамника передний', value: client.clientCar?.frontSubframeSilentBlock },
-    { label: 'Подрамника задний', value: client.clientCar?.rearSubframeSilentBlock },
+    { label: 'Развального рычага (Развальный)', value: clientCar.camberArmSilentBlock1 },
+    { label: 'Развального рычага', value: clientCar.camberArmSilentBlock2 },
+    { label: 'Подрамника передний', value: clientCar.frontSubframeSilentBlock },
+    { label: 'Подрамника задний', value: clientCar.rearSubframeSilentBlock },
   ]
 
-  return silentBlocks
+  return { silentBlocksFront, silentBlocksRear }
 }
 
-export const Stabilizer = (client: any) => {
+export const Stabilizer = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const stabilizer = [
-    { label: 'Втулки передние', value: client.clientCar?.frontStabilizerSushings },
-    { label: 'Втулка передняя левая', value: client.clientCar?.frontStabilizerSushingsLeft },
-    { label: 'Втулка передняя правая', value: client.clientCar?.frontStabilizerSushingsRight },
-    { label: 'Втулки стабилизатора задняя', value: client.clientCar?.rearStabilizerSushings },
-    { label: 'Стойка передняя левая', value: client.clientCar?.frontLeftStabilizerBar },
-    { label: 'Стойка передняя правая', value: client.clientCar?.frontRightStabilizerBar },
-    { label: 'Стойка задняя левая', value: client.clientCar?.rearLeftStabilizerBar },
-    { label: 'Стойка задняя правая', value: client.clientCar?.rearRightStabilizerBar },
+  const stabilizerBushings = [
+    { label: 'Втулки передние', value: clientCar.frontStabilizerSushings },
+    { label: 'Втулка передняя левая', value: clientCar.frontStabilizerSushingsLeft },
+    { label: 'Втулка передняя правая', value: clientCar.frontStabilizerSushingsRight },
+    { label: 'Втулка задняя', value: clientCar.rearStabilizerSushings },
   ]
 
-  return stabilizer
+  const stabilizerRods = [
+    { label: 'Передняя левая', value: clientCar.frontLeftStabilizerBar },
+    { label: 'Передняя правая', value: clientCar.frontRightStabilizerBar },
+    { label: 'Задняя левая', value: clientCar.rearLeftStabilizerBar },
+    { label: 'Задняя правая', value: clientCar.rearRightStabilizerBar },
+  ]
+
+  return { stabilizerBushings, stabilizerRods }
 }
 
-export const PullRodsAndLugs = (client: any) => {
+export const PullRodsAndLugs = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const pullRodsAndLugs = [
-    { label: 'Рулевая тяга левая', value: client.clientCar?.steeringLinkLeft },
-    { label: 'Тяга правая ', value: client.clientCar?.steeringLinkRight },
-    { label: 'Наконечник наружный левый ', value: client.clientCar?.outerLeftSteeringKnuckle },
-    { label: 'Наконечник наружный правый ', value: client.clientCar?.outerRightSteeringKnuckle },
-    { label: 'Наконечник внутренний левый ', value: client.clientCar?.leftInnerSteeringKnuckle },
-    { label: 'Наконечник внутренний правый ', value: client.clientCar?.leftRightSteeringKnuckle },
+  const pullRods = [
+    { label: 'Тяга левая', value: clientCar.steeringLinkLeft },
+    { label: 'Тяга правая ', value: clientCar.steeringLinkRight },
   ]
 
-  return pullRodsAndLugs
+  const rodsLugs = [
+    { label: 'Наружный левый ', value: clientCar.outerLeftSteeringKnuckle },
+    { label: 'Наружный правый ', value: clientCar.outerRightSteeringKnuckle },
+    { label: 'Внутренний левый ', value: clientCar.leftInnerSteeringKnuckle },
+    { label: 'Внутренний правый ', value: clientCar.leftRightSteeringKnuckle },
+  ]
+
+  return { pullRods, rodsLugs }
 }
 
-export const BallBearings = (client: any) => {
+export const BallBearings = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const ballBearings = [
-    { label: 'Шаровая нижняя левая', value: client.clientCar?.lowerLeftBallJoint },
-    { label: 'Шаровая нижняя правая', value: client.clientCar?.lowerRightBallJoint },
-    { label: 'Шаровая верхняя левая', value: client.clientCar?.upperLeftBallJoint },
-    { label: 'Шаровая верхняя правая', value: client.clientCar?.upperRightBallJoint },
+    { label: 'Нижняя левая', value: clientCar.lowerLeftBallJoint },
+    { label: 'Нижняя правая', value: clientCar.lowerRightBallJoint },
+    { label: 'Верхняя левая', value: clientCar.upperLeftBallJoint },
+    { label: 'Верхняя правая', value: clientCar.upperRightBallJoint },
   ]
   return ballBearings
 }
 
-export const BrakeCable = (client: any) => {
+export const BrakeCable = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const brakeCable = [
-    { label: 'Трос ручника передний', value: client.clientCar?.frontHandbrakeCable },
-    { label: 'Трос задний левый', value: client.clientCar?.rearLeftCable },
-    { label: 'Трос задний правый', value: client.clientCar?.reaRightCable },
+    { label: 'Передний', value: clientCar.frontHandbrakeCable },
+    { label: 'Левый', value: clientCar.rearLeftCable },
+    { label: 'Правый', value: clientCar.reaRightCable },
   ]
 
   return brakeCable
 }
 
-export const BrakeDisksAndDrums = (client: any) => {
+export const BrakeDisksAndDrums = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const brakeDisksAndDrums = [
-    { label: 'Передний диск левый ', value: client.clientCar?.frontBrakeDiskLeft },
-    { label: 'Передний диск правый', value: client.clientCar?.frontBrakeDiskRight },
-    { label: 'Задний диск', value: client.clientCar?.rearBrakeDisk },
+    { label: 'Передний  левый ', value: clientCar.frontBrakeDiskLeft },
+    { label: 'Передний правый', value: clientCar.frontBrakeDiskRight },
+    { label: 'Задний диск', value: clientCar.rearBrakeDisk },
   ]
   return brakeDisksAndDrums
 }
 
-export const BrakePads = (client: any) => {
+export const BrakePads = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const brakePads = [
-    { label: 'Передние', value: client.clientCar?.frontBrake },
-    { label: 'Задние', value: client.clientCar?.rearBrake },
-    { label: 'Ручника', value: client.clientCar?.handbrakeBrakePads },
+    { label: 'Передние', value: clientCar.frontBrake },
+    { label: 'Задние', value: clientCar.rearBrake },
+    { label: 'Ручника', value: clientCar.handbrakeBrakePads },
   ]
   return brakePads
 }
 
-export const BrakeCylinder = (client: any) => {
+export const BrakeCylinder = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const brakeCylinder = [
-    { label: 'Цилиндр главный', value: client.clientCar?.brakeMasterCylinder },
-    { label: 'Цилиндр рабочий', value: client.clientCar?.slaveBrakeCylinder },
-    { label: 'Цилиндр барабанов левый', value: client.clientCar?.drumBrakeCylinderLeft },
-    { label: 'Цилиндр барабанов правый', value: client.clientCar?.drumBrakeCylinderRight },
+    { label: 'Цилиндр главный', value: clientCar.brakeMasterCylinder },
+    { label: 'Цилиндр рабочий', value: clientCar.slaveBrakeCylinder },
+    { label: 'Цилиндр барабанов левый', value: clientCar.drumBrakeCylinderLeft },
+    { label: 'Цилиндр барабанов правый', value: clientCar.drumBrakeCylinderRight },
   ]
   return brakeCylinder
 }
 
-export const FrontWheelBrakeMechanism = (client: any) => {
+export const FrontWheelBrakeMechanism = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const frontWheelBrakeMechanism = [
     {
       label: 'Передние направляющие с пыльниками',
-      value: client.clientCar?.setOfFrontGuideRailsWithDustCovers,
+      value: clientCar.setOfFrontGuideRailsWithDustCovers,
     },
-    { label: 'Установочный комплект', value: client.clientCar?.installationKitForFrontPads },
-    { label: 'Ремкомплект суппорта ', value: client.clientCar?.frontCaliperRepairKit },
+    { label: 'Установочный комплект', value: clientCar.installationKitForFrontPads },
+    { label: 'Ремкомплект суппорта ', value: clientCar.frontCaliperRepairKit },
     {
       label: 'Ремкомплект суппорта с поршнями',
-      value: client.clientCar?.frontCaliperRepairKitWithPiston,
+      value: clientCar.frontCaliperRepairKitWithPiston,
     },
   ]
 
   return frontWheelBrakeMechanism
 }
 
-export const RearWheelBrakeMechanism = (client: any) => {
+export const RearWheelBrakeMechanism = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const rearWheelBrakeMechanism = [
     {
       label: 'Задние направляющие с пыльниками',
-      value: client.clientCar?.setOfRearGuideRailsWithDustCovers,
+      value: clientCar.setOfRearGuideRailsWithDustCovers,
     },
     {
       label: 'Установочный комплект на барабаны',
-      value: client.clientCar?.installationKitForHandbrakeBrakePads,
+      value: clientCar.installationKitForHandbrakeBrakePads,
     },
-    { label: 'Ремкомплект суппорта ', value: client.clientCar?.rearCaliperRepairKit },
+    { label: 'Ремкомплект суппорта ', value: clientCar.rearCaliperRepairKit },
     {
       label: 'Ремкомплект суппорта  с поршнями',
-      value: client.clientCar?.rearCaliperRepairKitWithPiston,
+      value: clientCar.rearCaliperRepairKitWithPiston,
     },
   ]
 
   return rearWheelBrakeMechanism
 }
 
-export const BrakeHoses = (client: any) => {
+export const BrakeHoses = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const brakeHoses = [
-    { label: 'Передний левый', value: client.clientCar?.frontLeftBrakeHose },
-    { label: 'Передний правый', value: client.clientCar?.frontRightBrakeHose },
-    { label: 'Задний левый', value: client.clientCar?.rearLeftBrakeHose },
-    { label: 'Задний правый', value: client.clientCar?.rearRightBrakeHose },
+  const brakeHosesFront = [
+    { label: 'Левый', value: clientCar.frontLeftBrakeHose },
+    { label: 'Правый', value: clientCar.frontRightBrakeHose },
   ]
-  return brakeHoses
+
+  const brakeHosesRear = [
+    { label: 'Левый', value: clientCar.rearLeftBrakeHose },
+    { label: 'Правый', value: clientCar.rearRightBrakeHose },
+  ]
+  return { brakeHosesFront, brakeHosesRear }
 }
 
-export const GrenadesAndDrives = (client: any) => {
+export const GrenadesAndDrives = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const grenadesAndDrives = [
-    { label: 'ШРУС передний наружный левый', value: client.clientCar?.frontLeftOuterBallJoint },
-    { label: 'ШРУС передний наружный правый', value: client.clientCar?.frontRightOuterBallJoint },
-    { label: 'ШРУС передний внутренний левый', value: client.clientCar?.frontLeftInnerBallJoint },
-    { label: 'ШРУС передний внутренний правый', value: client.clientCar?.frontRightInnerBallJoint },
-    { label: 'Приводной вал левый', value: client.clientCar?.frontLeftHandDrive },
-    { label: 'Приводной вал правый', value: client.clientCar?.frontRightHandDrive },
-    { label: 'ШРУС задний наружный левый', value: client.clientCar?.rearLeftOuterBallJoint },
-    { label: 'ШРУС задний наружный правый', value: client.clientCar?.rearRightOuterBallJoint },
-    { label: 'ШРУС задний внутренний левый', value: client.clientCar?.rearLeftInnerBallJoint },
-    { label: 'ШРУС задний внутренний правый', value: client.clientCar?.rearRightInnerBallJoint },
+  const grenadesFront = [
+    { label: 'Наружный левый', value: clientCar.frontLeftOuterBallJoint },
+    { label: 'Наружный правый', value: clientCar.frontRightOuterBallJoint },
+    { label: 'Внутренний левый', value: clientCar.frontLeftInnerBallJoint },
+    { label: 'Внутренний правый', value: clientCar.frontRightInnerBallJoint },
   ]
-  return grenadesAndDrives
+
+  const driveShafts = [
+    { label: 'Приводной вал левый', value: clientCar.frontLeftHandDrive },
+    { label: 'Приводной вал правый', value: clientCar.frontRightHandDrive },
+  ]
+
+  const grenadesRear = [
+    { label: 'Наружный левый', value: clientCar.frontLeftOuterBallJoint },
+    { label: 'Наружный правый', value: clientCar.frontRightOuterBallJoint },
+    { label: 'Внутренний левый', value: clientCar.frontLeftInnerBallJoint },
+    { label: 'Внутренний правый', value: clientCar.frontRightInnerBallJoint },
+  ]
+  return { grenadesFront, driveShafts, grenadesRear }
 }
 
-export const Gearbox = (client: any) => {
+export const Gearbox = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const gearbox = [
-    { label: 'Прокладка поддона АКПП', value: client.clientCar?.automaticTransmissionOilPanGasket },
-    { label: 'Фильтр АКПП', value: client.clientCar?.automaticTransmissionFilter },
-    { label: 'Прокладка фильтра АКПП', value: client.clientCar?.automaticTransmissionFillerGasket },
+  const gearboxFilter = [
+    { label: 'Фильтр АКПП', value: clientCar.automaticTransmissionFilter },
+    { label: 'Прокладка поддона АКПП', value: clientCar.automaticTransmissionOilPanGasket },
+    { label: 'Прокладка фильтра АКПП', value: clientCar.automaticTransmissionFillerGasket },
+  ]
+  const gearboxSmall = [
+    { label: 'Фильтр', value: clientCar.automaticTransmissionFilter2 },
     {
-      label: 'Прокладка фильтра АКПП',
-      value: client.clientCar?.automaticTransmissionOilPanGasket2,
+      label: 'Прокладка фильтра',
+      value: clientCar.automaticTransmissionOilPanGasket2,
     },
-    { label: 'Фильтр маленький АКПП', value: client.clientCar?.automaticTransmissionFilter2 },
-    { label: 'Сливная пробка АКПП', value: client.clientCar?.transmissionDrainPlug },
+  ]
+  const drainPlug = [
+    { label: 'Сливная пробка АКПП', value: clientCar.transmissionDrainPlug },
     {
       label: 'Прокладка сливной пробки АКПП',
-      value: client.clientCar?.transmissionDrainPlugGasket,
+      value: clientCar.transmissionDrainPlugGasket,
     },
   ]
-  return gearbox
+  return { gearboxFilter, gearboxSmall, drainPlug }
 }
 
-export const SuspensionBearing = (client: any) => {
+export const SuspensionBearing = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const suspensionBearing = [
-    { label: 'Подвесной подшипник', value: client.clientCar?.suspensionBearing },
-  ]
+  const suspensionBearing = [{ label: 'Подвесной подшипник', value: clientCar.suspensionBearing }]
 
   return suspensionBearing
 }
 
-export const BootDustCovers = (client: any) => {
+export const BootDustCovers = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const bootDustCovers = [
-    { label: 'Передний наружный', value: client.clientCar?.frontPistonRodDusterOuter },
-    { label: 'Передний внутренний левый', value: client.clientCar?.frontPistonRodDusterInnerLeft },
+  const bootDustCoversFront = [
+    { label: 'Наружный', value: clientCar.frontPistonRodDusterOuter },
+    { label: 'Внутренний левый', value: clientCar.frontPistonRodDusterInnerLeft },
     {
-      label: 'Передний внутренний правый',
-      value: client.clientCar?.frontPistonRodDusterInnerRight,
+      label: 'Внутренний правый',
+      value: clientCar.frontPistonRodDusterInnerRight,
     },
-    { label: 'Задний наружный', value: client.clientCar?.rearPistonRodDusterOuter },
-    { label: 'Задний внутренний левый', value: client.clientCar?.rearPistonRodDusterInnerLeft },
-    { label: 'Задний внутренний правый', value: client.clientCar?.rearPistonRodDusterInnerRight },
   ]
-  return bootDustCovers
+
+  const bootDustCoversRear = [
+    { label: 'Наружный', value: clientCar.rearPistonRodDusterOuter },
+    { label: 'Внутренний левый', value: clientCar.rearPistonRodDusterInnerLeft },
+    { label: 'Внутренний правый', value: clientCar.rearPistonRodDusterInnerRight },
+  ]
+  return { bootDustCoversFront, bootDustCoversRear }
 }
 
-export const TransmissionOilSeals = (client: any) => {
+export const TransmissionOilSeals = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const transmissionOilSeals = [
     {
       label: 'Гидротрансформатора АКПП',
-      value: client.clientCar?.automaticTransmissionTorqueConverterOilSeal,
+      value: clientCar.automaticTransmissionTorqueConverterOilSeal,
     },
-    { label: 'Первичного вала КПП', value: client.clientCar?.gearboxPrimaryShaftOilSeal },
-    { label: 'Кулисы КПП', value: client.clientCar?.gearboxRockerGland },
-    { label: 'Левого привода', value: client.clientCar?.leftDriveOilSeal },
-    { label: 'Правого привода', value: client.clientCar?.rightDriveOilSeal },
+    { label: 'Первичного вала КПП', value: clientCar.gearboxPrimaryShaftOilSeal },
+    { label: 'Кулисы КПП', value: clientCar.gearboxRockerGland },
+    { label: 'Левого привода', value: clientCar.leftDriveOilSeal },
+    { label: 'Правого привода', value: clientCar.rightDriveOilSeal },
   ]
   return transmissionOilSeals
 }
 
-export const Clutch = (client: any) => {
+export const Clutch = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const clutch = [
-    { label: 'Диск', value: client.clientCar?.clutchDisk },
-    { label: 'Корзина', value: client.clientCar?.clutchBasket },
-    { label: 'Выжимной подшипник', value: client.clientCar?.releaseBearing },
-    { label: 'Комплект сцепления', value: client.clientCar?.clutchKit },
+    { label: 'Диск', value: clientCar.clutchDisk },
+    { label: 'Корзина', value: clientCar.clutchBasket },
+    { label: 'Выжимной подшипник', value: clientCar.releaseBearing },
+    { label: 'Комплект сцепления', value: clientCar.clutchKit },
   ]
   return clutch
 }
 
-export const ClutchCylinders = (client: any) => {
+export const ClutchCylinders = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const clutchCylinders = [
-    { label: 'Главный', value: client.clientCar?.clutchMasterCylinder },
-    { label: 'Рабочий', value: client.clientCar?.clutchSlaveCylinder },
+    { label: 'Главный', value: clientCar.clutchMasterCylinder },
+    { label: 'Рабочий', value: clientCar.clutchSlaveCylinder },
   ]
-  return clutchCylinders
+
+  const clutchCylindersRepair = [
+    { label: 'Главного цилиндра', value: clientCar.clutchMasterCylinderKit },
+    { label: 'Рабочего цилиндра', value: clientCar.clutchSlaveCylinderRepairKit },
+  ]
+  return { clutchCylinders, clutchCylindersRepair }
 }
 
-export const CoolingSystem = (client: any) => {
+export const CoolingSystem = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const coolingSystem = [
-    { label: 'Водяная помпа', value: client.clientCar?.waterPump },
-    { label: 'Термостат', value: client.clientCar?.thermostat },
-    { label: 'Радиатор', value: client.clientCar?.radiator },
-    { label: 'Радиатор отопителя', value: client.clientCar?.heaterRadiator },
-    { label: 'Радиатор кондиционера', value: client.clientCar?.airConditionerRadiator },
-    { label: 'Патрубок верхний', value: client.clientCar?.upperPipe },
-    { label: 'Патрубок нижний', value: client.clientCar?.lowerPipe },
-    { label: 'Крышка радиатора', value: client.clientCar?.radiatorCap },
-    { label: 'Крышка расширительного бачка', value: client.clientCar?.expansionTankCap },
+    { label: 'Водяная помпа', value: clientCar.waterPump },
+    { label: 'Термостат', value: clientCar.thermostat },
   ]
   return coolingSystem
 }
 
-export const Sensors = (client: any) => {
+export const Radiator = (clientCar: any) => {
+  const { formatMessage } = useIntl()
+
+  const radiator = [
+    { label: 'Радиатор', value: clientCar.radiator },
+    { label: 'Радиатор отопителя', value: clientCar.heaterRadiator },
+    { label: 'Радиатор кондиционера', value: clientCar.airConditionerRadiator },
+  ]
+  const radiatorCap = [
+    { label: 'Крышка радиатора', value: clientCar.radiatorCap },
+    { label: 'Крышка расширительного бачка', value: clientCar.expansionTankCap },
+  ]
+  return { radiator, radiatorCap }
+}
+
+export const RadiatorPipe = (clientCar: any) => {
+  const { formatMessage } = useIntl()
+
+  const radiatorPipe = [
+    { label: 'Патрубок верхний', value: clientCar.upperPipe },
+    { label: 'Патрубок нижний', value: clientCar.lowerPipe },
+  ]
+  return radiatorPipe
+}
+export const Sensors = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const sensors = [
-    { label: 'Масляный датчик', value: client.clientCar?.oilSensor },
-    { label: 'Масляный вентилятора', value: client.clientCar?.ventilatorSensor },
+    { label: 'Масляный датчик', value: clientCar.oilSensor },
+    { label: 'Масляный вентилятора', value: clientCar.ventilatorSensor },
     {
       label: 'Датчик температуры приборной панели',
-      value: client.clientCar?.dashboardTemperatureSensor,
+      value: clientCar.dashboardTemperatureSensor,
     },
-    { label: 'Датчик кондиционера', value: client.clientCar?.airConditionerSensor },
-    { label: 'Датчик заднего хода', value: client.clientCar?.reverseSensor },
-    { label: 'Моторчик омывателя', value: client.clientCar?.washerMotor },
-    { label: 'Подрулевой шлейф', value: client.clientCar?.handwheelCable },
+    { label: 'Датчик кондиционера', value: clientCar.airConditionerSensor },
+    { label: 'Датчик заднего хода', value: clientCar.reverseSensor },
   ]
   return sensors
 }
 
-export const SparkPlugsAndIgnitionCoil = (client: any) => {
+export const WasherMotor = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const sparkPlugsAndIgnitionCoil = [
-    { label: 'Свеча зажигания', value: client.clientCar?.sparkPlug },
-    { label: 'Катушка зажигания', value: client.clientCar?.ignitionCoil },
-    { label: 'Провода зажигания', value: client.clientCar?.ignitionWires },
-  ]
-  return sparkPlugsAndIgnitionCoil
+  const washerMotor = [{ label: 'Моторчик омывателя', value: clientCar.washerMotor }]
+  return washerMotor
 }
 
-export const Trampler = (client: any) => {
+export const HandwheelCable = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
+  const handwheelCable = [{ label: 'Подрулевой шлейф', value: clientCar.handwheelCable }]
+  return handwheelCable
+}
+
+export const Lambda = (clientCar: any) => {
+  const { formatMessage } = useIntl()
+
+  const lambda = [
+    { label: 'Первый лямбда зонд', value: clientCar.lambdaProbe1 },
+    { label: 'Второй лямбда зонд', value: clientCar.lambdaProbe2 },
+  ]
+  return lambda
+}
+
+export const SparkPlugsAndIgnitionCoil = (clientCar: any) => {
+  const { formatMessage } = useIntl()
+
+  const sparkPlugs = [{ label: 'Свеча', value: clientCar.sparkPlug }]
+  const IgnitionCoil = [{ label: 'Катушка', value: clientCar.ignitionCoil }]
+  const ignitionWires = [{ label: 'Провода', value: clientCar.ignitionWires }]
   const trampler = [
-    { label: 'Крышка трамблера', value: client.clientCar?.timingCover },
-    { label: 'Бегунок', value: client.clientCar?.slider },
+    { label: 'Крышка трамблера', value: clientCar.timingCover },
+    { label: 'Бегунок', value: clientCar.slider },
   ]
-  return trampler
+  return { sparkPlugs, IgnitionCoil, ignitionWires, trampler }
 }
 
-export const LambdaAndAbs = (client: any) => {
+export const AbsSensor = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const lambdaAndAbs = [
-    { label: 'Первый лямбдазонд', value: client.clientCar?.lambdaProbe1 },
-    { label: 'Второй лямбдазонд', value: client.clientCar?.lambdaProbe2 },
-    { label: 'Датчик АБС передний левый', value: client.clientCar?.frontAbsSensorLeft },
-    { label: 'Датчик АБС передний правый', value: client.clientCar?.frontAbsSensorRight },
-    { label: 'Датчик АБС задний левый', value: client.clientCar?.rearAbsSensorLeft },
-    { label: 'Датчик АБС задний правый', value: client.clientCar?.rearAbsSensorRight },
+  const absFront = [
+    { label: 'Передний левый', value: clientCar.frontAbsSensorLeft },
+    { label: 'Передний правый', value: clientCar.frontAbsSensorRight },
   ]
-  return lambdaAndAbs
+
+  const absRear = [
+    { label: 'Задний левый', value: clientCar.rearAbsSensorLeft },
+    { label: 'Задний правый', value: clientCar.rearAbsSensorRight },
+  ]
+  return { absFront, absRear }
 }
 
-export const LightBulbs = (client: any) => {
+export const LightBulbs = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const lightBulbs = [
-    { label: 'Стопов', value: client.clientCar?.brakeLightBulbs },
-    { label: 'Габариты передние', value: client.clientCar?.parkingLightBulbsFront },
-    { label: 'Габариты задние', value: client.clientCar?.parkingLightBulbsRear },
-    { label: 'Поворотов', value: client.clientCar?.sideSignalBulbs },
-    { label: 'Заднего хода', value: client.clientCar?.reverseLightBulbs },
-    { label: 'Основной фары', value: client.clientCar?.mainHeadlightBulbs },
-    { label: 'Противотуманных фар', value: client.clientCar?.fogLightBulbs },
+    { label: 'Стопов', value: clientCar.brakeLightBulbs },
+    { label: 'Габариты передние', value: clientCar.parkingLightBulbsFront },
+    { label: 'Габариты задние', value: clientCar.parkingLightBulbsRear },
+    { label: 'Поворотов', value: clientCar.sideSignalBulbs },
+    { label: 'Заднего хода', value: clientCar.reverseLightBulbs },
+    { label: 'Основной фары', value: clientCar.mainHeadlightBulbs },
+    { label: 'Противотуманных фар', value: clientCar.fogLightBulbs },
   ]
   return lightBulbs
 }
 
-export const Wipers = (client: any) => {
+export const Wipers = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const wipers = [
-    { label: 'Дворник водителя', value: client.clientCar?.driversWiper },
-    { label: 'Дворник пасажира', value: client.clientCar?.passengerWiper },
+    { label: 'Водителя', value: clientCar.driversWiper },
+    { label: 'Пасажира', value: clientCar.passengerWiper },
   ]
   return wipers
 }
 
-export const HoodShockAbsorbers = (client: any) => {
+export const HoodShockAbsorbers = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const hoodShockAbsorbers = [
-    { label: 'Амортизаторы капота', value: client.clientCar?.hoodShockAbsorbers },
-  ]
+  const hoodShockAbsorbers = [{ label: 'Амортизаторы капота', value: clientCar.hoodShockAbsorbers }]
   return hoodShockAbsorbers
 }

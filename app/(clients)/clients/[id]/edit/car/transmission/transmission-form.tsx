@@ -143,7 +143,7 @@ export function TransmissionForm({ clientCar }: Props) {
               <FormInput name='frontPistonRodDusterInnerRight' label='Внутренний правый' />
             </LabeledBox>
 
-            <LabeledBox label='Пыльники внутренних ШРУСов'>
+            <LabeledBox label='Пыльники задних ШРУСов'>
               <FormInput name='rearPistonRodDusterOuter' label='Наружный' />
               <FormInput name='rearPistonRodDusterInnerLeft' label='Внутренний левый' />
               <FormInput name='rearPistonRodDusterInnerRight' label='Внутренний правый' />

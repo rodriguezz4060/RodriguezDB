@@ -1,6 +1,6 @@
 import { prisma } from '@/prisma/prisma-client'
 import { notFound } from 'next/navigation'
-import { BrakeSystemForm } from './brake-system-form'
+import { TransmissionForm } from './transmission-form'
 
 export default async function ClientPage({ params: { id } }: { params: { id: string } }) {
   const client = await prisma.clients.findFirst({
@@ -9,32 +9,6 @@ export default async function ClientPage({ params: { id } }: { params: { id: str
       clientCar: {
         select: {
           id: true,
-          frontHandbrakeCable: true,
-          rearLeftCable: true,
-          reaRightCable: true,
-          frontBrakeDiskLeft: true,
-          frontBrakeDiskRight: true,
-          rearBrakeDisk: true,
-          frontBrake: true,
-          rearBrake: true,
-          handbrakeBrakePads: true,
-          brakeMasterCylinder: true,
-          slaveBrakeCylinder: true,
-          drumBrakeCylinderLeft: true,
-          drumBrakeCylinderRight: true,
-          setOfFrontGuideRailsWithDustCovers: true,
-          setOfRearGuideRailsWithDustCovers: true,
-          installationKitForFrontPads: true,
-          installationKitForRearPads: true,
-          installationKitForHandbrakeBrakePads: true,
-          frontCaliperRepairKit: true,
-          frontCaliperRepairKitWithPiston: true,
-          rearCaliperRepairKit: true,
-          rearCaliperRepairKitWithPiston: true,
-          frontLeftBrakeHose: true,
-          frontRightBrakeHose: true,
-          rearLeftBrakeHose: true,
-          rearRightBrakeHose: true,
           frontLeftOuterBallJoint: true,
           frontRightOuterBallJoint: true,
           frontLeftInnerBallJoint: true,
@@ -82,5 +56,5 @@ export default async function ClientPage({ params: { id } }: { params: { id: str
     return notFound()
   }
 
-  return <BrakeSystemForm clientCar={client.clientCar} />
+  return <TransmissionForm clientCar={client.clientCar} />
 }

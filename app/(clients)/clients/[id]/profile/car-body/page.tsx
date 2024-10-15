@@ -1,20 +1,25 @@
 import { prisma } from '@/prisma/prisma-client'
-import { ClientInfoPage } from '@/shared/components/shared'
-
 import { notFound } from 'next/navigation'
+import { CarBodyForm } from './car-body-form'
 
 export default async function ClientPage({ params: { id } }: { params: { id: string } }) {
   const client = await prisma.clients.findFirst({
     where: { id: Number(id) },
     include: {
-      clientCar: true,
-      clientCarTo: true,
+      clientCar: {
+        select: {
+          id: true,
+          driversWiper: true,
+          passengerWiper: true,
+          hoodShockAbsorbers: true,
+        },
+      },
     },
   })
 
-  if (!client) {
+  if (!client || !client.clientCar) {
     return notFound()
   }
 
-  return <ClientInfoPage client={client} />
+  return <CarBodyForm clientCar={client.clientCar} />
 }

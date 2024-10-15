@@ -216,16 +216,6 @@ export interface BrakeSystemFormData {
 
   clutchMasterCylinderKit: string | null
   clutchSlaveCylinderRepairKit: string | null
-
-  waterPump: string | null
-  thermostat: string | null
-  radiator: string | null
-  heaterRadiator: string | null
-  airConditionerRadiator: string | null
-  upperPipe: string | null
-  lowerPipe: string | null
-  radiatorCap: string | null
-  expansionTankCap: string | null
 }
 
 export interface TransmissionFormData {

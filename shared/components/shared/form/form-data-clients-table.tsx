@@ -98,7 +98,7 @@ export const FormTableClientData: React.FC<Props> = ({
                         className='h-[30px] w-auto'
                       />
                     ) : (
-                      <Link href={`/clients/${item.id}`} passHref>
+                      <Link href={`/clients/${item.id}/profile`} passHref>
                         <span className='cursor-pointer'>{getValue(item, column.key)}</span>
                       </Link>
                     )}

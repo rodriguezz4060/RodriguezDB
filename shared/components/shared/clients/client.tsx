@@ -421,7 +421,6 @@ export const ClientInfoPage: React.FC<Props> = ({ client, className }) => {
     { label: 'Амортизаторы капота', value: client.clientCar?.hoodShockAbsorbers },
   ]
 
-  console.log(client.clientCarTo)
   return (
     <Container className='min-h-screen dark:bg-zinc-900 px-4 flex flex-col'>
       <div className='mb-4 text-2xl font-bold'>База клиентов</div>
