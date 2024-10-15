@@ -20,11 +20,11 @@ const flattenMessages = (nestedMessages: NestedMessages, prefix = ''): Translati
 }
 
 // Импортируем ваши локали
-import uaLocale from '@/public/locales/ua.json'
+import enLocale from '@/public/locales/ua.json'
 import ruLocale from '@/public/locales/ru.json'
 
 // Преобразуем локали в плоский формат
 export const messages: Messages = {
-  ua: flattenMessages(uaLocale),
+  en: flattenMessages(enLocale),
   ru: flattenMessages(ruLocale),
 }

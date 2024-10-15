@@ -10,7 +10,7 @@ interface LocaleContextType {
 const LocaleContext = createContext<LocaleContextType | undefined>(undefined)
 
 export const LocaleProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [locale, setLocale] = useState<string>('ru')
+  const [locale, setLocale] = useState<string>('en')
 
   // Обработка на клиентской стороне
   useEffect(() => {
@@ -18,7 +18,7 @@ export const LocaleProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     if (savedLocale) {
       setLocale(savedLocale)
     } else {
-      const browserLocale = navigator.language.split('-')[0] || 'ru'
+      const browserLocale = navigator.language.split('-')[0] || 'en'
       setLocale(browserLocale)
     }
   }, [])

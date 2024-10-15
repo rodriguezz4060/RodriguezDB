@@ -8,7 +8,6 @@ import { messages } from './flatten-messages'
 import { Toaster } from 'react-hot-toast'
 import { SessionProvider } from 'next-auth/react'
 import NextTopLoader from 'nextjs-toploader'
-import { BreadcrumbProvider } from './breadcrumb-provider'
 
 const ThemeProvider = dynamic(() => import('./theme-provider').then(mod => mod.ThemeProvider), {
   ssr: false,
