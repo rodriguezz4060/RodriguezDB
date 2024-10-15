@@ -1,5 +1,9 @@
 {
-    "speedInsights": {
-        "enabled": true
-    }
+    "version": 2,
+    "routes": [
+        {
+            "src": "/_vercel/speed-insights/*",
+            "dest": "/_vercel/speed-insights/$1"
+        }
+    ]
 }
