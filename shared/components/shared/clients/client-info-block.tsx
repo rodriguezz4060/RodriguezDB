@@ -16,10 +16,10 @@ export const ClientInfoBlock: React.FC<Props> = ({ client, className }) => {
   const [openModal, setOpenModal] = React.useState(false)
 
   return (
-    <Container className='min-h-screen dark:bg-zinc-900 flex flex-col'>
+    <Container className='dark:bg-zinc-900 flex flex-col'>
       <div className='flex-1 flex '>
         <Container>
-          <div className='w-[300px] p-5 mr-2 bg-white dark:bg-gray-800 rounded-sm shadow-lg'>
+          <div className='w-[300px] border p-5 mr-2 bg-white dark:bg-[#18181A] rounded-[5px] shadow-lg'>
             <span className='text-xl font-bold text-gray-900 dark:text-white'>Клиент</span>
             <div className='mt-4 space-y-4'>
               <div className='flex items-center flex-1'>
@@ -58,7 +58,7 @@ export const ClientInfoBlock: React.FC<Props> = ({ client, className }) => {
           <ClientModal open={openModal} onClose={() => setOpenModal(false)} client={client} />
           <Button
             onClick={() => setOpenModal(true)}
-            className='text-base font-bold bg-[#4CAF50] hover:bg-[#388E3C] w-[300px] mt-5'
+            className='text-base rounded-[5px] font-bold bg-[#4CAF50] hover:bg-[#388E3C] w-[300px] mt-5'
           >
             Запчасти ТО
           </Button>

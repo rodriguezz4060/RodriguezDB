@@ -1,7 +1,7 @@
 'use client'
 
 import { SuspensionFormData } from '@/@types/client-car'
-import { LabeledBox, PartItemForm } from '@/shared/components/shared'
+import { EditClientCarButton, LabeledBox, PartItemForm } from '@/shared/components/shared'
 import { Tabs, TabsContent, TabsTrigger } from '@/shared/components/ui/tabs'
 import {
   ShockAbsorbers,
@@ -15,6 +15,7 @@ import {
   PullRodsAndLugs,
   BallBearings,
 } from '@/shared/constants/client-car'
+import { useActiveTab, useTabsDataCheck } from '@/shared/hooks'
 import { TabsList } from '@radix-ui/react-tabs'
 
 interface Props {
@@ -119,27 +120,40 @@ export function SuspensionForm({ clientCar }: Props) {
     }))
     .filter(tab => tab.blocks.length > 0)
 
-  return (
-    <Tabs defaultValue='absorbers'>
-      <TabsList>
-        {filteredTabsData.map(tab => (
-          <TabsTrigger key={tab.value} value={tab.value}>
-            {tab.label}
-          </TabsTrigger>
-        ))}
-      </TabsList>
+  const activeTabValue = useActiveTab(filteredTabsData, 'absorbers')
+  const noDataAvailable = useTabsDataCheck(filteredTabsData)
 
-      {filteredTabsData.map(tab => (
-        <TabsContent key={tab.value} value={tab.value}>
-          {tab.blocks.map((block, index) => (
-            <LabeledBox key={index} label={block.label}>
-              {block.data.map((item, itemIndex) => (
-                <PartItemForm key={itemIndex} label={item.label} value={item.value ?? ''} />
-              ))}
-            </LabeledBox>
+  return (
+    <div>
+      <Tabs defaultValue={activeTabValue}>
+        <TabsList>
+          {filteredTabsData.map(tab => (
+            <TabsTrigger key={tab.value} value={tab.value}>
+              {tab.label}
+            </TabsTrigger>
           ))}
-        </TabsContent>
-      ))}
-    </Tabs>
+        </TabsList>
+
+        {filteredTabsData.map(tab => (
+          <TabsContent key={tab.value} value={tab.value}>
+            {tab.blocks.map((block, index) => (
+              <LabeledBox key={index} label={block.label}>
+                {block.data.map((item, itemIndex) => (
+                  <PartItemForm key={itemIndex} label={item.label} value={item.value ?? ''} />
+                ))}
+              </LabeledBox>
+            ))}
+          </TabsContent>
+        ))}
+      </Tabs>
+      {noDataAvailable && (
+        <div className='mt-2 text-center'>
+          <span className='text-lg font-bold'>Нет информации.</span>
+          <div className='mt-5'>
+            <EditClientCarButton id={clientCar.id} className='rounded-[5px]' />
+          </div>
+        </div>
+      )}
+    </div>
   )
 }

@@ -13,7 +13,7 @@ export const PartItemForm: React.FC<PartItemProps> = ({ label, value }) => {
   return (
     <div className='flex items-center'>
       <span>
-        {label}: {value}
+        {label}: <b>{value}</b>
       </span>
       <div className='flex-1 border-b border-dashed border-b-neutral-200 relative top-1 mx-2' />
       <Link href={href} target='_blank' rel='noopener noreferrer' className='text-blue-500'>

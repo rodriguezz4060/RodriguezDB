@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import { Separator } from '@/shared/components/ui'
 import { SidebarNav } from '@/shared/components/shared/sidebar-nav'
-import { BackButton, ClientInfoBlock } from '@/shared/components/shared'
+import { EditClientCarButton, ClientInfoBlock } from '@/shared/components/shared'
 import { prisma } from '@/prisma/prisma-client'
 import { ClientsInfo } from '@/@types/prisma'
 
@@ -93,7 +93,7 @@ export default async function CarEditLayout({ children, params: { id } }: Settin
             <h2 className='text-2xl font-bold tracking-tight'>Клиент</h2>
             <p className='text-muted-foreground'>Страница с информацией о клиенте</p>
           </div>
-          <BackButton route='/clients/' id={id} />
+          <EditClientCarButton id={id} />
         </div>
         <Separator className='my-6' />
 
