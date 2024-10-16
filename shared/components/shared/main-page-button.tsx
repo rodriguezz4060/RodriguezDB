@@ -51,7 +51,7 @@ export const MainPageButtons: React.FC<Props> = ({ className }) => {
         <Link
           key={button.id}
           href={button.link}
-          className='flex flex-row items-start p-3 bg-secondary rounded-lg h-[280px] w-[240px] hover:bg-secondary hover:opacity-80 hover:shadow-md transition duration-200'
+          className='flex flex-row border items-start p-3 bg-secondary dark:bg-[#18181A] rounded-lg h-[280px] w-[240px] hover:bg-secondary hover:opacity-80 hover:shadow-md transition duration-200'
         >
           <div className='flex flex-col items-start'>
             <p className='mb-2 text-base'>
