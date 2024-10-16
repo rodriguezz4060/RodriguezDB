@@ -4,16 +4,25 @@ export const EngineTimingBelt = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const engineTimingBelt = [
-    { label: 'Цепь ГРМ', value: clientCar.timingChainLong },
-    { label: 'Короткая цепь', value: clientCar.timingChainShort },
-    { label: 'Гидронатяжитель цепи 1', value: clientCar.chainTensioner1 },
-    { label: 'Гидронатяжитель цепи 2', value: clientCar.chainTensioner2 },
-    { label: 'Башмак', value: clientCar.chainTensioner3 },
-    { label: 'Набор цепей', value: clientCar.chainKit },
+    { label: formatMessage({ id: 'clientTab.timingChainLong' }), value: clientCar.timingChainLong },
+    {
+      label: formatMessage({ id: 'clientTab.timingChainShort' }),
+      value: clientCar.timingChainShort,
+    },
+    { label: formatMessage({ id: 'clientTab.chainTensioner1' }), value: clientCar.chainTensioner1 },
+    { label: formatMessage({ id: 'clientTab.chainTensioner2' }), value: clientCar.chainTensioner2 },
+    { label: formatMessage({ id: 'clientTab.chainTensioner3' }), value: clientCar.chainTensioner3 },
+    { label: formatMessage({ id: 'clientTab.chainKit' }), value: clientCar.chainKit },
 
-    { label: 'Ремень грм', value: clientCar.timingBelt },
-    { label: 'Натяжитель ремня ГРМ', value: clientCar.timingBeltRoller },
-    { label: 'Паразитный ролик ремня ГРМ', value: clientCar.timingBeltRoller },
+    { label: formatMessage({ id: 'clientTab.timingBelt' }), value: clientCar.timingBelt },
+    {
+      label: formatMessage({ id: 'clientTab.timingBeltTensioner' }),
+      value: clientCar.timingBeltTensioner,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.timingBeltRoller' }),
+      value: clientCar.timingBeltRoller,
+    },
   ]
 
   return engineTimingBelt
@@ -23,22 +32,31 @@ export const EngineAndPiston = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const enginePiston = [
-    { label: 'Поршня', value: clientCar.pistons },
-    { label: 'Поршневые кольца', value: clientCar.pistonsRings },
+    { label: formatMessage({ id: 'clientTab.pistons' }), value: clientCar.pistons },
+    { label: formatMessage({ id: 'clientTab.pistonsRings' }), value: clientCar.pistonsRings },
   ]
 
   const engineValves = [
-    { label: 'Гидрокомпенсатор', value: clientCar.hydrocompensators },
-    { label: 'Клапана впуск', value: clientCar.valveIn },
-    { label: 'Клапана выпуск', value: clientCar.valveEx },
-    { label: 'Направляющие впуск', value: clientCar.valveGuidesIn },
-    { label: 'Направляющие выпуск', value: clientCar.valveGuidesEx },
+    {
+      label: formatMessage({ id: 'clientTab.hydrocompensators' }),
+      value: clientCar.hydrocompensators,
+    },
+    { label: formatMessage({ id: 'clientTab.valveIn' }), value: clientCar.valveIn },
+    { label: formatMessage({ id: 'clientTab.valveEx' }), value: clientCar.valveEx },
+    { label: formatMessage({ id: 'clientTab.valveGuidesIn' }), value: clientCar.valveGuidesIn },
+    { label: formatMessage({ id: 'clientTab.valveGuidesEx' }), value: clientCar.valveGuidesEx },
   ]
 
   const engineLiner = [
-    { label: 'Вкладыш коренной', value: clientCar.bearingConnectingRod },
-    { label: 'Вкладыш шатуна', value: clientCar.bearingCamshaft },
-    { label: 'Полукольца разбега', value: clientCar.crankshaftCamberRings },
+    {
+      label: formatMessage({ id: 'clientTab.bearingConnectingRod' }),
+      value: clientCar.bearingConnectingRod,
+    },
+    { label: formatMessage({ id: 'clientTab.bearingCamshaft' }), value: clientCar.bearingCamshaft },
+    {
+      label: formatMessage({ id: 'clientTab.crankshaftCamberRings' }),
+      value: clientCar.crankshaftCamberRings,
+    },
   ]
 
   return { enginePiston, engineValves, engineLiner }
@@ -48,17 +66,25 @@ export const BeltAndTensioner = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const driveBelt = [
-    { label: 'Ремень генератора', value: clientCar.generatorBelt },
-    { label: 'Ремень гидроусилителя', value: clientCar.powerSteeringBelt },
-    { label: 'Ремень кондиционера', value: clientCar.airConditionerBelt },
+    { label: formatMessage({ id: 'clientTab.generatorBelt' }), value: clientCar.generatorBelt },
+    {
+      label: formatMessage({ id: 'clientTab.powerSteeringBelt' }),
+      value: clientCar.powerSteeringBelt,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.airConditionerBelt' }),
+      value: clientCar.airConditionerBelt,
+    },
   ]
 
   const tensionerBelt = [
-    { label: 'Натяжитель ремня', value: clientCar.tensionToller },
-    { label: 'Обводной ролик ремня', value: clientCar.bypassRoller1 },
-    { label: 'Обводной ролик ремня', value: clientCar.bypassRoller2 },
-    { label: 'Направляющие выпуск', value: clientCar.generatorOverrunningClutch },
-    { label: 'Обгонная муфта', value: clientCar.bearingConnectingRod },
+    { label: formatMessage({ id: 'clientTab.tensionToller' }), value: clientCar.tensionToller },
+    { label: formatMessage({ id: 'clientTab.bypassRoller1' }), value: clientCar.bypassRoller1 },
+    { label: formatMessage({ id: 'clientTab.bypassRoller2' }), value: clientCar.bypassRoller2 },
+    {
+      label: formatMessage({ id: 'clientTab.generatorOverrunningClutch' }),
+      value: clientCar.generatorOverrunningClutch,
+    },
   ]
 
   return { driveBelt, tensionerBelt }
@@ -68,19 +94,43 @@ export const EngineGasket = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const enginePgb = [
-    { label: 'Набор прокладок', value: clientCar.engineGasketKit },
-    { label: 'Прокладка головки блока', value: clientCar.headGasket },
+    { label: formatMessage({ id: 'clientTab.engineGasketKit' }), value: clientCar.engineGasketKit },
+    { label: formatMessage({ id: 'clientTab.headGasket' }), value: clientCar.headGasket },
   ]
 
   const engineGasket = [
-    { label: 'Клапанной крышки левая', value: clientCar.valveCoverGasketLeft },
-    { label: 'Клапанной крышки правая', value: clientCar.valveCoverGasketRight },
-    { label: 'Влапанной крышки', value: clientCar.valveCoverGasket },
-    { label: 'Впускного коллектора', value: clientCar.intakeManifoldGasket },
-    { label: 'Выпускного коллектора', value: clientCar.exhaustManifoldGasket },
-    { label: 'Выпускной трубы', value: clientCar.exhaustPipeGasket1 },
-    { label: 'До катализатора', value: clientCar.exhaustPipeGasket2 },
-    { label: 'После катализатора', value: clientCar.exhaustPipeGasket3 },
+    {
+      label: formatMessage({ id: 'clientTab.valveCoverGasketLeft' }),
+      value: clientCar.valveCoverGasketLeft,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.valveCoverGasketRight' }),
+      value: clientCar.valveCoverGasketRight,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.valveCoverGasket' }),
+      value: clientCar.valveCoverGasket,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.intakeManifoldGasket' }),
+      value: clientCar.intakeManifoldGasket,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.exhaustManifoldGasket' }),
+      value: clientCar.exhaustManifoldGasket,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.exhaustPipeGasket1' }),
+      value: clientCar.exhaustPipeGasket1,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.exhaustPipeGasket2' }),
+      value: clientCar.exhaustPipeGasket2,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.exhaustPipeGasket3' }),
+      value: clientCar.exhaustPipeGasket3,
+    },
   ]
 
   return { enginePgb, engineGasket }
@@ -90,10 +140,22 @@ export const EngineCushion = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const engineCushion = [
-    { label: 'Передняя левая', value: clientCar.frontLeftEngineCushion },
-    { label: 'Передняя правая', value: clientCar.frontRightEngineCushion },
-    { label: 'Левая', value: clientCar.engineCushionLeft },
-    { label: 'Задняя', value: clientCar.engineCushionRear },
+    {
+      label: formatMessage({ id: 'clientTab.frontLeftEngineCushion' }),
+      value: clientCar.frontLeftEngineCushion,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontRightEngineCushion' }),
+      value: clientCar.frontRightEngineCushion,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.engineCushionLeft' }),
+      value: clientCar.engineCushionLeft,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.engineCushionRear' }),
+      value: clientCar.engineCushionRear,
+    },
   ]
 
   return engineCushion
@@ -103,12 +165,18 @@ export const EngineOilSeals = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const engineOilSeals = [
-    { label: 'Передний коленвала', value: clientCar.frontLeftEngineCushion },
-    { label: 'Задний коленвала', value: clientCar.rearCrankshaftOilSeal },
-    { label: 'Распредвала', value: clientCar.camshaftOilSeal },
-    { label: 'Маслонасоса', value: clientCar.oilPumpPacking },
-    { label: 'Маслосъемные впускные', value: clientCar.intakeOilCaps },
-    { label: 'Маслосъемные выпускные', value: clientCar.exhaustOilCaps },
+    {
+      label: formatMessage({ id: 'clientTab.frontCrankshaftOilSeal' }),
+      value: clientCar.frontCrankshaftOilSeal,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearCrankshaftOilSeal' }),
+      value: clientCar.rearCrankshaftOilSeal,
+    },
+    { label: formatMessage({ id: 'clientTab.camshaftOilSeal' }), value: clientCar.camshaftOilSeal },
+    { label: formatMessage({ id: 'clientTab.oilPumpPacking' }), value: clientCar.oilPumpPacking },
+    { label: formatMessage({ id: 'clientTab.intakeOilCaps' }), value: clientCar.intakeOilCaps },
+    { label: formatMessage({ id: 'clientTab.exhaustOilCaps' }), value: clientCar.exhaustOilCaps },
   ]
   return engineOilSeals
 }
@@ -116,7 +184,12 @@ export const EngineOilSeals = (clientCar: any) => {
 export const AirSupplySystem = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const airSupplySystem = [{ label: 'Гофра воздуховода', value: clientCar.airDuctCorrugation }]
+  const airSupplySystem = [
+    {
+      label: formatMessage({ id: 'clientTab.airDuctCorrugation' }),
+      value: clientCar.airDuctCorrugation,
+    },
+  ]
 
   return airSupplySystem
 }
@@ -125,10 +198,10 @@ export const Filters = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const filters = [
-    { label: 'Масляный', value: clientCar.oilFilter },
-    { label: 'Воздушный ', value: clientCar.airFilter },
-    { label: 'Топливный ', value: clientCar.fuelFilter },
-    { label: 'Салона', value: clientCar.cabinFilter },
+    { label: formatMessage({ id: 'clientTab.oilFilter' }), value: clientCar.oilFilter },
+    { label: formatMessage({ id: 'clientTab.airFilter' }), value: clientCar.airFilter },
+    { label: formatMessage({ id: 'clientTab.fuelFilter' }), value: clientCar.fuelFilter },
+    { label: formatMessage({ id: 'clientTab.cabinFilter' }), value: clientCar.cabinFilter },
   ]
   return filters
 }
@@ -137,13 +210,25 @@ export const ShockAbsorbers = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const shockAbsorbersFront = [
-    { label: 'Левый', value: clientCar.frontLeftShockAbsorber },
-    { label: 'Правый', value: clientCar.frontRightShockAbsorber },
+    {
+      label: formatMessage({ id: 'clientTab.frontLeftShockAbsorber' }),
+      value: clientCar.frontLeftShockAbsorber,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontRightShockAbsorber' }),
+      value: clientCar.frontRightShockAbsorber,
+    },
   ]
 
   const shockAbsorbersRear = [
-    { label: 'Левый', value: clientCar.rearLeftShockAbsorber },
-    { label: 'Правый', value: clientCar.rearRightShockAbsorber },
+    {
+      label: formatMessage({ id: 'clientTab.rearLeftShockAbsorber' }),
+      value: clientCar.rearLeftShockAbsorber,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearRightShockAbsorber' }),
+      value: clientCar.rearRightShockAbsorber,
+    },
   ]
 
   return { shockAbsorbersFront, shockAbsorbersRear }
@@ -153,8 +238,8 @@ export const NutsWheelStuds = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const nutsWheelStuds = [
-    { label: 'Шпилька', value: clientCar.wheelStud },
-    { label: 'Гайка', value: clientCar.wheelNut },
+    { label: formatMessage({ id: 'clientTab.wheelStud' }), value: clientCar.wheelStud },
+    { label: formatMessage({ id: 'clientTab.wheelNut' }), value: clientCar.wheelNut },
   ]
   return nutsWheelStuds
 }
@@ -163,20 +248,50 @@ export const StrutMountsDustCoversBumpers = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const strutMounts = [
-    { label: 'Передняя опора левая', value: clientCar.leftFrontStrutSupport },
-    { label: 'Передняя опора правая', value: clientCar.rightFrontStrutSupport },
-    { label: 'Задняя опора левая', value: clientCar.leftRearStrutSupport },
-    { label: 'Задняя опора правая', value: clientCar.rightRearStrutSupport },
-    { label: 'Опорный подшипник', value: clientCar.frontSupportBearing },
+    {
+      label: formatMessage({ id: 'clientTab.leftFrontStrutSupport' }),
+      value: clientCar.leftFrontStrutSupport,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rightFrontStrutSupport' }),
+      value: clientCar.rightFrontStrutSupport,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.leftRearStrutSupport' }),
+      value: clientCar.leftRearStrutSupport,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rightRearStrutSupport' }),
+      value: clientCar.rightRearStrutSupport,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontSupportBearing' }),
+      value: clientCar.frontSupportBearing,
+    },
   ]
 
   const dustCoversBumpers = [
-    { label: 'Пыльник передний левый', value: clientCar.frontLeftStrutDuster },
-    { label: 'Пыльник передний правый', value: clientCar.frontRightStrutDuster },
-    { label: 'Пыльник задний левый', value: clientCar.rearLeftStrutDuster },
-    { label: 'Пыльник задний правый', value: clientCar.rearRightStrutDuster },
-    { label: 'Отбойник передний', value: clientCar.frontStrutBumper },
-    { label: 'Отбойник задний', value: clientCar.rearStrutBumper },
+    {
+      label: formatMessage({ id: 'clientTab.frontLeftStrutDuster' }),
+      value: clientCar.frontLeftStrutDuster,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontRightStrutDuster' }),
+      value: clientCar.frontRightStrutDuster,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearLeftStrutDuster' }),
+      value: clientCar.rearLeftStrutDuster,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearRightStrutDuster' }),
+      value: clientCar.rearRightStrutDuster,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontStrutBumper' }),
+      value: clientCar.frontStrutBumper,
+    },
+    { label: formatMessage({ id: 'clientTab.rearStrutBumper' }), value: clientCar.rearStrutBumper },
   ]
 
   return { strutMounts, dustCoversBumpers }
@@ -186,13 +301,25 @@ export const HubBearings = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const hubBearingsFront = [
-    { label: 'Передней левый', value: clientCar.frontLeftHubBearing },
-    { label: 'Передней правый', value: clientCar.frontRightHubBearing },
+    {
+      label: formatMessage({ id: 'clientTab.frontLeftHubBearing' }),
+      value: clientCar.frontLeftHubBearing,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontRightHubBearing' }),
+      value: clientCar.frontRightHubBearing,
+    },
   ]
 
   const hubBearingsRear = [
-    { label: 'Задней левый', value: clientCar.rearLeftHubBearing },
-    { label: 'Задней правый', value: clientCar.rearRightHubBearing },
+    {
+      label: formatMessage({ id: 'clientTab.rearLeftHubBearing' }),
+      value: clientCar.rearLeftHubBearing,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearRightHubBearing' }),
+      value: clientCar.rearRightHubBearing,
+    },
   ]
   return { hubBearingsFront, hubBearingsRear }
 }
@@ -201,13 +328,25 @@ export const SteeringRackAndPowerSteering = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const steeringRackAndPowerSteering = [
-    { label: 'Ремкомплект ГУР', value: clientCar.hydraulicPowerSteeringKit },
-    { label: 'Сальники и прокладки рейки', value: clientCar.railSealsAndGaskets },
+    {
+      label: formatMessage({ id: 'clientTab.hydraulicPowerSteeringKit' }),
+      value: clientCar.hydraulicPowerSteeringKit,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.railSealsAndGaskets' }),
+      value: clientCar.railSealsAndGaskets,
+    },
   ]
 
   const powerSteeringBoot = [
-    { label: 'Пыльник рейки левый', value: clientCar.steeringRackDustCoverLeft },
-    { label: 'Пыльник рейки правый', value: clientCar.steeringRackDustCoverRight },
+    {
+      label: formatMessage({ id: 'clientTab.steeringRackDustCoverLeft' }),
+      value: clientCar.steeringRackDustCoverLeft,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.steeringRackDustCoverRight' }),
+      value: clientCar.steeringRackDustCoverRight,
+    },
   ]
 
   return { steeringRackAndPowerSteering, powerSteeringBoot }
@@ -217,21 +356,54 @@ export const Arms = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const armsFront = [
-    { label: 'Нижний левый', value: clientCar.frontLowerLeftArm },
-    { label: 'Нижний правый', value: clientCar.frontLowerRightArm },
-    { label: 'Верхний левый', value: clientCar.frontUpperLeftArm },
-    { label: 'Верхний правый', value: clientCar.frontUpperRightArm },
+    {
+      label: formatMessage({ id: 'clientTab.frontLowerLeftArm' }),
+      value: clientCar.frontLowerLeftArm,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontLowerRightArm' }),
+      value: clientCar.frontLowerRightArm,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontUpperLeftArm' }),
+      value: clientCar.frontUpperLeftArm,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontUpperRightArm' }),
+      value: clientCar.frontUpperRightArm,
+    },
   ]
 
   const armsRear = [
-    { label: 'Левый продольный', value: clientCar.rearLeftLongitudinalArm },
-    { label: 'Правый продольный', value: clientCar.rearRightLongitudinalArm },
-    { label: 'Левый поперечный 1', value: clientCar.rearLeftTransverseArm1 },
-    { label: 'Правый поперечный 1', value: clientCar.rearRightTransverseArm1 },
-    { label: 'Левый поперечный 2', value: clientCar.rearLeftTransverseArm2 },
-    { label: 'Правый поперечный 2', value: clientCar.rearRightTransverseArm2 },
-    { label: 'Левый полумесяц', value: clientCar.rearCrescentArm },
-    { label: 'Верхний короткий', value: clientCar.rearUpperShortArm },
+    {
+      label: formatMessage({ id: 'clientTab.rearLeftLongitudinalArm' }),
+      value: clientCar.rearLeftLongitudinalArm,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearRightLongitudinalArm' }),
+      value: clientCar.rearRightLongitudinalArm,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearLeftTransverseArm1' }),
+      value: clientCar.rearLeftTransverseArm1,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearRightTransverseArm1' }),
+      value: clientCar.rearRightTransverseArm1,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearLeftTransverseArm2' }),
+      value: clientCar.rearLeftTransverseArm2,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearRightTransverseArm2' }),
+      value: clientCar.rearRightTransverseArm2,
+    },
+    { label: formatMessage({ id: 'clientTab.rearCrescentArm' }), value: clientCar.rearCrescentArm },
+    {
+      label: formatMessage({ id: 'clientTab.rearUpperShortArm' }),
+      value: clientCar.rearUpperShortArm,
+    },
   ]
 
   return { armsFront, armsRear }
@@ -242,53 +414,68 @@ export const SilentBlocks = (clientCar: any) => {
 
   const silentBlocksFront = [
     {
-      label: 'Переднего нижнего передний',
+      label: formatMessage({ id: 'clientTab.frontLowerControlArmFrontSilentBlock' }),
       value: clientCar.frontLowerControlArmFrontSilentBlock,
     },
     {
-      label: 'Переднего нижнего задний',
+      label: formatMessage({ id: 'clientTab.frontLowerControlArmRearSilentBlock' }),
       value: clientCar.frontLowerControlArmRearSilentBlock,
     },
     {
-      label: 'Переднего верхнего передний',
+      label: formatMessage({ id: 'clientTab.frontUpperControlArmFrontSilentBlock' }),
       value: clientCar.frontUpperControlArmFrontSilentBlock,
     },
     {
-      label: 'Переднего верхнего задний',
+      label: formatMessage({ id: 'clientTab.frontUpperControlArmRearSilentBlock' }),
       value: clientCar.frontUpperControlArmRearSilentBlock,
     },
   ]
 
   const silentBlocksRear = [
-    { label: 'Продольных рычагов левый', value: clientCar.longitudinalArmSilentBlockLeft },
     {
-      label: 'Продольных рычагов правый',
+      label: formatMessage({ id: 'clientTab.longitudinalArmSilentBlockLeft' }),
+      value: clientCar.longitudinalArmSilentBlockLeft,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.longitudinalArmSilentBlockRight' }),
       value: clientCar.longitudinalArmSilentBlockRight,
     },
     {
-      label: 'Продольных рычагов ступичный',
+      label: formatMessage({ id: 'clientTab.longitudinalHubArmSilentBlockLeft' }),
       value: clientCar.longitudinalHubArmSilentBlockLeft,
     },
     {
-      label: 'Поперечного левого рычага кузовной',
+      label: formatMessage({ id: 'clientTab.bodyLeftCrossArmSilentBlock' }),
       value: clientCar.bodyLeftCrossArmSilentBlock,
     },
     {
-      label: 'Поперечного левого рычага ступичный',
+      label: formatMessage({ id: 'clientTab.hubLeftCrossArmSilentBlock' }),
       value: clientCar.hubLeftCrossArmSilentBlock,
     },
     {
-      label: 'Поперечного правого рычага кузовной',
+      label: formatMessage({ id: 'clientTab.bodyRightCrossArmSilentBlock' }),
       value: clientCar.bodyRightCrossArmSilentBlock,
     },
     {
-      label: 'Поперечного правого рычага ступичный',
+      label: formatMessage({ id: 'clientTab.hubRightCrossArmSilentBlock' }),
       value: clientCar.hubRightCrossArmSilentBlock,
     },
-    { label: 'Развального рычага (Развальный)', value: clientCar.camberArmSilentBlock1 },
-    { label: 'Развального рычага', value: clientCar.camberArmSilentBlock2 },
-    { label: 'Подрамника передний', value: clientCar.frontSubframeSilentBlock },
-    { label: 'Подрамника задний', value: clientCar.rearSubframeSilentBlock },
+    {
+      label: formatMessage({ id: 'clientTab.camberArmSilentBlock1' }),
+      value: clientCar.camberArmSilentBlock1,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.camberArmSilentBlock2' }),
+      value: clientCar.camberArmSilentBlock2,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontSubframeSilentBlock' }),
+      value: clientCar.frontSubframeSilentBlock,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearSubframeSilentBlock' }),
+      value: clientCar.rearSubframeSilentBlock,
+    },
   ]
 
   return { silentBlocksFront, silentBlocksRear }
@@ -298,17 +485,41 @@ export const Stabilizer = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const stabilizerBushings = [
-    { label: 'Втулки передние', value: clientCar.frontStabilizerSushings },
-    { label: 'Втулка передняя левая', value: clientCar.frontStabilizerSushingsLeft },
-    { label: 'Втулка передняя правая', value: clientCar.frontStabilizerSushingsRight },
-    { label: 'Втулка задняя', value: clientCar.rearStabilizerSushings },
+    {
+      label: formatMessage({ id: 'clientTab.frontStabilizerSushings' }),
+      value: clientCar.frontStabilizerSushings,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontStabilizerSushingsLeft' }),
+      value: clientCar.frontStabilizerSushingsLeft,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontStabilizerSushingsRight' }),
+      value: clientCar.frontStabilizerSushingsRight,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearStabilizerSushings' }),
+      value: clientCar.rearStabilizerSushings,
+    },
   ]
 
   const stabilizerRods = [
-    { label: 'Передняя левая', value: clientCar.frontLeftStabilizerBar },
-    { label: 'Передняя правая', value: clientCar.frontRightStabilizerBar },
-    { label: 'Задняя левая', value: clientCar.rearLeftStabilizerBar },
-    { label: 'Задняя правая', value: clientCar.rearRightStabilizerBar },
+    {
+      label: formatMessage({ id: 'clientTab.frontLeftStabilizerBar' }),
+      value: clientCar.frontLeftStabilizerBar,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontRightStabilizerBar' }),
+      value: clientCar.frontRightStabilizerBar,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearLeftStabilizerBar' }),
+      value: clientCar.rearLeftStabilizerBar,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearRightStabilizerBar' }),
+      value: clientCar.rearRightStabilizerBar,
+    },
   ]
 
   return { stabilizerBushings, stabilizerRods }
@@ -318,15 +529,33 @@ export const PullRodsAndLugs = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const pullRods = [
-    { label: 'Тяга левая', value: clientCar.steeringLinkLeft },
-    { label: 'Тяга правая ', value: clientCar.steeringLinkRight },
+    {
+      label: formatMessage({ id: 'clientTab.steeringLinkLeft' }),
+      value: clientCar.steeringLinkLeft,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.steeringLinkRight' }),
+      value: clientCar.steeringLinkRight,
+    },
   ]
 
   const rodsLugs = [
-    { label: 'Наружный левый ', value: clientCar.outerLeftSteeringKnuckle },
-    { label: 'Наружный правый ', value: clientCar.outerRightSteeringKnuckle },
-    { label: 'Внутренний левый ', value: clientCar.leftInnerSteeringKnuckle },
-    { label: 'Внутренний правый ', value: clientCar.leftRightSteeringKnuckle },
+    {
+      label: formatMessage({ id: 'clientTab.outerLeftSteeringKnuckle' }),
+      value: clientCar.outerLeftSteeringKnuckle,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.outerRightSteeringKnuckle' }),
+      value: clientCar.outerRightSteeringKnuckle,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.leftInnerSteeringKnuckle' }),
+      value: clientCar.leftInnerSteeringKnuckle,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.leftRightSteeringKnuckle' }),
+      value: clientCar.leftRightSteeringKnuckle,
+    },
   ]
 
   return { pullRods, rodsLugs }
@@ -336,10 +565,22 @@ export const BallBearings = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const ballBearings = [
-    { label: 'Нижняя левая', value: clientCar.lowerLeftBallJoint },
-    { label: 'Нижняя правая', value: clientCar.lowerRightBallJoint },
-    { label: 'Верхняя левая', value: clientCar.upperLeftBallJoint },
-    { label: 'Верхняя правая', value: clientCar.upperRightBallJoint },
+    {
+      label: formatMessage({ id: 'clientTab.lowerLeftBallJoint' }),
+      value: clientCar.lowerLeftBallJoint,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.lowerRightBallJoint' }),
+      value: clientCar.lowerRightBallJoint,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.upperLeftBallJoint' }),
+      value: clientCar.upperLeftBallJoint,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.upperRightBallJoint' }),
+      value: clientCar.upperRightBallJoint,
+    },
   ]
   return ballBearings
 }
@@ -348,9 +589,12 @@ export const BrakeCable = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const brakeCable = [
-    { label: 'Передний', value: clientCar.frontHandbrakeCable },
-    { label: 'Левый', value: clientCar.rearLeftCable },
-    { label: 'Правый', value: clientCar.reaRightCable },
+    {
+      label: formatMessage({ id: 'clientTab.frontHandbrakeCable' }),
+      value: clientCar.frontHandbrakeCable,
+    },
+    { label: formatMessage({ id: 'clientTab.rearLeftCable' }), value: clientCar.rearLeftCable },
+    { label: formatMessage({ id: 'clientTab.reaRightCable' }), value: clientCar.reaRightCable },
   ]
 
   return brakeCable
@@ -360,9 +604,15 @@ export const BrakeDisksAndDrums = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const brakeDisksAndDrums = [
-    { label: 'Передний  левый ', value: clientCar.frontBrakeDiskLeft },
-    { label: 'Передний правый', value: clientCar.frontBrakeDiskRight },
-    { label: 'Задний диск', value: clientCar.rearBrakeDisk },
+    {
+      label: formatMessage({ id: 'clientTab.frontBrakeDiskLeft' }),
+      value: clientCar.frontBrakeDiskLeft,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontBrakeDiskRight' }),
+      value: clientCar.frontBrakeDiskRight,
+    },
+    { label: formatMessage({ id: 'clientTab.rearBrakeDisk' }), value: clientCar.rearBrakeDisk },
   ]
   return brakeDisksAndDrums
 }
@@ -371,9 +621,12 @@ export const BrakePads = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const brakePads = [
-    { label: 'Передние', value: clientCar.frontBrake },
-    { label: 'Задние', value: clientCar.rearBrake },
-    { label: 'Ручника', value: clientCar.handbrakeBrakePads },
+    { label: formatMessage({ id: 'clientTab.frontBrake' }), value: clientCar.frontBrake },
+    { label: formatMessage({ id: 'clientTab.rearBrake' }), value: clientCar.rearBrake },
+    {
+      label: formatMessage({ id: 'clientTab.handbrakeBrakePads' }),
+      value: clientCar.handbrakeBrakePads,
+    },
   ]
   return brakePads
 }
@@ -382,10 +635,22 @@ export const BrakeCylinder = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const brakeCylinder = [
-    { label: 'Цилиндр главный', value: clientCar.brakeMasterCylinder },
-    { label: 'Цилиндр рабочий', value: clientCar.slaveBrakeCylinder },
-    { label: 'Цилиндр барабанов левый', value: clientCar.drumBrakeCylinderLeft },
-    { label: 'Цилиндр барабанов правый', value: clientCar.drumBrakeCylinderRight },
+    {
+      label: formatMessage({ id: 'clientTab.brakeMasterCylinder' }),
+      value: clientCar.brakeMasterCylinder,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.slaveBrakeCylinder' }),
+      value: clientCar.slaveBrakeCylinder,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.drumBrakeCylinderLeft' }),
+      value: clientCar.drumBrakeCylinderLeft,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.drumBrakeCylinderRight' }),
+      value: clientCar.drumBrakeCylinderRight,
+    },
   ]
   return brakeCylinder
 }
@@ -395,13 +660,19 @@ export const FrontWheelBrakeMechanism = (clientCar: any) => {
 
   const frontWheelBrakeMechanism = [
     {
-      label: 'Передние направляющие с пыльниками',
+      label: formatMessage({ id: 'clientTab.setOfFrontGuideRailsWithDustCovers' }),
       value: clientCar.setOfFrontGuideRailsWithDustCovers,
     },
-    { label: 'Установочный комплект', value: clientCar.installationKitForFrontPads },
-    { label: 'Ремкомплект суппорта ', value: clientCar.frontCaliperRepairKit },
     {
-      label: 'Ремкомплект суппорта с поршнями',
+      label: formatMessage({ id: 'clientTab.installationKitForFrontPads' }),
+      value: clientCar.installationKitForFrontPads,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontCaliperRepairKit' }),
+      value: clientCar.frontCaliperRepairKit,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontCaliperRepairKitWithPiston' }),
       value: clientCar.frontCaliperRepairKitWithPiston,
     },
   ]
@@ -414,16 +685,19 @@ export const RearWheelBrakeMechanism = (clientCar: any) => {
 
   const rearWheelBrakeMechanism = [
     {
-      label: 'Задние направляющие с пыльниками',
+      label: formatMessage({ id: 'clientTab.setOfRearGuideRailsWithDustCovers' }),
       value: clientCar.setOfRearGuideRailsWithDustCovers,
     },
     {
-      label: 'Установочный комплект на барабаны',
+      label: formatMessage({ id: 'clientTab.installationKitForHandbrakeBrakePads' }),
       value: clientCar.installationKitForHandbrakeBrakePads,
     },
-    { label: 'Ремкомплект суппорта ', value: clientCar.rearCaliperRepairKit },
     {
-      label: 'Ремкомплект суппорта  с поршнями',
+      label: formatMessage({ id: 'clientTab.rearCaliperRepairKit' }),
+      value: clientCar.rearCaliperRepairKit,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearCaliperRepairKitWithPiston' }),
       value: clientCar.rearCaliperRepairKitWithPiston,
     },
   ]
@@ -435,13 +709,25 @@ export const BrakeHoses = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const brakeHosesFront = [
-    { label: 'Левый', value: clientCar.frontLeftBrakeHose },
-    { label: 'Правый', value: clientCar.frontRightBrakeHose },
+    {
+      label: formatMessage({ id: 'clientTab.frontLeftBrakeHose' }),
+      value: clientCar.frontLeftBrakeHose,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontRightBrakeHose' }),
+      value: clientCar.frontRightBrakeHose,
+    },
   ]
 
   const brakeHosesRear = [
-    { label: 'Левый', value: clientCar.rearLeftBrakeHose },
-    { label: 'Правый', value: clientCar.rearRightBrakeHose },
+    {
+      label: formatMessage({ id: 'clientTab.rearLeftBrakeHose' }),
+      value: clientCar.rearLeftBrakeHose,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearRightBrakeHose' }),
+      value: clientCar.rearRightBrakeHose,
+    },
   ]
   return { brakeHosesFront, brakeHosesRear }
 }
@@ -450,22 +736,52 @@ export const GrenadesAndDrives = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const grenadesFront = [
-    { label: 'Наружный левый', value: clientCar.frontLeftOuterBallJoint },
-    { label: 'Наружный правый', value: clientCar.frontRightOuterBallJoint },
-    { label: 'Внутренний левый', value: clientCar.frontLeftInnerBallJoint },
-    { label: 'Внутренний правый', value: clientCar.frontRightInnerBallJoint },
+    {
+      label: formatMessage({ id: 'clientTab.frontLeftOuterBallJoint' }),
+      value: clientCar.frontLeftOuterBallJoint,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontRightOuterBallJoint' }),
+      value: clientCar.frontRightOuterBallJoint,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontLeftInnerBallJoint' }),
+      value: clientCar.frontLeftInnerBallJoint,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontRightInnerBallJoint' }),
+      value: clientCar.frontRightInnerBallJoint,
+    },
   ]
 
   const driveShafts = [
-    { label: 'Приводной вал левый', value: clientCar.frontLeftHandDrive },
-    { label: 'Приводной вал правый', value: clientCar.frontRightHandDrive },
+    {
+      label: formatMessage({ id: 'clientTab.frontRightInnerBallJoint' }),
+      value: clientCar.frontLeftHandDrive,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontRightHandDrive' }),
+      value: clientCar.frontRightHandDrive,
+    },
   ]
 
   const grenadesRear = [
-    { label: 'Наружный левый', value: clientCar.frontLeftOuterBallJoint },
-    { label: 'Наружный правый', value: clientCar.frontRightOuterBallJoint },
-    { label: 'Внутренний левый', value: clientCar.frontLeftInnerBallJoint },
-    { label: 'Внутренний правый', value: clientCar.frontRightInnerBallJoint },
+    {
+      label: formatMessage({ id: 'clientTab.rearLeftOuterBallJoint' }),
+      value: clientCar.rearLeftOuterBallJoint,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearRightOuterBallJoint' }),
+      value: clientCar.rearRightOuterBallJoint,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearLeftInnerBallJoint' }),
+      value: clientCar.rearLeftInnerBallJoint,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearRightInnerBallJoint' }),
+      value: clientCar.rearRightInnerBallJoint,
+    },
   ]
   return { grenadesFront, driveShafts, grenadesRear }
 }
@@ -474,21 +790,36 @@ export const Gearbox = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const gearboxFilter = [
-    { label: 'Фильтр АКПП', value: clientCar.automaticTransmissionFilter },
-    { label: 'Прокладка поддона АКПП', value: clientCar.automaticTransmissionOilPanGasket },
-    { label: 'Прокладка фильтра АКПП', value: clientCar.automaticTransmissionFillerGasket },
+    {
+      label: formatMessage({ id: 'clientTab.automaticTransmissionFilter' }),
+      value: clientCar.automaticTransmissionFilter,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.automaticTransmissionOilPanGasket' }),
+      value: clientCar.automaticTransmissionOilPanGasket,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.automaticTransmissionFillerGasket' }),
+      value: clientCar.automaticTransmissionFillerGasket,
+    },
   ]
   const gearboxSmall = [
-    { label: 'Фильтр', value: clientCar.automaticTransmissionFilter2 },
     {
-      label: 'Прокладка фильтра',
+      label: formatMessage({ id: 'clientTab.automaticTransmissionFilter2' }),
+      value: clientCar.automaticTransmissionFilter2,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.automaticTransmissionOilPanGasket2' }),
       value: clientCar.automaticTransmissionOilPanGasket2,
     },
   ]
   const drainPlug = [
-    { label: 'Сливная пробка АКПП', value: clientCar.transmissionDrainPlug },
     {
-      label: 'Прокладка сливной пробки АКПП',
+      label: formatMessage({ id: 'clientTab.transmissionDrainPlug' }),
+      value: clientCar.transmissionDrainPlug,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.transmissionDrainPlugGasket' }),
       value: clientCar.transmissionDrainPlugGasket,
     },
   ]
@@ -498,7 +829,12 @@ export const Gearbox = (clientCar: any) => {
 export const SuspensionBearing = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const suspensionBearing = [{ label: 'Подвесной подшипник', value: clientCar.suspensionBearing }]
+  const suspensionBearing = [
+    {
+      label: formatMessage({ id: 'clientTab.suspensionBearing' }),
+      value: clientCar.suspensionBearing,
+    },
+  ]
 
   return suspensionBearing
 }
@@ -507,18 +843,33 @@ export const BootDustCovers = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const bootDustCoversFront = [
-    { label: 'Наружный', value: clientCar.frontPistonRodDusterOuter },
-    { label: 'Внутренний левый', value: clientCar.frontPistonRodDusterInnerLeft },
     {
-      label: 'Внутренний правый',
+      label: formatMessage({ id: 'clientTab.frontPistonRodDusterOuter' }),
+      value: clientCar.frontPistonRodDusterOuter,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontPistonRodDusterInnerLeft' }),
+      value: clientCar.frontPistonRodDusterInnerLeft,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontPistonRodDusterInnerRight' }),
       value: clientCar.frontPistonRodDusterInnerRight,
     },
   ]
 
   const bootDustCoversRear = [
-    { label: 'Наружный', value: clientCar.rearPistonRodDusterOuter },
-    { label: 'Внутренний левый', value: clientCar.rearPistonRodDusterInnerLeft },
-    { label: 'Внутренний правый', value: clientCar.rearPistonRodDusterInnerRight },
+    {
+      label: formatMessage({ id: 'clientTab.rearPistonRodDusterOuter' }),
+      value: clientCar.rearPistonRodDusterOuter,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearPistonRodDusterInnerLeft' }),
+      value: clientCar.rearPistonRodDusterInnerLeft,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearPistonRodDusterInnerRight' }),
+      value: clientCar.rearPistonRodDusterInnerRight,
+    },
   ]
   return { bootDustCoversFront, bootDustCoversRear }
 }
@@ -528,13 +879,25 @@ export const TransmissionOilSeals = (clientCar: any) => {
 
   const transmissionOilSeals = [
     {
-      label: 'Гидротрансформатора АКПП',
+      label: formatMessage({ id: 'clientTab.automaticTransmissionTorqueConverterOilSeal' }),
       value: clientCar.automaticTransmissionTorqueConverterOilSeal,
     },
-    { label: 'Первичного вала КПП', value: clientCar.gearboxPrimaryShaftOilSeal },
-    { label: 'Кулисы КПП', value: clientCar.gearboxRockerGland },
-    { label: 'Левого привода', value: clientCar.leftDriveOilSeal },
-    { label: 'Правого привода', value: clientCar.rightDriveOilSeal },
+    {
+      label: formatMessage({ id: 'clientTab.gearboxPrimaryShaftOilSeal' }),
+      value: clientCar.gearboxPrimaryShaftOilSeal,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.gearboxRockerGland' }),
+      value: clientCar.gearboxRockerGland,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.leftDriveOilSeal' }),
+      value: clientCar.leftDriveOilSeal,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rightDriveOilSeal' }),
+      value: clientCar.rightDriveOilSeal,
+    },
   ]
   return transmissionOilSeals
 }
@@ -543,10 +906,10 @@ export const Clutch = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const clutch = [
-    { label: 'Диск', value: clientCar.clutchDisk },
-    { label: 'Корзина', value: clientCar.clutchBasket },
-    { label: 'Выжимной подшипник', value: clientCar.releaseBearing },
-    { label: 'Комплект сцепления', value: clientCar.clutchKit },
+    { label: formatMessage({ id: 'clientTab.clutchDisk' }), value: clientCar.clutchDisk },
+    { label: formatMessage({ id: 'clientTab.clutchBasket' }), value: clientCar.clutchBasket },
+    { label: formatMessage({ id: 'clientTab.releaseBearing' }), value: clientCar.releaseBearing },
+    { label: formatMessage({ id: 'clientTab.clutchKit' }), value: clientCar.clutchKit },
   ]
   return clutch
 }
@@ -555,13 +918,25 @@ export const ClutchCylinders = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const clutchCylinders = [
-    { label: 'Главный', value: clientCar.clutchMasterCylinder },
-    { label: 'Рабочий', value: clientCar.clutchSlaveCylinder },
+    {
+      label: formatMessage({ id: 'clientTab.clutchMasterCylinder' }),
+      value: clientCar.clutchMasterCylinder,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.clutchSlaveCylinder' }),
+      value: clientCar.clutchSlaveCylinder,
+    },
   ]
 
   const clutchCylindersRepair = [
-    { label: 'Главного цилиндра', value: clientCar.clutchMasterCylinderKit },
-    { label: 'Рабочего цилиндра', value: clientCar.clutchSlaveCylinderRepairKit },
+    {
+      label: formatMessage({ id: 'clientTab.clutchMasterCylinderKit' }),
+      value: clientCar.clutchMasterCylinderKit,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.clutchSlaveCylinderRepairKit' }),
+      value: clientCar.clutchSlaveCylinderRepairKit,
+    },
   ]
   return { clutchCylinders, clutchCylindersRepair }
 }
@@ -570,8 +945,8 @@ export const CoolingSystem = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const coolingSystem = [
-    { label: 'Водяная помпа', value: clientCar.waterPump },
-    { label: 'Термостат', value: clientCar.thermostat },
+    { label: formatMessage({ id: 'clientTab.waterPump' }), value: clientCar.waterPump },
+    { label: formatMessage({ id: 'clientTab.thermostat' }), value: clientCar.thermostat },
   ]
   return coolingSystem
 }
@@ -580,13 +955,19 @@ export const Radiator = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const radiator = [
-    { label: 'Радиатор', value: clientCar.radiator },
-    { label: 'Радиатор отопителя', value: clientCar.heaterRadiator },
-    { label: 'Радиатор кондиционера', value: clientCar.airConditionerRadiator },
+    { label: formatMessage({ id: 'clientTab.radiator' }), value: clientCar.radiator },
+    { label: formatMessage({ id: 'clientTab.heaterRadiator' }), value: clientCar.heaterRadiator },
+    {
+      label: formatMessage({ id: 'clientTab.airConditionerRadiator' }),
+      value: clientCar.airConditionerRadiator,
+    },
   ]
   const radiatorCap = [
-    { label: 'Крышка радиатора', value: clientCar.radiatorCap },
-    { label: 'Крышка расширительного бачка', value: clientCar.expansionTankCap },
+    { label: formatMessage({ id: 'clientTab.radiatorCap' }), value: clientCar.radiatorCap },
+    {
+      label: formatMessage({ id: 'clientTab.expansionTankCap' }),
+      value: clientCar.expansionTankCap,
+    },
   ]
   return { radiator, radiatorCap }
 }
@@ -595,8 +976,8 @@ export const RadiatorPipe = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const radiatorPipe = [
-    { label: 'Патрубок верхний', value: clientCar.upperPipe },
-    { label: 'Патрубок нижний', value: clientCar.lowerPipe },
+    { label: formatMessage({ id: 'clientTab.upperPipe' }), value: clientCar.upperPipe },
+    { label: formatMessage({ id: 'clientTab.lowerPipe' }), value: clientCar.lowerPipe },
   ]
   return radiatorPipe
 }
@@ -604,14 +985,20 @@ export const Sensors = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const sensors = [
-    { label: 'Масляный датчик', value: clientCar.oilSensor },
-    { label: 'Масляный вентилятора', value: clientCar.ventilatorSensor },
+    { label: formatMessage({ id: 'clientTab.oilSensor' }), value: clientCar.oilSensor },
     {
-      label: 'Датчик температуры приборной панели',
+      label: formatMessage({ id: 'clientTab.ventilatorSensor' }),
+      value: clientCar.ventilatorSensor,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.dashboardTemperatureSensor' }),
       value: clientCar.dashboardTemperatureSensor,
     },
-    { label: 'Датчик кондиционера', value: clientCar.airConditionerSensor },
-    { label: 'Датчик заднего хода', value: clientCar.reverseSensor },
+    {
+      label: formatMessage({ id: 'clientTab.airConditionerSensor' }),
+      value: clientCar.airConditionerSensor,
+    },
+    { label: formatMessage({ id: 'clientTab.reverseSensor' }), value: clientCar.reverseSensor },
   ]
   return sensors
 }
@@ -619,14 +1006,18 @@ export const Sensors = (clientCar: any) => {
 export const WasherMotor = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const washerMotor = [{ label: 'Моторчик омывателя', value: clientCar.washerMotor }]
+  const washerMotor = [
+    { label: formatMessage({ id: 'clientTab.washerMotor' }), value: clientCar.washerMotor },
+  ]
   return washerMotor
 }
 
 export const HandwheelCable = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const handwheelCable = [{ label: 'Подрулевой шлейф', value: clientCar.handwheelCable }]
+  const handwheelCable = [
+    { label: formatMessage({ id: 'clientTab.handwheelCable' }), value: clientCar.handwheelCable },
+  ]
   return handwheelCable
 }
 
@@ -634,8 +1025,8 @@ export const Lambda = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const lambda = [
-    { label: 'Первый лямбда зонд', value: clientCar.lambdaProbe1 },
-    { label: 'Второй лямбда зонд', value: clientCar.lambdaProbe2 },
+    { label: formatMessage({ id: 'clientTab.lambdaProbe1' }), value: clientCar.lambdaProbe1 },
+    { label: formatMessage({ id: 'clientTab.lambdaProbe2' }), value: clientCar.lambdaProbe2 },
   ]
   return lambda
 }
@@ -643,12 +1034,18 @@ export const Lambda = (clientCar: any) => {
 export const SparkPlugsAndIgnitionCoil = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const sparkPlugs = [{ label: 'Свеча', value: clientCar.sparkPlug }]
-  const IgnitionCoil = [{ label: 'Катушка', value: clientCar.ignitionCoil }]
-  const ignitionWires = [{ label: 'Провода', value: clientCar.ignitionWires }]
+  const sparkPlugs = [
+    { label: formatMessage({ id: 'clientTab.sparkPlug' }), value: clientCar.sparkPlug },
+  ]
+  const IgnitionCoil = [
+    { label: formatMessage({ id: 'clientTab.ignitionCoil' }), value: clientCar.ignitionCoil },
+  ]
+  const ignitionWires = [
+    { label: formatMessage({ id: 'clientTab.ignitionWires' }), value: clientCar.ignitionWires },
+  ]
   const trampler = [
-    { label: 'Крышка трамблера', value: clientCar.timingCover },
-    { label: 'Бегунок', value: clientCar.slider },
+    { label: formatMessage({ id: 'clientTab.timingCover' }), value: clientCar.timingCover },
+    { label: formatMessage({ id: 'clientTab.slider' }), value: clientCar.slider },
   ]
   return { sparkPlugs, IgnitionCoil, ignitionWires, trampler }
 }
@@ -657,13 +1054,25 @@ export const AbsSensor = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const absFront = [
-    { label: 'Передний левый', value: clientCar.frontAbsSensorLeft },
-    { label: 'Передний правый', value: clientCar.frontAbsSensorRight },
+    {
+      label: formatMessage({ id: 'clientTab.frontAbsSensorLeft' }),
+      value: clientCar.frontAbsSensorLeft,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.frontAbsSensorRight' }),
+      value: clientCar.frontAbsSensorRight,
+    },
   ]
 
   const absRear = [
-    { label: 'Задний левый', value: clientCar.rearAbsSensorLeft },
-    { label: 'Задний правый', value: clientCar.rearAbsSensorRight },
+    {
+      label: formatMessage({ id: 'clientTab.rearAbsSensorLeft' }),
+      value: clientCar.rearAbsSensorLeft,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.rearAbsSensorRight' }),
+      value: clientCar.rearAbsSensorRight,
+    },
   ]
   return { absFront, absRear }
 }
@@ -672,13 +1081,25 @@ export const LightBulbs = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const lightBulbs = [
-    { label: 'Стопов', value: clientCar.brakeLightBulbs },
-    { label: 'Габариты передние', value: clientCar.parkingLightBulbsFront },
-    { label: 'Габариты задние', value: clientCar.parkingLightBulbsRear },
-    { label: 'Поворотов', value: clientCar.sideSignalBulbs },
-    { label: 'Заднего хода', value: clientCar.reverseLightBulbs },
-    { label: 'Основной фары', value: clientCar.mainHeadlightBulbs },
-    { label: 'Противотуманных фар', value: clientCar.fogLightBulbs },
+    { label: formatMessage({ id: 'clientTab.brakeLightBulbs' }), value: clientCar.brakeLightBulbs },
+    {
+      label: formatMessage({ id: 'clientTab.parkingLightBulbsFront' }),
+      value: clientCar.parkingLightBulbsFront,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.parkingLightBulbsRear' }),
+      value: clientCar.parkingLightBulbsRear,
+    },
+    { label: formatMessage({ id: 'clientTab.sideSignalBulbs' }), value: clientCar.sideSignalBulbs },
+    {
+      label: formatMessage({ id: 'clientTab.reverseLightBulbs' }),
+      value: clientCar.reverseLightBulbs,
+    },
+    {
+      label: formatMessage({ id: 'clientTab.mainHeadlightBulbs' }),
+      value: clientCar.mainHeadlightBulbs,
+    },
+    { label: formatMessage({ id: 'clientTab.fogLightBulbs' }), value: clientCar.fogLightBulbs },
   ]
   return lightBulbs
 }
@@ -687,8 +1108,8 @@ export const Wipers = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
   const wipers = [
-    { label: 'Водителя', value: clientCar.driversWiper },
-    { label: 'Пасажира', value: clientCar.passengerWiper },
+    { label: formatMessage({ id: 'clientTab.driversWiper' }), value: clientCar.driversWiper },
+    { label: formatMessage({ id: 'clientTab.passengerWiper' }), value: clientCar.passengerWiper },
   ]
   return wipers
 }
@@ -696,6 +1117,11 @@ export const Wipers = (clientCar: any) => {
 export const HoodShockAbsorbers = (clientCar: any) => {
   const { formatMessage } = useIntl()
 
-  const hoodShockAbsorbers = [{ label: 'Амортизаторы капота', value: clientCar.hoodShockAbsorbers }]
+  const hoodShockAbsorbers = [
+    {
+      label: formatMessage({ id: 'clientTab.hoodShockAbsorbers' }),
+      value: clientCar.hoodShockAbsorbers,
+    },
+  ]
   return hoodShockAbsorbers
 }

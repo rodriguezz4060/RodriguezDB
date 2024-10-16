@@ -14,12 +14,15 @@ import {
 } from '@/shared/constants/client-car'
 import { useActiveTab, useTabsDataCheck } from '@/shared/hooks'
 import { TabsList } from '@radix-ui/react-tabs'
+import { useIntl } from 'react-intl'
 
 interface Props {
   clientCar: TransmissionFormData
 }
 
 export function TransmissionForm({ clientCar }: Props) {
+  const { formatMessage } = useIntl()
+
   const { grenadesFront, driveShafts, grenadesRear } = GrenadesAndDrives(clientCar)
   const { gearboxFilter, gearboxSmall, drainPlug } = Gearbox(clientCar)
   const suspensionBearing = SuspensionBearing(clientCar)
@@ -31,47 +34,61 @@ export function TransmissionForm({ clientCar }: Props) {
   const tabsData = [
     {
       value: 'driveShafts',
-      label: 'ШРУСЫ и привода',
+      label: formatMessage({ id: 'clients.driveShaftsAndGrenades' }),
       blocks: [
-        { label: 'ШРУС передний', data: grenadesFront },
-        { label: 'Привода', data: driveShafts },
-        { label: 'ШРУС задний', data: grenadesRear },
+        { label: formatMessage({ id: 'clients.grenadesFront' }), data: grenadesFront },
+        { label: formatMessage({ id: 'clients.driveShafts' }), data: driveShafts },
+        { label: formatMessage({ id: 'clients.grenadesRear' }), data: grenadesRear },
       ],
     },
     {
       value: 'gearbox',
-      label: 'Коробка передач',
+      label: formatMessage({ id: 'clients.gearbox' }),
       blocks: [
-        { label: 'Фильтр АКПП', data: gearboxFilter },
-        { label: 'Фильтра тонкой очистки', data: gearboxSmall },
-        { label: 'Сливная пробка', data: drainPlug },
+        { label: formatMessage({ id: 'clients.gearboxFilter' }), data: gearboxFilter },
+        { label: formatMessage({ id: 'clients.gearboxSmall' }), data: gearboxSmall },
+        { label: formatMessage({ id: 'clients.drainPlug' }), data: drainPlug },
       ],
     },
     {
       value: 'suspensionBearing',
-      label: 'Подвесной подшипник',
-      blocks: [{ label: 'Подвесной подшипник', data: suspensionBearing }],
+      label: formatMessage({ id: 'clients.suspensionBearing' }),
+      blocks: [
+        { label: formatMessage({ id: 'clients.suspensionBearing' }), data: suspensionBearing },
+      ],
     },
     {
-      value: 'bootDustCoversFront',
-      label: 'Пыльники ШРУСов',
+      value: 'bootDustCovers',
+      label: formatMessage({ id: 'clients.bootDustCovers' }),
       blocks: [
-        { label: 'Пыльники передних ШРУСов', data: bootDustCoversFront },
-        { label: 'Пыльники задних ШРУСов', data: bootDustCoversRear },
+        { label: formatMessage({ id: 'clients.bootDustCoversFront' }), data: bootDustCoversFront },
+        { label: formatMessage({ id: 'clients.bootDustCoversRear' }), data: bootDustCoversRear },
       ],
     },
     {
       value: 'transmissionOilSeals',
-      label: 'Сальники трансмиссии',
-      blocks: [{ label: 'Сальники трансмиссии', data: transmissionOilSeals }],
+      label: formatMessage({ id: 'clients.transmissionOilSeals' }),
+      blocks: [
+        {
+          label: formatMessage({ id: 'clients.transmissionOilSeals' }),
+          data: transmissionOilSeals,
+        },
+      ],
     },
-    { value: 'clutch', label: 'Сцепление', blocks: [{ label: 'Сцепление', data: clutch }] },
+    {
+      value: 'clutch',
+      label: formatMessage({ id: 'clients.clutch' }),
+      blocks: [{ label: formatMessage({ id: 'clients.clutch' }), data: clutch }],
+    },
     {
       value: 'clutchCylinders',
-      label: 'Цилиндры сцепления',
+      label: formatMessage({ id: 'clients.clutchCylinders' }),
       blocks: [
-        { label: 'Цилиндры сцепления', data: clutchCylinders },
-        { label: 'Ремкомплекты цилиндра сцепления', data: clutchCylindersRepair },
+        { label: formatMessage({ id: 'clients.clutchCylinders' }), data: clutchCylinders },
+        {
+          label: formatMessage({ id: 'clients.clutchCylindersRepair' }),
+          data: clutchCylindersRepair,
+        },
       ],
     },
   ]
@@ -112,7 +129,9 @@ export function TransmissionForm({ clientCar }: Props) {
 
       {noDataAvailable && (
         <div className='mt-2 text-center'>
-          <span className='text-lg font-bold'>Нет информации.</span>
+          <span className='text-lg font-bold'>
+            {formatMessage({ id: 'clients.noDataAvailable' })}
+          </span>
           <div className='mt-5'>
             <EditClientCarButton id={clientCar.id} className='rounded-[5px]' />
           </div>

@@ -14,52 +14,67 @@ import {
 } from '@/shared/constants/client-car'
 import { useActiveTab, useTabsDataCheck } from '@/shared/hooks'
 import { TabsList } from '@radix-ui/react-tabs'
+import { useIntl } from 'react-intl'
 
 interface Props {
   clientCar: ElectricalFormData
 }
 
 export function ElectricalForm({ clientCar }: Props) {
+  const { formatMessage } = useIntl()
+
   const sensors = Sensors(clientCar)
   const washerMotor = WasherMotor(clientCar)
-  const radiatorPipe = HandwheelCable(clientCar)
+  const handwheelCable = HandwheelCable(clientCar)
   const lambda = Lambda(clientCar)
   const { sparkPlugs, IgnitionCoil, ignitionWires, trampler } = SparkPlugsAndIgnitionCoil(clientCar)
   const { absFront, absRear } = AbsSensor(clientCar)
   const lightBulbs = LightBulbs(clientCar)
 
   const tabsData = [
-    { value: 'sensors', label: 'Датчики', blocks: [{ label: 'Датчики', data: sensors }] },
+    {
+      value: 'sensors',
+      label: formatMessage({ id: 'clients.sensors' }),
+      blocks: [{ label: formatMessage({ id: 'clients.sensors' }), data: sensors }],
+    },
     {
       value: 'washerMotor',
-      label: 'Моторчик омывателя',
-      blocks: [{ label: 'Моторчик омывателя', data: washerMotor }],
+      label: formatMessage({ id: 'clients.washerMotor' }),
+      blocks: [{ label: formatMessage({ id: 'clients.washerMotor' }), data: washerMotor }],
     },
     {
-      value: 'radiatorPipe',
-      label: 'Подрулевой шлейф',
-      blocks: [{ label: 'Подрулевой шлейф', data: radiatorPipe }],
+      value: 'handwheelCable',
+      label: formatMessage({ id: 'clients.handwheelCable' }),
+      blocks: [{ label: formatMessage({ id: 'clients.handwheelCable' }), data: handwheelCable }],
     },
-    { value: 'lambda', label: 'Лямбда зонды', blocks: [{ label: 'Лямбда зонды', data: lambda }] },
+    {
+      value: 'lambda',
+      label: formatMessage({ id: 'clients.lambda' }),
+      blocks: [{ label: formatMessage({ id: 'clients.lambda' }), data: lambda }],
+    },
     {
       value: 'absSensor',
-      label: 'Датчики абс',
+      label: formatMessage({ id: 'clients.absSensor' }),
       blocks: [
-        { label: 'Передние', data: absFront },
-        { label: 'Задние', data: absRear },
+        { label: formatMessage({ id: 'clients.absFront' }), data: absFront },
+        { label: formatMessage({ id: 'clients.absRear' }), data: absRear },
       ],
     },
     {
-      value: 'sparkPlugs',
-      label: 'Свечи, Катушки и Провода',
+      value: 'sparkPlugsIgnitionCoil',
+      label: formatMessage({ id: 'clients.sparkPlugsIgnitionCoil' }),
       blocks: [
-        { label: 'Свечи', data: sparkPlugs },
-        { label: 'Катушки', data: IgnitionCoil },
-        { label: 'Провода', data: ignitionWires },
-        { label: 'Трамблер', data: trampler },
+        { label: formatMessage({ id: 'clients.sparkPlugs' }), data: sparkPlugs },
+        { label: formatMessage({ id: 'clients.IgnitionCoil' }), data: IgnitionCoil },
+        { label: formatMessage({ id: 'clients.ignitionWires' }), data: ignitionWires },
+        { label: formatMessage({ id: 'clients.trampler' }), data: trampler },
       ],
     },
-    { value: 'lightBulbs', label: 'Лампочки', blocks: [{ label: 'Лампочки', data: lightBulbs }] },
+    {
+      value: 'lightBulbs',
+      label: formatMessage({ id: 'clients.lightBulbs' }),
+      blocks: [{ label: formatMessage({ id: 'clients.lightBulbs' }), data: lightBulbs }],
+    },
   ]
 
   const filteredTabsData = tabsData
@@ -98,7 +113,9 @@ export function ElectricalForm({ clientCar }: Props) {
 
       {noDataAvailable && (
         <div className='mt-2 text-center'>
-          <span className='text-lg font-bold'>Нет информации.</span>
+          <span className='text-lg font-bold'>
+            {formatMessage({ id: 'clients.noDataAvailable' })}
+          </span>
           <div className='mt-5'>
             <EditClientCarButton id={clientCar.id} className='rounded-[5px]' />
           </div>

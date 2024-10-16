@@ -6,12 +6,15 @@ import { Tabs, TabsContent, TabsTrigger } from '@/shared/components/ui/tabs'
 import { CoolingSystem, Radiator, RadiatorPipe } from '@/shared/constants/client-car'
 import { useActiveTab, useTabsDataCheck } from '@/shared/hooks'
 import { TabsList } from '@radix-ui/react-tabs'
+import { useIntl } from 'react-intl'
 
 interface Props {
   clientCar: CoolingFormData
 }
 
 export function CoolingForm({ clientCar }: Props) {
+  const { formatMessage } = useIntl()
+
   const coolingSystem = CoolingSystem(clientCar)
   const { radiator, radiatorCap } = Radiator(clientCar)
   const radiatorPipe = RadiatorPipe(clientCar)
@@ -19,21 +22,21 @@ export function CoolingForm({ clientCar }: Props) {
   const tabsData = [
     {
       value: 'coolingSystem',
-      label: 'Помпа и термостат',
-      blocks: [{ label: 'ШРУС передний', data: coolingSystem }],
+      label: formatMessage({ id: 'clients.coolingSystem' }),
+      blocks: [{ label: formatMessage({ id: 'clients.coolingSystem' }), data: coolingSystem }],
     },
     {
       value: 'radiator',
-      label: 'Радиаторы',
+      label: formatMessage({ id: 'clients.radiator' }),
       blocks: [
-        { label: 'Радиаторы', data: radiator },
-        { label: 'Крышка радиатора и бачка', data: radiatorCap },
+        { label: formatMessage({ id: 'clients.radiator' }), data: radiator },
+        { label: formatMessage({ id: 'clients.radiatorCap' }), data: radiatorCap },
       ],
     },
     {
       value: 'radiatorPipe',
-      label: 'Патрубки',
-      blocks: [{ label: 'Патрубки', data: radiatorPipe }],
+      label: formatMessage({ id: 'clients.radiatorPipe' }),
+      blocks: [{ label: formatMessage({ id: 'clients.radiatorPipe' }), data: radiatorPipe }],
     },
   ]
 
@@ -73,7 +76,9 @@ export function CoolingForm({ clientCar }: Props) {
 
       {noDataAvailable && (
         <div className='mt-2 text-center'>
-          <span className='text-lg font-bold'>Нет информации.</span>
+          <span className='text-lg font-bold'>
+            {formatMessage({ id: 'clients.noDataAvailable' })}
+          </span>
           <div className='mt-5'>
             <EditClientCarButton id={clientCar.id} className='rounded-[5px]' />
           </div>

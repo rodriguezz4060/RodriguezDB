@@ -6,21 +6,30 @@ import { Tabs, TabsContent, TabsTrigger } from '@/shared/components/ui/tabs'
 import { Wipers, HoodShockAbsorbers } from '@/shared/constants/client-car'
 import { useActiveTab, useTabsDataCheck } from '@/shared/hooks'
 import { TabsList } from '@radix-ui/react-tabs'
+import { useIntl } from 'react-intl'
 
 interface Props {
   clientCar: CarBodyFormData
 }
 
 export function CarBodyForm({ clientCar }: Props) {
+  const { formatMessage } = useIntl()
+
   const wipers = Wipers(clientCar)
   const hoodShockAbsorbers = HoodShockAbsorbers(clientCar)
 
   const tabsData = [
-    { value: 'wipers', label: 'Дворник', blocks: [{ label: 'Дворник', data: wipers }] },
     {
-      value: 'washerMotor',
-      label: 'Амортизаторы капота',
-      blocks: [{ label: 'Амортизаторы капота', data: hoodShockAbsorbers }],
+      value: 'wipers',
+      label: formatMessage({ id: 'clients.wipers' }),
+      blocks: [{ label: formatMessage({ id: 'clients.wipers' }), data: wipers }],
+    },
+    {
+      value: 'hoodShockAbsorbers',
+      label: formatMessage({ id: 'clients.hoodShockAbsorbers' }),
+      blocks: [
+        { label: formatMessage({ id: 'clients.hoodShockAbsorbers' }), data: hoodShockAbsorbers },
+      ],
     },
   ]
 
@@ -60,7 +69,9 @@ export function CarBodyForm({ clientCar }: Props) {
 
       {noDataAvailable && (
         <div className='mt-2 text-center'>
-          <span className='text-lg font-bold'>Нет информации.</span>
+          <span className='text-lg font-bold'>
+            {formatMessage({ id: 'clients.noDataAvailable' })}
+          </span>
           <div className='mt-5'>
             <EditClientCarButton id={clientCar.id} className='rounded-[5px]' />
           </div>

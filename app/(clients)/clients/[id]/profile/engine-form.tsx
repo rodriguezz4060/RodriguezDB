@@ -15,12 +15,15 @@ import {
 } from '@/shared/constants/client-car'
 import { useActiveTab, useTabsDataCheck } from '@/shared/hooks'
 import { TabsList } from '@radix-ui/react-tabs'
+import { useIntl } from 'react-intl'
 
 interface Props {
   clientCar: EngineFormData
 }
 
 export function EngineForm({ clientCar }: Props) {
+  const { formatMessage } = useIntl()
+
   const engineTimingBelt = EngineTimingBelt(clientCar)
   const { enginePiston, engineValves, engineLiner } = EngineAndPiston(clientCar)
   const { driveBelt, tensionerBelt } = BeltAndTensioner(clientCar)
@@ -31,48 +34,56 @@ export function EngineForm({ clientCar }: Props) {
   const filters = Filters(clientCar)
 
   const tabsData = [
-    { value: 'drives', label: 'ГРМ', blocks: [{ label: 'ГРМ', data: engineTimingBelt }] },
+    {
+      value: 'drives',
+      label: formatMessage({ id: 'clients.drives' }),
+      blocks: [{ label: formatMessage({ id: 'clients.drives' }), data: engineTimingBelt }],
+    },
     {
       value: 'pistons',
-      label: 'Двигатель и поршневая',
+      label: formatMessage({ id: 'clients.engineAndPiston' }),
       blocks: [
-        { label: 'Поршня', data: enginePiston },
-        { label: 'Клапана', data: engineValves },
-        { label: 'Вкладыши', data: engineLiner },
+        { label: formatMessage({ id: 'clients.enginePiston' }), data: enginePiston },
+        { label: formatMessage({ id: 'clients.engineValves' }), data: engineValves },
+        { label: formatMessage({ id: 'clients.engineLiner' }), data: engineLiner },
       ],
     },
     {
-      value: 'beltAndRollers',
-      label: 'Приводные ремни и ролики',
+      value: 'beltAndRollerGenerator',
+      label: formatMessage({ id: 'clients.beltAndRollerGenerator' }),
       blocks: [
-        { label: 'Приводные ремни', data: driveBelt },
-        { label: 'Ролики и натяжитель', data: tensionerBelt },
+        { label: formatMessage({ id: 'clients.driveBelt' }), data: driveBelt },
+        { label: formatMessage({ id: 'clients.tensionerBelt' }), data: tensionerBelt },
       ],
     },
     {
-      value: 'engineGasket',
-      label: 'ПГБ и прокладки',
+      value: 'engineGasketAndPgb',
+      label: formatMessage({ id: 'clients.engineGasketAndPgb' }),
       blocks: [
-        { label: 'ПГБ', data: enginePgb },
-        { label: 'Прокладки', data: engineGasket },
+        { label: formatMessage({ id: 'clients.enginePgb' }), data: enginePgb },
+        { label: formatMessage({ id: 'clients.engineGasket' }), data: engineGasket },
       ],
     },
     {
       value: 'engineCushion',
-      label: 'Подушки двигателя',
-      blocks: [{ label: 'Подушки двигателя', data: engineCushion }],
+      label: formatMessage({ id: 'clients.engineCushion' }),
+      blocks: [{ label: formatMessage({ id: 'clients.engineCushion' }), data: engineCushion }],
     },
     {
       value: 'engineOilSeals',
-      label: 'Сальники двигателя',
-      blocks: [{ label: 'Сальники двигателя', data: engineOilSeals }],
+      label: formatMessage({ id: 'clients.engineOilSeals' }),
+      blocks: [{ label: formatMessage({ id: 'clients.engineOilSeals' }), data: engineOilSeals }],
     },
     {
       value: 'airSupplySystem',
-      label: 'Система подачи воздуха',
-      blocks: [{ label: 'Система подачи воздуха', data: airSupplySystem }],
+      label: formatMessage({ id: 'clients.airSupplySystem' }),
+      blocks: [{ label: formatMessage({ id: 'clients.airSupplySystem' }), data: airSupplySystem }],
     },
-    { value: 'filters', label: 'Фильтра', blocks: [{ label: 'Фильтр', data: filters }] },
+    {
+      value: 'filters',
+      label: formatMessage({ id: 'clients.filters' }),
+      blocks: [{ label: formatMessage({ id: 'clients.filters' }), data: filters }],
+    },
   ]
 
   const filteredTabsData = tabsData
@@ -110,7 +121,9 @@ export function EngineForm({ clientCar }: Props) {
       </Tabs>
       {noDataAvailable && (
         <div className='mt-2 text-center'>
-          <span className='text-lg font-bold'>Нет информации.</span>
+          <span className='text-lg font-bold'>
+            {formatMessage({ id: 'clients.noDataAvailable' })}
+          </span>
           <div className='mt-5'>
             <EditClientCarButton id={clientCar.id} className='rounded-[5px]' />
           </div>

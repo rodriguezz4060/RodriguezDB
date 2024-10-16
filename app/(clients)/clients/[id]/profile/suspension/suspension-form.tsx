@@ -17,12 +17,15 @@ import {
 } from '@/shared/constants/client-car'
 import { useActiveTab, useTabsDataCheck } from '@/shared/hooks'
 import { TabsList } from '@radix-ui/react-tabs'
+import { useIntl } from 'react-intl'
 
 interface Props {
   clientCar: SuspensionFormData
 }
 
 export function SuspensionForm({ clientCar }: Props) {
+  const { formatMessage } = useIntl()
+
   const { shockAbsorbersFront, shockAbsorbersRear } = ShockAbsorbers(clientCar)
   const nutsWheelStuds = NutsWheelStuds(clientCar)
   const { strutMounts, dustCoversBumpers } = StrutMountsDustCoversBumpers(clientCar)
@@ -38,78 +41,80 @@ export function SuspensionForm({ clientCar }: Props) {
   const tabsData = [
     {
       value: 'absorbers',
-      label: 'Амортизаторы',
+      label: formatMessage({ id: 'clients.absorbers' }),
       blocks: [
-        { label: 'Передние амортизаторы', data: shockAbsorbersFront },
-        { label: 'Задние амортизаторы', data: shockAbsorbersRear },
+        { label: formatMessage({ id: 'clients.shockAbsorbersFront' }), data: shockAbsorbersFront },
+        { label: formatMessage({ id: 'clients.shockAbsorbersRear' }), data: shockAbsorbersRear },
       ],
     },
     {
       value: 'nutsWheelStuds',
-      label: 'Гайка и шпилька',
-      blocks: [{ label: 'Гайка и шпилька', data: nutsWheelStuds }],
+      label: formatMessage({ id: 'clients.nutsWheelStuds' }),
+      blocks: [{ label: formatMessage({ id: 'clients.nutsWheelStuds' }), data: nutsWheelStuds }],
     },
     {
       value: 'beltAndRollers',
-      label: 'Опоры стойки, пыльники, отбойники',
+      label: formatMessage({ id: 'clients.beltAndRollers' }),
       blocks: [
-        { label: 'Опоры и подшипник стойки', data: strutMounts },
-        { label: 'Пыльники и отбойники', data: dustCoversBumpers },
+        { label: formatMessage({ id: 'clients.strutMounts' }), data: strutMounts },
+        { label: formatMessage({ id: 'clients.dustCoversBumpers' }), data: dustCoversBumpers },
       ],
     },
     {
-      value: 'hubBearingsFront',
-      label: 'Подшипники ступиц',
+      value: 'hubBearings',
+      label: formatMessage({ id: 'clients.hubBearings' }),
       blocks: [
-        { label: 'Подшипники ступиц передний', data: hubBearingsFront },
-        { label: 'Подшипники ступиц задний', data: hubBearingsRear },
+        { label: formatMessage({ id: 'clients.hubBearingsFront' }), data: hubBearingsFront },
+        { label: formatMessage({ id: 'clients.hubBearingsRear' }), data: hubBearingsRear },
       ],
     },
     {
-      value: 'engineCushion',
-      label: 'Рулевая рейка и ГУР',
+      value: 'steeringRack',
+      label: formatMessage({ id: 'clients.steeringRack' }),
       blocks: [
-        { label: 'Ремкомплект ГУР', data: steeringRackAndPowerSteering },
-        { label: 'Пыльник рейки', data: powerSteeringBoot },
+        {
+          label: formatMessage({ id: 'clients.steeringRackAndPowerSteering' }),
+          data: steeringRackAndPowerSteering,
+        },
+        { label: formatMessage({ id: 'clients.powerSteeringBoot' }), data: powerSteeringBoot },
       ],
     },
     {
-      value: 'engineOilSeals',
-      label: 'Рычаги',
+      value: 'arms',
+      label: formatMessage({ id: 'clients.arms' }),
       blocks: [
-        { label: 'Рычаги передние', data: armsFront },
-        { label: 'Рычаги задние', data: armsRear },
+        { label: formatMessage({ id: 'clients.armsFront' }), data: armsFront },
+        { label: formatMessage({ id: 'clients.armsRear' }), data: armsRear },
       ],
     },
     {
       value: 'silentBlocks',
-      label: 'Сайленблоки',
+      label: formatMessage({ id: 'clients.silentBlocks' }),
       blocks: [
-        { label: 'Сайленблоки передние', data: silentBlocksFront },
-        { label: 'Сайленблоки задние', data: silentBlocksRear },
+        { label: formatMessage({ id: 'clients.silentBlocksFront' }), data: silentBlocksFront },
+        { label: formatMessage({ id: 'clients.silentBlocksRear' }), data: silentBlocksRear },
       ],
     },
     {
       value: 'stabilizer',
-      label: 'Стабилизатор',
+      label: formatMessage({ id: 'clients.stabilizer' }),
       blocks: [
-        { label: 'Втулки стабилизатора', data: stabilizerBushings },
-        { label: 'Тяжки стабилизатора', data: stabilizerRods },
+        { label: formatMessage({ id: 'clients.stabilizerBushings' }), data: stabilizerBushings },
+        { label: formatMessage({ id: 'clients.stabilizerRods' }), data: stabilizerRods },
       ],
     },
     {
       value: 'pullRodsAndLugs',
-      label: 'Тяги и наконечники',
+      label: formatMessage({ id: 'clients.pullRodsAndLugs' }),
       blocks: [
-        { label: 'Тяги', data: pullRods },
-        { label: 'Наконечники', data: rodsLugs },
+        { label: formatMessage({ id: 'clients.pullRods' }), data: pullRods },
+        { label: formatMessage({ id: 'clients.rodsLugs' }), data: rodsLugs },
       ],
     },
-
     {
       value: 'ballBearings',
-      label: 'Шаровые опоры',
-      blocks: [{ label: 'Шаровые опоры', data: ballBearings }],
+      label: formatMessage({ id: 'clients.ballBearings' }),
+      blocks: [{ label: formatMessage({ id: 'clients.ballBearings' }), data: ballBearings }],
     },
   ]
 
@@ -148,7 +153,9 @@ export function SuspensionForm({ clientCar }: Props) {
       </Tabs>
       {noDataAvailable && (
         <div className='mt-2 text-center'>
-          <span className='text-lg font-bold'>Нет информации.</span>
+          <span className='text-lg font-bold'>
+            {formatMessage({ id: 'clients.noDataAvailable' })}
+          </span>
           <div className='mt-5'>
             <EditClientCarButton id={clientCar.id} className='rounded-[5px]' />
           </div>

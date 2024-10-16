@@ -14,12 +14,15 @@ import {
 } from '@/shared/constants/client-car'
 import { useActiveTab, useTabsDataCheck } from '@/shared/hooks'
 import { TabsList } from '@radix-ui/react-tabs'
+import { useIntl } from 'react-intl'
 
 interface Props {
   clientCar: BrakeSystemFormData
 }
 
 export function BrakeSystemForm({ clientCar }: Props) {
+  const { formatMessage } = useIntl()
+
   const brakeCable = BrakeCable(clientCar)
   const brakeDisksAndDrums = BrakeDisksAndDrums(clientCar)
   const brakePads = BrakePads(clientCar)
@@ -31,40 +34,52 @@ export function BrakeSystemForm({ clientCar }: Props) {
   const tabsData = [
     {
       value: 'handbrakeCable',
-      label: 'Тормозной трос',
-      blocks: [{ label: 'Тормозной трос', data: brakeCable }],
+      label: formatMessage({ id: 'clients.handbrakeCable' }),
+      blocks: [{ label: formatMessage({ id: 'clients.handbrakeCable' }), data: brakeCable }],
     },
     {
-      value: 'brakeDisksAndDrums',
-      label: 'Тормозные диски',
-      blocks: [{ label: 'Диски', data: brakeDisksAndDrums }],
+      value: 'DisksAndDrums',
+      label: formatMessage({ id: 'clients.DisksAndDrums' }),
+      blocks: [
+        { label: formatMessage({ id: 'clients.brakeDisksAndDrums' }), data: brakeDisksAndDrums },
+      ],
     },
     {
-      value: 'brakePads',
-      label: 'Тормозные колодки',
-      blocks: [{ label: 'Колодки', data: brakePads }],
+      value: 'brake',
+      label: formatMessage({ id: 'clients.brake' }),
+      blocks: [{ label: formatMessage({ id: 'clients.brakePads' }), data: brakePads }],
     },
     {
-      value: 'frontWheelBrakeMechanism',
-      label: 'Тормозной механизм переднего колеса',
-      blocks: [{ label: 'Передний тормозной механизм', data: frontWheelBrakeMechanism }],
+      value: 'frontBrakeMechanism',
+      label: formatMessage({ id: 'clients.frontBrakeMechanism' }),
+      blocks: [
+        {
+          label: formatMessage({ id: 'clients.frontWheelBrakeMechanism' }),
+          data: frontWheelBrakeMechanism,
+        },
+      ],
     },
     {
-      value: 'rearWheelBrakeMechanism',
-      label: 'Тормозной механизм заднего колеса',
-      blocks: [{ label: 'Задний тормозной механизм', data: rearWheelBrakeMechanism }],
+      value: 'rearBrakeMechanism',
+      label: formatMessage({ id: 'clients.rearBrakeMechanism' }),
+      blocks: [
+        {
+          label: formatMessage({ id: 'clients.rearWheelBrakeMechanism' }),
+          data: rearWheelBrakeMechanism,
+        },
+      ],
     },
     {
       value: 'brakeCylinder',
-      label: 'Тормозной цилиндр',
-      blocks: [{ label: 'Тормозной цилиндр', data: brakeCylinder }],
+      label: formatMessage({ id: 'clients.brakeCylinder' }),
+      blocks: [{ label: formatMessage({ id: 'clients.brakeCylinder' }), data: brakeCylinder }],
     },
     {
-      value: 'silentBlocks',
-      label: 'Тормозные шланги',
+      value: 'brakeHoses',
+      label: formatMessage({ id: 'clients.brakeHoses' }),
       blocks: [
-        { label: 'Передние', data: brakeHosesFront },
-        { label: 'Задние', data: brakeHosesRear },
+        { label: formatMessage({ id: 'clients.brakeHosesFront' }), data: brakeHosesFront },
+        { label: formatMessage({ id: 'clients.brakeHosesRear' }), data: brakeHosesRear },
       ],
     },
   ]
@@ -105,7 +120,9 @@ export function BrakeSystemForm({ clientCar }: Props) {
 
       {noDataAvailable && (
         <div className='mt-2 text-center'>
-          <span className='text-lg font-bold'>Нет информации.</span>
+          <span className='text-lg font-bold'>
+            {formatMessage({ id: 'clients.noDataAvailable' })}
+          </span>
           <div className='mt-5'>
             <EditClientCarButton id={clientCar.id} className='rounded-[5px]' />
           </div>
