@@ -62,7 +62,7 @@ export default async function CarEditLayout({ children, params: { id } }: Settin
     <>
       <div className='hidden space-y-6 p-5 pb-16 md:block'>
         <div className='flex items-center justify-between'>
-          <ClientProfileHeader id={id} />
+          <ClientProfileHeader />
           <EditClientCarButton id={id} />
         </div>
 
