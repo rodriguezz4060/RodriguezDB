@@ -12,12 +12,15 @@ import { useClientCarForm } from '@/shared/hooks/'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { TabsList } from '@radix-ui/react-tabs'
 import { FormProvider, useForm } from 'react-hook-form'
+import { useIntl } from 'react-intl'
 
 interface Props {
   clientCar: TransmissionFormData
 }
 
 export function TransmissionForm({ clientCar }: Props) {
+  const { formatMessage } = useIntl()
+
   const form = useForm<TFormEditClientCarSchema>({
     resolver: zodResolver(formEditClientCarSchema),
     defaultValues: {
@@ -81,112 +84,224 @@ export function TransmissionForm({ clientCar }: Props) {
       <form className='gap-5' onSubmit={form.handleSubmit(onSubmit)}>
         <Tabs defaultValue='drives'>
           <TabsList>
-            <TabsTrigger value='drives'>ШРУСЫ и привода</TabsTrigger>
-            <TabsTrigger value='gearbox'>Коробка передач</TabsTrigger>
-            <TabsTrigger value='suspensionBearing'>Подвесной подшипник</TabsTrigger>
-            <TabsTrigger value='bootKit'>Пыльники ШРУСов</TabsTrigger>
-            <TabsTrigger value='gearSeal'>Сальники трансмиссии</TabsTrigger>
-            <TabsTrigger value='clutch'>Сцепление</TabsTrigger>
-            <TabsTrigger value='clutchCylinders'>Цилиндры сцепления</TabsTrigger>
+            <TabsTrigger value='drives'>
+              {formatMessage({ id: 'clients.driveShaftsAndGrenades' })}
+            </TabsTrigger>
+            <TabsTrigger value='gearbox'>{formatMessage({ id: 'clients.gearbox' })}</TabsTrigger>
+            <TabsTrigger value='suspensionBearing'>
+              {formatMessage({ id: 'clients.suspensionBearing' })}
+            </TabsTrigger>
+            <TabsTrigger value='bootKit'>
+              {formatMessage({ id: 'clients.bootDustCovers' })}
+            </TabsTrigger>
+            <TabsTrigger value='gearSeal'>
+              {formatMessage({ id: 'clients.transmissionOilSeals' })}
+            </TabsTrigger>
+            <TabsTrigger value='clutch'>{formatMessage({ id: 'clients.clutch' })}</TabsTrigger>
+            <TabsTrigger value='clutchCylinders'>
+              {formatMessage({ id: 'clients.clutchCylinders' })}
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value='drives'>
-            <LabeledBox label='ШРУСЫ передние'>
-              <FormInput name='frontLeftOuterBallJoint' label='Передний наружный левый' />
-              <FormInput name='frontRightOuterBallJoint' label='Передний наружный правый' />
-              <FormInput name='frontLeftInnerBallJoint' label='Передний внутренний левый' />
-              <FormInput name='frontRightInnerBallJoint' label='Передний внутренний правый' />
+            <LabeledBox label={formatMessage({ id: 'clients.grenadesFront' })}>
+              <FormInput
+                name='frontLeftOuterBallJoint'
+                label={formatMessage({ id: 'clientTab.frontLeftOuterBallJoint' })}
+              />
+              <FormInput
+                name='frontRightOuterBallJoint'
+                label={formatMessage({ id: 'clientTab.frontRightOuterBallJoint' })}
+              />
+              <FormInput
+                name='frontLeftInnerBallJoint'
+                label={formatMessage({ id: 'clientTab.frontLeftInnerBallJoint' })}
+              />
+              <FormInput
+                name='frontRightInnerBallJoint'
+                label={formatMessage({ id: 'clientTab.frontRightInnerBallJoint' })}
+              />
             </LabeledBox>
 
-            <LabeledBox label='Привода'>
-              <FormInput name='frontLeftHandDrive' label='Приводной вал левый' />
-              <FormInput name='frontRightHandDrive' label='Приводной вал правый' />
-              <FormInput name='driveShaft' label='Вал привода' />
+            <LabeledBox label={formatMessage({ id: 'clients.driveShafts' })}>
+              <FormInput
+                name='frontLeftHandDrive'
+                label={formatMessage({ id: 'clientTab.frontLeftHandDrive' })}
+              />
+              <FormInput
+                name='frontRightHandDrive'
+                label={formatMessage({ id: 'clientTab.frontRightHandDrive' })}
+              />
+              <FormInput name='driveShaft' label={formatMessage({ id: 'clientTab.driveShaft' })} />
             </LabeledBox>
 
-            <LabeledBox label='ШРУСЫ задние'>
-              <FormInput name='rearLeftOuterBallJoint' label='Задний наружный левый' />
-              <FormInput name='rearRightOuterBallJoint' label='Задний наружный правый' />
-              <FormInput name='rearLeftInnerBallJoint' label='Задний внутренний левый' />
-              <FormInput name='rearRightInnerBallJoint' label='Задний внутренний правый' />
+            <LabeledBox label={formatMessage({ id: 'clients.grenadesRear' })}>
+              <FormInput
+                name='rearLeftOuterBallJoint'
+                label={formatMessage({ id: 'clientTab.rearLeftOuterBallJoint' })}
+              />
+              <FormInput
+                name='rearRightOuterBallJoint'
+                label={formatMessage({ id: 'clientTab.rearRightOuterBallJoint' })}
+              />
+              <FormInput
+                name='rearLeftInnerBallJoint'
+                label={formatMessage({ id: 'clientTab.rearLeftInnerBallJoint' })}
+              />
+              <FormInput
+                name='rearRightInnerBallJoint'
+                label={formatMessage({ id: 'clientTab.rearRightInnerBallJoint' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='gearbox'>
-            <LabeledBox label='Фильтр АКПП'>
-              <FormInput name='automaticTransmissionFilter' label='Фильтр' />
-              <FormInput name='automaticTransmissionOilPanGasket' label='Прокладка поддона' />
-              <FormInput name='automaticTransmissionFillerGasket' label='Прокладка фильтра' />
+            <LabeledBox label={formatMessage({ id: 'clients.gearbox' })}>
+              <FormInput
+                name='automaticTransmissionFilter'
+                label={formatMessage({ id: 'clientTab.automaticTransmissionFilter' })}
+              />
+              <FormInput
+                name='automaticTransmissionOilPanGasket'
+                label={formatMessage({ id: 'clientTab.automaticTransmissionOilPanGasket' })}
+              />
+              <FormInput
+                name='automaticTransmissionFillerGasket'
+                label={formatMessage({ id: 'clientTab.automaticTransmissionFillerGasket' })}
+              />
             </LabeledBox>
 
-            <LabeledBox label='Фильтра тонкой очистки'>
-              <FormInput name='automaticTransmissionFilter2' label='Фильтр' />
-              <FormInput name='automaticTransmissionOilPanGasket2' label='Прокладка фильтра ' />
+            <LabeledBox label={formatMessage({ id: 'clients.gearboxSmall' })}>
+              <FormInput
+                name='automaticTransmissionFilter2'
+                label={formatMessage({ id: 'clientTab.automaticTransmissionFilter2' })}
+              />
+              <FormInput
+                name='automaticTransmissionOilPanGasket2'
+                label={formatMessage({ id: 'clientTab.automaticTransmissionOilPanGasket2' })}
+              />
             </LabeledBox>
 
-            <LabeledBox label='Сливная пробка'>
-              <FormInput name='transmissionDrainPlug' label='Сливная пробка' />
-              <FormInput name='transmissionDrainPlugGasket' label='Прокладка сливной пробки' />
+            <LabeledBox label={formatMessage({ id: 'clients.drainPlug' })}>
+              <FormInput
+                name='transmissionDrainPlug'
+                label={formatMessage({ id: 'clientTab.transmissionDrainPlug' })}
+              />
+              <FormInput
+                name='transmissionDrainPlugGasket'
+                label={formatMessage({ id: 'clientTab.transmissionDrainPlugGasket' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='suspensionBearing'>
-            <LabeledBox label='Подвесной подшипник'>
-              <FormInput name='suspensionBearing' label='Подвесной подшипник' />
+            <LabeledBox label={formatMessage({ id: 'clients.suspensionBearing' })}>
+              <FormInput
+                name='suspensionBearing'
+                label={formatMessage({ id: 'clientTab.suspensionBearing' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='bootKit'>
-            <LabeledBox label='Пыльники передних ШРУСов'>
-              <FormInput name='frontPistonRodDusterOuter' label='Наружный' />
-              <FormInput name='frontPistonRodDusterInnerLeft' label='Внутренний левый' />
-              <FormInput name='frontPistonRodDusterInnerRight' label='Внутренний правый' />
+            <LabeledBox label={formatMessage({ id: 'clients.bootDustCoversFront' })}>
+              <FormInput
+                name='frontPistonRodDusterOuter'
+                label={formatMessage({ id: 'clientTab.frontPistonRodDusterOuter' })}
+              />
+              <FormInput
+                name='frontPistonRodDusterInnerLeft'
+                label={formatMessage({ id: 'clientTab.frontPistonRodDusterInnerLeft' })}
+              />
+              <FormInput
+                name='frontPistonRodDusterInnerRight'
+                label={formatMessage({ id: 'clientTab.frontPistonRodDusterInnerRight' })}
+              />
             </LabeledBox>
 
-            <LabeledBox label='Пыльники задних ШРУСов'>
-              <FormInput name='rearPistonRodDusterOuter' label='Наружный' />
-              <FormInput name='rearPistonRodDusterInnerLeft' label='Внутренний левый' />
-              <FormInput name='rearPistonRodDusterInnerRight' label='Внутренний правый' />
+            <LabeledBox label={formatMessage({ id: 'clients.bootDustCoversRear' })}>
+              <FormInput
+                name='rearPistonRodDusterOuter'
+                label={formatMessage({ id: 'clientTab.rearPistonRodDusterOuter' })}
+              />
+              <FormInput
+                name='rearPistonRodDusterInnerLeft'
+                label={formatMessage({ id: 'clientTab.rearPistonRodDusterInnerLeft' })}
+              />
+              <FormInput
+                name='rearPistonRodDusterInnerRight'
+                label={formatMessage({ id: 'clientTab.rearPistonRodDusterInnerRight' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='gearSeal'>
-            <LabeledBox label='Сальники трансмиссии'>
+            <LabeledBox label={formatMessage({ id: 'clients.transmissionOilSeals' })}>
               <FormInput
                 name='automaticTransmissionTorqueConverterOilSeal'
-                label='Гидротрансформатора АКПП'
+                label={formatMessage({ id: 'clientTab.rearPistonRodDusterInnerRight' })}
               />
-              <FormInput name='gearboxPrimaryShaftOilSeal' label='Первичного вала КПП' />
-              <FormInput name='gearboxRockerGland' label='Кулисы КПП' />
-              <FormInput name='leftDriveOilSeal' label='Левого привода' />
-              <FormInput name='rightDriveOilSeal' label='Правого привода' />
+              <FormInput
+                name='gearboxPrimaryShaftOilSeal'
+                label={formatMessage({ id: 'clientTab.gearboxPrimaryShaftOilSeal' })}
+              />
+              <FormInput
+                name='gearboxRockerGland'
+                label={formatMessage({ id: 'clientTab.gearboxRockerGland' })}
+              />
+              <FormInput
+                name='leftDriveOilSeal'
+                label={formatMessage({ id: 'clientTab.leftDriveOilSeal' })}
+              />
+              <FormInput
+                name='rightDriveOilSeal'
+                label={formatMessage({ id: 'clientTab.rightDriveOilSeal' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='clutch'>
-            <LabeledBox label='Сцепление'>
-              <FormInput name='clutchDisk' label='Диск' />
-              <FormInput name='clutchBasket' label='Корзина' />
-              <FormInput name='releaseBearing' label='Выжимной подшипник' />
-              <FormInput name='clutchKit' label='Комплект сцепления' />
+            <LabeledBox label={formatMessage({ id: 'clients.clutch' })}>
+              <FormInput name='clutchDisk' label={formatMessage({ id: 'clientTab.clutchDisk' })} />
+              <FormInput
+                name='clutchBasket'
+                label={formatMessage({ id: 'clientTab.clutchBasket' })}
+              />
+              <FormInput
+                name='releaseBearing'
+                label={formatMessage({ id: 'clientTab.releaseBearing' })}
+              />
+              <FormInput name='clutchKit' label={formatMessage({ id: 'clientTab.clutchKit' })} />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='clutchCylinders'>
-            <LabeledBox label='Цилиндры сцепления'>
-              <FormInput name='clutchMasterCylinder' label='Главный' />
-              <FormInput name='clutchSlaveCylinder' label='Рабочий ' />
+            <LabeledBox label={formatMessage({ id: 'clients.clutchCylinders' })}>
+              <FormInput
+                name='clutchMasterCylinder'
+                label={formatMessage({ id: 'clientTab.clutchMasterCylinder' })}
+              />
+              <FormInput
+                name='clutchSlaveCylinder'
+                label={formatMessage({ id: 'clientTab.clutchSlaveCylinder' })}
+              />
             </LabeledBox>
 
-            <LabeledBox label='Ремкомплекты цилиндра сцепления'>
-              <FormInput name='clutchMasterCylinderKit' label='Главного цилиндра сцепления' />
-              <FormInput name='clutchSlaveCylinderRepairKit' label='Рабочего цилиндра сцепления' />
+            <LabeledBox label={formatMessage({ id: 'clients.clutchCylindersRepair' })}>
+              <FormInput
+                name='clutchMasterCylinderKit'
+                label={formatMessage({ id: 'clientTab.clutchMasterCylinderKit' })}
+              />
+              <FormInput
+                name='clutchSlaveCylinderRepairKit'
+                label={formatMessage({ id: 'clientTab.clutchSlaveCylinderRepairKit' })}
+              />
             </LabeledBox>
           </TabsContent>
         </Tabs>
 
         <Button disabled={isSubmitting} className='text-base mt-5 col-span-full' type='submit'>
-          Сохранить
+          {formatMessage({ id: 'clients.saveButton' })}
         </Button>
       </form>
     </FormProvider>

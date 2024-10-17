@@ -12,12 +12,15 @@ import { useClientCarForm } from '@/shared/hooks/'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { TabsList } from '@radix-ui/react-tabs'
 import { FormProvider, useForm } from 'react-hook-form'
+import { useIntl } from 'react-intl'
 
 interface Props {
   clientCar: ConsumablesFormData
 }
 
 export function ConsumablesForm({ clientCar }: Props) {
+  const { formatMessage } = useIntl()
+
   const form = useForm<TFormEditClientCarSchema>({
     resolver: zodResolver(formEditClientCarSchema),
     defaultValues: {
@@ -53,75 +56,113 @@ export function ConsumablesForm({ clientCar }: Props) {
       <form className='gap-5' onSubmit={form.handleSubmit(onSubmit)}>
         <Tabs defaultValue='filter'>
           <TabsList>
-            <TabsTrigger value='filter'>Фильтра ДВС</TabsTrigger>
-            <TabsTrigger value='gearbox'>Коробка передач</TabsTrigger>
-            <TabsTrigger value='brake'>Тормоза</TabsTrigger>
-            <TabsTrigger value='cooling'>Охлаждение</TabsTrigger>
-            <TabsTrigger value='ignition'>Зажигание</TabsTrigger>
-            <TabsTrigger value='driversWiper'>Дворники</TabsTrigger>
+            <TabsTrigger value='filter'>{formatMessage({ id: 'clientTo.filter' })}</TabsTrigger>
+            <TabsTrigger value='gearbox'>{formatMessage({ id: 'clientTo.gearbox' })}</TabsTrigger>
+            <TabsTrigger value='brake'>{formatMessage({ id: 'clientTo.brake' })}</TabsTrigger>
+            <TabsTrigger value='cooling'>{formatMessage({ id: 'clientTo.cooling' })}</TabsTrigger>
+            <TabsTrigger value='ignition'>{formatMessage({ id: 'clientTo.ignition' })}</TabsTrigger>
+            <TabsTrigger value='driversWiper'>
+              {formatMessage({ id: 'clientTo.driversWiper' })}
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value='filter'>
-            <LabeledBox label='Фильтра ДВС'>
-              <FormInput name='oilFilter' label='Масляный' />
-              <FormInput name='airFilter' label='Воздушный' />
-              <FormInput name='fuelFilter' label='Топливный' />
-              <FormInput name='cabinFilter' label='Салона' />
+            <LabeledBox label={formatMessage({ id: 'clientTo.filter' })}>
+              <FormInput name='oilFilter' label={formatMessage({ id: 'clientTab.oilFilter' })} />
+              <FormInput name='airFilter' label={formatMessage({ id: 'clientTab.airFilter' })} />
+              <FormInput name='fuelFilter' label={formatMessage({ id: 'clientTab.fuelFilter' })} />
+              <FormInput
+                name='cabinFilter'
+                label={formatMessage({ id: 'clientTab.cabinFilter' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='gearbox'>
-            <LabeledBox label='Фильтра АКПП'>
-              <FormInput name='automaticTransmissionFilter' label='Фильтр' />
-              <FormInput name='automaticTransmissionOilPanGasket' label='Прокладка поддона' />
-              <FormInput name='automaticTransmissionFillerGasket' label='Прокладка фильтра' />
+            <LabeledBox label={formatMessage({ id: 'clientTo.gearboxFilters' })}>
+              <FormInput
+                name='automaticTransmissionFilter'
+                label={formatMessage({ id: 'clientTab.automaticTransmissionFilter' })}
+              />
+              <FormInput
+                name='automaticTransmissionOilPanGasket'
+                label={formatMessage({ id: 'clientTab.automaticTransmissionOilPanGasket' })}
+              />
+              <FormInput
+                name='automaticTransmissionFillerGasket'
+                label={formatMessage({ id: 'clientTab.automaticTransmissionFillerGasket' })}
+              />
             </LabeledBox>
 
-            <LabeledBox label='Фильтра тонкой очистки АКПП'>
-              <FormInput name='automaticTransmissionFilter2' label='Фильтр' />
-              <FormInput name='automaticTransmissionOilPanGasket2' label='Прокладка' />
+            <LabeledBox label={formatMessage({ id: 'clientTo.gearboxFiltersSmall' })}>
+              <FormInput
+                name='automaticTransmissionFilter2'
+                label={formatMessage({ id: 'clientTab.automaticTransmissionFilter2' })}
+              />
+              <FormInput
+                name='automaticTransmissionOilPanGasket2'
+                label={formatMessage({ id: 'clientTab.automaticTransmissionOilPanGasket2' })}
+              />
             </LabeledBox>
 
-            <LabeledBox label='Сливная пробка'>
-              <FormInput name='transmissionDrainPlug' label='Сливная пробка АКПП' />
-              <FormInput name='transmissionDrainPlugGasket' label='Прокладка сливной пробки АКПП' />
+            <LabeledBox label={formatMessage({ id: 'clientTab.transmissionDrainPlug' })}>
+              <FormInput
+                name='transmissionDrainPlug'
+                label={formatMessage({ id: 'clientTab.transmissionDrainPlug' })}
+              />
+              <FormInput
+                name='transmissionDrainPlugGasket'
+                label={formatMessage({ id: 'clientTab.transmissionDrainPlugGasket' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='brake'>
-            <LabeledBox label='Колодки'>
-              <FormInput name='frontBrake' label='Передние' />
-              <FormInput name='rearBrake' label='Задние' />
-              <FormInput name='handbrakeBrakePads' label='Колодки ручника' />
+            <LabeledBox label={formatMessage({ id: 'clientTo.brake' })}>
+              <FormInput name='frontBrake' label={formatMessage({ id: 'clientTab.frontBrake' })} />
+              <FormInput name='rearBrake' label={formatMessage({ id: 'clientTab.rearBrake' })} />
+              <FormInput
+                name='handbrakeBrakePads'
+                label={formatMessage({ id: 'clientTab.handbrakeBrakePads' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='cooling'>
-            <LabeledBox label='Охлаждение'>
-              <FormInput name='waterPump' label='Водяная помпа' />
-              <FormInput name='thermostat' label='Термостат' />
+            <LabeledBox label={formatMessage({ id: 'clientTo.cooling' })}>
+              <FormInput name='waterPump' label={formatMessage({ id: 'clientTab.waterPump' })} />
+              <FormInput name='thermostat' label={formatMessage({ id: 'clientTab.thermostat' })} />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='ignition'>
-            <LabeledBox label='Свечи'>
-              <FormInput name='sparkPlug' label='Свеча зажигания' />
+            <LabeledBox label={formatMessage({ id: 'clientTo.ignition' })}>
+              <FormInput name='sparkPlug' label={formatMessage({ id: 'clientTab.sparkPlug' })} />
             </LabeledBox>
 
-            <LabeledBox label='Катушка'>
-              <FormInput name='ignitionCoil' label='Катушка зажигания' />
+            <LabeledBox label={formatMessage({ id: 'clientTab.ignitionCoil' })}>
+              <FormInput
+                name='ignitionCoil'
+                label={formatMessage({ id: 'clientTo.ignitionCoil' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='driversWiper'>
-            <LabeledBox label='Дворники'>
-              <FormInput name='driversWiper' label='Дворник водителя' />
-              <FormInput name='passengerWiper' label='Дворник пассажира' />
+            <LabeledBox label={formatMessage({ id: 'clientTo.driversWiper' })}>
+              <FormInput
+                name='driversWiper'
+                label={formatMessage({ id: 'clientTab.driversWiper' })}
+              />
+              <FormInput
+                name='passengerWiper'
+                label={formatMessage({ id: 'clientTab.passengerWiper' })}
+              />
             </LabeledBox>
           </TabsContent>
         </Tabs>
         <Button disabled={isSubmitting} className='text-base mt-5 col-span-full' type='submit'>
-          Сохранить
+          {formatMessage({ id: 'clients.saveButton' })}
         </Button>
       </form>
     </FormProvider>

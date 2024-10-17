@@ -1,7 +1,10 @@
 import { Metadata } from 'next'
 import { Separator } from '@/shared/components/ui'
-import { SidebarNav } from '@/shared/components/shared/sidebar-nav'
-import { BackButton } from '@/shared/components/shared'
+import {
+  BackButton,
+  ClientProfileHeader,
+  ClientEditCarSidebarNav,
+} from '@/shared/components/shared'
 
 export const metadata: Metadata = {
   title: 'Редактирование машины клиента | RodriguezDB',
@@ -14,54 +17,16 @@ interface SettingsLayoutProps {
 }
 
 export default function CarEditLayout({ children, params: { id } }: SettingsLayoutProps) {
-  const sidebarNavItems = [
-    {
-      title: 'Двигатель и Система выхлопа',
-      href: `/clients/${id}/edit/car`,
-    },
-    {
-      title: 'Подвеска и Рулевое',
-      href: `/clients/${id}/edit/car/suspension`,
-    },
-    {
-      title: 'Тормозная система',
-      href: `/clients/${id}/edit/car/brake-system`,
-    },
-    {
-      title: 'Коробка передач и Привод',
-      href: `/clients/${id}/edit/car/transmission`,
-    },
-    {
-      title: 'Охлаждение и Отопление',
-      href: `/clients/${id}/edit/car/cooling`,
-    },
-    {
-      title: 'Электрика и Освещение',
-      href: `/clients/${id}/edit/car/electrical`,
-    },
-    {
-      title: 'Кузов',
-      href: `/clients/${id}/edit/car/car-body`,
-    },
-  ]
-
   return (
     <>
       <div className='hidden space-y-6 p-5 pb-16 md:block'>
         <div className='flex items-center justify-between'>
-          <div className='space-y-0.5'>
-            <h2 className='text-2xl font-bold tracking-tight'>Редактирование</h2>
-            <p className='text-muted-foreground'>
-              Измените или заполните данные о запчастях для машины клиента.
-            </p>
-          </div>
+          <ClientProfileHeader />
           <BackButton route='/clients/' id={id} />
         </div>
         <Separator className='my-6' />
         <div className='flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0'>
-          <aside className='-mx-4 lg:w-1/5'>
-            <SidebarNav items={sidebarNavItems} />
-          </aside>
+          <ClientEditCarSidebarNav id={id} />
 
           <Separator orientation='vertical' className='h-auto mx-6' />
           <div className='flex-1 lg:max-w-2xl'>{children}</div>

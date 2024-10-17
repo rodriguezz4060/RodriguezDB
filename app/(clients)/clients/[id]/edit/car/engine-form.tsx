@@ -19,12 +19,14 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { TabsList } from '@radix-ui/react-tabs'
 import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { useIntl } from 'react-intl'
 
 interface Props {
   clientCar: EngineFormData
 }
 
 export function EngineForm({ clientCar }: Props) {
+  const { formatMessage } = useIntl()
   const [engineType, setEngineType] = useState('belt')
 
   const form = useForm<TFormEditClientCarSchema>({
@@ -96,154 +98,295 @@ export function EngineForm({ clientCar }: Props) {
       <form className='gap-5' onSubmit={form.handleSubmit(onSubmit)}>
         <Tabs defaultValue='grm'>
           <TabsList>
-            <TabsTrigger value='grm'>ГРМ</TabsTrigger>
-            <TabsTrigger value='piston'>Двигатель и поршневая</TabsTrigger>
-            <TabsTrigger value='beltAndRollers'>Приводные ремни и ролики</TabsTrigger>
-            <TabsTrigger value='gaskets'>ПГБ и прокладки</TabsTrigger>
-            <TabsTrigger value='engineCushion'>Подушки двигателя</TabsTrigger>
-            <TabsTrigger value='engineOilSeals'>Сальники двигателя</TabsTrigger>
-            <TabsTrigger value='supplySystem'>Система подачи воздуха</TabsTrigger>
-            <TabsTrigger value='filters'>Фильтра</TabsTrigger>
+            <TabsTrigger value='grm'>{formatMessage({ id: 'clients.drives' })}</TabsTrigger>
+            <TabsTrigger value='piston'>
+              {formatMessage({ id: 'clients.engineAndPiston' })}
+            </TabsTrigger>
+            <TabsTrigger value='beltAndRollers'>
+              {formatMessage({ id: 'clients.beltAndRollerGenerator' })}
+            </TabsTrigger>
+            <TabsTrigger value='gaskets'>
+              {formatMessage({ id: 'clients.engineGasketAndPgb' })}
+            </TabsTrigger>
+            <TabsTrigger value='engineCushion'>
+              {formatMessage({ id: 'clients.engineCushion' })}
+            </TabsTrigger>
+            <TabsTrigger value='engineOilSeals'>
+              {formatMessage({ id: 'clients.engineOilSeals' })}
+            </TabsTrigger>
+            <TabsTrigger value='supplySystem'>
+              {formatMessage({ id: 'clients.airSupplySystem' })}
+            </TabsTrigger>
+            <TabsTrigger value='filters'>{formatMessage({ id: 'clients.filters' })}</TabsTrigger>
           </TabsList>
           <TabsContent value='grm'>
             <div className='flex justify-end'>
               <Select value={engineType} onValueChange={handleEngineTypeChange}>
                 <SelectTrigger className='w-[180px] mb-1 '>
-                  <SelectValue placeholder='Выберите тип' />
+                  <SelectValue placeholder={formatMessage({ id: 'clients.selectValue' })} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value='belt'>Ремень</SelectItem>
-                  <SelectItem value='chain'>Цепь</SelectItem>
+                  <SelectItem value='belt'>{formatMessage({ id: 'clients.valueBelt' })}</SelectItem>
+                  <SelectItem value='chain'>
+                    {formatMessage({ id: 'clientTab.chainLabel' })}
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
             {engineType === 'belt' && (
-              <LabeledBox label='Ременной'>
-                <FormInput name='timingBelt' label='Ремень ГРМ' />
-                <FormInput name='timingBeltTensioner' label='Натяжитель ремня ГРМ' />
-                <FormInput name='timingBeltRoller' label='Паразитный ролик ремня ГРМ' />
+              <LabeledBox label={formatMessage({ id: 'clientTab.timingBelt' })}>
+                <FormInput name='timingBelt' label={formatMessage({ id: 'clientTab.beltLabel' })} />
+                <FormInput
+                  name='timingBeltTensioner'
+                  label={formatMessage({ id: 'clientTab.timingBeltTensioner' })}
+                />
+                <FormInput
+                  name='timingBeltRoller'
+                  label={formatMessage({ id: 'clientTab.timingBeltRoller' })}
+                />
               </LabeledBox>
             )}
 
             {engineType === 'chain' && (
-              <LabeledBox label='Цепной'>
-                <FormInput name='timingChainLong' label='Цепь ГРМ' />
-                <FormInput name='timingChainShort' label='Короткая цепь' />
-                <FormInput name='chainTensioner1' label='Гидронатяжитель цепи 1' />
-                <FormInput name='chainTensioner2' label='Гидронатяжитель цепи 2' />
-                <FormInput name='chainTensioner3' label='Башмак' />
-                <FormInput name='chainKit' label='Набор цепей' />
+              <LabeledBox label={formatMessage({ id: 'clientTab.timingChainLong' })}>
+                <FormInput
+                  name='timingChainLong'
+                  label={formatMessage({ id: 'clientTab.timingChainLong' })}
+                />
+                <FormInput
+                  name='timingChainShort'
+                  label={formatMessage({ id: 'clientTab.timingChainShort' })}
+                />
+                <FormInput
+                  name='chainTensioner1'
+                  label={formatMessage({ id: 'clientTab.chainTensioner1' })}
+                />
+                <FormInput
+                  name='chainTensioner2'
+                  label={formatMessage({ id: 'clientTab.chainTensioner2' })}
+                />
+                <FormInput
+                  name='chainTensioner3'
+                  label={formatMessage({ id: 'clientTab.chainTensioner3' })}
+                />
+                <FormInput name='chainKit' label={formatMessage({ id: 'clientTab.chainKit' })} />
               </LabeledBox>
             )}
           </TabsContent>
           <TabsContent value='piston'>
-            <LabeledBox label='Поршня'>
-              <FormInput name='pistons' label='Поршня' className='mb-2' />
-              <FormInput name='pistonsRings' label='Поршневые кольца' className='mb-2' />
-              <FormInput name='hydrocompensators' label='Гидрокомпенсаторы' className='mb-2' />
+            <LabeledBox label={formatMessage({ id: 'clients.enginePiston' })}>
+              <FormInput
+                name='pistons'
+                label={formatMessage({ id: 'clients.enginePiston' })}
+                className='mb-2'
+              />
+              <FormInput
+                name='pistonsRings'
+                label={formatMessage({ id: 'clientTab.pistonsRings' })}
+                className='mb-2'
+              />
+              <FormInput
+                name='hydrocompensators'
+                label={formatMessage({ id: 'clientTab.hydrocompensators' })}
+                className='mb-2'
+              />
             </LabeledBox>
 
-            <LabeledBox label='Клапана'>
-              <FormInput name='valveIn' label='Впускные' className='mb-2' />
-              <FormInput name='valveEx' label='Выпускные' className='mb-2' />
+            <LabeledBox label={formatMessage({ id: 'clients.engineValves' })}>
+              <FormInput
+                name='valveIn'
+                label={formatMessage({ id: 'clientTab.valveIn' })}
+                className='mb-2'
+              />
+              <FormInput
+                name='valveEx'
+                label={formatMessage({ id: 'clientTab.valveEx' })}
+                className='mb-2'
+              />
               <FormInput
                 name='valveGuidesIn'
-                label='Направляющие клапана впускные'
+                label={formatMessage({ id: 'clientTab.valveGuidesIn' })}
                 className='mb-2'
               />
               <FormInput
                 name='valveGuidesEx'
-                label='Направляющие клапана выпускные'
+                label={formatMessage({ id: 'clientTab.valveGuidesEx' })}
                 className='mb-2'
               />
             </LabeledBox>
 
-            <LabeledBox label='Вкладыши'>
-              <FormInput name='bearingConnectingRod' label='Коренной' className='mb-2' />
-              <FormInput name='bearingCamshaft' label='Шатуна' className='mb-2' />
+            <LabeledBox label={formatMessage({ id: 'clients.engineLiner' })}>
+              <FormInput
+                name='bearingConnectingRod'
+                label={formatMessage({ id: 'clientTab.bearingConnectingRod' })}
+                className='mb-2'
+              />
+              <FormInput
+                name='bearingCamshaft'
+                label={formatMessage({ id: 'clientTab.bearingCamshaft' })}
+                className='mb-2'
+              />
               <FormInput
                 name='crankshaftCamberRings'
-                label='Полукольца разбега коленвала'
+                label={formatMessage({ id: 'clientTab.crankshaftCamberRings' })}
                 className='mb-2'
               />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='beltAndRollers'>
-            <LabeledBox label='Приводные ремни'>
-              <FormInput name='generatorBelt' label='Ремень генератора' />
-              <FormInput name='powerSteeringBelt' label='Ремень гидроусилителя' />
-              <FormInput name='airConditionerBelt' label='Ремень кондиционера' />
+            <LabeledBox label={formatMessage({ id: 'clients.driveBelt' })}>
+              <FormInput
+                name='generatorBelt'
+                label={formatMessage({ id: 'clientTab.generatorBelt' })}
+              />
+              <FormInput
+                name='powerSteeringBelt'
+                label={formatMessage({ id: 'clientTab.powerSteeringBelt' })}
+              />
+              <FormInput
+                name='airConditionerBelt'
+                label={formatMessage({ id: 'clientTab.airConditionerBelt' })}
+              />
             </LabeledBox>
-            <LabeledBox label='Ролики и натяжитель'>
-              <FormInput name='tensionToller' label='Натяжитель ремня клинового' />
-              <FormInput name='bypassRoller1' label='Обводной ролик ремня клинового 1' />
-              <FormInput name='bypassRoller2' label='Обводной ролик ремня клинового 2' />
-              <FormInput name='generatorOverrunningClutch' label='Обгонная муфта генератора' />
+            <LabeledBox label={formatMessage({ id: 'clients.tensionerBelt' })}>
+              <FormInput
+                name='tensionToller'
+                label={formatMessage({ id: 'clientTab.tensionToller' })}
+              />
+              <FormInput
+                name='bypassRoller1'
+                label={formatMessage({ id: 'clientTab.bypassRoller1' })}
+              />
+              <FormInput
+                name='bypassRoller2'
+                label={formatMessage({ id: 'clientTab.bypassRoller2' })}
+              />
+              <FormInput
+                name='generatorOverrunningClutch'
+                label={formatMessage({ id: 'clientTab.generatorOverrunningClutch' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='gaskets'>
-            <LabeledBox label='ПГБ'>
-              <FormInput name='engineGasketKit' label='Набор прокладок двигателя' />
-              <FormInput name='headGasket' label='Прокладка головки блока' />
+            <LabeledBox label={formatMessage({ id: 'clients.enginePgb' })}>
+              <FormInput
+                name='engineGasketKit'
+                label={formatMessage({ id: 'clientTab.engineGasketKit' })}
+              />
+              <FormInput name='headGasket' label={formatMessage({ id: 'clientTab.headGasket' })} />
             </LabeledBox>
-            <LabeledBox label='Прокладки'>
-              <FormInput name='valveCoverGasket' label='Прокладка клапанной крышки' />
-              <FormInput name='valveCoverGasketLeft' label='Прокладка клапанной крышки левая' />
-              <FormInput name='valveCoverGasketRight' label='Прокладка клапанной крышки правая' />
-              <FormInput name='intakeManifoldGasket' label='Прокладка впускного коллектора' />
-              <FormInput name='exhaustManifoldGasket' label='Прокладка выпускного коллектора' />
-              <FormInput name='exhaustPipeGasket1' label='Прокладка выпускной трубы' />
+            <LabeledBox label={formatMessage({ id: 'clients.engineGasket' })}>
+              <FormInput
+                name='valveCoverGasket'
+                label={formatMessage({ id: 'clientTab.valveCoverGasket' })}
+              />
+              <FormInput
+                name='valveCoverGasketLeft'
+                label={formatMessage({ id: 'clientTab.valveCoverGasketLeft' })}
+              />
+              <FormInput
+                name='valveCoverGasketRight'
+                label={formatMessage({ id: 'clientTab.valveCoverGasketRight' })}
+              />
+              <FormInput
+                name='intakeManifoldGasket'
+                label={formatMessage({ id: 'clientTab.intakeManifoldGasket' })}
+              />
+              <FormInput
+                name='exhaustManifoldGasket'
+                label={formatMessage({ id: 'clientTab.exhaustManifoldGasket' })}
+              />
+              <FormInput
+                name='exhaustPipeGasket1'
+                label={formatMessage({ id: 'clientTab.exhaustPipeGasket1' })}
+              />
               <FormInput
                 name='exhaustPipeGasket2'
-                label='Прокладка выпускной трубы до катализатора'
+                label={formatMessage({ id: 'clientTab.exhaustPipeGasket2' })}
               />
               <FormInput
                 name='exhaustPipeGasket3'
-                label='Прокладка выпускной трубы после катализатора'
+                label={formatMessage({ id: 'clientTab.exhaustPipeGasket3' })}
               />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='engineCushion'>
-            <LabeledBox label='Подушки двигателя'>
-              <FormInput name='frontLeftEngineCushion' label='Подушка двигателя передняя левая' />
-              <FormInput name='frontRightEngineCushion' label='Подушка двигателя передняя правая' />
-              <FormInput name='engineCushionLeft' label='Подушка двигателя левая' />
-              <FormInput name='engineCushionRear' label='Подушка двигателя задняя' />
+            <LabeledBox label={formatMessage({ id: 'clients.engineCushion' })}>
+              <FormInput
+                name='frontLeftEngineCushion'
+                label={formatMessage({ id: 'clientTab.frontLeftEngineCushion' })}
+              />
+              <FormInput
+                name='frontRightEngineCushion'
+                label={formatMessage({ id: 'clientTab.frontRightEngineCushion' })}
+              />
+              <FormInput
+                name='engineCushionLeft'
+                label={formatMessage({ id: 'clientTab.engineCushionLeft' })}
+              />
+              <FormInput
+                name='engineCushionRear'
+                label={formatMessage({ id: 'clientTab.engineCushionRear' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='engineOilSeals'>
-            <LabeledBox label='Сальники двигателя'>
-              <FormInput name='frontCrankshaftOilSeal' label='Сальник передний коленвала' />
-              <FormInput name='rearCrankshaftOilSeal' label='Сальник задний коленвала' />
-              <FormInput name='camshaftOilSeal' label='Сальник распредвала' />
-              <FormInput name='oilPumpPacking' label='Сальник маслонасоса' />
-              <FormInput name='intakeOilCaps' label='Маслосъемные впускные' />
-              <FormInput name='exhaustOilCaps' label='Маслосъемные выпускные' />
+            <LabeledBox label={formatMessage({ id: 'clients.engineOilSeals' })}>
+              <FormInput
+                name='frontCrankshaftOilSeal'
+                label={formatMessage({ id: 'clientTab.frontCrankshaftOilSeal' })}
+              />
+              <FormInput
+                name='rearCrankshaftOilSeal'
+                label={formatMessage({ id: 'clientTab.rearCrankshaftOilSeal' })}
+              />
+              <FormInput
+                name='camshaftOilSeal'
+                label={formatMessage({ id: 'clientTab.camshaftOilSeal' })}
+              />
+              <FormInput
+                name='oilPumpPacking'
+                label={formatMessage({ id: 'clientTab.oilPumpPacking' })}
+              />
+              <FormInput
+                name='intakeOilCaps'
+                label={formatMessage({ id: 'clientTab.intakeOilCaps' })}
+              />
+              <FormInput
+                name='exhaustOilCaps'
+                label={formatMessage({ id: 'clientTab.exhaustOilCaps' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='supplySystem'>
-            <LabeledBox label='Система подачи воздуха'>
-              <FormInput name='airDuctCorrugation' label='Гофра воздуховода' />
+            <LabeledBox label={formatMessage({ id: 'clients.airSupplySystem' })}>
+              <FormInput
+                name='airDuctCorrugation'
+                label={formatMessage({ id: 'clientTab.airDuctCorrugation' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='filters'>
-            <LabeledBox label='Фильтра'>
-              <FormInput name='oilFilter' label='Масляный фильтр' />
-              <FormInput name='airFilter' label='Воздушный фильтр' />
-              <FormInput name='fuelFilter' label='Топливный фильтр' />
-              <FormInput name='cabinFilter' label='Фильтр салона' />
+            <LabeledBox label={formatMessage({ id: 'clients.filters' })}>
+              <FormInput name='oilFilter' label={formatMessage({ id: 'clientTab.oilFilter' })} />
+              <FormInput name='airFilter' label={formatMessage({ id: 'clientTab.airFilter' })} />
+              <FormInput name='fuelFilter' label={formatMessage({ id: 'clientTab.fuelFilter' })} />
+              <FormInput
+                name='cabinFilter'
+                label={formatMessage({ id: 'clientTab.cabinFilter' })}
+              />
             </LabeledBox>
           </TabsContent>
         </Tabs>
 
         <Button disabled={isSubmitting} className='text-base mt-5 col-span-full' type='submit'>
-          Сохранить
+          {formatMessage({ id: 'clients.saveButton' })}
         </Button>
       </form>
     </FormProvider>

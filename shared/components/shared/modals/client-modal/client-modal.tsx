@@ -40,7 +40,9 @@ export const ClientModal: React.FC<Props> = ({ open, onClose, className, client 
         aria-describedby={undefined}
       >
         <div className='flex items-center justify-between mt-4 mr-5'>
-          <DialogTitle className='text-[30px]'>Запчасти ТО</DialogTitle>
+          <DialogTitle className='text-[30px]'>
+            {formatMessage({ id: 'clients.maintenanceParts' })}
+          </DialogTitle>
           <EditClientCarTo id={client.id} />
         </div>
         <ScrollArea className='h-[510px] rounded-md border'>

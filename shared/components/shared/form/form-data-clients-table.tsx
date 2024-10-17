@@ -7,6 +7,7 @@ import { ErrorText } from '../error-text'
 import { Button, Input } from '../../ui'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
+import { useIntl } from 'react-intl'
 
 interface Props {
   name: string
@@ -31,6 +32,7 @@ export const FormTableClientData: React.FC<Props> = ({
     formState: { errors },
   } = useFormContext()
 
+  const { formatMessage } = useIntl()
   const errorText = errors[name]?.message as string
 
   const [searchTerm, setSearchTerm] = useState('')
@@ -71,7 +73,7 @@ export const FormTableClientData: React.FC<Props> = ({
       <div className='relative w-[400px] mb-4 ml-2'>
         <Input
           className='h-10 text-md dark:bg-[#121212] dark:border-[#1e293b] dark:border-2'
-          placeholder='Search by name, tel or vin'
+          placeholder={formatMessage({ id: 'bootCars.searchPlaceholder' })}
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
         />
@@ -114,7 +116,8 @@ export const FormTableClientData: React.FC<Props> = ({
       <div className='mt-4 flex justify-between items-center'>
         <div>
           <span>
-            Page {currentPage} of {totalPages}
+            {formatMessage({ id: 'bootCars.page' })} {currentPage}{' '}
+            {formatMessage({ id: 'bootCars.of' })} {totalPages}
           </span>
         </div>
         <div className='flex items-center'>
@@ -125,7 +128,8 @@ export const FormTableClientData: React.FC<Props> = ({
             onClick={() => paginate(currentPage - 1)}
             className='mr-2 disabled:bg-opacity-0 disabled:cursor-not-allowed'
           >
-            <ChevronLeft size={18} className='inline-block' /> Previous
+            <ChevronLeft size={18} className='inline-block' />
+            {formatMessage({ id: 'bootCars.previousPage' })}
           </Button>
           <Button
             variant='outline'
@@ -134,7 +138,8 @@ export const FormTableClientData: React.FC<Props> = ({
             onClick={() => paginate(currentPage + 1)}
             className='disabled:bg-opacity-0 disabled:cursor-not-allowed'
           >
-            Next <ChevronRight size={18} className='inline-block' />
+            {formatMessage({ id: 'bootCars.nextPage' })}
+            <ChevronRight size={18} className='inline-block' />
           </Button>
         </div>
       </div>

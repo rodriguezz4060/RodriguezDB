@@ -171,7 +171,7 @@ export const FormDataTable: React.FC<Props> = ({
             onClick={() => paginate(currentPage - 1)}
             className='mr-2 disabled:bg-opacity-0 disabled:cursor-not-allowed'
           >
-            <ChevronLeft size={18} className='inline-block' />{' '}
+            <ChevronLeft size={18} className='inline-block' />
             {formatMessage({ id: 'bootCars.previousPage' })}
           </Button>
           <Button
@@ -181,7 +181,7 @@ export const FormDataTable: React.FC<Props> = ({
             onClick={() => paginate(currentPage + 1)}
             className='disabled:bg-opacity-0 disabled:cursor-not-allowed'
           >
-            {formatMessage({ id: 'bootCars.nextPage' })}{' '}
+            {formatMessage({ id: 'bootCars.nextPage' })}
             <ChevronRight size={18} className='inline-block' />
           </Button>
         </div>

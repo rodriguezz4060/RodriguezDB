@@ -12,12 +12,15 @@ import { useClientCarForm } from '@/shared/hooks/'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { TabsList } from '@radix-ui/react-tabs'
 import { FormProvider, useForm } from 'react-hook-form'
+import { useIntl } from 'react-intl'
 
 interface Props {
   clientCar: ElectricalFormData
 }
 
 export function ElectricalForm({ clientCar }: Props) {
+  const { formatMessage } = useIntl()
+
   const form = useForm<TFormEditClientCarSchema>({
     resolver: zodResolver(formEditClientCarSchema),
     defaultValues: {
@@ -63,85 +66,155 @@ export function ElectricalForm({ clientCar }: Props) {
       <form className='gap-5' onSubmit={form.handleSubmit(onSubmit)}>
         <Tabs defaultValue='sensors'>
           <TabsList>
-            <TabsTrigger value='sensors'>Датчики</TabsTrigger>
-            <TabsTrigger value='washerMotor'>Моторчик омывателя</TabsTrigger>
-            <TabsTrigger value='handwheelCable'>Подрулевой шлейф</TabsTrigger>
-            <TabsTrigger value='lambdaProbe'>Лямбда зонды</TabsTrigger>
-            <TabsTrigger value='absSensor'>Датчики АБС</TabsTrigger>
-            <TabsTrigger value='sparkPlugs'>Свечи, Катушки и Провода</TabsTrigger>
-            <TabsTrigger value='lightBulbs'>Лампочки</TabsTrigger>
+            <TabsTrigger value='sensors'>{formatMessage({ id: 'clients.sensors' })}</TabsTrigger>
+            <TabsTrigger value='washerMotor'>
+              {formatMessage({ id: 'clients.washerMotor' })}
+            </TabsTrigger>
+            <TabsTrigger value='handwheelCable'>
+              {formatMessage({ id: 'clients.handwheelCable' })}
+            </TabsTrigger>
+            <TabsTrigger value='lambdaProbe'>{formatMessage({ id: 'clients.lambda' })}</TabsTrigger>
+            <TabsTrigger value='absSensor'>
+              {formatMessage({ id: 'clients.absSensor' })}
+            </TabsTrigger>
+            <TabsTrigger value='sparkPlugs'>
+              {formatMessage({ id: 'clients.sparkPlugsIgnitionCoil' })}
+            </TabsTrigger>
+            <TabsTrigger value='lightBulbs'>
+              {formatMessage({ id: 'clients.lightBulbs' })}
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value='sensors'>
-            <LabeledBox label='Датчики'>
-              <FormInput name='oilSensor' label='Масляный' />
-              <FormInput name='ventilatorSensor' label='Вентилятора' />
-              <FormInput name='dashboardTemperatureSensor' label='Температуры приборной панели' />
-              <FormInput name='airConditionerSensor' label='Датчик кондиционера' />
-              <FormInput name='reverseSensor' label='Датчик заднего хода' />
+            <LabeledBox label={formatMessage({ id: 'clients.sensors' })}>
+              <FormInput name='oilSensor' label={formatMessage({ id: 'clientTab.oilSensor' })} />
+              <FormInput
+                name='ventilatorSensor'
+                label={formatMessage({ id: 'clientTab.ventilatorSensor' })}
+              />
+              <FormInput
+                name='dashboardTemperatureSensor'
+                label={formatMessage({ id: 'clientTab.dashboardTemperatureSensor' })}
+              />
+              <FormInput
+                name='airConditionerSensor'
+                label={formatMessage({ id: 'clientTab.airConditionerSensor' })}
+              />
+              <FormInput
+                name='reverseSensor'
+                label={formatMessage({ id: 'clientTab.reverseSensor' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='washerMotor'>
-            <LabeledBox label='Моторчик омывателя'>
-              <FormInput name='washerMotor' label='Моторчик омывателя' />
+            <LabeledBox label={formatMessage({ id: 'clients.washerMotor' })}>
+              <FormInput
+                name='washerMotor'
+                label={formatMessage({ id: 'clientTab.washerMotor' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='handwheelCable'>
-            <LabeledBox label='Подрулевой шлейф'>
-              <FormInput name='handwheelCable' label='Подрулевой шлейф' />
+            <LabeledBox label={formatMessage({ id: 'clients.handwheelCable' })}>
+              <FormInput
+                name='handwheelCable'
+                label={formatMessage({ id: 'clientTab.handwheelCable' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='lambdaProbe'>
-            <LabeledBox label='Лямбда зонды'>
-              <FormInput name='lambdaProbe1' label='Лямбда зонд 1' />
-              <FormInput name='lambdaProbe2' label='Лямбда зонд 2' />
+            <LabeledBox label={formatMessage({ id: 'clients.lambda' })}>
+              <FormInput
+                name='lambdaProbe1'
+                label={formatMessage({ id: 'clientTab.lambdaProbe1' })}
+              />
+              <FormInput
+                name='lambdaProbe2'
+                label={formatMessage({ id: 'clientTab.lambdaProbe2' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='absSensor'>
-            <LabeledBox label='Датчики АБС'>
-              <FormInput name='frontAbsSensorLeft' label='Передний левый' />
-              <FormInput name='frontAbsSensorRight' label='Передний правый' />
-              <FormInput name='rearAbsSensorLeft' label='Задний левый' />
-              <FormInput name='rearAbsSensorRight' label='Задний правый' />
+            <LabeledBox label={formatMessage({ id: 'clients.absSensor' })}>
+              <FormInput
+                name='frontAbsSensorLeft'
+                label={formatMessage({ id: 'clientTab.frontAbsSensorLeft' })}
+              />
+              <FormInput
+                name='frontAbsSensorRight'
+                label={formatMessage({ id: 'clientTab.frontAbsSensorRight' })}
+              />
+              <FormInput
+                name='rearAbsSensorLeft'
+                label={formatMessage({ id: 'clientTab.rearAbsSensorLeft' })}
+              />
+              <FormInput
+                name='rearAbsSensorRight'
+                label={formatMessage({ id: 'clientTab.rearAbsSensorRight' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='sparkPlugs'>
-            <LabeledBox label='Свечи'>
-              <FormInput name='sparkPlug' label='Свеча зажигания' />
+            <LabeledBox label={formatMessage({ id: 'clients.sparkPlugs' })}>
+              <FormInput name='sparkPlug' label={formatMessage({ id: 'clientTab.sparkPlug' })} />
             </LabeledBox>
 
-            <LabeledBox label='Катушка'>
-              <FormInput name='ignitionCoil' label='Катушка зажигания' />
+            <LabeledBox label={formatMessage({ id: 'clientTab.ignitionCoil' })}>
+              <FormInput
+                name='ignitionCoil'
+                label={formatMessage({ id: 'clientTab.ignitionCoil' })}
+              />
             </LabeledBox>
 
-            <LabeledBox label='Провода'>
-              <FormInput name='ignitionWires' label='Провода зажигания' />
+            <LabeledBox label={formatMessage({ id: 'clients.ignitionWires' })}>
+              <FormInput
+                name='ignitionWires'
+                label={formatMessage({ id: 'clientTab.ignitionWires' })}
+              />
             </LabeledBox>
 
-            <LabeledBox label='Трамблер'>
-              <FormInput name='timingCover' label='Крышка трамблера' />
-              <FormInput name='slider' label='Бегунок' />
+            <LabeledBox label={formatMessage({ id: 'clients.trampler' })}>
+              <FormInput
+                name='timingCover'
+                label={formatMessage({ id: 'clientTab.timingCover' })}
+              />
+              <FormInput name='slider' label={formatMessage({ id: 'clientTab.slider' })} />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='lightBulbs'>
-            <LabeledBox label='Лампочки'>
-              <FormInput name='mainHeadlightBulbs' label='Основной фары' />
-              <FormInput name='fogLightBulbs' label='Противотуманных фар' />
-              <FormInput name='parkingLightBulbsRear' label='Габарит задние' />
-              <FormInput name='sideSignalBulbs' label='Поворотов' />
-              <FormInput name='reverseLightBulbs' label='Заднего хода' />
+            <LabeledBox label={formatMessage({ id: 'clients.lightBulbs' })}>
+              <FormInput
+                name='mainHeadlightBulbs'
+                label={formatMessage({ id: 'clientTab.mainHeadlightBulbs' })}
+              />
+              <FormInput
+                name='fogLightBulbs'
+                label={formatMessage({ id: 'clientTab.fogLightBulbs' })}
+              />
+              <FormInput
+                name='parkingLightBulbsRear'
+                label={formatMessage({ id: 'clientTab.parkingLightBulbsRear' })}
+              />
+              <FormInput
+                name='sideSignalBulbs'
+                label={formatMessage({ id: 'clientTab.sideSignalBulbs' })}
+              />
+              <FormInput
+                name='reverseLightBulbs'
+                label={formatMessage({ id: 'clientTab.reverseLightBulbs' })}
+              />
             </LabeledBox>
           </TabsContent>
         </Tabs>
 
         <Button disabled={isSubmitting} className='text-base mt-5 col-span-full' type='submit'>
-          Сохранить
+          {formatMessage({ id: 'clients.saveButton' })}
         </Button>
       </form>
     </FormProvider>

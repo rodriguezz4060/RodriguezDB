@@ -7,6 +7,7 @@ import { ErrorText } from '../error-text'
 import { Button } from '../../ui'
 import { Title } from '../title'
 import { EditClientCarTo } from '../buttons'
+import { useIntl } from 'react-intl'
 
 interface Props {
   clientId: number
@@ -27,6 +28,7 @@ export const FormTableClientTo: React.FC<Props> = ({
   data,
   columns,
 }) => {
+  const { formatMessage } = useIntl()
   const {
     formState: { errors },
   } = useFormContext()
@@ -85,7 +87,7 @@ export const FormTableClientTo: React.FC<Props> = ({
                       {column.key === 'actions' ? (
                         getValue(item, 'partNumber') ? (
                           <Button
-                            className='ml-4'
+                            className='ml-2'
                             variant={'link'}
                             size={'icon'}
                             onClick={() =>
@@ -98,7 +100,7 @@ export const FormTableClientTo: React.FC<Props> = ({
                               )
                             }
                           >
-                            Стоимость
+                            {formatMessage({ id: 'clientTo.actions' })}
                           </Button>
                         ) : null
                       ) : (

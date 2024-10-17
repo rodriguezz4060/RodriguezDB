@@ -19,12 +19,15 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { TabsList } from '@radix-ui/react-tabs'
 import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { useIntl } from 'react-intl'
 
 interface Props {
   clientCarTo: OilFormData
 }
 
 export function OilForm({ clientCarTo }: Props) {
+  const { formatMessage } = useIntl()
+
   const [gearboxType, setGearboxType] = useState('automat')
 
   const form = useForm<TFormEditClientCarToSchema>({
@@ -77,20 +80,31 @@ export function OilForm({ clientCarTo }: Props) {
       <form className='gap-5' onSubmit={form.handleSubmit(onSubmit)}>
         <Tabs defaultValue='engine'>
           <TabsList>
-            <TabsTrigger value='engine'>Двигатель</TabsTrigger>
-            <TabsTrigger value='gearbox'>Коробка передач</TabsTrigger>
-            <TabsTrigger value='transferCase'>Раздаточная коробка</TabsTrigger>
-            <TabsTrigger value='axleGearbox'>Редуктор</TabsTrigger>
-            <TabsTrigger value='antifreeze'>Антифриз</TabsTrigger>
-            <TabsTrigger value='steering'>ГУР</TabsTrigger>
-            <TabsTrigger value='antifreeze'>Антифриз</TabsTrigger>
+            <TabsTrigger value='engine'>{formatMessage({ id: 'clientTo.engine' })}</TabsTrigger>
+            <TabsTrigger value='gearbox'>{formatMessage({ id: 'clientTo.gearbox' })}</TabsTrigger>
+            <TabsTrigger value='transferCase'>
+              {formatMessage({ id: 'clientTo.transferCase' })}
+            </TabsTrigger>
+            <TabsTrigger value='axleGearbox'>
+              {formatMessage({ id: 'clientTo.axleGearbox' })}
+            </TabsTrigger>
+            <TabsTrigger value='antifreeze'>
+              {formatMessage({ id: 'clientTo.antifreeze' })}
+            </TabsTrigger>
+            <TabsTrigger value='steering'>{formatMessage({ id: 'clientTo.steering' })}</TabsTrigger>
           </TabsList>
 
           <TabsContent value='engine'>
-            <LabeledBox label='Двигатель'>
-              <FormInput name='engineOil' label='Масло ДВС' />
-              <FormInput name='engineOilVolume' label='Объем масла' />
-              <FormInput name='engineOilPartNumber' label='Оригинальный номер масла' />
+            <LabeledBox label={formatMessage({ id: 'clientTo.engine' })}>
+              <FormInput name='engineOil' label={formatMessage({ id: 'clientTo.engineOil' })} />
+              <FormInput
+                name='engineOilVolume'
+                label={formatMessage({ id: 'clientTo.oilVolume' })}
+              />
+              <FormInput
+                name='engineOilPartNumber'
+                label={formatMessage({ id: 'clientTo.partNumber' })}
+              />
             </LabeledBox>
           </TabsContent>
 
@@ -101,74 +115,129 @@ export function OilForm({ clientCarTo }: Props) {
                   <SelectValue placeholder='Выберите тип' />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value='automat'>Автомат</SelectItem>
-                  <SelectItem value='mechanical'>Механика</SelectItem>
+                  <SelectItem value='automat'>
+                    {formatMessage({ id: 'clientTo.selectAutomat' })}
+                  </SelectItem>
+                  <SelectItem value='mechanical'>
+                    {formatMessage({ id: 'clientTo.selectMechanical' })}
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
             {gearboxType === 'automat' && (
-              <LabeledBox label='АКПП'>
-                <FormInput name='automaticTransmissionOil' label='Масло АКПП' />
-                <FormInput name='automaticTransmissionOilVolume1' label='Объем масла частичный' />
+              <LabeledBox label={formatMessage({ id: 'clientTo.labeledAutomat' })}>
+                <FormInput
+                  name='automaticTransmissionOil'
+                  label={formatMessage({ id: 'clientTo.automaticTransmissionOil' })}
+                />
+                <FormInput
+                  name='automaticTransmissionOilVolume1'
+                  label={formatMessage({ id: 'clientTo.automaticTransmissionOilVolume1' })}
+                />
                 <FormInput
                   name='automaticTransmissionOilPartNumber'
-                  label='Оригинальный номер масла'
+                  label={formatMessage({ id: 'clientTo.partNumber' })}
                 />
               </LabeledBox>
             )}
 
             {gearboxType === 'mechanical' && (
-              <LabeledBox label='МКП'>
-                <FormInput name='mechanicTransmissionOil' label='Масло МКП' />
-                <FormInput name='mechanicTransmissionOilVolume' label='Объем масла' />
+              <LabeledBox label={formatMessage({ id: 'clientTo.labeledMechanical' })}>
+                <FormInput
+                  name='mechanicTransmissionOil'
+                  label={formatMessage({ id: 'clientTo.mechanicTransmissionOil' })}
+                />
+                <FormInput
+                  name='mechanicTransmissionOilVolume'
+                  label={formatMessage({ id: 'clientTo.oilVolume' })}
+                />
                 <FormInput
                   name='mechanicTransmissionOilPartNumber'
-                  label='Оригинальный номер масла'
+                  label={formatMessage({ id: 'clientTo.partNumber' })}
                 />
               </LabeledBox>
             )}
           </TabsContent>
 
           <TabsContent value='transferCase'>
-            <LabeledBox label='Раздаточная коробка'>
+            <LabeledBox label={formatMessage({ id: 'clientTo.transferCase' })}>
               <FormInput name='transferCaseOil' label='Масло раздаточной коробки' />
-              <FormInput name='transferCaseOilVolume' label='Объем масла' />
-              <FormInput name='transferCaseOilPartNumber' label='Оригинальный номер масла' />
+              <FormInput
+                name='transferCaseOilVolume'
+                label={formatMessage({ id: 'clientTo.oilVolume' })}
+              />
+              <FormInput
+                name='transferCaseOilPartNumber'
+                label={formatMessage({ id: 'clientTo.partNumber' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='axleGearbox'>
-            <LabeledBox label='Редуктор переднего моста'>
+            <LabeledBox label={formatMessage({ id: 'clientTo.axleGearboxFront' })}>
               <FormInput name='frontAxleGearboxOil' label='Масло редуктора переднего моста' />
-              <FormInput name='frontAxleGearboxOilVolume' label='Объем масла' />
-              <FormInput name='frontAxleGearboxOilPartNumber' label='Оригинальный номер масла' />
+              <FormInput
+                name='frontAxleGearboxOilVolume'
+                label={formatMessage({ id: 'clientTo.oilVolume' })}
+              />
+              <FormInput
+                name='frontAxleGearboxOilPartNumber'
+                label={formatMessage({ id: 'clientTo.partNumber' })}
+              />
             </LabeledBox>
 
-            <LabeledBox label='Редуктор заднего моста'>
-              <FormInput name='rearAxleGearboxOil' label='Масло редуктора заднего моста' />
-              <FormInput name='rearAxleGearboxOilVolume' label='Объем масла' />
-              <FormInput name='rearAxleGearboxOilPartNumber' label='Оригинальный номер масла' />
+            <LabeledBox label={formatMessage({ id: 'clientTo.axleGearboxRear' })}>
+              <FormInput
+                name='rearAxleGearboxOil'
+                label={formatMessage({ id: 'clientTo.rearAxleGearboxOil' })}
+              />
+              <FormInput
+                name='rearAxleGearboxOilVolume'
+                label={formatMessage({ id: 'clientTo.oilVolume' })}
+              />
+              <FormInput
+                name='rearAxleGearboxOilPartNumber'
+                label={formatMessage({ id: 'clientTo.partNumber' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='antifreeze'>
-            <LabeledBox label='Антифриза'>
-              <FormInput name='antifreeze' label='Цвет антифриза' />
-              <FormInput name='antifreezeVolume' label='Объем антифриза' />
-              <FormInput name='antifreezePartNumber' label='Оригинальный номер антифриза' />
+            <LabeledBox label={formatMessage({ id: 'clientTo.antifreeze' })}>
+              <FormInput
+                name='antifreeze'
+                label={formatMessage({ id: 'clientTo.antifreezeColor' })}
+              />
+              <FormInput
+                name='antifreezeVolume'
+                label={formatMessage({ id: 'clientTo.antifreezeVolume' })}
+              />
+              <FormInput
+                name='antifreezePartNumber'
+                label={formatMessage({ id: 'clientTo.antifreezePartNumber' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='steering'>
-            <LabeledBox label='ГУР'>
-              <FormInput name='steeringFluid' label='Жидкость ГУР' />
-              <FormInput name='steeringFluidVolume' label='Объем жидкости ГУР' />
-              <FormInput name='steeringFluidPartNumber' label='Оригинальный номер жидкости ГУР' />
+            <LabeledBox label={formatMessage({ id: 'clientTo.steering' })}>
+              <FormInput
+                name='steeringFluid'
+                label={formatMessage({ id: 'clientTo.steeringFluid' })}
+              />
+              <FormInput
+                name='steeringFluidVolume'
+                label={formatMessage({ id: 'clientTo.steeringFluidVolume' })}
+              />
+              <FormInput
+                name='steeringFluidPartNumber'
+                label={formatMessage({ id: 'clientTo.steeringFluidPartNumber' })}
+              />
             </LabeledBox>
           </TabsContent>
         </Tabs>
         <Button disabled={isSubmitting} className='text-base mt-5 col-span-full' type='submit'>
-          Сохранить
+          {formatMessage({ id: 'clients.saveButton' })}
         </Button>
       </form>
     </FormProvider>

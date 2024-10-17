@@ -12,12 +12,15 @@ import { useClientCarForm } from '@/shared/hooks/'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { TabsList } from '@radix-ui/react-tabs'
 import { FormProvider, useForm } from 'react-hook-form'
+import { useIntl } from 'react-intl'
 
 interface Props {
   clientCar: BrakeSystemFormData
 }
 
 export function BrakeSystemForm({ clientCar }: Props) {
+  const { formatMessage } = useIntl()
+
   const form = useForm<TFormEditClientCarSchema>({
     resolver: zodResolver(formEditClientCarSchema),
     defaultValues: {
@@ -113,109 +116,167 @@ export function BrakeSystemForm({ clientCar }: Props) {
       <form className='gap-5' onSubmit={form.handleSubmit(onSubmit)}>
         <Tabs defaultValue='brakeCable'>
           <TabsList>
-            <TabsTrigger value='brakeCable'>Тормозной трос</TabsTrigger>
-            <TabsTrigger value='disc'>Тормозные диски</TabsTrigger>
-            <TabsTrigger value='brakePad'>Тормозные колодки</TabsTrigger>
+            <TabsTrigger value='brakeCable'>
+              {formatMessage({ id: 'clients.handbrakeCable' })}
+            </TabsTrigger>
+            <TabsTrigger value='disc'>{formatMessage({ id: 'clients.DisksAndDrums' })}</TabsTrigger>
+            <TabsTrigger value='brakePad'>{formatMessage({ id: 'clients.brake' })}</TabsTrigger>
             <TabsTrigger value='frontWheelBrakeMechanism'>
-              Тормозной механизм переднего колеса
+              {formatMessage({ id: 'clients.frontWheelBrakeMechanism' })}
             </TabsTrigger>
-            <TabsTrigger value='RearWheelBrakeMechanism'>
-              Тормозной механизм заднего колеса
+            <TabsTrigger value='rearWheelBrakeMechanism'>
+              {formatMessage({ id: 'clients.rearWheelBrakeMechanism' })}
             </TabsTrigger>
-            <TabsTrigger value='brakeCylinders'>Тормозные цилиндры</TabsTrigger>
-            <TabsTrigger value='brakeHoses'>Тормозные шланги</TabsTrigger>
+            <TabsTrigger value='brakeCylinders'>
+              {formatMessage({ id: 'clients.brakeCylinder' })}
+            </TabsTrigger>
+            <TabsTrigger value='brakeHoses'>
+              {formatMessage({ id: 'clients.brakeHoses' })}
+            </TabsTrigger>
           </TabsList>
+
           <TabsContent value='brakeCable'>
-            <LabeledBox label='Тормозной трос'>
-              <FormInput name='frontHandbrakeCable' label='Ручника передний' />
-              <FormInput name='rearLeftCable' label='Задний левый' />
-              <FormInput name='reaRightCable' label='Задний правый' />
+            <LabeledBox label={formatMessage({ id: 'clients.handbrakeCable' })}>
+              <FormInput
+                name='frontHandbrakeCable'
+                label={formatMessage({ id: 'clientTab.frontHandbrakeCable' })}
+              />
+              <FormInput
+                name='rearLeftCable'
+                label={formatMessage({ id: 'clientTab.rearLeftCable' })}
+              />
+              <FormInput
+                name='reaRightCable'
+                label={formatMessage({ id: 'clientTab.reaRightCable' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='disc'>
-            <LabeledBox label='Тормозные диски'>
-              <FormInput name='frontBrakeDiskLeft' label='Передний левый' />
-              <FormInput name='frontBrakeDiskRight' label='Передний правый' />
-              <FormInput name='rearBrakeDisk' label='Задний' />
+            <LabeledBox label={formatMessage({ id: 'clients.brakeDisksAndDrums' })}>
+              <FormInput
+                name='frontBrakeDiskLeft'
+                label={formatMessage({ id: 'clientTab.frontBrakeDiskLeft' })}
+              />
+              <FormInput
+                name='frontBrakeDiskRight'
+                label={formatMessage({ id: 'clientTab.frontBrakeDiskRight' })}
+              />
+              <FormInput
+                name='rearBrakeDisk'
+                label={formatMessage({ id: 'clientTab.rearBrakeDisk' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='brakePad'>
-            <LabeledBox label='Тормозные колодки'>
-              <FormInput name='frontBrake' label='Передние' />
-              <FormInput name='rearBrake' label='Задние' />
-              <FormInput name='handbrakeBrakePads' label='Ручника' />
+            <LabeledBox label={formatMessage({ id: 'clients.brake' })}>
+              <FormInput name='frontBrake' label={formatMessage({ id: 'clientTab.frontBrake' })} />
+              <FormInput name='rearBrake' label={formatMessage({ id: 'clientTab.rearBrake' })} />
+              <FormInput
+                name='handbrakeBrakePads'
+                label={formatMessage({ id: 'clientTab.handbrakeBrakePads' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='frontWheelBrakeMechanism'>
-            <LabeledBox label='Тормозной механизм переднего колеса'>
+            <LabeledBox label={formatMessage({ id: 'clients.frontWheelBrakeMechanism' })}>
               <FormInput
                 name='setOfFrontGuideRailsWithDustCovers'
-                label='Комплект передних направляющих с пыльниками'
+                label={formatMessage({ id: 'clientTab.setOfFrontGuideRailsWithDustCovers' })}
               />
-              <FormInput name='frontCaliperRepairKit' label='Ремкомплект переднего суппорта' />
+              <FormInput
+                name='frontCaliperRepairKit'
+                label={formatMessage({ id: 'clientTab.frontCaliperRepairKit' })}
+              />
               <FormInput
                 name='frontCaliperRepairKitWithPiston'
-                label='Ремкомплект переднего суппорта с поршнями'
+                label={formatMessage({ id: 'clientTab.frontCaliperRepairKitWithPiston' })}
               />
               <FormInput
                 name='installationKitForFrontPads'
-                label='Установочный комплект на передние колодки'
+                label={formatMessage({ id: 'clientTab.installationKitForFrontPads' })}
               />
             </LabeledBox>
           </TabsContent>
 
-          <TabsContent value='RearWheelBrakeMechanism'>
-            <LabeledBox label='Тормозной механизм заднего колеса'>
+          <TabsContent value='rearWheelBrakeMechanism'>
+            <LabeledBox label={formatMessage({ id: 'clients.rearWheelBrakeMechanism' })}>
               <FormInput
                 name='setOfRearGuideRailsWithDustCovers'
-                label='Комплект задних направляющих с пыльниками'
+                label={formatMessage({ id: 'clientTab.setOfRearGuideRailsWithDustCovers' })}
               />
               <FormInput
                 name='installationKitForRearPads'
-                label='Установочный комплект на задние колодки'
+                label={formatMessage({ id: 'clientTab.installationKitForRearPads' })}
               />
               <FormInput
                 name='installationKitForHandbrakeBrakePads'
-                label='Установочный комплект на барабаны'
+                label={formatMessage({ id: 'clientTab.installationKitForHandbrakeBrakePads' })}
               />
-              <FormInput name='rearCaliperRepairKit' label='Ремкомплект заднего суппорта' />
+              <FormInput
+                name='rearCaliperRepairKit'
+                label={formatMessage({ id: 'clientTab.rearCaliperRepairKit' })}
+              />
               <FormInput
                 name='rearCaliperRepairKitWithPiston'
-                label='Ремкомплект заднего суппорта с поршнями'
+                label={formatMessage({ id: 'clientTab.rearCaliperRepairKitWithPiston' })}
               />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='brakeCylinders'>
-            <LabeledBox label='Тормозные цилиндры'>
-              <FormInput name='brakeMasterCylinder' label='Главный' />
-              <FormInput name='slaveBrakeCylinder' label='Рабочий' />
+            <LabeledBox label={formatMessage({ id: 'clients.brakeCylinder' })}>
+              <FormInput
+                name='brakeMasterCylinder'
+                label={formatMessage({ id: 'clientTab.brakeMasterCylinder' })}
+              />
+              <FormInput
+                name='slaveBrakeCylinder'
+                label={formatMessage({ id: 'clientTab.slaveBrakeCylinder' })}
+              />
             </LabeledBox>
 
-            <LabeledBox label='Тормозной цилиндр барабанов'>
-              <FormInput name='drumBrakeCylinderLeft' label='Левый' />
-              <FormInput name='drumBrakeCylinderRight' label='Правый' />
+            <LabeledBox label={formatMessage({ id: 'clientTab.drumBrakeCylinder' })}>
+              <FormInput
+                name='drumBrakeCylinderLeft'
+                label={formatMessage({ id: 'clientTab.drumBrakeCylinderLeft' })}
+              />
+              <FormInput
+                name='drumBrakeCylinderRight'
+                label={formatMessage({ id: 'clientTab.drumBrakeCylinderRight' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='brakeHoses'>
-            <LabeledBox label='Тормозные шланги передние'>
-              <FormInput name='frontLeftBrakeHose' label='Левый' />
-              <FormInput name='frontRightBrakeHose' label='Правый' />
+            <LabeledBox label={formatMessage({ id: 'clients.frontBrakeHose' })}>
+              <FormInput
+                name='frontLeftBrakeHose'
+                label={formatMessage({ id: 'clientTab.frontLeftBrakeHose' })}
+              />
+              <FormInput
+                name='frontRightBrakeHose'
+                label={formatMessage({ id: 'clientTab.frontRightBrakeHose' })}
+              />
             </LabeledBox>
 
-            <LabeledBox label='Тормозные шланги задние'>
-              <FormInput name='rearLeftBrakeHose' label='Левый' />
-              <FormInput name='rearRightBrakeHose' label='Правый' />
+            <LabeledBox label={formatMessage({ id: 'clients.rearBrakeHose' })}>
+              <FormInput
+                name='rearLeftBrakeHose'
+                label={formatMessage({ id: 'clientTab.rearLeftBrakeHose' })}
+              />
+              <FormInput
+                name='rearRightBrakeHose'
+                label={formatMessage({ id: 'clientTab.rearRightBrakeHose' })}
+              />
             </LabeledBox>
           </TabsContent>
         </Tabs>
 
         <Button disabled={isSubmitting} className='text-base mt-5 col-span-full' type='submit'>
-          Сохранить
+          {formatMessage({ id: 'clients.saveButton' })}
         </Button>
       </form>
     </FormProvider>

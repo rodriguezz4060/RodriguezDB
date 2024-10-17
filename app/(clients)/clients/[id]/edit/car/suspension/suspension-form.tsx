@@ -13,12 +13,15 @@ import { FormInput, LabeledBox } from '@/shared/components/shared'
 import { Tabs, TabsContent, TabsTrigger } from '@/shared/components/ui/tabs'
 import { TabsList } from '@radix-ui/react-tabs'
 import { Button } from '@/shared/components/ui'
+import { useIntl } from 'react-intl'
 
 interface Props {
   clientCar: SuspensionFormData
 }
 
 export function SuspensionForm({ clientCar }: Props) {
+  const { formatMessage } = useIntl()
+
   const form = useForm<TFormEditClientCarSchema>({
     resolver: zodResolver(formEditClientCarSchema),
     defaultValues: {
@@ -111,178 +114,374 @@ export function SuspensionForm({ clientCar }: Props) {
       <form className='gap-5' onSubmit={form.handleSubmit(onSubmit)}>
         <Tabs defaultValue='absorbers'>
           <TabsList>
-            <TabsTrigger value='absorbers'>Амортизаторы</TabsTrigger>
-            <TabsTrigger value='wheelStuds'>Гайки и шпильки колесные</TabsTrigger>
-            <TabsTrigger value='bumpers'>Опоры стойки, пыльники, отбойники</TabsTrigger>
-            <TabsTrigger value='hub'>Подшипники ступиц</TabsTrigger>
-            <TabsTrigger value='powerSteering'>Рулевая рейка и ГУР</TabsTrigger>
-            <TabsTrigger value='arm'>Рычаги</TabsTrigger>
-            <TabsTrigger value='sanent'>Сайленблоки</TabsTrigger>
-            <TabsTrigger value='stabilizer'>Стабилизатор</TabsTrigger>
-            <TabsTrigger value='linkRoad'>Тяги и наконечники</TabsTrigger>
-            <TabsTrigger value='ballJoints'>Шаровые опоры</TabsTrigger>
+            <TabsTrigger value='absorbers'>
+              {formatMessage({ id: 'clients.absorbers' })}
+            </TabsTrigger>
+            <TabsTrigger value='wheelStuds'>
+              {formatMessage({ id: 'clients.nutsWheelStuds' })}
+            </TabsTrigger>
+            <TabsTrigger value='bumpers'>
+              {formatMessage({ id: 'clients.beltAndRollers' })}
+            </TabsTrigger>
+            <TabsTrigger value='hub'>{formatMessage({ id: 'clients.hubBearings' })}</TabsTrigger>
+            <TabsTrigger value='powerSteering'>
+              {formatMessage({ id: 'clients.steeringRack' })}
+            </TabsTrigger>
+            <TabsTrigger value='arm'>{formatMessage({ id: 'clients.arms' })}</TabsTrigger>
+            <TabsTrigger value='salent'>
+              {formatMessage({ id: 'clients.silentBlocks' })}
+            </TabsTrigger>
+            <TabsTrigger value='stabilizer'>
+              {formatMessage({ id: 'clients.stabilizer' })}
+            </TabsTrigger>
+            <TabsTrigger value='linkRoad'>
+              {formatMessage({ id: 'clients.pullRodsAndLugs' })}
+            </TabsTrigger>
+            <TabsTrigger value='ballJoints'>
+              {formatMessage({ id: 'clients.ballBearings' })}
+            </TabsTrigger>
           </TabsList>
           <TabsContent value='absorbers'>
-            <LabeledBox label='Амортизаторы'>
-              <FormInput name='frontLeftShockAbsorber' label='Передний левый' />
-              <FormInput name='frontRightShockAbsorber' label='Передний правый' />
-              <FormInput name='rearLeftShockAbsorber' label='Задний левый' />
-              <FormInput name='rearRightShockAbsorber' label='Задний правый' />
+            <LabeledBox label={formatMessage({ id: 'clients.shockAbsorbersFront' })}>
+              <FormInput
+                name='frontLeftShockAbsorber'
+                label={formatMessage({ id: 'clientTab.frontLeftShockAbsorber' })}
+              />
+              <FormInput
+                name='frontRightShockAbsorber'
+                label={formatMessage({ id: 'clientTab.frontRightShockAbsorber' })}
+              />
+            </LabeledBox>
+
+            <LabeledBox label={formatMessage({ id: 'clients.shockAbsorbersRear' })}>
+              <FormInput
+                name='rearLeftShockAbsorber'
+                label={formatMessage({ id: 'clientTab.rearLeftShockAbsorber' })}
+              />
+              <FormInput
+                name='rearRightShockAbsorber'
+                label={formatMessage({ id: 'clientTab.rearRightShockAbsorber' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='wheelStuds'>
-            <LabeledBox label='Гайки и шпильки'>
-              <FormInput name='wheelStud' label='Шпилька' />
-              <FormInput name='wheelNut' label='Гайка' />
+            <LabeledBox label={formatMessage({ id: 'clients.nutsWheelStuds' })}>
+              <FormInput name='wheelStud' label={formatMessage({ id: 'clientTab.wheelStud' })} />
+              <FormInput name='wheelNut' label={formatMessage({ id: 'clientTab.wheelNut' })} />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='bumpers'>
-            <LabeledBox label='Опоры и подшипник стойки'>
-              <FormInput name='leftFrontStrutSupport' label='Передняя левая' />
-              <FormInput name='rightFrontStrutSupport' label='Передняя правая' />
-              <FormInput name='leftRearStrutSupport' label='Задняя левая' />
-              <FormInput name='rightRearStrutSupport' label='Задняя правая' />
-              <FormInput name='frontSupportBearing' label='Опорный подшипник' />
+            <LabeledBox label={formatMessage({ id: 'clients.strutMounts' })}>
+              <FormInput
+                name='leftFrontStrutSupport'
+                label={formatMessage({ id: 'clientTab.leftFrontStrutSupport' })}
+              />
+              <FormInput
+                name='rightFrontStrutSupport'
+                label={formatMessage({ id: 'clientTab.rightFrontStrutSupport' })}
+              />
+              <FormInput
+                name='leftRearStrutSupport'
+                label={formatMessage({ id: 'clientTab.leftRearStrutSupport' })}
+              />
+              <FormInput
+                name='rightRearStrutSupport'
+                label={formatMessage({ id: 'clientTab.rightRearStrutSupport' })}
+              />
+              <FormInput
+                name='frontSupportBearing'
+                label={formatMessage({ id: 'clientTab.frontSupportBearing' })}
+              />
             </LabeledBox>
 
-            <LabeledBox label='Пыльники и отбойники'>
-              <FormInput name='frontLeftStrutDuster' label='Пыльник стойки передней левой' />
-              <FormInput name='frontRightStrutDuster' label='Пыльник стойки передней правой' />
-              <FormInput name='rearLeftStrutDuster' label='Пыльник стойки задней левой' />
-              <FormInput name='rearRightStrutDuster' label='Пыльник стойки задней правой' />
-              <FormInput name='frontStrutBumper' label='Отбойник передней стойки' />
-              <FormInput name='rearStrutBumper' label='Отбойник задней стойки' />
+            <LabeledBox label={formatMessage({ id: 'clients.dustCoversBumpers' })}>
+              <FormInput
+                name='frontLeftStrutDuster'
+                label={formatMessage({ id: 'clientTab.frontLeftStrutDuster' })}
+              />
+              <FormInput
+                name='frontRightStrutDuster'
+                label={formatMessage({ id: 'clientTab.frontRightStrutDuster' })}
+              />
+              <FormInput
+                name='rearLeftStrutDuster'
+                label={formatMessage({ id: 'clientTab.rearLeftStrutDuster' })}
+              />
+              <FormInput
+                name='rearRightStrutDuster'
+                label={formatMessage({ id: 'clientTab.rearRightStrutDuster' })}
+              />
+              <FormInput
+                name='frontStrutBumper'
+                label={formatMessage({ id: 'clientTab.frontStrutBumper' })}
+              />
+              <FormInput
+                name='rearStrutBumper'
+                label={formatMessage({ id: 'clientTab.rearStrutBumper' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='hub'>
-            <LabeledBox label='Подшипники ступиц'>
-              <FormInput name='frontLeftHubBearing' label='Передней левой ступицы' />
-              <FormInput name='frontRightHubBearing' label='Передней правой ступицы' />
-              <FormInput name='rearLeftHubBearing' label='Задней левой ступицы' />
-              <FormInput name='rearRightHubBearing' label='Задней правой ступицы' />
+            <LabeledBox label={formatMessage({ id: 'clients.hubBearings' })}>
+              <FormInput
+                name='frontLeftHubBearing'
+                label={formatMessage({ id: 'clientTab.frontLeftHubBearing' })}
+              />
+              <FormInput
+                name='frontRightHubBearing'
+                label={formatMessage({ id: 'clientTab.frontRightHubBearing' })}
+              />
+              <FormInput
+                name='rearLeftHubBearing'
+                label={formatMessage({ id: 'clientTab.rearLeftHubBearing' })}
+              />
+              <FormInput
+                name='rearRightHubBearing'
+                label={formatMessage({ id: 'clientTab.rearRightHubBearing' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='powerSteering'>
-            <LabeledBox label='Рулевая рейка и ГУР'>
-              <FormInput name='hydraulicPowerSteeringKit' label='Ремкомплект ГУР' />
-              <FormInput name='railSealsAndGaskets' label='Сальники и прокладки рейки' />
-              <FormInput name='steeringRackDustCoverLeft' label='Пыльник рулевой рейки левый' />
-              <FormInput name='steeringRackDustCoverRight' label='Пыльник рулевой рейки правый' />
+            <LabeledBox label={formatMessage({ id: 'clients.steeringRack' })}>
+              <FormInput
+                name='hydraulicPowerSteeringKit'
+                label={formatMessage({ id: 'clientTab.hydraulicPowerSteeringKit' })}
+              />
+              <FormInput
+                name='railSealsAndGaskets'
+                label={formatMessage({ id: 'clientTab.railSealsAndGaskets' })}
+              />
+              <FormInput
+                name='steeringRackDustCoverLeft'
+                label={formatMessage({ id: 'clientTab.steeringRackDustCoverLeft' })}
+              />
+              <FormInput
+                name='steeringRackDustCoverRight'
+                label={formatMessage({ id: 'clientTab.steeringRackDustCoverRight' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='arm'>
-            <LabeledBox label='Передние рычаги'>
-              <FormInput name='frontLowerLeftArm' label='Нижний левый рычаг' />
-              <FormInput name='frontLowerRightArm' label='Нижний правый рычаг' />
-              <FormInput name='frontUpperLeftArm' label='Верхний левый рычаг' />
-              <FormInput name='frontUpperRightArm' label='Верхний правый рычаг' />
+            <LabeledBox label={formatMessage({ id: 'clients.armsFront' })}>
+              <FormInput
+                name='frontLowerLeftArm'
+                label={formatMessage({ id: 'clientTab.frontLowerLeftArm' })}
+              />
+              <FormInput
+                name='frontLowerRightArm'
+                label={formatMessage({ id: 'clientTab.frontLowerRightArm' })}
+              />
+              <FormInput
+                name='frontUpperLeftArm'
+                label={formatMessage({ id: 'clientTab.frontUpperLeftArm' })}
+              />
+              <FormInput
+                name='frontUpperRightArm'
+                label={formatMessage({ id: 'clientTab.frontUpperRightArm' })}
+              />
             </LabeledBox>
 
-            <LabeledBox label='Задние рычаги'>
-              <FormInput name='rearLeftLongitudinalArm' label='Левый продольный рычаг' />
-              <FormInput name='rearRightLongitudinalArm' label='Правый продольный рычаг' />
-              <FormInput name='rearLeftTransverseArm1' label='Левый поперечный рычаг 1' />
-              <FormInput name='rearRightTransverseArm1' label='Правый поперечный рычаг 1' />
-              <FormInput name='rearLeftTransverseArm2' label='Левый поперечный рычаг 2' />
-              <FormInput name='rearRightTransverseArm2' label='Правый поперечный рычаг 2' />
-              <FormInput name='rearCrescentArm' label='Левый полумесяц рычаг' />
-              <FormInput name='rearUpperShortArm' label='Верхний короткий рычаг' />
+            <LabeledBox label={formatMessage({ id: 'clients.armsRear' })}>
+              <FormInput
+                name='rearLeftLongitudinalArm'
+                label={formatMessage({ id: 'clientTab.rearLeftLongitudinalArm' })}
+              />
+              <FormInput
+                name='rearRightLongitudinalArm'
+                label={formatMessage({ id: 'clientTab.rearRightLongitudinalArm' })}
+              />
+              <FormInput
+                name='rearLeftTransverseArm1'
+                label={formatMessage({ id: 'clientTab.rearLeftTransverseArm1' })}
+              />
+              <FormInput
+                name='rearRightTransverseArm1'
+                label={formatMessage({ id: 'clientTab.rearRightTransverseArm1' })}
+              />
+              <FormInput
+                name='rearLeftTransverseArm2'
+                label={formatMessage({ id: 'clientTab.rearLeftTransverseArm2' })}
+              />
+              <FormInput
+                name='rearRightTransverseArm2'
+                label={formatMessage({ id: 'clientTab.rearRightTransverseArm2' })}
+              />
+              <FormInput
+                name='rearCrescentArm'
+                label={formatMessage({ id: 'clientTab.rearCrescentArm' })}
+              />
+              <FormInput
+                name='rearUpperShortArm'
+                label={formatMessage({ id: 'clientTab.rearUpperShortArm' })}
+              />
             </LabeledBox>
           </TabsContent>
 
-          <TabsContent value='sanent'>
-            <LabeledBox label='Сайленблоки передние'>
+          <TabsContent value='salent'>
+            <LabeledBox label={formatMessage({ id: 'clients.silentBlocksFront' })}>
               <FormInput
                 name='frontLowerControlArmFrontSilentBlock'
-                label='Нижнего рычага передний'
+                label={formatMessage({ id: 'clientTab.frontLowerControlArmFrontSilentBlock' })}
               />
-              <FormInput name='frontLowerControlArmRearSilentBlock' label='Нижнего рычага задний' />
+              <FormInput
+                name='frontLowerControlArmRearSilentBlock'
+                label={formatMessage({ id: 'clientTab.frontLowerControlArmRearSilentBlock' })}
+              />
               <FormInput
                 name='frontUpperControlArmFrontSilentBlock'
-                label='Верхнего рычага передний'
+                label={formatMessage({ id: 'clientTab.frontUpperControlArmFrontSilentBlock' })}
               />
               <FormInput
                 name='frontUpperControlArmRearSilentBlock'
-                label='Верхнего рычага задний'
+                label={formatMessage({ id: 'clientTab.frontUpperControlArmRearSilentBlock' })}
               />
             </LabeledBox>
 
-            <LabeledBox label='Сайленблоки задние'>
-              <FormInput name='longitudinalArmSilentBlockLeft' label='Продольных рычагов левый' />
-              <FormInput name='longitudinalArmSilentBlockRight' label='Продольных рычагов правый' />
+            <LabeledBox label={formatMessage({ id: 'clients.silentBlocksRear' })}>
+              <FormInput
+                name='longitudinalArmSilentBlockLeft'
+                label={formatMessage({ id: 'clientTab.longitudinalArmSilentBlockLeft' })}
+              />
+              <FormInput
+                name='longitudinalArmSilentBlockRight'
+                label={formatMessage({ id: 'clientTab.longitudinalArmSilentBlockRight' })}
+              />
               <FormInput
                 name='longitudinalHubArmSilentBlockLeft'
-                label='Продольных рычагов ступичный'
+                label={formatMessage({ id: 'clientTab.longitudinalHubArmSilentBlockLeft' })}
               />
               <FormInput
                 name='bodyLeftCrossArmSilentBlock'
-                label='Поперечного левого рычага кузовной'
+                label={formatMessage({ id: 'clientTab.bodyLeftCrossArmSilentBlock' })}
               />
               <FormInput
                 name='hubLeftCrossArmSilentBlock'
-                label='Поперечного левого рычага ступичный'
+                label={formatMessage({ id: 'clientTab.hubLeftCrossArmSilentBlock' })}
               />
               <FormInput
                 name='bodyRightCrossArmSilentBlock'
-                label='Поперечного правого рычага кузовной'
+                label={formatMessage({ id: 'clientTab.bodyRightCrossArmSilentBlock' })}
               />
               <FormInput
                 name='hubRightCrossArmSilentBlock'
-                label='Поперечного правого рычага ступичный'
+                label={formatMessage({ id: 'clientTab.hubRightCrossArmSilentBlock' })}
               />
-              <FormInput name='camberArmSilentBlock1' label='Развального рычага Развальный' />
-              <FormInput name='camberArmSilentBlock2' label='Развального рычага' />
-              <FormInput name='frontSubframeSilentBlock' label='Подрамника передний' />
-              <FormInput name='rearSubframeSilentBlock' label='Подрамника задний' />
+              <FormInput
+                name='camberArmSilentBlock1'
+                label={formatMessage({ id: 'clientTab.camberArmSilentBlock1' })}
+              />
+              <FormInput
+                name='camberArmSilentBlock2'
+                label={formatMessage({ id: 'clientTab.camberArmSilentBlock2' })}
+              />
+              <FormInput
+                name='frontSubframeSilentBlock'
+                label={formatMessage({ id: 'clientTab.frontSubframeSilentBlock' })}
+              />
+              <FormInput
+                name='rearSubframeSilentBlock'
+                label={formatMessage({ id: 'clientTab.rearSubframeSilentBlock' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='stabilizer'>
-            <LabeledBox label='Втулки стабилизатора'>
-              <FormInput name='frontStabilizerSushingsLeft' label='Передняя левая' />
-              <FormInput name='frontStabilizerSushingsRight' label='Передняя правая' />
-              <FormInput name='rearStabilizerSushings' label='Задние' />
+            <LabeledBox label={formatMessage({ id: 'clients.stabilizerBushings' })}>
+              <FormInput
+                name='frontStabilizerSushingsLeft'
+                label={formatMessage({ id: 'clientTab.frontStabilizerSushingsLeft' })}
+              />
+              <FormInput
+                name='frontStabilizerSushingsRight'
+                label={formatMessage({ id: 'clientTab.frontStabilizerSushingsRight' })}
+              />
+              <FormInput
+                name='rearStabilizerSushings'
+                label={formatMessage({ id: 'clientTab.rearStabilizerSushings' })}
+              />
             </LabeledBox>
 
-            <LabeledBox label='Стойка стабилизатора'>
-              <FormInput name='frontLeftStabilizerBar' label='Передняя левая' />
-              <FormInput name='frontRightStabilizerBar' label='Передняя правая' />
-              <FormInput name='rearLeftStabilizerBar' label='Задняя левая' />
-              <FormInput name='rearRightStabilizerBar' label='Задняя правая' />
+            <LabeledBox label={formatMessage({ id: 'clients.stabilizerRods' })}>
+              <FormInput
+                name='frontLeftStabilizerBar'
+                label={formatMessage({ id: 'clientTab.frontLeftStabilizerBar' })}
+              />
+              <FormInput
+                name='frontRightStabilizerBar'
+                label={formatMessage({ id: 'clientTab.frontRightStabilizerBar' })}
+              />
+              <FormInput
+                name='rearLeftStabilizerBar'
+                label={formatMessage({ id: 'clientTab.rearLeftStabilizerBar' })}
+              />
+              <FormInput
+                name='rearRightStabilizerBar'
+                label={formatMessage({ id: 'clientTab.rearRightStabilizerBar' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='linkRoad'>
-            <LabeledBox label='Тяги'>
-              <FormInput name='steeringLinkLeft' label='Левая' />
-              <FormInput name='steeringLinkRight' label='Правая' />
+            <LabeledBox label={formatMessage({ id: 'clients.pullRods' })}>
+              <FormInput
+                name='steeringLinkLeft'
+                label={formatMessage({ id: 'clientTab.steeringLinkLeft' })}
+              />
+              <FormInput
+                name='steeringLinkRight'
+                label={formatMessage({ id: 'clientTab.steeringLinkRight' })}
+              />
             </LabeledBox>
 
-            <LabeledBox label='Наконечники'>
-              <FormInput name='outerLeftSteeringKnuckle' label='Наружный левый' />
-              <FormInput name='outerRightSteeringKnuckle' label='Наружный правый' />
-              <FormInput name='leftInnerSteeringKnuckle' label='Внутренний левый' />
-              <FormInput name='leftRightSteeringKnuckle' label='Внутренний правый' />
+            <LabeledBox label={formatMessage({ id: 'clients.rodsLugs' })}>
+              <FormInput
+                name='outerLeftSteeringKnuckle'
+                label={formatMessage({ id: 'clientTab.outerLeftSteeringKnuckle' })}
+              />
+              <FormInput
+                name='outerRightSteeringKnuckle'
+                label={formatMessage({ id: 'clientTab.outerRightSteeringKnuckle' })}
+              />
+              <FormInput
+                name='leftInnerSteeringKnuckle'
+                label={formatMessage({ id: 'clientTab.leftInnerSteeringKnuckle' })}
+              />
+              <FormInput
+                name='leftRightSteeringKnuckle'
+                label={formatMessage({ id: 'clientTab.leftRightSteeringKnuckle' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='ballJoints'>
-            <LabeledBox label='Шаровые опоры'>
-              <FormInput name='lowerLeftBallJoint' label='Нижняя левая' />
-              <FormInput name='lowerRightBallJoint' label='Нижняя правая' />
-              <FormInput name='upperLeftBallJoint' label='Верхняя левая' />
-              <FormInput name='upperRightBallJoint' label='Верхняя правая' />
+            <LabeledBox label={formatMessage({ id: 'clients.ballBearings' })}>
+              <FormInput
+                name='lowerLeftBallJoint'
+                label={formatMessage({ id: 'clientTab.lowerLeftBallJoint' })}
+              />
+              <FormInput
+                name='lowerRightBallJoint'
+                label={formatMessage({ id: 'clientTab.lowerRightBallJoint' })}
+              />
+              <FormInput
+                name='upperLeftBallJoint'
+                label={formatMessage({ id: 'clientTab.upperLeftBallJoint' })}
+              />
+              <FormInput
+                name='upperRightBallJoint'
+                label={formatMessage({ id: 'clientTab.upperRightBallJoint' })}
+              />
             </LabeledBox>
           </TabsContent>
         </Tabs>
 
         <Button disabled={isSubmitting} className='text-base mt-5 col-span-full' type='submit'>
-          Сохранить
+          {formatMessage({ id: 'clients.saveButton' })}
         </Button>
       </form>
     </FormProvider>

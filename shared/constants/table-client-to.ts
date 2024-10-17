@@ -10,127 +10,127 @@ export const MaintenanceDataTable = (clientCarTo: any, clientCar: any) => {
 
   const tableMaintenanceData = [
     {
-      type: 'Масло ДВС',
+      type: formatMessage({ id: 'clientTo.engineOil' }),
       partNumber: clientCarTo.engineOilPartNumber,
       viscosityIndex: clientCarTo.engineOil,
       volume: clientCarTo.engineOilVolume,
     },
     {
-      type: 'Масло АКПП',
+      type: formatMessage({ id: 'clientTo.automaticTransmissionOil' }),
       partNumber: clientCarTo.automaticTransmissionOilPartNumber,
       viscosityIndex: clientCarTo.automaticTransmissionOil,
       volume: clientCarTo.automaticTransmissionOilVolume1,
     },
     {
-      type: 'Масло МКПП',
+      type: formatMessage({ id: 'clientTo.mechanicTransmissionOil' }),
       partNumber: clientCarTo.mechanicTransmissionOilPartNumber,
       viscosityIndex: clientCarTo.mechanicTransmissionOil,
       volume: clientCarTo.mechanicTransmissionOilVolume,
     },
     {
-      type: 'Масло раздаточной коробки',
+      type: formatMessage({ id: 'clientTo.transferCaseOil' }),
       partNumber: clientCarTo.transferCaseOilPartNumber,
       viscosityIndex: clientCarTo.transferCaseOil,
       volume: clientCarTo.transferCaseOilVolume,
     },
     {
-      type: 'Масло редуктора переднего моста',
+      type: formatMessage({ id: 'clientTo.axleGearboxFront' }),
       partNumber: clientCarTo.frontAxleGearboxOilPartNumber,
       viscosityIndex: clientCarTo.frontAxleGearboxOil,
       volume: clientCarTo.frontAxleGearboxOilVolume,
     },
     {
-      type: 'Масло редуктора заднего моста',
+      type: formatMessage({ id: 'clientTo.rearAxleGearboxOil' }),
       partNumber: clientCarTo.rearAxleGearboxOilPartNumber,
       viscosityIndex: clientCarTo.rearAxleGearboxOil,
       volume: clientCarTo.rearAxleGearboxOilVolume,
     },
     {
-      type: 'Антифриз',
+      type: formatMessage({ id: 'clientTo.antifreeze' }),
       partNumber: clientCarTo.antifreezePartNumber,
       viscosityIndex: clientCarTo.antifreeze,
       volume: clientCarTo.antifreezeVolume,
     },
     {
-      type: 'Жидкость ГУР',
+      type: formatMessage({ id: 'clientTo.steeringFluid' }),
       partNumber: clientCarTo.steeringFluidPartNumber,
       viscosityIndex: clientCarTo.steeringFluid,
       volume: clientCarTo.steeringFluidVolume,
     },
     {
-      type: 'Масленный фильтр',
+      type: formatMessage({ id: 'clientTo.oilFilter' }),
       partNumber: clientCar.oilFilter,
     },
     {
-      type: 'Воздушный фильтр',
+      type: formatMessage({ id: 'clientTo.airFilter' }),
       partNumber: clientCar.airFilter,
     },
     {
-      type: 'Топливный фильтр',
+      type: formatMessage({ id: 'clientTo.fuelFilter' }),
       partNumber: clientCar.fuelFilter,
     },
     {
-      type: 'Фильтр салона',
+      type: formatMessage({ id: 'clientTo.cabinFilter' }),
       partNumber: clientCar.cabinFilter,
     },
     {
-      type: 'Передние колодки',
+      type: formatMessage({ id: 'clientTo.frontBrake' }),
       partNumber: clientCar.frontBrake,
     },
     {
-      type: 'Задние колодки',
+      type: formatMessage({ id: 'clientTo.rearBrake' }),
       partNumber: clientCar.rearBrake,
     },
     {
-      type: 'Колодки ручника',
+      type: formatMessage({ id: 'clientTo.handbrakeBrakePads' }),
       partNumber: clientCar.handbrakeBrakePads,
     },
     {
-      type: 'Фильтр АКПП',
+      type: formatMessage({ id: 'clientTab.automaticTransmissionFilter' }),
       partNumber: clientCar.automaticTransmissionFilter,
     },
     {
-      type: 'Прокладка поддона АКПП',
+      type: formatMessage({ id: 'clientTab.automaticTransmissionOilPanGasket' }),
       partNumber: clientCar.automaticTransmissionOilPanGasket,
     },
     {
-      type: 'Прокладка фильтра АКПП',
+      type: formatMessage({ id: 'clientTab.automaticTransmissionFillerGasket' }),
       partNumber: clientCar.automaticTransmissionFillerGasket,
     },
     {
-      type: 'Прокладка фильтра тонкой очистки АКПП',
+      type: formatMessage({ id: 'clientTo.automaticTransmissionOilPanGasket2' }),
       partNumber: clientCar.automaticTransmissionOilPanGasket2,
     },
     {
-      type: 'Фильтр тонкой очистки АКПП',
+      type: formatMessage({ id: 'clientTo.automaticTransmissionFilter2' }),
       partNumber: clientCar.automaticTransmissionFilter2,
     },
     {
-      type: 'Сливная пробка АКПП',
+      type: formatMessage({ id: 'clientTab.transmissionDrainPlug' }),
       partNumber: clientCar.transmissionDrainPlug,
     },
     {
-      type: 'Прокладка сливной пробки АКПП',
+      type: formatMessage({ id: 'clientTab.transmissionDrainPlugGasket' }),
       partNumber: clientCar.transmissionDrainPlugGasket,
     },
     {
-      type: 'Водяная помпа',
+      type: formatMessage({ id: 'clientTab.waterPump' }),
       partNumber: clientCar.waterPump,
     },
     {
-      type: 'Термостат',
+      type: formatMessage({ id: 'clientTab.thermostat' }),
       partNumber: clientCar.thermostat,
     },
     {
-      type: 'Свеча зажигания',
+      type: formatMessage({ id: 'clientTo.sparkPlug' }),
       partNumber: clientCar.sparkPlug,
     },
     {
-      type: 'Дворник водителя',
+      type: formatMessage({ id: 'clientTo.driversWiperModal' }),
       partNumber: clientCar.driversWiper,
     },
     {
-      type: 'Дворник пасажира',
+      type: formatMessage({ id: 'clientTo.passengerWiper' }),
       partNumber: clientCar.passengerWiper,
     },
   ].filter(item => {
@@ -145,11 +145,11 @@ export const TableColumns = () => {
   const { formatMessage } = useIntl()
 
   const columns = [
-    { key: 'type', label: 'ТО' },
-    { key: 'viscosityIndex', label: 'Индекс вязкости' },
-    { key: 'volume', label: 'Заправочный объем' },
-    { key: 'partNumber', label: 'Каталожный номер' },
-    { key: 'actions', label: 'Стоимость масла' },
+    { key: 'type', label: formatMessage({ id: 'clientTo.type' }) },
+    { key: 'viscosityIndex', label: formatMessage({ id: 'clientTo.viscosityIndex' }) },
+    { key: 'volume', label: formatMessage({ id: 'clientTo.volume' }) },
+    { key: 'partNumber', label: formatMessage({ id: 'clientTo.partNumber' }) },
+    { key: 'actions', label: formatMessage({ id: 'clientTo.actions' }) },
   ]
 
   return columns

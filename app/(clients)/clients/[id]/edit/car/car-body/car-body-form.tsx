@@ -12,12 +12,15 @@ import { useClientCarForm } from '@/shared/hooks/'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { TabsList } from '@radix-ui/react-tabs'
 import { FormProvider, useForm } from 'react-hook-form'
+import { useIntl } from 'react-intl'
 
 interface Props {
   clientCar: CarBodyFormData
 }
 
 export function CarBodyForm({ clientCar }: Props) {
+  const { formatMessage } = useIntl()
+
   const form = useForm<TFormEditClientCarSchema>({
     resolver: zodResolver(formEditClientCarSchema),
     defaultValues: {
@@ -36,26 +39,37 @@ export function CarBodyForm({ clientCar }: Props) {
       <form className='gap-5' onSubmit={form.handleSubmit(onSubmit)}>
         <Tabs defaultValue='wiper'>
           <TabsList>
-            <TabsTrigger value='wiper'>Дворник</TabsTrigger>
-            <TabsTrigger value='hoodShockAbsorbers'>Амортизаторы капота</TabsTrigger>
+            <TabsTrigger value='wiper'>{formatMessage({ id: 'clients.wipers' })}</TabsTrigger>
+            <TabsTrigger value='hoodShockAbsorbers'>
+              {formatMessage({ id: 'clients.hoodShockAbsorbers' })}
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value='wiper'>
-            <LabeledBox label='Дворник'>
-              <FormInput name='driversWiper' label='Водителя' />
-              <FormInput name='passengerWiper' label='Пассажира' />
+            <LabeledBox label={formatMessage({ id: 'clients.wipers' })}>
+              <FormInput
+                name='driversWiper'
+                label={formatMessage({ id: 'clientTab.driversWiper' })}
+              />
+              <FormInput
+                name='passengerWiper'
+                label={formatMessage({ id: 'clientTab.passengerWiper' })}
+              />
             </LabeledBox>
           </TabsContent>
 
           <TabsContent value='hoodShockAbsorbers'>
-            <LabeledBox label='Амортизаторы капота'>
-              <FormInput name='hoodShockAbsorbers' label='Амортизаторы капота' />
+            <LabeledBox label={formatMessage({ id: 'clients.hoodShockAbsorbers' })}>
+              <FormInput
+                name='hoodShockAbsorbers'
+                label={formatMessage({ id: 'clientTab.hoodShockAbsorbers' })}
+              />
             </LabeledBox>
           </TabsContent>
         </Tabs>
 
         <Button disabled={isSubmitting} className='text-base mt-5 col-span-full' type='submit'>
-          Сохранить
+          {formatMessage({ id: 'clients.saveButton' })}
         </Button>
       </form>
     </FormProvider>
