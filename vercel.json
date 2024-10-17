@@ -4,6 +4,10 @@
         {
             "src": "/_vercel/speed-insights/*",
             "dest": "/_vercel/speed-insights/$1"
+        },
+        {
+            "src": "/_vercel/insights/view",
+            "dest": "/_vercel/insights/view"
         }
     ]
 }

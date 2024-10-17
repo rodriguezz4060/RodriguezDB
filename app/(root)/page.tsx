@@ -16,8 +16,8 @@ export default function Home() {
         ></Title>
       </Container>
 
-      <Container className='h-screen dark:bg-zinc-900'>
-        <div className='flex-1'>
+      <Container className='dark:bg-zinc-900 '>
+        <div className='flex-1 pb-20'>
           <MainPageButtons loading />
         </div>
       </Container>
