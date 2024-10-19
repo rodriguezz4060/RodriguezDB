@@ -20,7 +20,7 @@ interface Props {
 
 export const ChooseBootForm: React.FC<Props> = ({ product, className }) => {
   /*сделать заглушку когда нет картинки у товара, вместо уродства с проверкой*/
-  const src = product.imageUrl ?? ''
+  const src = product.imageUrl || '/no_img.jpg'
   const { formatMessage } = useIntl()
   const methods = useForm()
   const translations = useTranslations()

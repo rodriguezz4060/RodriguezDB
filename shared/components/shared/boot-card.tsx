@@ -38,12 +38,13 @@ export const BootCard: React.FC<Props> = ({
   const { formatMessage } = useIntl()
   const translations = useTranslations()
   const typeTranslation = translations.getTypeTranslation(type.id)
+  const src = imageUrl || '/no_img.jpg'
 
   return (
     <div className={className}>
       <Link href={`/boot-kit/${id}`}>
         <div className='flex justify-center p-6 bg-secondary rounded-lg h-[260px]'>
-          <img className='w-[215px] h-[215px]' src={imageUrl} alt={name} />
+          <img className='w-[215px] h-[215px]' src={src} alt={name} />
         </div>
 
         <Title text={name} size='sm' className='flex mb-1 mt-3 font-bold' />

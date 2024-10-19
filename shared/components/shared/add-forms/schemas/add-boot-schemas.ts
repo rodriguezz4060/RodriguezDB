@@ -17,6 +17,6 @@ export const formAddBootDustCoverSchema = z.object({
     .transform(value => (value ? parseFloat(value) : undefined))
     .refine(value => value !== undefined, { message: 'Высота обязательна' }),
   partNumber: z.string().min(1, { message: 'Номер детали обязателен' }),
-  imageUrl: z.string().url({ message: 'Неверный URL' }),
+  imageUrl: z.string().url({ message: 'Неверный URL' }).optional().or(z.literal('')),
 })
 export type TFormAddBootDustCoverSchema = z.infer<typeof formAddBootDustCoverSchema>
