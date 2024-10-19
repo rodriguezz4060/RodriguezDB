@@ -70,7 +70,7 @@ export const FormTableClientTo: React.FC<Props> = ({
           </div>
         </div>
       ) : (
-        <div className='rounded-md border overflow-hidden'>
+        <div className='rounded-[5px] border overflow-hidden'>
           <Table>
             <TableHeader>
               <TableRow>

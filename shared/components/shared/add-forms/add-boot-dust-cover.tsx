@@ -5,10 +5,9 @@ import { FormProvider, useForm } from 'react-hook-form'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useIntl } from 'react-intl'
-
 import { checkAndCreateBootName, createBootDustCover } from '@/app/actions'
 import { Container } from '../container'
-import { FormInput, FormSelect } from '../form'
+import { FormInput, FormSelect, LabeledBox } from '../form'
 import { Button } from '../../ui'
 import {
   getBootDustForm,
@@ -107,58 +106,80 @@ export const AddBootDustCoverForm: React.FC<Props> = ({ className }) => {
   }
 
   return (
-    <Container className='h-full flex items-center justify-center'>
-      <FormProvider {...form}>
-        <form className='flex flex-col gap-5 w-96 mt-10' onSubmit={form.handleSubmit(onSubmit)}>
-          <FormInput name='newName' label={formatMessage({ id: 'addBootForm.newName' })} required />
+    <Container className='flex items-center justify-center'>
+      <div className='flex gap-10 w-[800px]'>
+        <div className='flex-1'>
+          <FormProvider {...form}>
+            <form className='flex flex-col gap-5 w-full' onSubmit={form.handleSubmit(onSubmit)}>
+              <LabeledBox label={''}>
+                <FormInput
+                  name='newName'
+                  label={formatMessage({ id: 'addBootForm.newName' })}
+                  required
+                />
+                <FormSelect
+                  name='formId'
+                  label={formatMessage({ id: 'addBootForm.chooseForm' })}
+                  required
+                  className='rounded-lg'
+                >
+                  {forms.map(form => (
+                    <option key={form.id} value={form.id}>
+                      {form.form}
+                    </option>
+                  ))}
+                </FormSelect>
+                <FormSelect
+                  name='typeId'
+                  label={formatMessage({ id: 'addBootForm.chooseType' })}
+                  required
+                >
+                  {types.map(type => (
+                    <option key={type.id} value={type.id}>
+                      {type.type}
+                    </option>
+                  ))}
+                </FormSelect>
+                <FormInput name='imageUrl' label={formatMessage({ id: 'addBootForm.imageUrl' })} />
+              </LabeledBox>
+            </form>
+          </FormProvider>
+        </div>
 
-          <FormSelect
-            name='formId'
-            label={formatMessage({ id: 'addBootForm.chooseForm' })}
-            required
-          >
-            {forms.map(form => (
-              <option key={form.id} value={form.id}>
-                {form.form}
-              </option>
-            ))}
-          </FormSelect>
-          <FormSelect
-            name='typeId'
-            label={formatMessage({ id: 'addBootForm.chooseType' })}
-            required
-          >
-            {types.map(type => (
-              <option key={type.id} value={type.id}>
-                {type.type}
-              </option>
-            ))}
-          </FormSelect>
-          <FormInput name='dIn' label={formatMessage({ id: 'addBootForm.dIn' })} required />
-          <FormInput name='dOut' label={formatMessage({ id: 'addBootForm.dOut' })} required />
-          <FormInput name='height' label={formatMessage({ id: 'addBootForm.height' })} required />
-          <FormInput
-            name='partNumber'
-            label={formatMessage({ id: 'addBootForm.partNumber' })}
-            required
-          />
-          <FormInput name='imageUrl' label={formatMessage({ id: 'addBootForm.imageUrl' })} />
-
-          <Button variant='default' type='submit' disabled={isLoading} className='mt-5 mb-20'>
-            {isLoading ? (
-              <>
-                <Loader size={20} className='mr-2 animate-spin' />
-                {formatMessage({ id: 'addBootForm.loading' })}
-              </>
-            ) : (
-              <>
-                <Save size={20} className='mr-2' />
-                {formatMessage({ id: 'addBootForm.saveButton' })}
-              </>
-            )}
-          </Button>
-        </form>
-      </FormProvider>
+        <div className='flex-1'>
+          <FormProvider {...form}>
+            <form className='flex flex-col gap-5 w-full' onSubmit={form.handleSubmit(onSubmit)}>
+              <LabeledBox label={''}>
+                <FormInput name='dIn' label={formatMessage({ id: 'addBootForm.dIn' })} required />
+                <FormInput name='dOut' label={formatMessage({ id: 'addBootForm.dOut' })} required />
+                <FormInput
+                  name='height'
+                  label={formatMessage({ id: 'addBootForm.height' })}
+                  required
+                />
+                <FormInput
+                  name='partNumber'
+                  label={formatMessage({ id: 'addBootForm.partNumber' })}
+                  required
+                />
+              </LabeledBox>
+              <Button variant='default' type='submit' disabled={isLoading} className='mt-2 mb-20'>
+                {isLoading ? (
+                  <>
+                    <Loader size={20} className='mr-2 animate-spin' />
+                    {formatMessage({ id: 'addBootForm.loading' })}
+                  </>
+                ) : (
+                  <>
+                    <Save size={20} className='mr-2' />
+                    {formatMessage({ id: 'addBootForm.saveButton' })}
+                  </>
+                )}
+              </Button>
+            </form>
+          </FormProvider>
+        </div>
+      </div>
     </Container>
   )
 }

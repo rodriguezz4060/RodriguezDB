@@ -77,7 +77,7 @@ export const ChooseBootForm: React.FC<Props> = ({ product, className }) => {
               <p className='text-gray-600 dark:text-gray-400'>{product.height} мм</p>
             </div>
           </div>
-          <div className=' rounded-md h-[200px] overflow-y-auto mt-4 pb-10 scrollbar'>
+          <div className='rounded-[5px] h-[200px] overflow-y-auto mt-4 pb-10 scrollbar'>
             <div>
               <FormProvider {...methods}>
                 {product.cars && product.cars.length > 0 && (

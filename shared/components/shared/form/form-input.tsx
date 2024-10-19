@@ -6,6 +6,7 @@ import { Input } from '../../ui'
 import { ErrorText } from '../error-text'
 import { ClearButton } from '../clear-button'
 import { useFormContext } from 'react-hook-form'
+import { cn } from '@/shared/lib/utils'
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string
@@ -39,7 +40,9 @@ export const FormInput: React.FC<Props> = ({ className, name, label, required, .
 
       <div className='relative'>
         <Input
-          className='h-10 text-md dark:bg-[#121212] dark:border-[#1e293b] dark:border-2'
+          className={cn(
+            'h-10 rounded-sm text-md dark:bg-[#121212] dark:border-[#1e293b] dark:border-2'
+          )}
           {...register(name, { valueAsNumber: props.type === 'number' })}
           {...props}
         />

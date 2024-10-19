@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { updateBootDustCover, linkCarToBootDustCover, removeConnection } from '@/app/actions'
 import { Container } from '../container'
-import { FormInput, FormSelect, FormTable } from '../form'
+import { FormInput, FormSelect, FormTable, LabeledBox } from '../form'
 import { formBootDustCoverSchema, TFormBootDustCoverSchema } from './schemas/edit-boot-schemas'
 import { Title } from '../title'
 import { Button } from '../../ui'
@@ -152,46 +152,55 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
       />
       <div className='flex gap-[80px]'>
         <FormProvider {...form}>
-          <form className='flex flex-col gap-5 w-96 mt-10' onSubmit={form.handleSubmit(onSubmit)}>
-            <FormSelect name='nameId' label={formatMessage({ id: 'addBootForm.newName' })} required>
-              {names.map(name => (
-                <option key={name.id} value={name.id}>
-                  {name.name}
-                </option>
-              ))}
-            </FormSelect>
-            <FormSelect
-              name='formId'
-              label={formatMessage({ id: 'addBootForm.chooseForm' })}
-              required
-            >
-              {forms.map(form => (
-                <option key={form.id} value={form.id}>
-                  {form.form}
-                </option>
-              ))}
-            </FormSelect>
-            <FormSelect
-              name='typeId'
-              label={formatMessage({ id: 'addBootForm.chooseType' })}
-              required
-            >
-              {types.map(type => (
-                <option key={type.id} value={type.id}>
-                  {type.type}
-                </option>
-              ))}
-            </FormSelect>
-            <FormInput name='dIn' label={formatMessage({ id: 'addBootForm.dIn' })} required />
-            <FormInput name='dOut' label={formatMessage({ id: 'addBootForm.dOut' })} required />
-            <FormInput name='height' label={formatMessage({ id: 'addBootForm.height' })} required />
-            <FormInput
-              name='partNumber'
-              label={formatMessage({ id: 'addBootForm.partNumber' })}
-              required
-            />
-            <FormInput name='imageUrl' label={formatMessage({ id: 'addBootForm.imageUrl' })} />
-
+          <form className='flex flex-col gap-5 w-96 ' onSubmit={form.handleSubmit(onSubmit)}>
+            <LabeledBox label={''}>
+              <FormSelect
+                name='nameId'
+                label={formatMessage({ id: 'addBootForm.newName' })}
+                required
+              >
+                {names.map(name => (
+                  <option key={name.id} value={name.id}>
+                    {name.name}
+                  </option>
+                ))}
+              </FormSelect>
+              <FormSelect
+                name='formId'
+                label={formatMessage({ id: 'addBootForm.chooseForm' })}
+                required
+              >
+                {forms.map(form => (
+                  <option key={form.id} value={form.id}>
+                    {form.form}
+                  </option>
+                ))}
+              </FormSelect>
+              <FormSelect
+                name='typeId'
+                label={formatMessage({ id: 'addBootForm.chooseType' })}
+                required
+              >
+                {types.map(type => (
+                  <option key={type.id} value={type.id}>
+                    {type.type}
+                  </option>
+                ))}
+              </FormSelect>
+              <FormInput name='dIn' label={formatMessage({ id: 'addBootForm.dIn' })} required />
+              <FormInput name='dOut' label={formatMessage({ id: 'addBootForm.dOut' })} required />
+              <FormInput
+                name='height'
+                label={formatMessage({ id: 'addBootForm.height' })}
+                required
+              />
+              <FormInput
+                name='partNumber'
+                label={formatMessage({ id: 'addBootForm.partNumber' })}
+                required
+              />
+              <FormInput name='imageUrl' label={formatMessage({ id: 'addBootForm.imageUrl' })} />
+            </LabeledBox>
             <Button
               disabled={form.formState.isSubmitting}
               className='text-base mt-10'

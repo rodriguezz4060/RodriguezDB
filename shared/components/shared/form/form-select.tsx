@@ -5,6 +5,7 @@ import { useFormContext, Controller } from 'react-hook-form'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './../../ui/select'
 import { RequiredSymbol } from '../required-symbol'
 import { ErrorText } from '../error-text'
+import { cn } from '@/shared/lib/utils'
 
 interface FormSelectProps extends React.InputHTMLAttributes<HTMLSelectElement> {
   name: string
@@ -45,7 +46,11 @@ export const FormSelect: React.FC<FormSelectProps> = ({
               onValueChange={value => field.onChange(value === '' ? undefined : Number(value))}
               value={field.value}
             >
-              <SelectTrigger className='h-10 text-md dark:bg-[#121212] dark:border-[#1e293b] dark:border-2'>
+              <SelectTrigger
+                className={cn(
+                  'h-10 rounded-sm text-md dark:bg-[#121212] dark:border-[#1e293b] dark:border-2'
+                )}
+              >
                 <SelectValue placeholder={label} />
               </SelectTrigger>
               <SelectContent>

@@ -45,7 +45,7 @@ export const FormTable: React.FC<Props> = ({
         </p>
       )}
 
-      <div className='rounded-md border overflow-hidden'>
+      <div className='rounded-[5px] border overflow-hidden'>
         <Table>
           <TableHeader>
             <TableRow>
