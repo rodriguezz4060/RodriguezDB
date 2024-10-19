@@ -150,7 +150,7 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
         size='md'
         className='font-bold'
       />
-      <div className='flex gap-[80px]'>
+      <div className='flex gap-[50px]'>
         <FormProvider {...form}>
           <form className='flex flex-col gap-5 w-96 ' onSubmit={form.handleSubmit(onSubmit)}>
             <LabeledBox label={''}>
@@ -212,36 +212,38 @@ export const EditBootDustCoverForm: React.FC<Props> = ({ data, className }) => {
         </FormProvider>
 
         <div className='flex-1'>
-          <div className=' mt-10'>
-            <EditBootModal
-              open={openModal}
-              onclose={() => setOpenModal(false)}
-              cars={filteredCars}
-              onLinkClick={handleLinkCar}
-            />
-            <Button
-              onClick={() => setOpenModal(true)}
-              className='text-base font-bold bg-[#4CAF50] hover:bg-[#388E3C]'
-            >
-              <Plus className='mr-1' />
-              {formatMessage({ id: 'addBootForm.connectCar' })}
-            </Button>
+          <div className=' mt-8'>
+            <LabeledBox label={''}>
+              <EditBootModal
+                open={openModal}
+                onclose={() => setOpenModal(false)}
+                cars={filteredCars}
+                onLinkClick={handleLinkCar}
+              />
+              <Button
+                onClick={() => setOpenModal(true)}
+                className='text-base font-bold bg-[#4CAF50] hover:bg-[#388E3C]'
+              >
+                <Plus className='mr-1' />
+                {formatMessage({ id: 'addBootForm.connectCar' })}
+              </Button>
 
-            <Title
-              text={formatMessage({ id: 'addBootForm.connectedCar' })}
-              size='sm'
-              className='font-bold mt-5 mb-2'
-            />
-            <FormProvider {...form}>
-              {connectCars && connectCars.length > 0 && (
-                <FormTable
-                  name='cars'
-                  data={connectCars}
-                  columns={columns}
-                  onRemove={handleRemoveCar}
-                />
-              )}
-            </FormProvider>
+              <Title
+                text={formatMessage({ id: 'addBootForm.connectedCar' })}
+                size='sm'
+                className='font-bold mt-5 mb-2'
+              />
+              <FormProvider {...form}>
+                {connectCars && connectCars.length > 0 && (
+                  <FormTable
+                    name='cars'
+                    data={connectCars}
+                    columns={columns}
+                    onRemove={handleRemoveCar}
+                  />
+                )}
+              </FormProvider>
+            </LabeledBox>
           </div>
         </div>
       </div>
