@@ -11,6 +11,7 @@ import { BootWithRelation } from '@/@types/prisma'
 import useTranslations from '@/shared/hooks/use-translations'
 import { FormProvider, useForm } from 'react-hook-form'
 import { FormTable } from './form'
+import { EditBootButton } from './buttons'
 
 interface Props {
   product: BootWithRelation
@@ -41,7 +42,12 @@ export const ChooseBootForm: React.FC<Props> = ({ product, className }) => {
 
       <div className='w-[490px] bg-[#fcfcfc] dark:bg-[#1d1d1d] p-7 relative'>
         <div>
-          <Title text={product.name.name} size='md' className='font-extrabold ' />
+          <div className='flex justify-between items-center mb-3'>
+            <Title text={product.name.name} size='md' className='font-extrabold' />
+            <div className='flex items-center'>
+              <EditBootButton id={product.id} className='mr-5' />
+            </div>
+          </div>
           <div className='grid grid-cols-2 gap-4'>
             <div>
               <p className='font-semibold text-gray-700 dark:text-gray-300'>
