@@ -66,3 +66,5 @@ export type ClientsInfo = Clients & {
     ignitionCoil: string
   }
 }
+
+export type Brands = CarBrand & {}
