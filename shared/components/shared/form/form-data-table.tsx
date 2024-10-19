@@ -11,7 +11,7 @@ import { useIntl } from 'react-intl'
 import { Button } from '../../ui'
 import { ChevronLeft, ChevronRight, Pencil, Plus, Settings } from 'lucide-react'
 import { useSession } from 'next-auth/react'
-import { DeleteCarButton } from '../buttons'
+import { AddCarButton, DeleteCarButton } from '../buttons'
 import { Popover } from '@radix-ui/react-popover'
 import { PopoverContent, PopoverTrigger } from '../../ui/popover'
 
@@ -75,11 +75,16 @@ export const FormDataTable: React.FC<Props> = ({
 
   return (
     <div className={className}>
-      {label && (
-        <p className='font-extrabold text-[36px] mb-8 mt-4 ml-2'>
-          {label} {required && <span className='text-red-500'>*</span>}
-        </p>
-      )}
+      <div className='flex justify-between items-center'>
+        {label && (
+          <p className='font-extrabold text-[36px] mb-8 mt-2 ml-2'>
+            {label} {required && <span className='text-red-500'>*</span>}
+          </p>
+        )}
+        <div className='flex items-center'>
+          <AddCarButton />
+        </div>
+      </div>
 
       <div className='relative w-[400px] mb-4 ml-2'>
         <Input

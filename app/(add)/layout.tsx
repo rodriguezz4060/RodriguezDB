@@ -10,5 +10,5 @@ export default function HomeLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return <main className='min-h-screen'>{children}</main>
+  return <main>{children}</main>
 }

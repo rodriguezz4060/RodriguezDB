@@ -9,7 +9,7 @@ import {
 import { useIntl } from 'react-intl'
 import toast from 'react-hot-toast'
 import { Container } from '../container'
-import { FormInput, FormPhoneInput } from '../form'
+import { FormInput, FormPhoneInput, LabeledBox } from '../form'
 import { Title } from '../title'
 import { Button } from '../../ui'
 import { ArrowLeft, Loader, Save } from 'lucide-react'
@@ -67,12 +67,13 @@ export const AddClientForm: React.FC = () => {
       </div>
       <Container className='flex items-center justify-center'>
         <FormProvider {...form}>
-          <form className='flex flex-col gap-5 w-96 mt-5' onSubmit={form.handleSubmit(onSubmit)}>
-            <FormInput name='name' label={formatMessage({ id: 'addClient.name' })} />
-            <FormInput name='lastName' label={formatMessage({ id: 'addClient.lastName' })} />
-            <FormInput name='VIN' label={formatMessage({ id: 'addClient.VIN' })} required />
-            <FormPhoneInput name='tel' label={formatMessage({ id: 'addClient.tel' })} />
-
+          <form className='flex flex-col gap-5 w-96 ' onSubmit={form.handleSubmit(onSubmit)}>
+            <LabeledBox label={''}>
+              <FormInput name='name' label={formatMessage({ id: 'addClient.name' })} />
+              <FormInput name='lastName' label={formatMessage({ id: 'addClient.lastName' })} />
+              <FormInput name='VIN' label={formatMessage({ id: 'addClient.VIN' })} required />
+              <FormPhoneInput name='tel' label={formatMessage({ id: 'addClient.tel' })} />
+            </LabeledBox>
             <Button variant='default' type='submit' disabled={isLoading} className='mt-5 '>
               {isLoading ? (
                 <>

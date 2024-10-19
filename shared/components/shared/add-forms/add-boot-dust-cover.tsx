@@ -106,7 +106,7 @@ export const AddBootDustCoverForm: React.FC<Props> = ({ className }) => {
   }
 
   return (
-    <Container className='flex items-center justify-center'>
+    <Container className='flex items-center justify-center mb-10'>
       <div className='flex gap-10 w-[800px]'>
         <div className='flex-1'>
           <FormProvider {...form}>
