@@ -1,11 +1,17 @@
 import { prisma } from '@/prisma/prisma-client'
-import { AddCarForm } from '@/shared/components/shared/add-forms/add-car-form'
 import { getUserSession } from '@/shared/lib/get-user-session'
-import { redirect } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import React from 'react'
+import { AddCarForm } from './add-car-form'
 
 export default async function AddCarHome() {
+  const carBrands = await prisma.carBrand.findMany({})
+
   const session = await getUserSession()
+
+  if (!carBrands) {
+    return notFound()
+  }
 
   if (!session) {
     return redirect('/not-auth')
@@ -17,5 +23,5 @@ export default async function AddCarHome() {
     return redirect('/not-auth')
   }
 
-  return <AddCarForm />
+  return <AddCarForm carBrands={carBrands} />
 }

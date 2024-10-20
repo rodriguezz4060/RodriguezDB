@@ -294,3 +294,25 @@ export const updateClientCar = async (data: TFormEditClientCarSchema) => {
 
   return await response.json()
 }
+
+export async function createCarTo(data: TFormCarSchema): Promise<void> {
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'
+    const url = `${baseUrl}/api/car-to`
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    if (!response.ok) {
+      const errorData = await response.json()
+      throw new Error(errorData.error || 'Failed to create client')
+    }
+  } catch (error) {
+    console.error('Error creating client:', error)
+    throw error
+  }
+}

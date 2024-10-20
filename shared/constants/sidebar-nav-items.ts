@@ -92,3 +92,20 @@ export const ClientEditToPageSidebarNavItems = (id: any) => {
 
   return sidebarNavItems
 }
+
+export const AddClientToPageSidebarNavItems = () => {
+  const { formatMessage } = useIntl()
+
+  const sidebarNavItems = [
+    {
+      title: 'Машина',
+      href: `/car-to/add-car`,
+    },
+    {
+      title: 'Масло',
+      href: `/car-to/add-car/oil`,
+    },
+  ]
+
+  return sidebarNavItems
+}
