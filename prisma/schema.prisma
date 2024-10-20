@@ -117,9 +117,37 @@ model OilTo {
 model OilToInfo {
     id Int @id @default(autoincrement())
 
-    engine                String?
-    automaticTransmission String?
-    manualTransmission    String?
+    engineOil           String? //Масло ДВС
+    engineOilVolume     String? //Объем масла
+    engineOilPartNumber String? //Оригинальный номер масла
+
+    automaticTransmissionOil           String? //Масло АКПП
+    automaticTransmissionOilVolume1    String? //Объем масла частичный
+    automaticTransmissionOilPartNumber String? //Оригинальный номер масла
+
+    mechanicTransmissionOil           String? //Масло МКП
+    mechanicTransmissionOilVolume     String? //Объем масла
+    mechanicTransmissionOilPartNumber String? //Оригинальный номер масла
+
+    transferCaseOil           String? //Масло раздаточной коробки
+    transferCaseOilVolume     String? //Объем масла
+    transferCaseOilPartNumber String? //Оригинальный номер масла
+
+    frontAxleGearboxOil           String? //Масло редуктора переднего моста
+    frontAxleGearboxOilVolume     String? //Объем масла
+    frontAxleGearboxOilPartNumber String? //Оригинальный номер масла
+
+    rearAxleGearboxOil           String? //Масло редуктора заднего моста
+    rearAxleGearboxOilVolume     String? //Объем масла
+    rearAxleGearboxOilPartNumber String? //Оригинальный номер масла
+
+    antifreeze           String? //Цвет антифриза
+    antifreezeVolume     String? //Объем антифриза
+    antifreezePartNumber String? //Оригинальный номер антифриза
+
+    steeringFluid           String? //Жидкость ГУР
+    steeringFluidVolume     String? //Объем жидкости ГУР
+    steeringFluidPartNumber String? //Оригинальный номер жидкости ГУР
 
     car   Car? @relation(fields: [carId], references: [id])
     carId Int?

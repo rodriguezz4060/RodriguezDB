@@ -5,13 +5,14 @@ import { useIntl } from 'react-intl'
 import { Container } from '../container'
 import { Brands } from '@/@types/prisma'
 import Link from 'next/link'
+import { cn } from '@/shared/lib/utils'
 
 interface Props {
   brands: Brands[]
-  classNames?: string
+  className?: string
 }
 
-export const CarToMainPage: React.FC<Props> = ({ brands, classNames }) => {
+export const CarToMainPage: React.FC<Props> = ({ brands, className }) => {
   const { formatMessage } = useIntl()
 
   return (
@@ -21,13 +22,15 @@ export const CarToMainPage: React.FC<Props> = ({ brands, classNames }) => {
           <Link
             key={button.id}
             href={`car-to/${button.name.toLowerCase()}`}
-            className={`flex flex-row border items-start p-3 bg-secondary dark:bg-[#18181A] rounded-lg h-[280px] w-[240px] hover:bg-secondary hover:opacity-80 hover:shadow-md transition duration-200 ${classNames}`}
+            className={cn(
+              `flex flex-row border items-start p-3 bg-secondary
+               dark:bg-[#18181A] rounded-lg h-[240px] w-[240px] hover:bg-secondary
+                hover:opacity-80 hover:shadow-md transition duration-200`,
+              className
+            )}
           >
             <div className='flex flex-col items-start'>
-              <p className='mb-2 text-base'>
-                <b>{button.name}</b>
-              </p>
-              <img className='w-[215px] h-[215px] mb-5' src={button.imageUrl} alt={button.name} />
+              <img className='w-[215px] h-[215px] ' src={button.imageUrl} alt={button.name} />
             </div>
           </Link>
         ))}

@@ -154,3 +154,68 @@ export const TableColumns = () => {
 
   return columns
 }
+
+export const MaintenanceDataToTable = (oilToInfo: any) => {
+  const { formatMessage } = useIntl()
+
+  // Функция для проверки, является ли значение пустым
+  const isEmpty = (value: string) => {
+    return value === null || value === undefined || value.trim() === ''
+  }
+
+  const tableMaintenanceData = [
+    {
+      type: formatMessage({ id: 'clientTo.engineOil' }),
+      viscosityIndex: oilToInfo.engineOil,
+      volume: oilToInfo.engineOilVolume,
+      partNumber: oilToInfo.engineOilPartNumber,
+    },
+    {
+      type: formatMessage({ id: 'clientTo.automaticTransmissionOil' }),
+      partNumber: oilToInfo.automaticTransmissionOilPartNumber,
+      viscosityIndex: oilToInfo.automaticTransmissionOil,
+      volume: oilToInfo.automaticTransmissionOilVolume1,
+    },
+    {
+      type: formatMessage({ id: 'clientTo.mechanicTransmissionOil' }),
+      partNumber: oilToInfo.mechanicTransmissionOilPartNumber,
+      viscosityIndex: oilToInfo.mechanicTransmissionOil,
+      volume: oilToInfo.mechanicTransmissionOilVolume,
+    },
+    {
+      type: formatMessage({ id: 'clientTo.transferCaseOil' }),
+      partNumber: oilToInfo.transferCaseOilPartNumber,
+      viscosityIndex: oilToInfo.transferCaseOil,
+      volume: oilToInfo.transferCaseOilVolume,
+    },
+    {
+      type: formatMessage({ id: 'clientTo.axleGearboxFront' }),
+      partNumber: oilToInfo.frontAxleGearboxOilPartNumber,
+      viscosityIndex: oilToInfo.frontAxleGearboxOil,
+      volume: oilToInfo.frontAxleGearboxOilVolume,
+    },
+    {
+      type: formatMessage({ id: 'clientTo.rearAxleGearboxOil' }),
+      partNumber: oilToInfo.rearAxleGearboxOilPartNumber,
+      viscosityIndex: oilToInfo.rearAxleGearboxOil,
+      volume: oilToInfo.rearAxleGearboxOilVolume,
+    },
+    {
+      type: formatMessage({ id: 'clientTo.antifreeze' }),
+      partNumber: oilToInfo.antifreezePartNumber,
+      viscosityIndex: oilToInfo.antifreeze,
+      volume: oilToInfo.antifreezeVolume,
+    },
+    {
+      type: formatMessage({ id: 'clientTo.steeringFluid' }),
+      partNumber: oilToInfo.steeringFluidPartNumber,
+      viscosityIndex: oilToInfo.steeringFluid,
+      volume: oilToInfo.steeringFluidVolume,
+    },
+  ].filter(item => {
+    // Проверяем, что хотя бы одно поле не пустое
+    return !isEmpty(item.partNumber) || !isEmpty(item.viscosityIndex) || !isEmpty(item.volume)
+  })
+
+  return tableMaintenanceData
+}

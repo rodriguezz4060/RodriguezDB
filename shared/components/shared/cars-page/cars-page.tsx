@@ -11,10 +11,10 @@ import { DeleteCar } from '../cars-page'
 
 interface Props {
   cars: CarWithBrand[]
-  classNames?: string
+  className?: string
 }
 
-export const CarsPage: React.FC<Props> = ({ cars: initialCars, classNames }) => {
+export const CarsPage: React.FC<Props> = ({ cars: initialCars, className }) => {
   const { formatMessage } = useIntl()
   const columns = DataTableColumns()
   const methods = useForm()

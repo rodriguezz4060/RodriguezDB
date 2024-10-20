@@ -48,7 +48,8 @@ export const FormSelect: React.FC<FormSelectProps> = ({
             >
               <SelectTrigger
                 className={cn(
-                  'h-10 rounded-sm text-md dark:bg-[#121212] dark:border-[#1e293b] dark:border-2'
+                  'h-10 rounded-sm text-md dark:bg-[#121212] dark:border-[#1e293b] dark:border-2',
+                  className
                 )}
               >
                 <SelectValue placeholder={label} />
