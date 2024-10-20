@@ -5,11 +5,12 @@ import { SidebarNav } from '../sidebar-nav'
 import { AddClientToPageSidebarNavItems } from '@/shared/constants/sidebar-nav-items'
 
 interface Props {
+  id: number
   className?: string
 }
 
-export const AddToCarSidebarNav: React.FC<Props> = ({ className }) => {
-  const sidebarNavItems = AddClientToPageSidebarNavItems()
+export const AddToCarSidebarNav: React.FC<Props> = ({ id, className }) => {
+  const sidebarNavItems = AddClientToPageSidebarNavItems(id)
 
   return (
     <>

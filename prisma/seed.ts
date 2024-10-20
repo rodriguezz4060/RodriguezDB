@@ -80,27 +80,27 @@ async function up() {
     },
   })
 
-  const oilToInfo1 = await prisma.oilToInfo.create({
-    data: {
-      engine: '5W-40',
-      automaticTransmission: '111111111111',
-      manualTransmission: '222222222222222',
-      car: {
-        connect: { id: 1 }, // Предположим, что это ID первого автомобиля
-      },
-    },
-  })
+  // const oilToInfo1 = await prisma.oilToInfo.create({
+  //   data: {
+  //     engine: '5W-40',
+  //     automaticTransmission: '111111111111',
+  //     manualTransmission: '222222222222222',
+  //     car: {
+  //       connect: { id: 1 }, // Предположим, что это ID первого автомобиля
+  //     },
+  //   },
+  // })
 
-  const oilToInfo2 = await prisma.oilToInfo.create({
-    data: {
-      engine: '5W-30',
-      automaticTransmission: '33333333333333333',
-      manualTransmission: '4444444444444444444',
-      car: {
-        connect: { id: 2 }, // Предположим, что это ID второго автомобиля
-      },
-    },
-  })
+  // const oilToInfo2 = await prisma.oilToInfo.create({
+  //   data: {
+  //     engine: '5W-30',
+  //     automaticTransmission: '33333333333333333',
+  //     manualTransmission: '4444444444444444444',
+  //     car: {
+  //       connect: { id: 2 }, // Предположим, что это ID второго автомобиля
+  //     },
+  //   },
+  // })
 
   await prisma.clients.createMany({
     data: [

@@ -27,7 +27,7 @@ export const CarToInfoPage: React.FC<Props> = ({ oilInfo, className }) => {
 
   const maintenanceData = MaintenanceDataToTable(oilToInfo)
   const columns = TableColumns()
-
+  console.log(oilInfo)
   return (
     <Container className='h-full flex flex-col py-5 secondary dark:bg-zinc-900'>
       <div className='flex flex-wrap justify-start gap-6'>

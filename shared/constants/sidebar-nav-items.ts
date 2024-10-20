@@ -2,7 +2,7 @@
 
 import { useIntl } from 'react-intl'
 
-export const ClientSidebarNavItems = (id: any) => {
+export const ClientSidebarNavItems = (id: number) => {
   const { formatMessage } = useIntl()
 
   const sidebarNavItems = [
@@ -39,7 +39,7 @@ export const ClientSidebarNavItems = (id: any) => {
   return sidebarNavItems
 }
 
-export const ClientEditPageSidebarNavItems = (id: any) => {
+export const ClientEditPageSidebarNavItems = (id: number) => {
   const { formatMessage } = useIntl()
 
   const sidebarNavItems = [
@@ -76,7 +76,7 @@ export const ClientEditPageSidebarNavItems = (id: any) => {
   return sidebarNavItems
 }
 
-export const ClientEditToPageSidebarNavItems = (id: any) => {
+export const ClientEditToPageSidebarNavItems = (id: number) => {
   const { formatMessage } = useIntl()
 
   const sidebarNavItems = [
@@ -93,17 +93,17 @@ export const ClientEditToPageSidebarNavItems = (id: any) => {
   return sidebarNavItems
 }
 
-export const AddClientToPageSidebarNavItems = () => {
+export const AddClientToPageSidebarNavItems = (id: number) => {
   const { formatMessage } = useIntl()
 
   const sidebarNavItems = [
     {
-      title: 'Машина',
-      href: `/car-to/add-car`,
+      title: formatMessage({ id: 'carToEditNavbar.oil' }),
+      href: `/car-to/edit/${id}`,
     },
     {
-      title: 'Масло',
-      href: `/car-to/add-car/oil`,
+      title: formatMessage({ id: 'carToEditNavbar.car' }),
+      href: `/car-to/edit/${id}/car`,
     },
   ]
 

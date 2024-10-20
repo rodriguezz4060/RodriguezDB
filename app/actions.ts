@@ -316,3 +316,24 @@ export async function createCarTo(data: TFormCarSchema): Promise<void> {
     throw error
   }
 }
+
+export const updateCarTo = async (data: TFormEditClientCarToSchema) => {
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'
+  const url = `${baseUrl}/api/car-to`
+
+  console.log('Sending data to server:', data) // Логирование данных
+
+  const response = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to update client car to')
+  }
+
+  return await response.json()
+}
