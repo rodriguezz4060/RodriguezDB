@@ -52,7 +52,7 @@ export const FormTableCarTo: React.FC<Props> = ({
       })
       return filteredItem
     })
-    .filter(item => Object.keys(item).length > 0) // Удаление пустых объектов
+    .filter(item => Object.keys(item).length > 0)
 
   return (
     <div className={className}>
@@ -64,7 +64,7 @@ export const FormTableCarTo: React.FC<Props> = ({
 
       {filteredData.length === 0 ? (
         <div className='flex flex-col justify-center items-center h-full mt-10'>
-          <Title size='lg' text='Данные отсутствуют' />
+          <Title size='lg' text={formatMessage({ id: 'carToPage.noToInformation' })} />
           <div className='mt-4'></div>
         </div>
       ) : (

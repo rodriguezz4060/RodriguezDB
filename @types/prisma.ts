@@ -80,6 +80,6 @@ export type CarTo = Car & {}
 export type AddCarTo = OilToInfo & {}
 
 export type OilInfo = Car & {
-  oilToInfo: OilToInfo[] | null
+  oilToInfo: OilToInfo | null
   carBrand: CarBrand | null
 }

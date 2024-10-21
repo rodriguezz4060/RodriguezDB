@@ -8,6 +8,8 @@ import {
   mainButtonsData,
   clientCarToSeed,
   clientCarSeed,
+  oilCars,
+  oilToInfos,
 } from './constants'
 import { prisma } from './prisma-client'
 import { hashSync } from 'bcrypt'
@@ -58,27 +60,35 @@ async function up() {
     data: mainButtonsData,
   })
 
-  const oilTo1 = await prisma.oilTo.create({
-    data: {
-      carBrand: {
-        connect: { id: 1 }, //  ID первого бренда автомобиля
-      },
-      cars: {
-        connect: { id: 1 }, //  ID первого автомобиля
-      },
-    },
+  await prisma.oilCar.createMany({
+    data: oilCars,
   })
 
-  const oilTo2 = await prisma.oilTo.create({
-    data: {
-      carBrand: {
-        connect: { id: 2 }, //  ID второго бренда автомобиля
-      },
-      cars: {
-        connect: { id: 2 }, //  ID второго автомобиля
-      },
-    },
+  await prisma.oilToInfo.createMany({
+    data: oilToInfos,
   })
+
+  // const oilTo1 = await prisma.oilTo.create({
+  //   data: {
+  //     carBrand: {
+  //       connect: { id: 1 }, //  ID первого бренда автомобиля
+  //     },
+  //     cars: {
+  //       connect: { id: 1 }, //  ID первого автомобиля
+  //     },
+  //   },
+  // })
+
+  // const oilTo2 = await prisma.oilTo.create({
+  //   data: {
+  //     carBrand: {
+  //       connect: { id: 2 }, //  ID второго бренда автомобиля
+  //     },
+  //     cars: {
+  //       connect: { id: 2 }, //  ID второго автомобиля
+  //     },
+  //   },
+  // })
 
   // const oilToInfo1 = await prisma.oilToInfo.create({
   //   data: {
@@ -110,12 +120,6 @@ async function up() {
         VIN: '12345678901234567',
         tel: '38063123820',
       },
-      {
-        name: 'Jane',
-        lastName: 'Smith',
-        VIN: '09876543210987654',
-        tel: '380730503896',
-      },
     ],
   })
 
@@ -123,25 +127,8 @@ async function up() {
     data: clientCarSeed,
   })
 
-  // Создаем автомобили для клиентов
-  const clientCar1 = await prisma.clientCar.create({
-    data: {
-      client: {
-        connect: { id: 1 },
-      },
-    },
-  })
-
   await prisma.clientCarTo.createMany({
     data: clientCarToSeed,
-  })
-
-  const clientCarTo1 = await prisma.clientCarTo.create({
-    data: {
-      clientTo: {
-        connect: { id: 1 },
-      },
-    },
   })
 
   const car1 = await prisma.car.update({
@@ -157,7 +144,7 @@ async function up() {
     where: { id: 2 },
     data: {
       bootDustCover: {
-        connect: { id: 2 }, // Предположим, что это ID второго BootDustCover
+        connect: { id: 2 },
       },
     },
   })
@@ -166,12 +153,12 @@ async function up() {
 async function down() {
   await prisma.$executeRaw`TRUNCATE TABLE "User" RESTART IDENTITY CASCADE`
   await prisma.$executeRaw`TRUNCATE TABLE "CarBrand" RESTART IDENTITY CASCADE`
+  await prisma.$executeRaw`TRUNCATE TABLE "OilCar" RESTART IDENTITY CASCADE`
   await prisma.$executeRaw`TRUNCATE TABLE "Car" RESTART IDENTITY CASCADE`
   await prisma.$executeRaw`TRUNCATE TABLE "Name" RESTART IDENTITY CASCADE`
   await prisma.$executeRaw`TRUNCATE TABLE "Form" RESTART IDENTITY CASCADE`
   await prisma.$executeRaw`TRUNCATE TABLE "Type" RESTART IDENTITY CASCADE`
   await prisma.$executeRaw`TRUNCATE TABLE "BootDustCover" RESTART IDENTITY CASCADE`
-  await prisma.$executeRaw`TRUNCATE TABLE "OilTo" RESTART IDENTITY CASCADE`
   await prisma.$executeRaw`TRUNCATE TABLE "OilToInfo" RESTART IDENTITY CASCADE`
   await prisma.$executeRaw`TRUNCATE TABLE "Clients" RESTART IDENTITY CASCADE`
   await prisma.$executeRaw`TRUNCATE TABLE "ClientCar" RESTART IDENTITY CASCADE`

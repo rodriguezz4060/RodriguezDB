@@ -67,7 +67,7 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
           <Input
             onChange={onChangeSearchInput}
             placeholder={formatMessage({ id: 'filters.searchInputPlaceholder' })}
-            className=' border'
+            className='border'
           />
         </div>
       )}

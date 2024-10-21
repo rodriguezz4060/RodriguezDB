@@ -1,4 +1,6 @@
 export { CarToMainPage } from './car-to-main-page'
-export { CarModelPage } from './car-model-page'
+export { CarCard } from './car-card'
 export { CarToInfoPage } from './car-to-info-page'
 export { AddToCarSidebarNav } from './add-to-car-sidebar-nav'
+export { CarCardToInfo } from './car-card-info'
+export { CarAddHeader } from './car-add-header'

@@ -1,6 +1,5 @@
 import { prisma } from '@/prisma/prisma-client'
 import { AddCarToButton, CarToMainPage, Container } from '@/shared/components/shared'
-import { cn } from '@/shared/lib/utils'
 import { notFound } from 'next/navigation'
 
 export default async function CarsHome() {

@@ -29,8 +29,8 @@ model CarBrand {
     name     String @unique
     imageUrl String
 
-    cars  Car[]
-    oilTo OilTo[]
+    cars   Car[]
+    OilCar OilCar[]
 
     createdAt DateTime @default(now())
     updateAt  DateTime @updatedAt
@@ -50,11 +50,6 @@ model Car {
 
     carBrand   CarBrand @relation(fields: [carBrandId], references: [id])
     carBrandId Int
-
-    oilTo   OilTo? @relation(fields: [oilToId], references: [id])
-    oilToId Int?
-
-    oilToInfo OilToInfo[]
 
     createdAt DateTime @default(now())
     updateAt  DateTime @updatedAt
@@ -103,12 +98,20 @@ model BootDustCover {
     updateAt  DateTime @updatedAt
 }
 
-model OilTo {
+model OilCar {
     id Int @id @default(autoincrement())
 
-    cars       Car[]
-    carBrand   CarBrand? @relation(fields: [carBrandId], references: [id])
-    carBrandId Int?
+    imageUrl  String
+    models    String
+    carBody   String
+    modelYear String
+    engine    String
+    volume    String
+
+    carBrand   CarBrand @relation(fields: [carBrandId], references: [id])
+    carBrandId Int
+
+    oilToInfo OilToInfo?
 
     createdAt DateTime @default(now())
     updateAt  DateTime @updatedAt
@@ -149,8 +152,8 @@ model OilToInfo {
     steeringFluidVolume     String? //Объем жидкости ГУР
     steeringFluidPartNumber String? //Оригинальный номер жидкости ГУР
 
-    car   Car? @relation(fields: [carId], references: [id])
-    carId Int?
+    OilCar   OilCar? @relation(fields: [oilCarId], references: [id])
+    oilCarId Int     @unique
 
     createdAt DateTime @default(now())
     updateAt  DateTime @updatedAt

@@ -76,6 +76,19 @@
         "oil": "Масла ТО",
         "car": "Автомобиль"
     },
+    "carToPage": {
+        "searchPlaceholder": "Поиск по параметрам машины...",
+        "model": "Модель:",
+        "body": "Кузов:",
+        "carYear": "Год выпуска:",
+        "engine": "Двигатель:",
+        "engineVolume": "Объем двигателя:",
+        "addTitle": "Добавить машину",
+        "addTitleData": "Страница добавления автомобиля",
+        "tableTitle": "Информация о ТО",
+        "noInformation": "На странице еще нет информации о ТО",
+        "noToInformation": "Данные отсутствуют"
+    },
     "clients": {
         "noDataAvailable": "Информация о запчастях не найдена.",
         "clientTitle": "Клиент",

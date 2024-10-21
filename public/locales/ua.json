@@ -76,6 +76,19 @@
         "oil": "Мастила ТО",
         "car": "Автомобіль"
     },
+    "carToPage": {
+        "searchPlaceholder": "Пошук за параметрами машини...",
+        "model": "Модель:",
+        "body": "Кузов:",
+        "carYear": "Рік випуску:",
+        "engine": "Двигун:",
+        "engineVolume": "Об'єм двигуна:",
+        "addTitle": "Додати машину",
+        "addTitleData": "Сторінка додавання автомобіля",
+        "tableTitle": "Інформація про ТО",
+        "noInformation": "На сторінці ще немає інформації про ТО",
+        "noToInformation": "Дані відсутні"
+    },
     "clients": {
         "noDataAvailable": "Інформація про запчастини не знайдена.",
         "clientTitle": "Клієнт",

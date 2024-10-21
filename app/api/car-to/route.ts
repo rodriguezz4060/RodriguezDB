@@ -5,7 +5,7 @@ export async function POST(req: NextRequest) {
   try {
     const data = await req.json()
 
-    const car = await prisma.car.create({
+    const car = await prisma.oilCar.create({
       data: {
         imageUrl: data.imageUrl,
         models: data.models,
@@ -16,13 +16,8 @@ export async function POST(req: NextRequest) {
         carBrand: {
           connect: { id: data.carBrandId },
         },
-        oilTo: {
-          create: {
-            carBrandId: data.carBrandId,
-          },
-        },
         oilToInfo: {
-          create: {}, // Создаем пустую запись в OilToInfo
+          create: {},
         },
       },
     })

@@ -7,7 +7,7 @@ import { Brands } from '@/@types/prisma'
 import toast from 'react-hot-toast'
 import { useIntl } from 'react-intl'
 import { useRouter } from 'next/navigation'
-import { updatedCar } from '@/app/actions'
+import { updatedOilCar } from '@/app/actions'
 import {
   formEditCarSchema,
   TFormEditCarSchema,
@@ -43,7 +43,7 @@ export const CarForm: React.FC<Props> = ({ car, carBrands }) => {
   const onSubmit = async (data: TFormEditCarSchema) => {
     try {
       setIsLoading(true)
-      await updatedCar(data)
+      await updatedOilCar(data)
 
       toast.success('Автомобиль обновлен 🚗', {
         icon: '✅',
