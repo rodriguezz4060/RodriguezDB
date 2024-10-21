@@ -10,6 +10,9 @@
 8. react-use
 9. nextjs-toploader
 10. react-hot-toast
+11. react-intl
+12. react-modal
+13. sweetalert2
 11. lucide-react
 
 ## last build
