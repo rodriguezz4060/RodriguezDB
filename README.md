@@ -1,6 +1,6 @@
 ## Stack
 
-1. NextJS (Parallel Routes, Group Routes, Server Actions, API)
+1. NextJS (Parallel Routes, Group Routes, Page Forms, Server Actions, API)
 2. TypeScript
 3. TailwindCSS + ShadCN
 4. Prisma + PostgreSQL
@@ -18,12 +18,12 @@
 [rodriguez-db.vercel.app](https://rodriguez-db.vercel.app/clients/1/profile) 
 
 ### user Role 
-email:    user@user.ua
-password: userPassword
+- email:    user@user.ua
+- password: userPassword
 
 ### admin Role
-email:    user2@user.ua
-password: adminPassword
+- email:    user2@user.ua
+- password: adminPassword
 
 ## Getting Started
 
