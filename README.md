@@ -18,12 +18,12 @@
 [rodriguez-db.vercel.app](https://rodriguez-db.vercel.app/clients/1/profile) 
 
 ### user Role 
-- email:    user@user.ua
-- password: userPassword
+* email:    user@user.ua
+* password: userPassword
 
 ### admin Role
-- email:    user2@user.ua
-- password: adminPassword
+* email:    user2@user.ua
+* password: adminPassword
 
 ## Getting Started
 
