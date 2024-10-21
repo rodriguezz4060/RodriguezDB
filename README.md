@@ -10,8 +10,7 @@
 8. react-use
 9. nextjs-toploader
 10. react-hot-toast
-11. react-insta-stories
-12. lucide-react
+11. lucide-react
 
 ## last build
 
