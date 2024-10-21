@@ -13,7 +13,7 @@ export default async function CarsAcuraHome() {
   return (
     <>
       <Container className='secondary dark:bg-zinc-900 px-4 pb-10 '>
-        <CarCard carTo={carsWithOilTo} rout='toyota' />
+        <CarCard carTo={carsWithOilTo} rout='acura' />
       </Container>
     </>
   )

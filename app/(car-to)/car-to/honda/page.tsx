@@ -1,6 +1,5 @@
 import { prisma } from '@/prisma/prisma-client'
 import { Container, CarCard } from '@/shared/components/shared'
-import { notFound } from 'next/navigation'
 
 export default async function CarsHondaHome() {
   const carBrandId = 4
