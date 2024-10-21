@@ -2,29 +2,26 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, useForm } from 'react-hook-form'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { CarWithBoot } from '@/@types/prisma'
-import toast from 'react-hot-toast'
 import { useIntl } from 'react-intl'
 import { BootDustCover, CarBrand } from '@prisma/client'
-import { getCarsBrands } from '@/shared/services/cars'
 import { Container } from '../container'
 import { FormInput, FormSelect } from '../form'
 import { Button } from '../../ui'
-import { useRouter } from 'next/navigation'
 import { Title } from '../title'
-import { updatedCar, removeConnection } from '@/app/actions'
 import { formEditCarSchema, TFormEditCarSchema } from '../add-forms/schemas/edit-car-schema'
-import { getBootDustCover } from '@/shared/services/boot-dust-cover'
 import { DeleteBootToCarsButton } from '../buttons'
+import { useEditCarForm } from '@/shared/hooks'
 
 interface Props {
   car: CarWithBoot
+  carBrands: CarBrand[]
+  bootDustCovers: BootDustCover[]
 }
 
-export const EditCarForm: React.FC<Props> = ({ car }) => {
+export const EditCarForm: React.FC<Props> = ({ car, carBrands, bootDustCovers }) => {
   const { formatMessage } = useIntl()
-  const router = useRouter()
 
   const form = useForm<TFormEditCarSchema>({
     resolver: zodResolver(formEditCarSchema),
@@ -41,59 +38,14 @@ export const EditCarForm: React.FC<Props> = ({ car }) => {
     },
   })
 
-  const [carBrands, setCarBrands] = useState<CarBrand[]>([])
-  const [bootDustCovers, setBootDustCovers] = useState<BootDustCover[]>([])
-  const [connectedDustCovers, setConnectedDustCovers] = useState<BootDustCover[]>(car.bootDustCover)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [carBrands, bootDustCovers] = await Promise.all([getCarsBrands(), getBootDustCover()])
-
-        setCarBrands(carBrands)
-        setBootDustCovers(bootDustCovers)
-      } catch (error) {
-        console.error('Error fetching car brands:', error)
-        toast.error(formatMessage({ id: 'toast.carBrandsFetchingError' }))
-      }
-    }
-
-    fetchData()
-  }, [])
-
-  const onSubmit = async (data: TFormEditCarSchema) => {
-    try {
-      await updatedCar(data)
-
-      toast.success('Автомобиль обновлен 🚗', {
-        icon: '✅',
-      })
-
-      router.push('/cars')
-    } catch (error) {
-      return toast.error('Ошибка при обновлении автомобиля', {
-        icon: '❌',
-      })
-    }
-  }
-
-  const handleRemoveDustCover = async (id: number) => {
-    try {
-      await removeConnection(car.id, id)
-
-      // Обновление локального состояния
-      setConnectedDustCovers(prev => prev.filter(dustCover => dustCover.id !== id))
-
-      toast.success('Связь с пыльником удалена')
-    } catch (error) {
-      console.error('Ошибка при удалении связи с пыльником:', error)
-      toast.error('Ошибка при удалении связи с пыльником')
-    }
-  }
+  const { connectedDustCovers, onSubmit, handleRemoveDustCover } = useEditCarForm(
+    car.id,
+    car.bootDustCover
+  )
 
   return (
-    <Container className='my-10'>
-      <Title text={`Редактирование автомобиля | #${car.id}`} size='md' className='font-bold' />
+    <Container>
+      <Title text={`Редактирование автомобиля | ${car.models}`} size='md' className='font-bold' />
       <div className='flex gap-[80px]'>
         <div className='w-[400px]'>
           <FormProvider {...form}>
@@ -113,7 +65,7 @@ export const EditCarForm: React.FC<Props> = ({ car }) => {
               <FormInput name='volume' label='Объем двигателя' required />
               <Button
                 disabled={form.formState.isSubmitting}
-                className='text-base mt-10'
+                className='text-base mt-5 mb-5'
                 type='submit'
               >
                 Сохранить

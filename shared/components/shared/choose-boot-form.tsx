@@ -12,6 +12,7 @@ import useTranslations from '@/shared/hooks/use-translations'
 import { FormProvider, useForm } from 'react-hook-form'
 import { FormTable } from './form'
 import { EditBootButton } from './buttons'
+import { BootTableColumns } from '@/shared/constants/table'
 
 interface Props {
   product: BootWithRelation
@@ -19,7 +20,6 @@ interface Props {
 }
 
 export const ChooseBootForm: React.FC<Props> = ({ product, className }) => {
-  /*сделать заглушку когда нет картинки у товара, вместо уродства с проверкой*/
   const src = product.imageUrl || '/no_img.jpg'
   const { formatMessage } = useIntl()
   const methods = useForm()
@@ -27,18 +27,11 @@ export const ChooseBootForm: React.FC<Props> = ({ product, className }) => {
   const formTranslation = translations.getFormTranslation(product.form.id)
   const typeTranslation = translations.getTypeTranslation(product.type.id)
 
-  const columns = [
-    { key: 'carBrand.name', label: formatMessage({ id: 'bootCars.carBrand' }) },
-    { key: 'models', label: formatMessage({ id: 'bootCars.carModel' }) },
-    { key: 'carBody', label: formatMessage({ id: 'bootCars.carBody' }) },
-    { key: 'modelYear', label: formatMessage({ id: 'bootCars.carYear' }) },
-    { key: 'engine', label: formatMessage({ id: 'bootCars.carEngine' }) },
-    { key: 'volume', label: formatMessage({ id: 'bootCars.carVolume' }) },
-  ]
+  const columns = BootTableColumns()
 
   return (
     <div className={cn(className, 'flex flex-1')}>
-      <ProductImage imageUrl={product.imageUrl} className='' />
+      <ProductImage imageUrl={src} className='' />
 
       <div className='w-[490px] bg-[#fcfcfc] dark:bg-[#1d1d1d] p-7 relative'>
         <div>

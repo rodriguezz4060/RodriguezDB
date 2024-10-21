@@ -16,6 +16,21 @@ export const TableColumns = () => {
   return columns
 }
 
+export const BootTableColumns = () => {
+  const { formatMessage } = useIntl()
+
+  const columns = [
+    { key: 'carBrand.name', label: formatMessage({ id: 'bootCars.carBrand' }) },
+    { key: 'models', label: formatMessage({ id: 'bootCars.carModel' }) },
+    { key: 'carBody', label: formatMessage({ id: 'bootCars.carBody' }) },
+    { key: 'modelYear', label: formatMessage({ id: 'bootCars.carYear' }) },
+    { key: 'engine', label: formatMessage({ id: 'bootCars.carEngine' }) },
+    { key: 'volume', label: formatMessage({ id: 'bootCars.carVolume' }) },
+  ]
+
+  return columns
+}
+
 export const TableDeleteColumns = () => {
   const { formatMessage } = useIntl()
 

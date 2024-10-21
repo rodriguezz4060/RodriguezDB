@@ -15,10 +15,12 @@ export default async function BootPage({ params: { id } }: { params: { id: strin
   if (!car) {
     return notFound()
   }
+  const carBrands = await prisma.carBrand.findMany({})
+  const bootDustCovers = await prisma.bootDustCover.findMany({})
 
   return (
     <>
-      <EditCarForm car={car} />
+      <EditCarForm car={car} carBrands={carBrands} bootDustCovers={bootDustCovers} />
     </>
   )
 }
