@@ -1,8 +1,8 @@
 import { prisma } from '@/prisma/prisma-client'
 import { Container, CarCard } from '@/shared/components/shared'
 
-export default async function CarsToyotaHome() {
-  const carBrandId = 2
+export default async function CarsAcuraHome() {
+  const carBrandId = 10
 
   const carsWithOilTo = await prisma.oilCar.findMany({
     where: {

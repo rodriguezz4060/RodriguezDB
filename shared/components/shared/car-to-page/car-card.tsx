@@ -20,7 +20,7 @@ export const CarCard: React.FC<Props> = ({ carTo, rout, className }) => {
   const { formatMessage } = useIntl()
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 2
+  const itemsPerPage = 10
 
   const filteredCarTo = carTo.filter(button =>
     Object.values(button).some(value =>

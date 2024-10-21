@@ -24,13 +24,13 @@ export const CarToMainPage: React.FC<Props> = ({ brands, className }) => {
             href={`car-to/${button.name.toLowerCase()}`}
             className={cn(
               `flex flex-row border items-start p-3 bg-secondary
-               dark:bg-[#18181A] rounded-lg h-[240px] w-[240px] hover:bg-secondary
+               dark:bg-[#18181A] rounded-lg  w-[240px] hover:bg-secondary
                 hover:opacity-80 hover:shadow-md transition duration-200`,
               className
             )}
           >
             <div className='flex flex-col items-start'>
-              <img className='w-[215px] h-[215px] ' src={button.imageUrl} alt={button.name} />
+              <img className='w-[215px] h-auto ' src={button.imageUrl} alt={button.name} />
             </div>
           </Link>
         ))}
