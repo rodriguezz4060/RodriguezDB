@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation'
 import React from 'react'
 
 export default async function AddCarHome() {
+  const carBrands = await prisma.carBrand.findMany({})
   const session = await getUserSession()
 
   if (!session) {
@@ -17,5 +18,5 @@ export default async function AddCarHome() {
     return redirect('/not-auth')
   }
 
-  return <AddCarForm />
+  return <AddCarForm carBrands={carBrands} />
 }

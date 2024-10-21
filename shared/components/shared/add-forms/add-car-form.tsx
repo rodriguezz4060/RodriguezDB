@@ -2,23 +2,24 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, useForm } from 'react-hook-form'
-import React, { useEffect, useState } from 'react'
-import { CarBrand } from '@prisma/client'
-import toast from 'react-hot-toast'
-import { createCar } from '@/app/actions'
+import React from 'react'
 import { Container } from '../container'
 import { FormInput, FormSelect, LabeledBox } from '../form'
 import { formCarSchema, TFormCarSchema } from './schemas/add-car-schemas'
 import { Title } from '../title'
 import { Button } from '../../ui'
-
 import { useIntl } from 'react-intl'
-import { getCarsBrands } from '@/shared/services/cars'
 import { Loader, Save } from 'lucide-react'
+import { useAddCarForm } from '@/shared/hooks'
+import { Brands } from '@/@types/prisma'
 
-export const AddCarForm: React.FC = () => {
+interface Props {
+  carBrands: Brands[]
+  className?: string
+}
+
+export const AddCarForm: React.FC<Props> = ({ carBrands }) => {
   const { formatMessage } = useIntl()
-  const [isLoading, setIsLoading] = useState(false)
 
   const form = useForm<TFormCarSchema>({
     resolver: zodResolver(formCarSchema),
@@ -33,40 +34,7 @@ export const AddCarForm: React.FC = () => {
     },
   })
 
-  const [carBrands, setCarBrands] = useState<CarBrand[]>([])
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const carBrands = await getCarsBrands()
-        setCarBrands(carBrands)
-      } catch (error) {
-        console.error('Error fetching car brands:', error)
-        toast.error(formatMessage({ id: 'toast.carBrandsFetchingError' }))
-      }
-    }
-
-    fetchData()
-  }, [])
-
-  const onSubmit = async (data: TFormCarSchema) => {
-    try {
-      setIsLoading(true)
-      await createCar(data)
-
-      toast.success(formatMessage({ id: 'toast.carAddSuccess' }), {
-        icon: '✅',
-      })
-
-      form.reset()
-    } catch (error) {
-      return toast.error(formatMessage({ id: 'toast.carAddError' }), {
-        icon: '❌',
-      })
-    } finally {
-      setIsLoading(false)
-    }
-  }
+  const { onSubmit, isLoading } = useAddCarForm(form)
 
   return (
     <>

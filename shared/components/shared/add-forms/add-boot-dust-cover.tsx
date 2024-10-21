@@ -2,28 +2,23 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, useForm } from 'react-hook-form'
-import React, { useEffect, useState } from 'react'
-import toast from 'react-hot-toast'
+import React from 'react'
 import { useIntl } from 'react-intl'
-import { checkAndCreateBootName, createBootDustCover } from '@/app/actions'
 import { Container } from '../container'
 import { FormInput, FormSelect, LabeledBox } from '../form'
 import { Button } from '../../ui'
-import {
-  getBootDustForm,
-  getBootDustName,
-  getBootDustType,
-} from '@/shared/services/boot-dust-cover'
 import { formAddBootDustCoverSchema, TFormAddBootDustCoverSchema } from './schemas/add-boot-schemas'
 import { Loader, Save } from 'lucide-react'
+import { useAddBootKitForm } from '@/shared/hooks'
 
 interface Props {
+  forms: { id: number; form: string }[]
+  types: { id: number; type: string }[]
   className?: string
 }
 
-export const AddBootDustCoverForm: React.FC<Props> = ({ className }) => {
+export const AddBootDustCoverForm: React.FC<Props> = ({ forms, types, className }) => {
   const { formatMessage } = useIntl()
-  const [isLoading, setIsLoading] = useState(false)
 
   const form = useForm<TFormAddBootDustCoverSchema>({
     resolver: zodResolver(formAddBootDustCoverSchema),
@@ -39,71 +34,7 @@ export const AddBootDustCoverForm: React.FC<Props> = ({ className }) => {
     },
   })
 
-  const [names, setNames] = useState<{ id: number; name: string }[]>([])
-  const [forms, setForms] = useState<{ id: number; form: string }[]>([])
-  const [types, setTypes] = useState<{ id: number; type: string }[]>([])
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [names, types, forms] = await Promise.all([
-          getBootDustName(),
-          getBootDustType(),
-          getBootDustForm(),
-        ])
-
-        setNames(names)
-        setTypes(types)
-        setForms(forms)
-      } catch (error) {
-        console.error('Error fetching data:', error)
-        toast.error(formatMessage({ id: 'toast.bootFetchingError' }))
-      }
-    }
-
-    fetchData()
-  }, [])
-
-  const onSubmit = async (data: TFormAddBootDustCoverSchema) => {
-    try {
-      setIsLoading(true)
-
-      // Преобразование строк в числа
-      const formattedData = {
-        ...data,
-        dIn: Number(data.dIn),
-        dOut: Number(data.dOut),
-        height: Number(data.height),
-      }
-
-      // Проверка и создание имени
-      const nameId = await checkAndCreateBootName(data.newName)
-      if (!nameId) {
-        throw new Error('Failed to get or create name')
-      }
-
-      // Добавление nameId в данные
-      const finalData = {
-        ...formattedData,
-        nameId,
-      }
-
-      await createBootDustCover(finalData)
-
-      toast.success(formatMessage({ id: 'toast.bootAddedSuccess' }), {
-        icon: '✅',
-      })
-
-      // Очистка формы после успешного добавления
-      form.reset()
-    } catch (error) {
-      return toast.error(formatMessage({ id: 'toast.bootAddedError' }), {
-        icon: '❌',
-      })
-    } finally {
-      setIsLoading(false)
-    }
-  }
+  const { onSubmit, isLoading } = useAddBootKitForm(form)
 
   return (
     <Container className='flex items-center justify-center mb-10'>

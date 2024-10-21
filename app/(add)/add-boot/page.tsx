@@ -5,6 +5,9 @@ import { redirect } from 'next/navigation'
 import React from 'react'
 
 export default async function AddBootHome() {
+  const form = await prisma.form.findMany({})
+  const type = await prisma.type.findMany({})
+
   const session = await getUserSession()
 
   if (!session) {
@@ -17,5 +20,5 @@ export default async function AddBootHome() {
     return redirect('/not-auth')
   }
 
-  return <AddBootPage />
+  return <AddBootPage form={form} type={type} />
 }

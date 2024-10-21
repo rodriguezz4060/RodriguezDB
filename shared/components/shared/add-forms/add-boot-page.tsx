@@ -10,10 +10,19 @@ import { AddBootDustCoverForm } from './add-boot-dust-cover'
 import { useIntl } from 'react-intl'
 
 interface Props {
+  form: {
+    id: number
+    form: string
+  }[]
+  type: {
+    id: number
+    type: string
+  }[]
+
   className?: string
 }
 
-export const AddBootPage: React.FC<Props> = ({ className }) => {
+export const AddBootPage: React.FC<Props> = ({ form, type, className }) => {
   const { formatMessage } = useIntl()
   return (
     <Container className='h-full dark:bg-zinc-900 px-4'>
@@ -26,7 +35,7 @@ export const AddBootPage: React.FC<Props> = ({ className }) => {
           </Button>
         </Link>
       </div>
-      <AddBootDustCoverForm className='max-w-md mx-auto ' />
+      <AddBootDustCoverForm className='max-w-md mx-auto' forms={form} types={type} />
     </Container>
   )
 }
