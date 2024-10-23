@@ -18,8 +18,12 @@
     },
     "profile": {
         "title": "Личные данные",
-        "": "",
-        "": ""
+        "email": "E-Mail",
+        "fullName": "Полное имя",
+        "password": "Новый пароль",
+        "confirmPassword": "Повторите пароль",
+        "save": "Сохранить",
+        "exit": "Выйти"
     },
     "filters": {
         "title": "Фильтрация",

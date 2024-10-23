@@ -16,6 +16,15 @@
         "clients": "База клієнтів",
         "cars": "База автомобілів"
     },
+    "profile": {
+        "title": "Особисті дані",
+        "email": "E-Mail",
+        "fullName": "Повне ім'я",
+        "password": "Новий пароль",
+        "confirmPassword": "Повторіть пароль",
+        "save": "Зберегти",
+        "exit": "Вийти"
+    },
     "filters": {
         "title": "Фільтрація",
         "form": "Форма:",
