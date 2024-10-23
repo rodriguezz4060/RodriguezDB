@@ -22,11 +22,15 @@ export default async function EditBootDustCoverPage({
     },
   })
 
+  const names = await prisma.name.findMany({})
+  const types = await prisma.type.findMany({})
+  const forms = await prisma.form.findMany({})
+
   if (!bootCover) {
     return notFound()
   }
 
   if (!id) return notFound()
 
-  return <EditBootDustCoverForm data={bootCover} />
+  return <EditBootDustCoverForm data={bootCover} names={names} types={types} forms={forms} />
 }

@@ -67,12 +67,12 @@ export const FormTable: React.FC<Props> = ({
                       />
                     ) : column.key === 'actions' ? (
                       <Button
-                        className='ml-3'
+                        className='rounded-[5px]'
                         variant={'destructive'}
-                        size={'icon'}
+                        size={'trash'}
                         onClick={() => onRemove(item.id)}
                       >
-                        <Trash />
+                        <Trash size={18} />
                       </Button>
                     ) : (
                       getValue(item, column.key)
