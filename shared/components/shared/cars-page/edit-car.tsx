@@ -38,37 +38,49 @@ export const EditCarForm: React.FC<Props> = ({ car, carBrands, bootDustCovers })
     },
   })
 
-  const { connectedDustCovers, onSubmit, handleRemoveDustCover } = useEditCarForm(
+  const { isLoading, connectedDustCovers, onSubmit, handleRemoveDustCover } = useEditCarForm(
     car.id,
     car.bootDustCover
   )
 
   return (
     <Container>
-      <Title text={`Редактирование автомобиля | ${car.models}`} size='md' className='font-bold' />
+      <Title
+        text={`${formatMessage({ id: 'carToPage.editCar' })} | ${car.models}`}
+        size='md'
+        className='font-bold'
+      />
       <div className='flex gap-[80px]'>
         <div className='w-[400px]'>
           <FormProvider {...form}>
             <form className='flex flex-col gap-5 w-96 mt-10' onSubmit={form.handleSubmit(onSubmit)}>
-              <FormSelect name='carBrandId' label='Бренд автомобиля' required>
+              <FormSelect
+                name='carBrandId'
+                label={formatMessage({ id: 'carToPage.carBrandId' })}
+                required
+              >
                 {carBrands.map(brand => (
                   <option key={brand.id} value={brand.id}>
                     {brand.name}
                   </option>
                 ))}
               </FormSelect>
-              <FormInput name='imageUrl' label='URL изображения' />
-              <FormInput name='models' label='Модель' required />
-              <FormInput name='carBody' label='Кузов' required />
-              <FormInput name='modelYear' label='Год выпуска' required />
-              <FormInput name='engine' label='Двигатель' required />
-              <FormInput name='volume' label='Объем двигателя' required />
-              <Button
-                disabled={form.formState.isSubmitting}
-                className='text-base mt-5 mb-5'
-                type='submit'
-              >
-                Сохранить
+              <FormInput name='imageUrl' label={formatMessage({ id: 'carToPage.imageUrl' })} />
+              <FormInput name='models' label={formatMessage({ id: 'carToPage.models' })} required />
+              <FormInput
+                name='carBody'
+                label={formatMessage({ id: 'carToPage.carBody' })}
+                required
+              />
+              <FormInput
+                name='modelYear'
+                label={formatMessage({ id: 'carToPage.modelYear' })}
+                required
+              />
+              <FormInput name='engine' label={formatMessage({ id: 'carToPage.engine' })} required />
+              <FormInput name='volume' label={formatMessage({ id: 'carToPage.volume' })} required />
+              <Button disabled={isLoading} className='text-base mt-5 mb-5' type='submit'>
+                {formatMessage({ id: 'addBootForm.editSave' })}
               </Button>
             </form>
           </FormProvider>
@@ -86,7 +98,11 @@ export const EditCarForm: React.FC<Props> = ({ car, carBrands, bootDustCovers })
             </FormProvider>
 
             <div>
-              <Title text='Связанные пыльники:' size='sm' className='font-bold' />
+              <Title
+                text={formatMessage({ id: 'carToPage.connectBoot' })}
+                size='sm'
+                className='font-bold'
+              />
               <ul>
                 {connectedDustCovers.map(dustCover => (
                   <DeleteBootToCarsButton

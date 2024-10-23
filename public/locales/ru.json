@@ -87,7 +87,15 @@
         "addTitleData": "Страница добавления автомобиля",
         "tableTitle": "Информация о ТО",
         "noInformation": "На странице еще нет информации о ТО",
-        "noToInformation": "Данные отсутствуют"
+        "noToInformation": "Данные отсутствуют",
+        "editCar": "Редактирование автомобиля",
+        "carBrandId": "Бренд автомобиля",
+        "imageUrl": "URL изображения",
+        "models": "Модель",
+        "carBody": "Кузов",
+        "modelYear": "Год выпуска",
+        "volume": "Объем двигателя",
+        "connectBoot": "Связанные пыльники:"
     },
     "clients": {
         "noDataAvailable": "Информация о запчастях не найдена.",

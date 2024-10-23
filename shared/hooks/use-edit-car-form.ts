@@ -9,9 +9,11 @@ import { useIntl } from 'react-intl'
 
 export const useEditCarForm = (carId: number, initialDustCovers: BootDustCover[]) => {
   const { formatMessage } = useIntl()
+  const [isLoading, setIsLoading] = useState(false)
   const [connectedDustCovers, setConnectedDustCovers] = useState<BootDustCover[]>(initialDustCovers)
 
   const onSubmit = async (data: TFormEditCarSchema) => {
+    setIsLoading(true)
     try {
       await updatedCar(data)
 
@@ -22,6 +24,8 @@ export const useEditCarForm = (carId: number, initialDustCovers: BootDustCover[]
       return toast.error(formatMessage({ id: 'toast.editCarError' }), {
         icon: '❌',
       })
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -40,6 +44,7 @@ export const useEditCarForm = (carId: number, initialDustCovers: BootDustCover[]
   }
 
   return {
+    isLoading,
     connectedDustCovers,
     setConnectedDustCovers,
     onSubmit,

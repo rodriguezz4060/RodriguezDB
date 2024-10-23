@@ -87,7 +87,15 @@
         "addTitleData": "Сторінка додавання автомобіля",
         "tableTitle": "Інформація про ТО",
         "noInformation": "На сторінці ще немає інформації про ТО",
-        "noToInformation": "Дані відсутні"
+        "noToInformation": "Дані відсутні",
+        "editCar": "Редагування автомобіля",
+        "carBrandId": "Бренд автомобіля",
+        "imageUrl": "URL зображення",
+        "models": "Модель",
+        "carBody": "Кузов",
+        "modelYear": "Рік випуску",
+        "volume": "Об'єм двигуна",
+        "connectBoot": "Пов'язані пильовики:"
     },
     "clients": {
         "noDataAvailable": "Інформація про запчастини не знайдена.",
