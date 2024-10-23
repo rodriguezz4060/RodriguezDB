@@ -7,19 +7,16 @@ import {
   formAddClientSchema,
 } from '@/shared/components/shared/clients/schemas/add-client-schemas'
 import { useIntl } from 'react-intl'
-import toast from 'react-hot-toast'
 import { Container } from '../container'
 import { FormInput, FormPhoneInput, LabeledBox } from '../form'
 import { Title } from '../title'
 import { Button } from '../../ui'
 import { ArrowLeft, Loader, Save } from 'lucide-react'
-import { useState } from 'react'
-import { createClient } from '@/app/actions'
 import Link from 'next/link'
+import { useAddClientForm } from '@/shared/hooks'
 
 export const AddClientForm: React.FC = () => {
   const { formatMessage } = useIntl()
-  const [isLoading, setIsLoading] = useState(false)
 
   const form = useForm<TFormAddClientSchema>({
     resolver: zodResolver(formAddClientSchema),
@@ -31,24 +28,7 @@ export const AddClientForm: React.FC = () => {
     },
   })
 
-  const onSubmit = async (data: TFormAddClientSchema) => {
-    try {
-      setIsLoading(true)
-      await createClient(data)
-
-      toast.success(formatMessage({ id: 'toast.clientAddSuccess' }), {
-        icon: '✅',
-      })
-
-      form.reset()
-    } catch (error) {
-      return toast.error(formatMessage({ id: 'toast.clientAddError' }), {
-        icon: '❌',
-      })
-    } finally {
-      setIsLoading(false)
-    }
-  }
+  const { onSubmit, isLoading } = useAddClientForm(form)
 
   return (
     <>
