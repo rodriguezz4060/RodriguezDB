@@ -1,70 +1,61 @@
-'use client'
-
-import React from 'react'
-import { FormProvider, useForm } from 'react-hook-form'
-import { formLoginSchema, TFormLoginSchema } from './schemas'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Title } from '../../../title'
-import { FormInput } from '../../../form'
-import { Button } from '@/shared/components/ui'
-import toast from 'react-hot-toast'
+import { Button } from '@/shared/components/ui/button'
+import { Github, Mail } from 'lucide-react'
 import { signIn } from 'next-auth/react'
+import React from 'react'
+
+import { useIntl } from 'react-intl'
 
 interface Props {
-  onClose: VoidFunction
-  className?: string
+  onClose?: VoidFunction
+  setType: React.Dispatch<React.SetStateAction<'login' | 'email' | 'register'>>
 }
 
-export const LoginForm: React.FC<Props> = ({ onClose }) => {
-  const form = useForm<TFormLoginSchema>({
-    resolver: zodResolver(formLoginSchema),
-    defaultValues: {
-      email: '',
-      password: '',
-    },
-  })
-
-  const onSubmit = async (data: TFormLoginSchema) => {
-    try {
-      const resp = await signIn('credentials', {
-        ...data,
-        redirect: false,
-      })
-
-      if (!resp?.ok) {
-        throw Error()
-      }
-
-      toast.success('Вы вошли в аккаунт', {
-        icon: '✅',
-      })
-      onClose?.()
-    } catch (error) {
-      console.error('Error [LOGIN]', error)
-      toast.error('Не удалось войти в аккаунт', {
-        icon: '❌',
-      })
-    }
-  }
+export const LoginForm: React.FC<Props> = ({ setType, onClose }) => {
+  const { formatMessage } = useIntl()
 
   return (
-    <FormProvider {...form}>
-      <form className='flex flex-col gap-5' onSubmit={form.handleSubmit(onSubmit)}>
-        <div className='flex justify-between items-center'>
-          <div className='mr-2'>
-            <Title text='Вход в аккаунт' size='md' className='font-bold' />
-            <p className='text-gray-400'>Введите свою почту, чтобы войти в аккаунт</p>
-          </div>
-          <img src='/assets/images/phone-icon.png' alt='phone-icon' width={60} height={60} />
-        </div>
+    <div className='flex flex-col gap-4 w-[80%]'>
+      <p className='text-xl font-bold text-center '>Авторизация</p>
 
-        <FormInput name='email' label='E-Mail' required />
-        <FormInput name='password' label='Пароль' type='password' required />
+      <Button
+        variant='blue'
+        onClick={() =>
+          signIn('google', {
+            callbackUrl: '/',
+            redirect: true,
+          })
+        }
+        type='button'
+        className='flex items-center gap-2 text-sm font-bold bg-secondary '
+      >
+        <img className='w-6 h-6' src='/google24px.svg' alt='Google' />
+        Google
+      </Button>
 
-        <Button loading={form.formState.isSubmitting} className='h-12 text-base' type='submit'>
-          Войти
-        </Button>
-      </form>
-    </FormProvider>
+      <Button
+        variant='blue'
+        onClick={() =>
+          signIn('github', {
+            callbackUrl: '/',
+            redirect: true,
+          })
+        }
+        type='button'
+        className='flex items-center gap-2 text-sm font-bold bg-secondary '
+      >
+        <Github size={24} />
+        GitHub
+      </Button>
+
+      <Button
+        variant='blue'
+        onClick={() => setType('email')}
+        type='button'
+        className='flex items-center gap-2 text-sm font-bold bg-secondary '
+      >
+        <Mail size={24} />
+        Почта
+      </Button>
+    </div>
   )
 }

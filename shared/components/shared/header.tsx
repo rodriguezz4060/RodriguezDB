@@ -51,7 +51,7 @@ export const Header: React.FC<Props> = ({ className }) => {
           <div className='flex items-center gap-3'>
             <LocaleToggle />
             <DarkModeToggle />
-            <AuthModal open={openAuthModal} onclose={() => setOpenAuthModal(false)} />
+            <AuthModal open={openAuthModal} onClose={() => setOpenAuthModal(false)} />
             <ProfileButton onClickSingIn={() => setOpenAuthModal(true)} />
           </div>
         </Container>

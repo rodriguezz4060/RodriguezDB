@@ -7,13 +7,16 @@ import toast from 'react-hot-toast'
 import { FormInput } from '../../../form'
 import { Button } from '@/shared/components/ui'
 import { registerUser } from '@/app/actions'
+import { useIntl } from 'react-intl'
 
 interface Props {
   onClose?: VoidFunction
   onClickLogin?: VoidFunction
+  setType: React.Dispatch<React.SetStateAction<'login' | 'email' | 'register'>>
 }
 
-export const RegisterForm: React.FC<Props> = ({ onClose, onClickLogin }) => {
+export const RegisterForm: React.FC<Props> = ({ setType, onClose, onClickLogin }) => {
+  const { formatMessage } = useIntl()
   const form = useForm<TFormRegisterSchema>({
     resolver: zodResolver(formRegisterSchema),
     defaultValues: {
@@ -48,15 +51,53 @@ export const RegisterForm: React.FC<Props> = ({ onClose, onClickLogin }) => {
 
   return (
     <FormProvider {...form}>
-      <form className='flex flex-col gap-5' onSubmit={form.handleSubmit(onSubmit)}>
-        <FormInput name='email' label='E-Mail' required />
-        <FormInput name='fullName' label='Полное имя' required />
-        <FormInput name='password' label='Пароль' type='password' required />
-        <FormInput name='confirmPassword' label='Подтвердите пароль' type='password' required />
+      <form className='flex flex-col gap-4 w-[80%]' onSubmit={form.handleSubmit(onSubmit)}>
+        <p className='text-xl font-bold text-center'>Регистрация</p>
 
-        <Button disabled={form.formState.isSubmitting} className='h-12 text-base' type='submit'>
-          Зарегистрироваться
+        <FormInput
+          name='email'
+          label={formatMessage({ id: 'registerForm.formInputEmailLabel' })}
+          placeholder='user@gmail.com'
+          required
+        />
+        <FormInput
+          name='fullName'
+          label={formatMessage({ id: 'registerForm.formInputNameLabel' })}
+          placeholder='RodriguezDB'
+          required
+        />
+        <FormInput
+          name='password'
+          label={formatMessage({ id: 'registerForm.formInputPassLabel' })}
+          type='password'
+          placeholder='********'
+          required
+        />
+        <FormInput
+          name='confirmPassword'
+          label={formatMessage({ id: 'registerForm.formInputConfirmPassLabel' })}
+          type='password'
+          placeholder='********'
+          required
+        />
+
+        <Button
+          variant='blue'
+          loading={form.formState.isSubmitting}
+          className='flex items-center gap-2 text-sm font-bold bg-secondary hover:bg-blue-700 text-primary hover:text-white'
+          type='submit'
+        >
+          {formatMessage({ id: 'registerForm.regButton' })}
         </Button>
+        <p className='text-gray-400 text-center'>
+          Есть есть аккаунт?{' '}
+          <span
+            className='text-a-color hover:text-a-color-hover cursor-pointer'
+            onClick={() => setType('login')}
+          >
+            Войти
+          </span>
+        </p>
       </form>
     </FormProvider>
   )
