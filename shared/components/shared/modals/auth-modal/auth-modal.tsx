@@ -33,7 +33,7 @@ export const AuthModal: React.FC<Props> = ({ open, onClose, className }) => {
           <div className='w-[40%]'>
             <img
               className='rounded-l-md h-full object-cover'
-              src='/assets/images/logo.png'
+              src='/assets/images/login.jpg'
               alt='logo'
             />
           </div>
