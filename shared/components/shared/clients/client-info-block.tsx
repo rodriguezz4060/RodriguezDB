@@ -7,6 +7,7 @@ import { IdCard, PhoneIcon, TagIcon, TruckIcon } from 'lucide-react'
 import { Button } from '../../ui'
 import { ClientModal } from '../modals'
 import { useIntl } from 'react-intl'
+import Link from 'next/link'
 
 interface Props {
   client: ClientsInfo
@@ -49,7 +50,13 @@ export const ClientInfoBlock: React.FC<Props> = ({ client, className }) => {
                   {formatMessage({ id: 'clients.VIN' })}:
                 </span>
                 <div className='flex-1 border-b border-dashed border-b-neutral-200 relative top-1 mx-2' />
-                {client.VIN}
+                <Link
+                  href={`https://exist.ua/car-search/?task=vin&code=${client.VIN}`}
+                  target='_blank'
+                  className='text-blue-500 hover:text-blue-700'
+                >
+                  {client.VIN}
+                </Link>
               </div>
               <div className='flex items-center'>
                 <TruckIcon className='w-5 h-5 mr-2 text-gray-500' />
