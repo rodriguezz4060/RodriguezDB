@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from '@/shared/components/ui/button'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { signIn } from 'next-auth/react'
@@ -51,26 +53,19 @@ export const EmailForm: React.FC<Props> = ({ setType, onClose }) => {
       <form className='flex flex-col gap-4' onSubmit={form.handleSubmit(onSubmit)}>
         <div className='flex justify-between items-center w-[85%]'>
           <div className='mr-2'>
-            <Title
-              text={formatMessage({ id: 'loginForm.title' })}
-              size='md'
-              className='font-bold'
-            />
-            {/* <p className='text-gray-400'> */}
-            {/* 	{formatMessage({ id: 'loginForm.loginDescription' })} */}
-            {/* </p> */}
+            <Title text={formatMessage({ id: 'login.label' })} size='md' className='font-bold' />
           </div>
         </div>
 
         <FormInput
           name='email'
-          label={formatMessage({ id: 'loginForm.formInputEmailLabel' })}
-          placeholder='user@stormic.app'
+          label={formatMessage({ id: 'login.email' })}
+          placeholder='user@gmail.com'
           required
         />
         <FormInput
           name='password'
-          label={formatMessage({ id: 'loginForm.formInputPassLabel' })}
+          label={formatMessage({ id: 'login.password' })}
           type='password'
           placeholder='********'
           required
@@ -79,18 +74,18 @@ export const EmailForm: React.FC<Props> = ({ setType, onClose }) => {
         <Button
           variant='blue'
           loading={form.formState.isSubmitting}
-          className='flex items-center gap-2 text-sm font-bold bg-secondary hover:bg-blue-700 text-primary hover:text-white'
+          className='flex items-center gap-2 text-sm font-bold bg-secondary'
           type='submit'
         >
-          {formatMessage({ id: 'loginForm.loginButton' })}
+          {formatMessage({ id: 'login.enter' })}
         </Button>
         <p className='text-gray-400 text-center'>
-          Нет аккаунта?{' '}
+          {formatMessage({ id: 'login.noAccount' })}{' '}
           <span
-            className='text-a-color hover:text-a-color-hover cursor-pointer'
+            className='text-blue-600 hover:text-blue-700 cursor-pointer'
             onClick={() => setType('register')}
           >
-            Создать
+            {formatMessage({ id: 'login.createAccount' })}
           </span>
         </p>
       </form>

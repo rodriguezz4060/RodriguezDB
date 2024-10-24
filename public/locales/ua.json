@@ -32,14 +32,19 @@
         "password": "Пароль",
         "confirmPassword": "Підтвердіть пароль",
         "register": "Зареєструватися",
-        "enter": "Увійти"
+        "enter": "Увійти",
+        "noAccount": "Немає акаунта?",
+        "createAccount": "Створити"
     },
     "register": {
         "title": "Введіть свою пошту, щоб увійти в акаунт",
+        "label": "Реєстрація",
         "email": "E-Mail",
+        "fullName": "Логін",
         "password": "Пароль",
         "confirmPassword": "Підтвердіть пароль",
-        "register": "Зареєструватися",
+        "registerButton": "Зареєструватися",
+        "alreadyHaveAccount": "Є аккаунт?",
         "enter": "Увійти"
     },
     "filters": {

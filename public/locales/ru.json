@@ -30,14 +30,19 @@
         "title": "Введите свою почту, чтобы войти в аккаунт",
         "email": "E-Mail",
         "password": "Пароль",
-        "enter": "Войти"
+        "enter": "Войти",
+        "noAccount": "Нет аккаунта?",
+        "createAccount": "Создать"
     },
     "register": {
         "title": "Введите свою почту, чтобы войти в аккаунт",
+        "label": "Регистрация",
         "email": "E-Mail",
+        "fullName": "Логин",
         "password": "Пароль",
         "confirmPassword": "Подтвердите пароль",
-        "register": "Зарегистрироваться",
+        "registerButton": "Зарегистрироваться",
+        "alreadyHaveAccount": "Есть есть аккаунт? ",
         "enter": "Войти"
     },
     "filters": {

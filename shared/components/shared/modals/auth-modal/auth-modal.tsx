@@ -1,11 +1,7 @@
-'use client'
-
 import { Dialog, DialogContent } from '@/shared/components/ui/dialog'
-import { cn } from '@/shared/lib/utils'
 import React from 'react'
 import { LoginForm } from './forms/login-form'
 import { RegisterForm } from './forms/register-form'
-import { useIntl } from 'react-intl'
 import { EmailForm } from './forms/email-form'
 
 interface Props {
@@ -15,7 +11,6 @@ interface Props {
 }
 
 export const AuthModal: React.FC<Props> = ({ open, onClose, className }) => {
-  const { formatMessage } = useIntl()
   const [type, setType] = React.useState<'login' | 'email' | 'register'>('login')
 
   const onSwitchType = () => {

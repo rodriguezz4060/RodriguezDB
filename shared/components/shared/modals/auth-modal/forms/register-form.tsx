@@ -1,4 +1,5 @@
 'use client'
+
 import React from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -52,30 +53,30 @@ export const RegisterForm: React.FC<Props> = ({ setType, onClose, onClickLogin }
   return (
     <FormProvider {...form}>
       <form className='flex flex-col gap-4 w-[80%]' onSubmit={form.handleSubmit(onSubmit)}>
-        <p className='text-xl font-bold text-center'>Регистрация</p>
+        <p className='text-xl font-bold text-center'>{formatMessage({ id: 'register.label' })}</p>
 
         <FormInput
           name='email'
-          label={formatMessage({ id: 'registerForm.formInputEmailLabel' })}
+          label={formatMessage({ id: 'register.email' })}
           placeholder='user@gmail.com'
           required
         />
         <FormInput
           name='fullName'
-          label={formatMessage({ id: 'registerForm.formInputNameLabel' })}
+          label={formatMessage({ id: 'register.fullName' })}
           placeholder='RodriguezDB'
           required
         />
         <FormInput
           name='password'
-          label={formatMessage({ id: 'registerForm.formInputPassLabel' })}
+          label={formatMessage({ id: 'register.password' })}
           type='password'
           placeholder='********'
           required
         />
         <FormInput
           name='confirmPassword'
-          label={formatMessage({ id: 'registerForm.formInputConfirmPassLabel' })}
+          label={formatMessage({ id: 'register.confirmPassword' })}
           type='password'
           placeholder='********'
           required
@@ -84,18 +85,18 @@ export const RegisterForm: React.FC<Props> = ({ setType, onClose, onClickLogin }
         <Button
           variant='blue'
           loading={form.formState.isSubmitting}
-          className='flex items-center gap-2 text-sm font-bold bg-secondary hover:bg-blue-700 text-primary hover:text-white'
+          className='flex items-center gap-2 text-sm font-bold bg-secondary'
           type='submit'
         >
-          {formatMessage({ id: 'registerForm.regButton' })}
+          {formatMessage({ id: 'register.registerButton' })}
         </Button>
         <p className='text-gray-400 text-center'>
-          Есть есть аккаунт?{' '}
+          {formatMessage({ id: 'register.alreadyHaveAccount' })}{' '}
           <span
-            className='text-a-color hover:text-a-color-hover cursor-pointer'
+            className='text-blue-600 hover:text-blue-700 cursor-pointer'
             onClick={() => setType('login')}
           >
-            Войти
+            {formatMessage({ id: 'register.enter' })}
           </span>
         </p>
       </form>
