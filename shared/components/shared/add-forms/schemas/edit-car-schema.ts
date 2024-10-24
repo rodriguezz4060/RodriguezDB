@@ -3,7 +3,7 @@ import { z } from 'zod'
 export const formEditCarSchema = z.object({
   id: z.number(),
   carBrandId: z.number(),
-  imageUrl: z.string().url(),
+  imageUrl: z.string().url().nullable().optional(),
   models: z.string(),
   carBody: z.string(),
   modelYear: z.string(),

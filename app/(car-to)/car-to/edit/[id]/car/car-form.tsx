@@ -31,7 +31,7 @@ export const CarForm: React.FC<Props> = ({ car, carBrands }) => {
     defaultValues: {
       id: car.id,
       carBrandId: car.carBrandId,
-      imageUrl: car.imageUrl,
+      imageUrl: car.imageUrl === null ? undefined : car.imageUrl,
       models: car.models,
       carBody: car.carBody,
       modelYear: car.modelYear,
