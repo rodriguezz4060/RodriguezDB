@@ -7,7 +7,6 @@ import { CarWithBrand } from '@/@types/prisma'
 import { FormProvider, useForm } from 'react-hook-form'
 import { FormDataTable } from '../form'
 import { DataTableColumns } from '@/shared/constants/table'
-import { DeleteCar } from '../cars-page'
 
 interface Props {
   cars: CarWithBrand[]

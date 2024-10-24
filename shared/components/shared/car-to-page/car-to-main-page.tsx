@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import { useIntl } from 'react-intl'
 import { Container } from '../container'
@@ -13,8 +11,6 @@ interface Props {
 }
 
 export const CarToMainPage: React.FC<Props> = ({ brands, className }) => {
-  const { formatMessage } = useIntl()
-
   return (
     <Container className='h-full flex flex-col py-5 secondary dark:bg-zinc-900'>
       <div className='flex flex-wrap justify-center gap-6'>
