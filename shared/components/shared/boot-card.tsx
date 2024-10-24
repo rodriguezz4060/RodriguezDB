@@ -27,7 +27,6 @@ export const BootCard: React.FC<Props> = ({
   id,
   name,
   type,
-
   dIn,
   dOut,
   height,

@@ -15,7 +15,7 @@ export const LoginForm: React.FC<Props> = ({ setType, onClose }) => {
 
   return (
     <div className='flex flex-col gap-4 w-[80%]'>
-      <p className='text-xl font-bold text-center '>Авторизация</p>
+      <p className='text-xl font-bold text-center '>{formatMessage({ id: 'login.titleForm' })}</p>
 
       <Button
         variant='blue'
@@ -54,7 +54,7 @@ export const LoginForm: React.FC<Props> = ({ setType, onClose }) => {
         className='flex items-center gap-2 text-sm font-bold bg-secondary '
       >
         <Mail size={24} />
-        Почта
+        {formatMessage({ id: 'login.mail' })}
       </Button>
     </div>
   )

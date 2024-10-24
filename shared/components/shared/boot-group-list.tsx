@@ -1,4 +1,5 @@
 'use client'
+
 import { cn } from '@/shared/lib/utils'
 import React, { useState } from 'react'
 import { BootCard } from './boot-card'

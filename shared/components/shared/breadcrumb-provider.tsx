@@ -11,6 +11,7 @@ import {
   BreadcrumbSeparator,
 } from '../ui/breadcrumb'
 import { Container } from './container'
+import { useIntl } from 'react-intl'
 
 interface BreadcrumbItem {
   label: string
@@ -19,6 +20,7 @@ interface BreadcrumbItem {
 
 export const BreadcrumbProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const pathname = usePathname()
+  const { formatMessage } = useIntl()
   const [breadcrumbs, setBreadcrumbs] = useState<BreadcrumbItem[]>([])
 
   useEffect(() => {
@@ -36,8 +38,8 @@ export const BreadcrumbProvider: React.FC<React.PropsWithChildren> = ({ children
       }
     })
 
-    setBreadcrumbs([{ label: 'Главная', href: '/' }, ...breadcrumbs])
-  }, [pathname])
+    setBreadcrumbs([{ label: formatMessage({ id: 'breadcrumb.home' }), href: '/' }, ...breadcrumbs])
+  }, [pathname, formatMessage])
 
   return (
     <>

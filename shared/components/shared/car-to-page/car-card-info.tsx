@@ -2,15 +2,9 @@
 
 import React from 'react'
 import { useIntl } from 'react-intl'
-import { Container } from '../container'
 import { OilInfo } from '@/@types/prisma'
-
-import Link from 'next/link'
 import { cn } from '@/shared/lib/utils'
 import { Separator } from '../../ui'
-import { FormProvider, useForm } from 'react-hook-form'
-import { FormTableCarTo } from '../form'
-import { MaintenanceDataToTable, TableColumns } from '@/shared/constants/table-client-to'
 import { EditCarToButton } from '../buttons'
 
 interface Props {
@@ -20,6 +14,8 @@ interface Props {
 
 export const CarCardToInfo: React.FC<Props> = ({ oilInfo, className }) => {
   const { formatMessage } = useIntl()
+
+  const src = oilInfo.imageUrl || '/no_img.jpg'
 
   return (
     <div className='flex flex-wrap justify-start gap-6'>
@@ -32,7 +28,7 @@ export const CarCardToInfo: React.FC<Props> = ({ oilInfo, className }) => {
           )}
         >
           <div className='flex flex-row items-center w-full'>
-            <img className='min-w-[200px]' src={oilInfo.imageUrl} alt={oilInfo.models} />
+            <img className='min-w-[200px] max-w-[200px]' src={src} alt={oilInfo.models} />
 
             <Separator orientation='vertical' className='w-px h-24 mx-6 bg-gray-300' />
 

@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
 
     const car = await prisma.oilCar.create({
       data: {
-        imageUrl: data.imageUrl,
+        imageUrl: data.imageUrl || null,
         models: data.models,
         carBody: data.carBody,
         modelYear: data.modelYear,

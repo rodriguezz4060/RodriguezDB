@@ -1,3 +1,5 @@
+'use client'
+
 import { Dialog, DialogContent } from '@/shared/components/ui/dialog'
 import React from 'react'
 import { LoginForm } from './forms/login-form'
@@ -12,10 +14,6 @@ interface Props {
 
 export const AuthModal: React.FC<Props> = ({ open, onClose, className }) => {
   const [type, setType] = React.useState<'login' | 'email' | 'register'>('login')
-
-  const onSwitchType = () => {
-    setType(type === 'login' ? 'register' : 'login')
-  }
 
   const handleClose = () => {
     onClose()

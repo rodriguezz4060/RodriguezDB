@@ -1,5 +1,4 @@
 import React from 'react'
-import { useIntl } from 'react-intl'
 import { Container } from '../container'
 import { Brands } from '@/@types/prisma'
 import Link from 'next/link'
@@ -20,8 +19,8 @@ export const CarToMainPage: React.FC<Props> = ({ brands, className }) => {
             href={`car-to/${button.name.toLowerCase()}`}
             className={cn(
               `flex flex-row border items-start p-3 bg-secondary
-               dark:bg-[#18181A] rounded-lg  w-[240px] hover:bg-secondary
-                hover:opacity-80 hover:shadow-md transition duration-200`,
+               dark:bg-[#18181A] rounded-lg w-[240px] hover:bg-secondary
+                dark:hover:opacity-60 hover:opacity-80 hover:shadow-md transition duration-300`,
               className
             )}
           >

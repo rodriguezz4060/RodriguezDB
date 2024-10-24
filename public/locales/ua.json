@@ -2,7 +2,12 @@
     "header": {
         "headerTextUp": "Rodriguez DB",
         "headerTextDown": "База даних Родрігеса",
-        "serchplaceholder": "Пошук по VIN"
+        "serchplaceholder": "Пошук по VIN",
+        "signIn": "Вхід",
+        "profile": "Профіль"
+    },
+    "breadcrumb": {
+        "home": "Головна"
     },
     "content": {
         "selectSection": "Оберіть розділ",
@@ -34,7 +39,9 @@
         "register": "Зареєструватися",
         "enter": "Увійти",
         "noAccount": "Немає акаунта?",
-        "createAccount": "Створити"
+        "createAccount": "Створити",
+        "titleForm": "Авторизація",
+        "mail": "Пошта"
     },
     "register": {
         "title": "Введіть свою пошту, щоб увійти в акаунт",

@@ -7,7 +7,6 @@ interface Props {
 }
 
 export const ProductImage: React.FC<Props> = ({ imageUrl, className }) => {
-  /*сделать заглушку когда нет картинки у товара, вместо уродства с проверкой*/
   const src = imageUrl || '/no_img.jpg'
 
   return (

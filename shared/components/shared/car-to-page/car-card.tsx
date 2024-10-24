@@ -57,69 +57,72 @@ export const CarCard: React.FC<Props> = ({ carTo, rout, className }) => {
       ) : (
         <>
           <div className='grid grid-cols-2 gap-[20px]'>
-            {paginatedCarTo.map(button => (
-              <Link
-                key={button.id}
-                href={`${rout}/${button.id}`}
-                className={cn(
-                  `flex flex-row border items-start p-3 bg-secondary
-           dark:bg-[#18181A] rounded-[5px] h-auto  hover:bg-secondary
-            hover:opacity-80 hover:shadow-md transition duration-200 relative`,
-                  className
-                )}
-              >
-                <div className='flex flex-row items-center w-full'>
-                  <img className='min-w-[200px]' src={button.imageUrl} alt={button.models} />
+            {paginatedCarTo.map(button => {
+              const src = button.imageUrl || '/no_img.jpg'
+              return (
+                <Link
+                  key={button.id}
+                  href={`${rout}/${button.id}`}
+                  className={cn(
+                    `flex flex-row border items-start p-3 bg-secondary
+             dark:bg-[#18181A] rounded-[5px] h-auto hover:bg-secondary
+               dark:hover:opacity-60 hover:opacity-80 hover:shadow-md transition duration-200 relative`,
+                    className
+                  )}
+                >
+                  <div className='flex flex-row items-center w-full'>
+                    <img className='min-w-[200px] max-w-[200px]' src={src} alt={button.models} />
 
-                  <Separator orientation='vertical' className='w-px h-24 mx-6 bg-gray-300' />
+                    <Separator orientation='vertical' className='w-px h-24 mx-6 bg-gray-300' />
 
-                  <div className='flex flex-col flex-1'>
-                    <div className='flex flex-col'>
-                      <div className='flex'>
-                        <span className='flex flex-1 '>
-                          {formatMessage({ id: 'carToPage.model' })}
-                          <div className='flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2' />
-                          <div className=''>{button.models}</div>
-                        </span>
-                      </div>
+                    <div className='flex flex-col flex-1'>
+                      <div className='flex flex-col'>
+                        <div className='flex'>
+                          <span className='flex flex-1 '>
+                            {formatMessage({ id: 'carToPage.model' })}
+                            <div className='flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2' />
+                            <div className=''>{button.models}</div>
+                          </span>
+                        </div>
 
-                      <div className='flex'>
-                        <span className='flex flex-1 '>
-                          {formatMessage({ id: 'carToPage.body' })}
-                          <div className='flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2' />
-                          {button.carBody}
-                        </span>
-                      </div>
+                        <div className='flex'>
+                          <span className='flex flex-1 '>
+                            {formatMessage({ id: 'carToPage.body' })}
+                            <div className='flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2' />
+                            {button.carBody}
+                          </span>
+                        </div>
 
-                      <div className='flex'>
-                        <span className='flex flex-1 '>
-                          {formatMessage({ id: 'carToPage.carYear' })}
-                          <div className='flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2' />
-                          {button.modelYear}
-                        </span>
-                      </div>
+                        <div className='flex'>
+                          <span className='flex flex-1 '>
+                            {formatMessage({ id: 'carToPage.carYear' })}
+                            <div className='flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2' />
+                            {button.modelYear}
+                          </span>
+                        </div>
 
-                      <div className='flex'>
-                        <span className='flex flex-1 '>
-                          {formatMessage({ id: 'carToPage.engine' })}
-                          <div className='flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2' />
-                          {button.engine}
-                        </span>
-                      </div>
+                        <div className='flex'>
+                          <span className='flex flex-1 '>
+                            {formatMessage({ id: 'carToPage.engine' })}
+                            <div className='flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2' />
+                            {button.engine}
+                          </span>
+                        </div>
 
-                      <div className='flex'>
-                        <span className='flex flex-1 '>
-                          {formatMessage({ id: 'carToPage.engineVolume' })}
-                          <div className='flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2' />
-                          {button.volume}
-                        </span>
+                        <div className='flex'>
+                          <span className='flex flex-1 '>
+                            {formatMessage({ id: 'carToPage.engineVolume' })}
+                            <div className='flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2' />
+                            {button.volume}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <EditCarToButton id={button.id} className='absolute top-2 right-2 mr-2' />
-              </Link>
-            ))}
+                  <EditCarToButton id={button.id} className='absolute top-2 right-2 mr-2' />
+                </Link>
+              )
+            })}
           </div>
           <div className='mt-5'>
             <PaginationComponent

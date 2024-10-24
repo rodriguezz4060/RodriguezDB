@@ -39,7 +39,7 @@ model CarBrand {
 model Car {
     id Int @id @default(autoincrement())
 
-    imageUrl  String
+    imageUrl  String?
     models    String
     carBody   String
     modelYear String
@@ -101,7 +101,7 @@ model BootDustCover {
 model OilCar {
     id Int @id @default(autoincrement())
 
-    imageUrl  String
+    imageUrl  String?
     models    String
     carBody   String
     modelYear String

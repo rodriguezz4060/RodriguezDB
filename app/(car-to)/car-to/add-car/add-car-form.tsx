@@ -1,17 +1,15 @@
 'use client'
 
 import { Brands } from '@/@types/prisma'
-import { createCarTo } from '@/app/actions'
 import { FormInput, FormSelect, LabeledBox } from '@/shared/components/shared'
 import {
   formCarSchema,
   TFormCarSchema,
 } from '@/shared/components/shared/add-forms/schemas/add-car-schemas'
 import { Button } from '@/shared/components/ui'
+import { useAddCarForm } from '@/shared/hooks'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import toast from 'react-hot-toast'
 import { useIntl } from 'react-intl'
 
 interface Props {
@@ -21,7 +19,6 @@ interface Props {
 
 export function AddCarForm({ carBrands, className }: Props) {
   const { formatMessage } = useIntl()
-  const [isLoading, setIsLoading] = useState(false)
 
   const form = useForm<TFormCarSchema>({
     resolver: zodResolver(formCarSchema),
@@ -36,24 +33,7 @@ export function AddCarForm({ carBrands, className }: Props) {
     },
   })
 
-  const onSubmit = async (data: TFormCarSchema) => {
-    try {
-      setIsLoading(true)
-      await createCarTo(data)
-
-      toast.success(formatMessage({ id: 'toast.carAddSuccess' }), {
-        icon: '✅',
-      })
-
-      form.reset()
-    } catch (error) {
-      return toast.error(formatMessage({ id: 'toast.carAddError' }), {
-        icon: '❌',
-      })
-    } finally {
-      setIsLoading(false)
-    }
-  }
+  const { onSubmit, isLoading } = useAddCarForm(form)
 
   return (
     <FormProvider {...form}>

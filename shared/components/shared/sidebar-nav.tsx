@@ -1,6 +1,5 @@
 'use client'
 
-import { Separator } from '@/shared/components/ui'
 import { buttonVariants } from '@/shared/components/ui/button'
 import { cn } from '@/shared/lib/utils'
 import Link from 'next/link'
