@@ -7,7 +7,7 @@ import {
   TFormCarSchema,
 } from '@/shared/components/shared/add-forms/schemas/add-car-schemas'
 import { Button } from '@/shared/components/ui'
-import { useAddCarForm } from '@/shared/hooks'
+import { useAddCarToForm } from '@/shared/hooks'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useIntl } from 'react-intl'
@@ -33,7 +33,7 @@ export function AddCarForm({ carBrands, className }: Props) {
     },
   })
 
-  const { onSubmit, isLoading } = useAddCarForm(form)
+  const { onSubmit, isLoading } = useAddCarToForm(form)
 
   return (
     <FormProvider {...form}>
