@@ -68,7 +68,7 @@ export async function registerUser(body: Prisma.UserCreateInput) {
 
 export const updateBootDustCover = async (data: any) => {
   const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://rodriguez-db.vercel.app' // Убедитесь, что эта переменная определена в вашем .env файле
-  const url = `/api/boot-dust-cover`
+  const url = `${baseUrl}/api/boot-dust-cover`
 
   const response = await fetch(url, {
     method: 'PUT',
