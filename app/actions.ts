@@ -111,7 +111,7 @@ export async function createCar(data: TFormCarSchema) {
 }
 
 export const updatedCar = async (data: any) => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000' // Убедитесь, что эта переменная определена в вашем .env файле
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://rodriguez-db.vercel.app' // Убедитесь, что эта переменная определена в вашем .env файле
   const url = `${baseUrl}/api/cars`
 
   const response = await fetch(url, {
@@ -130,7 +130,7 @@ export const updatedCar = async (data: any) => {
 }
 
 export const deleteCar = async (id: number) => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://rodriguez-db.vercel.app'
   const url = `${baseUrl}/api/cars`
 
   const response = await fetch(url, {
@@ -149,7 +149,7 @@ export const deleteCar = async (id: number) => {
 }
 
 export const removeConnection = async (carId: number, dustCoverId: number) => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://rodriguez-db.vercel.app'
   const url = `${baseUrl}/api/connection?carId=${carId}&dustCoverId=${dustCoverId}`
 
   const response = await fetch(url, {
@@ -215,7 +215,7 @@ export async function checkAndCreateBootName(name: string) {
 }
 
 export const linkCarToBootDustCover = async (bootDustCoverId: number, carId: number) => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000' // Убедитесь, что эта переменная определена в вашем .env файле
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://rodriguez-db.vercel.app' // Убедитесь, что эта переменная определена в вашем .env файле
   const url = `${baseUrl}/api/boot-dust-cover`
 
   const response = await fetch(url, {
@@ -233,7 +233,7 @@ export const linkCarToBootDustCover = async (bootDustCoverId: number, carId: num
 
 export async function createClient(data: TFormAddClientSchema): Promise<void> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'
+    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://rodriguez-db.vercel.app'
     const url = `${baseUrl}/api/clients`
     const response = await fetch(url, {
       method: 'POST',
@@ -254,7 +254,7 @@ export async function createClient(data: TFormAddClientSchema): Promise<void> {
 }
 
 export const updateClientCarTo = async (data: TFormEditClientCarToSchema) => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://rodriguez-db.vercel.app'
   const url = `${baseUrl}/api/clients/edit/to`
 
   console.log('Sending data to server:', data) // Логирование данных
@@ -275,7 +275,7 @@ export const updateClientCarTo = async (data: TFormEditClientCarToSchema) => {
 }
 
 export const updateClientCar = async (data: TFormEditClientCarSchema) => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://rodriguez-db.vercel.app'
   const url = `${baseUrl}/api/clients/edit/car`
 
   console.log('Sending data to server:', data) // Логирование данных
@@ -297,7 +297,7 @@ export const updateClientCar = async (data: TFormEditClientCarSchema) => {
 
 export async function createCarTo(data: TFormCarSchema): Promise<void> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'
+    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://rodriguez-db.vercel.app'
     const url = `${baseUrl}/api/car-to`
     const response = await fetch(url, {
       method: 'POST',
@@ -318,7 +318,7 @@ export async function createCarTo(data: TFormCarSchema): Promise<void> {
 }
 
 export const updateCarTo = async (data: TFormEditClientCarToSchema) => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000'
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://rodriguez-db.vercel.app'
   const url = `${baseUrl}/api/car-to`
 
   console.log('Sending data to server:', data) // Логирование данных
@@ -339,7 +339,7 @@ export const updateCarTo = async (data: TFormEditClientCarToSchema) => {
 }
 
 export const updatedOilCar = async (data: any) => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000' // Убедитесь, что эта переменная определена в вашем .env файле
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://rodriguez-db.vercel.app' // Убедитесь, что эта переменная определена в вашем .env файле
   const url = `${baseUrl}/api/car-to/oil-car`
 
   const response = await fetch(url, {
