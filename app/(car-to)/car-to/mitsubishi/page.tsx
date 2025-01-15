@@ -1,8 +1,6 @@
 import { prisma } from '@/prisma/prisma-client'
 import { Container, CarCard } from '@/shared/components/shared'
 
-export const dynamic = 'force-dynamic'
-
 export default async function CarsMitsubishiHome() {
   const carBrandId = 5
 
