@@ -18,3 +18,5 @@ export default async function CarsHyundaiHome() {
     </>
   )
 }
+
+export const dynamic = 'auto'
