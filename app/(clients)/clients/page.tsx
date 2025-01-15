@@ -20,3 +20,5 @@ export default async function ClientsHome() {
     </>
   )
 }
+
+export const dynamic = 'auto'
