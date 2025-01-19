@@ -25,9 +25,14 @@ export async function PUT(req: Request) {
       data: clientCarData,
     })
 
-    return NextResponse.json(updateClientCar, { status: 200 })
+    return new Response(JSON.stringify(updateClientCar), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    })
   } catch (error) {
-    console.error('Error updating client car to:', error)
-    return NextResponse.json({ message: 'Failed to update car' }, { status: 500 })
+    return new Response(JSON.stringify({ error: 'Failed to update client profile' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    })
   }
 }
