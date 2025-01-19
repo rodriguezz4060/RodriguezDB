@@ -280,20 +280,32 @@ export const updateClientCar = async (data: TFormEditClientCarSchema) => {
   const url = `${baseUrl}/api/clients/edit/car`
 
   console.log('Sending data to server:', data) // Логирование данных
+  console.log('URL:', url) // Логирование URL
 
-  const response = await fetch(url, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  })
+  try {
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
 
-  if (!response.ok) {
-    throw new Error('Failed to update client car to')
+    console.log('Response status:', response.status) // Логирование статуса ответа
+
+    if (!response.ok) {
+      const errorResponse = await response.json() // Логирование ошибки
+      console.error('Error response:', errorResponse)
+      throw new Error('Failed to update client car')
+    }
+
+    const result = await response.json()
+    console.log('Success:', result) // Логирование успешного ответа
+    return result
+  } catch (error) {
+    console.error('Fetch error:', error) // Логирование ошибки fetch
+    throw error
   }
-
-  return await response.json()
 }
 
 export async function createCarTo(data: TFormCarSchema): Promise<void> {
