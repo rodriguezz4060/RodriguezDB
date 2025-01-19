@@ -7,7 +7,7 @@ export async function GET() {
   return NextResponse.json(cars)
 }
 
-export async function PUT(req: Request) {
+export async function PATCH(req: Request) {
   const { id, ...data } = await req.json()
 
   try {

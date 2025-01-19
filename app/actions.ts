@@ -261,7 +261,7 @@ export const updateClientCarTo = async (data: TFormEditClientCarToSchema) => {
   console.log('Sending data to server:', data) // Логирование данных
 
   const response = await fetch(url, {
-    method: 'PUT',
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
     },
