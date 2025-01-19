@@ -282,7 +282,7 @@ export const updateClientCar = async (data: TFormEditClientCarSchema) => {
   console.log('Sending data to server:', data) // Логирование данных
 
   const response = await fetch(url, {
-    method: 'PUT',
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
     },
