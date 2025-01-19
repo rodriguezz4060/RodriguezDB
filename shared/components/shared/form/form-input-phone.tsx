@@ -22,9 +22,15 @@ export const FormPhoneInput: React.FC<Props> = ({ className, name, label, requir
     watch,
   } = useFormContext()
 
-  const [phone, setPhone] = useState('+380')
   const value = watch(name)
+  const [phone, setPhone] = useState(value || '+380')
   const errorText = errors[name]?.message as string
+
+  useEffect(() => {
+    if (value) {
+      setPhone(value)
+    }
+  }, [value])
 
   useEffect(() => {
     setValue(name, phone)
@@ -33,8 +39,7 @@ export const FormPhoneInput: React.FC<Props> = ({ className, name, label, requir
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value
     if (inputValue.startsWith('+380')) {
-      // Ограничиваем длину введенного значения до 12 символов
-      const limitedValue = inputValue.slice(0, 13)
+      const limitedValue = inputValue.slice(0, 12)
       setPhone(limitedValue)
     } else {
       setPhone('+380' + inputValue.slice(0, 8))
