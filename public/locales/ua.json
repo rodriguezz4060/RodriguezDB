@@ -141,6 +141,7 @@
         "clientToTitle": "Редагування",
         "clientTitleData": "Сторінка з інформацією про клієнта",
         "clientToTitleData": "Змініть або заповніть дані про ТО для машини клієнта.",
+        "clientToTitleProfileData": "Змініть або заповніть дані про клієнта.",
         "labelText": "База клієнтів",
         "selectValue": "Оберіть тип",
         "valueBelt": "Ремінь",
@@ -543,6 +544,12 @@
         "tel": "Телефон",
         "loading": "Завантаження...",
         "saveButton": "Додати клієнта"
+    },
+    "editClient": {
+        "model": "Машина клієнта",
+        "gosNumber": "Держ. номер",
+        "loading": "Загрузка...",
+        "saveButton": "Зберегти"
     },
     "bootCoverInfo": {
         "form": "Форма пильовика:",

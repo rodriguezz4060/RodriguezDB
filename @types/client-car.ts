@@ -324,3 +324,15 @@ export interface CarBodyFormData {
   passengerWiper: string | null
   hoodShockAbsorbers: string | null
 }
+
+export interface ClientProfile {
+  id: number
+  name: string | null
+  lastName: string | null
+  tel: string | null
+  VIN: string
+  clientCar: {
+    gosNumber: string | null
+    models: string | null
+  } | null
+}

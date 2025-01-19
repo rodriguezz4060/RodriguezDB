@@ -139,6 +139,7 @@
         "clientToTitle": "Редактирование",
         "clientTitleData": "Страница с информацией о клиенте",
         "clientToTitleData": " Измените или заполните данные о ТО для машины клиента.",
+        "clientToTitleProfileData": "Измените или заполните данные о клиенте.",
         "labelText": "База клиентов",
         "selectValue": "Выберите тип",
         "valueBelt": "Ремень",
@@ -553,6 +554,12 @@
         "tel": "Телефон",
         "loading": "Загрузка...",
         "saveButton": "Добавить клиента"
+    },
+    "editClient": {
+        "model": "Машина клиента",
+        "gosNumber": "Гос. номер",
+        "loading": "Загрузка...",
+        "saveButton": "Сохранить"
     },
     "bootCoverInfo": {
         "form": "Форма пыльника:",

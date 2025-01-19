@@ -5,6 +5,7 @@ import { TFormAddBootDustCoverSchema } from '@/shared/components/shared/add-form
 import { TFormCarSchema } from '@/shared/components/shared/add-forms/schemas/add-car-schemas'
 import { TFormAddClientSchema } from '@/shared/components/shared/clients/schemas/add-client-schemas'
 import { TFormEditClientCarSchema } from '@/shared/components/shared/clients/schemas/edit-client-car-schemas'
+import { TFormEditClientProfileSchema } from '@/shared/components/shared/clients/schemas/edit-client-profile-schemas'
 import { TFormEditClientCarToSchema } from '@/shared/components/shared/clients/schemas/edit-client-to-schemas'
 import { getUserSession } from '@/shared/lib/get-user-session'
 import { Prisma } from '@prisma/client'
@@ -352,6 +353,29 @@ export const updatedOilCar = async (data: any) => {
 
   if (!response.ok) {
     throw new Error('Failed to update car')
+  }
+
+  return await response.json()
+}
+
+export const updateClientProfile = async (data: TFormEditClientProfileSchema) => {
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://rodriguez-db.vercel.app'
+  const url = `${baseUrl}/api/clients/edit/client-profile`
+
+  console.log('Sending data to server:', data) // Логирование данных
+
+  const response = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+
+  if (!response.ok) {
+    // Если ответ не OK, пытаемся прочитать JSON с ошибкой
+    const errorData = await response.json().catch(() => null)
+    throw new Error(errorData?.error || 'Failed to update client profile')
   }
 
   return await response.json()

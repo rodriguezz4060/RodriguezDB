@@ -1,6 +1,7 @@
 import * as z from 'zod'
 
-export const formAddClientSchema = z.object({
+export const formEditClientProfileSchema = z.object({
+  id: z.number().int().positive(),
   name: z.string().optional(),
   lastName: z.string().optional(),
   VIN: z
@@ -19,6 +20,10 @@ export const formAddClientSchema = z.object({
         message: 'Номер должен содержать только цифры, начинаться с +380 и содержать 9 цифр',
       }
     ),
+  clientCar: z.object({
+    gosNumber: z.string(),
+    models: z.string(),
+  }),
 })
 
-export type TFormAddClientSchema = z.infer<typeof formAddClientSchema>
+export type TFormEditClientProfileSchema = z.infer<typeof formEditClientProfileSchema>

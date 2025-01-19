@@ -14,7 +14,7 @@ interface Props {
 
 export const BackButton: React.FC<Props> = ({ id, route, className }) => {
   const { formatMessage } = useIntl()
-  const link = id ? `${route}/${id}` : route
+  const link = id ? `${route}${id}/profile` : route
 
   return (
     <>

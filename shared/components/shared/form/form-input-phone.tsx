@@ -34,7 +34,7 @@ export const FormPhoneInput: React.FC<Props> = ({ className, name, label, requir
     const inputValue = e.target.value
     if (inputValue.startsWith('+380')) {
       // Ограничиваем длину введенного значения до 12 символов
-      const limitedValue = inputValue.slice(0, 12)
+      const limitedValue = inputValue.slice(0, 13)
       setPhone(limitedValue)
     } else {
       setPhone('+380' + inputValue.slice(0, 8))
