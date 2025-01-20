@@ -22,7 +22,13 @@ export const CarCard: React.FC<Props> = ({ carTo, rout, className }) => {
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 10
 
-  const filteredCarTo = carTo.filter(button =>
+  // Сортируем массив carTo по полю createdAt в порядке убывания
+  const sortedCarTo = carTo.sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  )
+
+  // Фильтруем отсортированный массив
+  const filteredCarTo = sortedCarTo.filter(button =>
     Object.values(button).some(value =>
       String(value).toLowerCase().includes(searchTerm.toLowerCase())
     )
