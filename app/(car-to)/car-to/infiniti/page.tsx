@@ -18,3 +18,5 @@ export default async function CarsInfinitiHome() {
     </>
   )
 }
+
+export const dynamic = 'auto'
