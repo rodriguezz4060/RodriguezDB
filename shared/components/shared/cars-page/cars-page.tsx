@@ -48,3 +48,5 @@ export const CarsPage: React.FC<Props> = ({ cars: initialCars, className }) => {
     </FormProvider>
   )
 }
+
+export const dynamic = 'auto'
