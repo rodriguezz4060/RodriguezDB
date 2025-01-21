@@ -88,20 +88,22 @@ export const FormDataTable: React.FC<Props> = ({
             {label} {required && <span className='text-red-500'>*</span>}
           </p>
         )}
+      </div>
+
+      <div className='flex justify-between items-center w-full mb-4'>
+        <div className='relative w-[400px]'>
+          <Input
+            className='h-10 text-md dark:bg-[#121212] dark:border-[#1e293b] dark:border-2'
+            placeholder={formatMessage({ id: 'bootCars.searchByModel' })}
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value)}
+          />
+          {searchTerm && <ClearButton onClick={() => setSearchTerm('')} />}
+        </div>
+
         <div className='flex items-center'>
           <AddCarButton />
         </div>
-      </div>
-
-      <div className='relative w-[400px] mb-4 ml-2'>
-        <Input
-          className='h-10 text-md dark:bg-[#121212] dark:border-[#1e293b] dark:border-2'
-          placeholder={formatMessage({ id: 'bootCars.searchByModel' })}
-          value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
-        />
-
-        {searchTerm && <ClearButton onClick={() => setSearchTerm('')} />}
       </div>
       <div className='rounded-[5px] border overflow-hidden'>
         <Table>
