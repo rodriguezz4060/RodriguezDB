@@ -647,7 +647,8 @@
         "page": "Страница",
         "of": "из",
         "carEdit": "Редактировать",
-        "price": "Цена"
+        "price": "Цена",
+        "noInformation": "Тут пока нет информации"
     },
     "noFoundPage": {
         "onHomePage": "На главную",

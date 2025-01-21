@@ -7,6 +7,7 @@ import { CarWithBrand } from '@/@types/prisma'
 import { FormProvider, useForm } from 'react-hook-form'
 import { FormDataTable } from '../form'
 import { DataTableColumns } from '@/shared/constants/table'
+import { AddCarButton } from '../buttons'
 
 interface Props {
   cars: CarWithBrand[]
@@ -26,7 +27,7 @@ export const CarsPage: React.FC<Props> = ({ cars: initialCars, className }) => {
   return (
     <FormProvider {...methods}>
       <Container className='h-full flex flex-col py-5 secondary dark:bg-zinc-900'>
-        {cars && cars.length > 0 && (
+        {cars && cars.length > 0 ? (
           <FormDataTable
             name='cars'
             label={formatMessage({ id: 'bootCars.carsList' })}
@@ -35,6 +36,13 @@ export const CarsPage: React.FC<Props> = ({ cars: initialCars, className }) => {
             itemsPerPage={25}
             onDeleteCar={handleDeleteCar}
           />
+        ) : (
+          <div className='flex flex-col items-center justify-center h-full'>
+            <p className='text-lg text-gray-600 dark:text-gray-400 mb-4'>
+              {formatMessage({ id: 'bootCars.noInformation' })}
+            </p>
+            <AddCarButton />
+          </div>
         )}
       </Container>
     </FormProvider>

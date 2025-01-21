@@ -51,7 +51,14 @@ export const FormDataTable: React.FC<Props> = ({
 
   const errorText = errors[name]?.message as string
 
-  const filteredData = data.filter(item => {
+  // Сортировка данных от новых к старым по полю `createdAt`
+  const sortedData = [...data].sort((a, b) => {
+    const dateA = new Date(a.createdAt).getTime()
+    const dateB = new Date(b.createdAt).getTime()
+    return dateB - dateA // Сортировка от новых к старым
+  })
+
+  const filteredData = sortedData.filter(item => {
     const model = item.models ? item.models.toLowerCase() : ''
     return model.includes(searchTerm.toLowerCase())
   })
@@ -112,9 +119,13 @@ export const FormDataTable: React.FC<Props> = ({
                   <TableCell key={column.key}>
                     {column.key === 'imageUrl' ? (
                       <img
-                        src={getValue(item, column.key) ?? ''}
+                        src={getValue(item, column.key) || '/no_img.jpg'} // Используем заглушку, если изображение отсутствует
                         alt='Logo'
                         className='h-[30px] w-auto'
+                        onError={e => {
+                          // Если изображение не загружается, заменяем его на заглушку
+                          ;(e.target as HTMLImageElement).src = '/no_img.jpg'
+                        }}
                       />
                     ) : column.key === 'actions' ? (
                       <Popover>

@@ -38,7 +38,14 @@ export const FormTableClientData: React.FC<Props> = ({
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
 
-  const filteredData = data.filter(item => {
+  // Сортировка данных от новых к старым по полю `createdAt`
+  const sortedData = [...data].sort((a, b) => {
+    const dateA = new Date(a.createdAt).getTime()
+    const dateB = new Date(b.createdAt).getTime()
+    return dateB - dateA // Сортировка от новых к старым
+  })
+
+  const filteredData = sortedData.filter(item => {
     const nameMatch = item.name?.toLowerCase().includes(searchTerm.toLowerCase())
     const telMatch = item.tel?.toLowerCase().includes(searchTerm.toLowerCase())
     const vinMatch = item.VIN?.toString().toLowerCase().includes(searchTerm.toLowerCase())

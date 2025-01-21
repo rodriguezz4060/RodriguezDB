@@ -9,9 +9,10 @@ import { formCarSchema, TFormCarSchema } from './schemas/add-car-schemas'
 import { Title } from '../title'
 import { Button } from '../../ui'
 import { useIntl } from 'react-intl'
-import { Loader, Save } from 'lucide-react'
+import { ArrowLeft, Loader, Save } from 'lucide-react'
 import { useAddCarForm } from '@/shared/hooks'
 import { Brands } from '@/@types/prisma'
+import Link from 'next/link'
 
 interface Props {
   carBrands: Brands[]
@@ -38,7 +39,15 @@ export const AddCarForm: React.FC<Props> = ({ carBrands }) => {
 
   return (
     <>
-      <Title text={formatMessage({ id: 'addCar.formTitle' })} size='lg' className='font-bold' />
+      <div className='flex items-center justify-between mt-4'>
+        <Title text={formatMessage({ id: 'addCar.formTitle' })} size='lg' className='font-bold' />
+        <Link href='/cars/'>
+          <Button className='font-bold px-4 py-2'>
+            <ArrowLeft size={20} className='mr-2' />
+            {formatMessage({ id: 'addBootForm.backButton' })}
+          </Button>
+        </Link>
+      </div>
       <Container className='flex items-center justify-center pb-10'>
         <div className='flex gap-10 w-[800px]'>
           <div className='flex-1'>

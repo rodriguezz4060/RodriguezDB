@@ -637,7 +637,8 @@
         "page": "Сторінка",
         "of": "з",
         "carEdit": "Редагувати",
-        "price": "Ціна"
+        "price": "Ціна",
+        "noInformation": "Тут поки що немає інформації"
     },
     "noFoundPage": {
         "onHomePage": "На головну",
