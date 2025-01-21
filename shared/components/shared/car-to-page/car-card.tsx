@@ -77,7 +77,7 @@ export const CarCard: React.FC<Props> = ({ carTo, rout, className }) => {
                   )}
                 >
                   <div className='flex flex-row items-center w-full'>
-                    <img className='min-w-[200px] max-w-[200px]' src={src} alt={button.models} />
+                    <img className='min-w-[200px] max-h-[100px]' src={src} alt={button.models} />
 
                     <Separator orientation='vertical' className='w-px h-24 mx-6 bg-gray-300' />
 
