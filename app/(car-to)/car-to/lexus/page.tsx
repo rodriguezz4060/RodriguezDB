@@ -18,3 +18,5 @@ export default async function CarsLexusHome() {
     </>
   )
 }
+
+export const dynamic = 'auto'
