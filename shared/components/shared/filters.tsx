@@ -83,7 +83,7 @@ export const Filters: React.FC<Props> = ({ className }) => {
             placeholder='0'
             min={0}
             max={200}
-            value={String(filters.sizes.inSizeFrom || 0)}
+            value={filters.sizes.inSizeFrom !== null ? String(filters.sizes.inSizeFrom) : ''}
             onChange={e => filters.setSizes('inSizeFrom', Number(e.target.value))}
           />
           <Input
@@ -91,7 +91,7 @@ export const Filters: React.FC<Props> = ({ className }) => {
             placeholder='200'
             min={100}
             max={200}
-            value={String(filters.sizes.inSizeTo || 200)}
+            value={filters.sizes.inSizeTo !== null ? String(filters.sizes.inSizeTo) : ''}
             onChange={e => filters.setSizes('inSizeTo', Number(e.target.value))}
           />
         </div>
@@ -113,7 +113,7 @@ export const Filters: React.FC<Props> = ({ className }) => {
               placeholder='0'
               min={0}
               max={40}
-              value={String(filters.sizes.outSizeFrom || 0)}
+              value={filters.sizes.outSizeFrom !== null ? String(filters.sizes.outSizeFrom) : ''}
               onChange={e => filters.setSizes('outSizeFrom', Number(e.target.value))}
             />
             <Input
@@ -121,7 +121,7 @@ export const Filters: React.FC<Props> = ({ className }) => {
               placeholder='40'
               min={10}
               max={40}
-              value={String(filters.sizes.outSizeTo || 40)}
+              value={filters.sizes.outSizeTo !== null ? String(filters.sizes.outSizeTo) : ''}
               onChange={e => filters.setSizes('outSizeTo', Number(e.target.value))}
             />
           </div>
