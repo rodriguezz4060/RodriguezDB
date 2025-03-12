@@ -39,10 +39,10 @@ export const FormPhoneInput: React.FC<Props> = ({ className, name, label, requir
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value
     if (inputValue.startsWith('+380')) {
-      const limitedValue = inputValue.slice(0, 12)
+      const limitedValue = inputValue.slice(0, 13)
       setPhone(limitedValue)
     } else {
-      setPhone('+380' + inputValue.slice(0, 8))
+      setPhone('+380' + inputValue.slice(0, 9))
     }
   }
 
