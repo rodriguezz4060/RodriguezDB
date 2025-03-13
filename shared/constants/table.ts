@@ -92,6 +92,7 @@ export const TableClientsColumns = () => {
     { key: 'tel', label: formatMessage({ id: 'clients.phone' }) },
     { key: 'clientCar.models', label: formatMessage({ id: 'clients.clientCar' }) },
     { key: 'clientCar.gosNumber', label: formatMessage({ id: 'clients.gosNumber' }) },
+    { key: 'actions', label: formatMessage({ id: 'bootCars.actions' }) },
   ]
 
   return columns

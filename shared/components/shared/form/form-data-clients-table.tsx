@@ -5,9 +5,12 @@ import { useFormContext } from 'react-hook-form'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../ui/table'
 import { ErrorText } from '../error-text'
 import { Button, Input } from '../../ui'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Pencil, Settings } from 'lucide-react'
 import Link from 'next/link'
 import { useIntl } from 'react-intl'
+import { useSession } from 'next-auth/react'
+import { Popover, PopoverContent, PopoverTrigger } from '../../ui/popover'
+import { DeleteClientButton } from '../buttons/delete-client-button'
 
 interface Props {
   name: string
@@ -17,6 +20,7 @@ interface Props {
   data: any[]
   columns: { key: string; label: string }[]
   itemsPerPage?: number
+  onDeleteClient?: (id: number) => void
 }
 
 export const FormTableClientData: React.FC<Props> = ({
@@ -27,6 +31,7 @@ export const FormTableClientData: React.FC<Props> = ({
   data,
   columns,
   itemsPerPage = 10,
+  onDeleteClient,
 }) => {
   const {
     formState: { errors },
@@ -37,6 +42,8 @@ export const FormTableClientData: React.FC<Props> = ({
 
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
+  const { data: session } = useSession()
+  const userRole = session?.user?.role
 
   // Сортировка данных от новых к старым по полю `createdAt`
   const sortedData = [...data].sort((a, b) => {
@@ -69,6 +76,10 @@ export const FormTableClientData: React.FC<Props> = ({
     return keys.reduce((acc, k) => acc?.[k], item)
   }
 
+  // Фильтрация колонок на основе роли пользователя
+  const filteredColumns =
+    userRole === 'ADMIN' ? columns : columns.filter(column => column.key !== 'actions')
+
   return (
     <div className={className}>
       {label && (
@@ -90,7 +101,7 @@ export const FormTableClientData: React.FC<Props> = ({
         <Table>
           <TableHeader>
             <TableRow>
-              {columns.map(column => (
+              {filteredColumns.map(column => (
                 <TableHead key={column.key}>{column.label}</TableHead>
               ))}
             </TableRow>
@@ -98,7 +109,7 @@ export const FormTableClientData: React.FC<Props> = ({
           <TableBody>
             {currentItems.map((item, index) => (
               <TableRow key={index} className='cursor-pointer'>
-                {columns.map(column => (
+                {filteredColumns.map(column => (
                   <TableCell key={column.key}>
                     {column.key === 'imageUrl' ? (
                       <img
@@ -106,6 +117,27 @@ export const FormTableClientData: React.FC<Props> = ({
                         alt='Logo'
                         className='h-[30px] w-auto'
                       />
+                    ) : column.key === 'actions' ? (
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button variant='ghost'>
+                            <Settings className='mr-2' />
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className='w-auto'>
+                          <div className='mb-2'>
+                            <Button className='text-sm font-bold bg-[#4CAF50] hover:bg-[#388E3C] items-center'>
+                              <Link href={`/clients/${item.id}/edit/client`}>
+                                <Pencil size={18} className='mr-1 inline-block items-center pb-1' />
+                                {formatMessage({ id: 'bootCars.carEdit' })}
+                              </Link>
+                            </Button>
+                          </div>
+                          <div className=''>
+                            <DeleteClientButton id={item.id} onDelete={onDeleteClient} />
+                          </div>
+                        </PopoverContent>
+                      </Popover>
                     ) : (
                       <Link href={`/clients/${item.id}/profile`} passHref>
                         <span className='cursor-pointer'>{getValue(item, column.key)}</span>

@@ -149,6 +149,25 @@ export const deleteCar = async (id: number) => {
   return await response.json()
 }
 
+export const deleteClient = async (id: number) => {
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://rodriguez-db.vercel.app'
+  const url = `${baseUrl}/api/clients`
+
+  const response = await fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id }),
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to delete client')
+  }
+
+  return await response.json()
+}
+
 export const removeConnection = async (carId: number, dustCoverId: number) => {
   const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://rodriguez-db.vercel.app'
   const url = `${baseUrl}/api/connection?carId=${carId}&dustCoverId=${dustCoverId}`

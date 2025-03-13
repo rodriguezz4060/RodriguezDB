@@ -29,3 +29,32 @@ export async function POST(req: NextRequest) {
     await prisma.$disconnect()
   }
 }
+
+export async function DELETE(req: Request) {
+  const { id } = await req.json()
+
+  try {
+    // Удаляем связанные данные в таблице ClientCarTo
+    await prisma.clientCarTo.deleteMany({
+      where: { clientToId: Number(id) },
+    })
+
+    // Удаляем связанные данные в таблице ClientCar
+    await prisma.clientCar.deleteMany({
+      where: { clientId: Number(id) },
+    })
+
+    // Удаляем клиента
+    await prisma.clients.delete({
+      where: { id: Number(id) },
+    })
+
+    return NextResponse.json(
+      { message: 'Client and related data deleted successfully' },
+      { status: 200 }
+    )
+  } catch (error) {
+    console.error('Error deleting client:', error)
+    return NextResponse.json({ error: 'Failed to delete Client and related data' }, { status: 500 })
+  }
+}
